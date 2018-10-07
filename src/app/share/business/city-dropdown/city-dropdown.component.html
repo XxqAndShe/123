@@ -1,0 +1,29 @@
+<div class="meta-select">
+    <span>{{provinceLabel}}</span>
+    <p-dropdown [options]="provinces"
+                [placeholder]="defaultLabel"
+                [style]="{'width':width,'height':height}"
+                [(ngModel)]="province"
+                (onChange)="onProvinceChangeHandler($event)"
+                (onBlur)="onBlurHandler($event)"
+                (onFocus)="onFocusHandler($event)"
+                filter="filter"></p-dropdown>
+    <span [style.margin-left]="marginLeft">{{cityLabel}}</span>
+    <p-dropdown [options]="citys"
+                [placeholder]="defaultLabel"
+                [style]="{'width':width,'height':height}"
+                [(ngModel)]="city"
+                (onChange)="onCityChangeHandler($event)"
+                (onBlur)="onBlurHandler($event)"
+                (onFocus)="onFocusHandler($event)"
+                filter="filter"></p-dropdown>
+    <span  [style.margin-left]="marginLeft">{{districtLabel}}</span>
+    <p-dropdown [options]="districts"
+                [placeholder]="defaultLabel"
+                [style]="{'width':width,'height':height}"
+                [(ngModel)]="district"
+                (onChange)="onDistrictChangeHandler($event)"
+                (onBlur)="onBlurHandler($event)"
+                (onFocus)="onFocusHandler($event)"
+                filter="filter"></p-dropdown>
+</div>

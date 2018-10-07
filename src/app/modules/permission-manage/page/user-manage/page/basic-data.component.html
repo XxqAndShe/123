@@ -1,0 +1,27 @@
+<div class="dialog-box" #dialogCheck id="dialog_box_check" [ngStyle]="drag.setPosition(513, 341)">
+    <div class="dialog-box-title blue" id="dialog_title_check">
+        <span class="dialog-left">员工基本资料</span>
+        <span class="dialog-right" (click)="dealHide(dialogCheck)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="content-left">
+            <div class="content-line"><label>姓名：</label><span>梁晓丽</span></div>
+            <div class="content-line"><label>工号：</label><span>1220</span></div>
+            <div class="content-line"><label>部门：</label><span>产品中心</span></div>
+            <div class="content-line"><label>角色：</label><span>产品经理</span></div>
+            <div class="content-line"><label>身份证号：</label><span>4512458785544669874</span></div>
+            <div class="content-line"><label>地址：</label><span>广州市天河区</span></div>
+            <div class="content-line"><label>备注：</label><span></span></div>
+        </div>
+        <div class="content-right">
+            <div class="content-line"><label>性别：</label><span>女</span></div>
+            <div class="content-line"><label>手机号：</label><span>13546785436</span></div>
+            <div class="content-line"><label>入职时间：</label><span>2016-12-12</span></div>
+            <div class="content-line"><label>数据权限：</label><a href="javascript:;" (click)="showModal(dialogCheck)">查看</a></div>
+            <div class="content-line"><label>状态：</label><span>在职</span></div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn default-btn" (click)="dealHide(dialogCheck)">关闭</span>
+    </div>
+</div>

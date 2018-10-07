@@ -1,0 +1,104 @@
+
+<div class="wap">
+    <!--<div class="group_bg" *ngIf="isShowGroupBg">
+        <div class="choice">
+            <p>选择同事 <a class="clean_bg" href="javascript:;" (click)="closeWorkmate()">X</a></p>
+            <ul>
+                <li (click)="addTeamer()" *ngFor="let data of Teamer">
+                    <div class="worker">同事</div>
+                    <div class="worker_title">
+                        <div class="worker_man"><label><span>{{data.name}}</span>(<span>{{data.phoneNumer}}</span>)</label></div>
+                        <em>{{data.region}}</em>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>-->
+    <!--------主要内容----------->
+    <div class="chat_wap">
+        <div class="left_box">
+            <div class="user_info">
+                   <div class="u_lcol">
+
+                       <div class="u_pic"><img [src]="portraitUrl?portraitUrl:'/assets/touxiang.jpg'"></div>
+                       <div class="u_name" (click)="headClick($event)" id="u_name">{{curUser.realName}}<em [ngClass]="isOnLine?'shop_on':'shop_off'"></em></div>
+                       <div class="set" id="set">
+                           <span class="on_line" (click)="onLine()"><i></i>在线</span>
+                           <span class="off_line" (click)="offLine()"><i></i>离线</span>
+                       </div>
+                   </div>
+                    <div class="user_info_bg"> </div>
+            </div>
+
+            <div class="u_search">
+                <input
+                        type="text"
+                        placeholder="请输入姓名/手机号"
+                        [(ngModel)]="updateList"
+                        (keyup.enter)="loadListData()"
+                >
+            </div>
+
+            <!--------------列表内容----------------->
+            <div class="list_box">
+                <div class="nav">
+                    <span (click)="listType='jieru';displayModal($event, 1);">待接入
+                        <i style="position: relative;" class="icon" *ngIf="InDataSum">{{InDataSum}}</i></span>
+                    <span (click)="listType='huihua';displayModal($event, 0);" class="on" href="#">及时会话<i class="icon" *ngIf="sum" style="position: relative;">{{sum}}</i></span>
+                </div>
+                <div class="im_list" id="im_box_list">
+                    <ul>
+                        <li><a class="chat on l1 selectLi0" href="javascript:;" title="会话" (click)="listType='huihua';displayModal($event, 0);"> </a></li>
+                        <!--<li><a class="chat l3 selectLi2" href="javascript:;" title="任务组" (click)="displayModal($event, 2)"> </a></li>-->
+                        <li><a class="chat l5 selectLi2" href="javascript:;" title="师傅" (click)="listType='shifu';displayModal($event, 2);refreshMaster();"> </a></li>
+                        <!--<li><a class="chat l5 selectLi4" href="javascript:;" title="同事" (click)="displayModal($event, 4)"> </a></li>-->
+                    </ul>
+                </div>
+                <div class="im_box_cont">
+                    <div class="conve_list_wrap">
+                        <!--会话-->
+                        <ul class="conve_list">
+                            <im-box-list [hasSessionKey]="sessionKey" [Data]="OrderData"  (isSessionJoinIn)="sessionJoinIn($event)" [sname]="IMstyleName" (clrtimer)="clrTimer($event)" (saveTitle)="getGrowl($event)" (imgsrc)="getImg($event)"></im-box-list>
+                        </ul>
+                        <!--接入-->
+                        <ul class="conve_list on">
+                            <im-box-list [hasEntryKey]="sessionKey" [Data]="InData" (imgsrc)="getImg($event)" (isJoinIn)="receiveJoinIn($event)" [sname]="IMstyleName"></im-box-list>
+                        </ul>
+                        <!--任务组-->
+                        <!--<ul class="conve_list on">-->
+                            <!--<im-box-list [Data]="OtherData"  (isJoinIn)="receiveJoinIn($event)" [sname]="IMstyleName"></im-box-list>-->
+                        <!--</ul>-->
+                        <!--同事-->
+                        <!--<ul class="conve_list on">-->
+                            <!--<im-box-list [Data]="OtherData"  (isJoinIn)="receiveJoinIn($event)" [sname]="IMstyleName"></im-box-list>-->
+                        <!--</ul>-->
+                        <!--师傅-->
+                        <ul class="conve_list on">
+                            <im-box-list  [hasMasterEntryKey]="sessionKey"  [Data]="MasterData" (isMasterJoinIn)="receiveMasterJoinIn($event)" [sname]="IMstyleName"></im-box-list>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-------中间聊天---->
+        <dialog-box
+                [isPopUpBox]="false"
+                [historyData]="historyData"
+                [memberData]="memberData"
+                [teamerData]="teamerData"
+                (outer)="receive($event)"
+                (isShowGroupBg)="ShowGroupBg()"
+                (orderType)="receiveOrderType($event)"
+                [imGroupData]="imGroupData"
+                (isJoinIn)="receiveJoinIn($event)"
+                [noAlert]="true"
+                [groupIdFromIM]="groupId"
+                [groupTitleFromIM]="title"
+                [quitChat]="false"
+                [imgsrc]="imgsrc"
+        ></dialog-box>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

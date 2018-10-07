@@ -1,0 +1,129 @@
+<div class="frame">
+    <div class="title">配置考核项</div>
+    <div class="frame-select">
+        <div class="frame-select-content">
+            <label>服务类型</label>
+            <select>
+                <option value="请选择">请选择</option>
+                <option value="正常">正常</option>
+                <option value="加急">加急</option>
+                <option value=".....">.....</option>
+            </select>
+            <!--<span class="btn primary-btn" (click)="addCondition()">添加条件</span>-->
+        </div>
+        <div class="frame-select-content">
+            <label>考核项</label>
+            <select>
+                <option selected="" value="请选择">请选择</option>
+                <option value="受理及时率">受理及时率</option>
+                <option value="提货及时率">提货及时率</option>
+                <option value="预约及时率">预约及时率</option>
+                <option value="安装及时率">安装及时率</option>
+                <option value="48小时安装完成率">48小时安装完成率</option>
+                <option value="核销及时率">核销及时率</option>
+            </select>
+        </div>
+        <!--原型修改后-->
+        <div class="frame-select-content">
+            <label class="label-text">设置条件</label>
+            <textarea name="tt"></textarea>
+        </div>
+        <div class="frame-select-content">
+            <label  class="label-text">翻译条件</label>
+            <textarea name="tt"></textarea>
+        </div>
+        <!--原型修改后-->
+    </div>
+    <!--原型修改前HTML-->
+    <!--<div class="condition-content">-->
+        <!--<div *ngFor="let condition of conditionNum;let i=index" class="condition">-->
+            <!--<span class="deleted" (click)="removeCondition(i)"></span>-->
+            <!--<div class="condition-title">条件{{i+1}}</div>-->
+            <!--<div>-->
+                <!--<label>若满足</label>-->
+                <!--<select>-->
+                    <!--<option value="请选择">请选择</option>-->
+                    <!--<option value="受理">受理</option>-->
+                    <!--<option value="提货">提货</option>-->
+                    <!--<option value="预约">预约</option>-->
+                    <!--<option value="签收">签收</option>-->
+                    <!--<option value="核销">核销</option>-->
+                <!--</select>-->
+                <!--<select>-->
+                    <!--<option selected="" value="请选择">请选择</option>-->
+                    <!--<option value="已操作">已操作</option>-->
+                    <!--<option value="未操作">未操作</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<label>且开始时间（T1）</label>-->
+                <!--<select>-->
+                    <!--<option selected="" value="请选择">请选择</option>-->
+                    <!--<option value="大于等于">大于等于</option>-->
+                    <!--<option value="小于等于">小于等于</option>-->
+                    <!--<option value="等于">等于</option>-->
+                <!--</select>-->
+                <!--<select>-->
+                    <!--<option selected="" value="请选择">请选择</option>-->
+                    <!--<option value="T1">T1</option>-->
+                    <!--<option value="1:00">1:00</option>-->
+                    <!--<option value="2:00">2:00</option>-->
+                    <!--<option value="...">...</option>-->
+                    <!--<option value="14:00">14:00</option>-->
+                    <!--<option value="24:00">24:00</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--<label>则计算结束时间（T2）</label>-->
+                <!--<select>-->
+                    <!--<option selected="" value="请选择">请选择</option>-->
+                    <!--<option value="=T1+0">=T1+0</option>-->
+                    <!--<option value="=T1+1">=T1+1</option>-->
+                    <!--<option value="=T1+2">=T1+2</option>-->
+                    <!--<option value="=T1+3">=T1+3</option>-->
+                    <!--<option value="=T1+4">=T1+4</option>-->
+                    <!--<option value="=T1+5">=T1+5</option>-->
+                    <!--<option value="=T1+6">=T1+6</option>-->
+                    <!--<option value="=T1+7">=T1+7</option>-->
+                <!--</select>-->
+                <!--<span class=" circle-null" [ngClass]='{"circle-f5":isChoice[i],"circle":!isChoice[i]}' (click)="changeChoice(i)"><span class="circle-padding"></span></span>-->
+                <!--<select>-->
+                    <!--<option value="1:00">1:00</option>-->
+                    <!--<option value="2:00">2:00</option>-->
+                    <!--<option value="...">...</option>-->
+                    <!--<option value="12:00">12:00</option>-->
+                    <!--<option value="...">...</option>-->
+                    <!--<option value="24:00">24:00</option>-->
+                    <!--<option selected="" value="请选择">请选择</option>-->
+                <!--</select>-->
+                <!--<span class=" circle-null" [ngClass]='{"circle-f5":!isChoice[i],"circle":isChoice[i]}' (click)="changeChoice(i)"><span class="circle-padding"></span></span>-->
+                <!--&lt;!&ndash;<span class="circle-f5"><span class=" circle-null circle"></span></span>&ndash;&gt;-->
+                <!--<select class="spec-select">-->
+                    <!--<option selected="" value="请选择">请选择</option>-->
+                    <!--<option value="加">加</option>-->
+                    <!--<option value="减">减</option>-->
+                <!--</select>-->
+                <!--<select class="spec-select">-->
+                    <!--<option value="">正常</option>-->
+                    <!--<option value="">正常</option>-->
+                    <!--<option value="">正常</option>-->
+                    <!--<option value="">正常</option>-->
+                    <!--<option value="">正常</option>-->
+                <!--</select>-->
+                <!--<select class="spec-select">-->
+                    <!--<option selected="" value="请选择">请选择</option>-->
+                    <!--<option value="分钟">分钟</option>-->
+                    <!--<option value="小时">小时</option>-->
+                    <!--<option value="天">天</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--原型修改前HTML-->
+    <!-- 底部按钮 -->
+    <div class="footer-button">
+        <button class="primary-btn btn">保存</button>
+        <button class="default-btn btn" type="reset" (click)="hideModal()">取消</button>
+    </div>
+    <a class="close-modal-btn" (click)="hideModal()"></a>
+</div>

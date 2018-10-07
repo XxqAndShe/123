@@ -1,0 +1,49 @@
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+<div class="deposit-content">
+    <financial-center-top></financial-center-top>
+    <state-search (searchAllWithdraw)="searchAllWithdraw($event)" [loading]="loading"></state-search>
+    <div *ngIf="isshowTitle" class="table-title"><span class="title-name">提现列表</span></div>
+    <div *ngIf="!isshowTitle" class="show-flow-chart">
+        <ul class="show-flow-list">
+            <li><span>已选中<i>{{selectionRow?.length || 0}}</i>项</span></li>
+            <li (click)="displayModal(2)"><i></i><span>师傅提现</span></li>
+            <li (click)="displayModal(0)"><i></i><span>提现审批</span></li>
+            <li (click)="displayWin()"><i></i><span>付款明细</span></li>
+            <li (click)="displayModal(1)"><i></i><span>任务明细</span></li>
+            <li (click)="showReject()" *ngIf="selected.length!=0&&selected[0].auditStatus=='已通过'"><i></i><span>否决审核</span></li>
+        </ul>
+        <span class="cancel-icon" (click)="showTitle()">×</span>
+    </div>
+    <div class="table-container">
+        <!--<data-table [tableHeight]="tableHeight" [datum]="datum" *ngIf="isTableShow"></data-table>-->
+    </div>
+    <!--<ui-grid title="测试表格" [columns]="columns" [data]="data"  [selections]="selections"></ui-grid>-->
+    <ui-grid title="&nbsp;" [data]="data" [columns]="columns" (rowSelect)="rowSelect($event)" (exportCSV)="exportCSV($event)" [(selections)]="selectionRow" (load)="load($event)"></ui-grid>
+
+</div>
+<master-deposit-model *ngIf="isshowModal[2]" (closeModal)="closeModal($event,2)" [@modalState]="isshowModalAni[2] ?'in':'out'" [withdrawAuditResponseVo]="withdrawAuditResponseVo"></master-deposit-model>
+<deposit-assess *ngIf="isshowModal[0]" (closeModal)="closeModal($event,0)" [@modalState]="isshowModalAni[0] ?'in':'out'" [withdrawAuditResponseVo]="withdrawAuditResponseVo" [withdrawAuditRequestVo]="withdrawAuditRequestVo" [rowData]="selected[0]"></deposit-assess>
+<deposit-apply *ngIf="isshowDepositApply" (isshow)="isshow($event)"></deposit-apply>
+<pay-detail *ngIf="isshowPayDetail" [anotherpaidRes]="anotherpaidRes" (isshow)="isshow($event)" (isshowTaskDetail)="isshowTaskDetail($event)" [paidResponseVo]="paidResponseVo"></pay-detail>
+<task-detail *ngIf="isshowModal[1]" (closeModal)="closeModal($event,1)" [@modalState]="isshowModalAni[1] ?'in':'out'" [withdrawAuditResponseVo]="withdrawAuditResponseVo" [withdrawAuditRequestVo]="withdrawAuditRequestVo"></task-detail>
+
+
+<!-- 否决审核 -->
+<span *ngIf="rejectAduitingState">
+  <div class="dialog-box dialog-box-mm" style="display:block">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+<span class="dialog-right" (click)="deleteSymbol()">×</span>
+</div>
+<div class="dialog-box-content dialog-box-content-mm">
+    是否确认否决{{withdrawAuditRequestVo.wdNo}}？
+</div>
+<div class="dialog-box-footer dialog-box-footer-mm">
+    <span class="btn primary-btn" (click)="rejectAuditing()">
+        确定
+    </span>
+    <span class="btn default-btn" (click)="cancelRejectAuditing()">取消</span>
+</div>
+</div>
+</span>

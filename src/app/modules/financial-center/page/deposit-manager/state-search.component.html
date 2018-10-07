@@ -1,0 +1,64 @@
+<form>
+    <ul class="state-search">
+        <li class="sub-select-list">
+            <span class="state-search-text">申请时间</span>
+            <!--<span class="state-search-input"><input #applytime type="text" readonly="readonly" value="{{dateText1}}" (click)="hidden1=false;hidden2=true"></span>-->
+            <!--<my-date-picker [hasDatePickerHidden]="hasHidden1" [datePickerHidden]="hidden1" [dateText]="dateText1" (changeDateText)="changeDateText1($event)"></my-date-picker>-->
+            <!-- TODO(样式) -->
+            <p-calendar name="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [(ngModel)]="withdrawRequestVo.beginTime" [readonlyInput]="true"></p-calendar>
+            <!--<span class="state-search-text" >师傅姓名</span>-->
+            <!--<span class="state-search-input">-->
+            <!--<master-select name="masterName" width="150px" defaultLabel="请选择…" [(ngModel)]="withdrawRequestVo.user.realName"  type="name"></master-select>-->
+            <!--</span>-->
+            <span class="state-search-text">网点</span>
+            <div style="width:125px;display: inline-block;">
+                <span class="state-search-input">
+                <department-select name="netDotSearch" width="125px" defaultLabel="请选择…" [(ngModel)]="withdrawRequestVo.companyDepartmentOrPhone" valueField="mobile"></department-select>
+                <!--<p-autoComplete name="tt" [(ngModel)]="withdrawRequestVo.user.mobile" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+                 </span>
+            </div>
+        </li>
+        <li>
+            <span class="state-search-text">截止时间</span>
+            <!--<span class="state-search-input"><input #deadline  type="text" readonly="readonly" value="{{dateText2}}" (click)="hidden2=false;hidden1=true"></span>-->
+            <!--<my-date-picker [hasDatePickerHidden]="hasHidden2" [datePickerHidden]="hidden2" [dateText]="dateText2" (changeDateText)="changeDateText2($event)"></my-date-picker>-->
+            <!-- TODO(样式) -->
+            <p-calendar name="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [(ngModel)]="withdrawRequestVo.endTime" [readonlyInput]="true"></p-calendar>
+
+            <span class="state-search-text">师傅</span>
+            <span class="state-search-input">
+                <master-select name="masterSearch" width="150px" defaultLabel="请选择…" [(ngModel)]="withdrawRequestVo.workNameOrMobile" valueField="mobile"></master-select>
+                <!--<p-autoComplete name="tt" [(ngModel)]="withdrawRequestVo.user.mobile" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+            </span>
+        </li>
+        <li>
+            <span class="state-search-text">审核状态</span>
+            <span class="state-search-input">
+                <select name="auditStatus" [(ngModel)]="withdrawRequestVo.auditStatus">
+                    <option value="All">全部</option>
+                    <option value="Unaudited">未审核</option>
+                    <option value="Audited">已通过</option>
+                    <option value="Invalid">已否决</option>
+                </select>
+            </span>
+
+            <span class="state-search-text">提现状态</span>
+            <span class="state-search-input">
+                <select name="withdrawStatus" [(ngModel)]="withdrawRequestVo.withdrawStatus">
+                    <option value="All">全部</option>
+                    <option value="inWithdraw">提现中</option>
+                    <option value="alreadyWithdrawed">已提现</option>
+                </select>
+            </span>
+
+        </li>
+
+        <li>
+            <button class="primary-btn btn" (click)="doQuery()" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <button class="default-btn btn" type="reset">清空</button>
+        </li>
+    </ul>
+</form>

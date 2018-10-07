@@ -1,0 +1,63 @@
+.container{
+    padding: 20px;
+}
+.complaint-type {
+    position: relative;
+    display: inline-block;
+}
+.search>div>.unit{
+    margin-right: 30px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+.search label{
+    display: inline-block;
+    width: 65px;
+    text-align: right;
+}
+input,select{
+    width: 125px;
+    height: 30px;
+    box-sizing: border-box;
+}
+.unit>textarea{
+    resize: none;
+    vertical-align: middle;
+}
+.clear-btn{
+    height: 50px;
+    vertical-align: bottom;
+    width: 15px;
+    margin-left: -4px;
+}
+.table-header {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #f7f8fa;
+    height: 40px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #1a9cf2;
+    padding: 5px 15px;
+}
+.handle-btn{
+    background-color: #fff;
+    width: 85px;
+    height: 28px;
+    text-align: center;
+    outline: none;
+    border: 1px solid #ccc;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+/*搜索框*/
+@media screen and (max-width: 1540px) {
+    input,select{
+        width: 80px;
+        height: 30px;
+        box-sizing: border-box;
+    }
+    .search>div {
+        min-width: 1366px;
+    }
+}

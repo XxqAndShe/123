@@ -1,0 +1,101 @@
+/*
+    角色权限公共样式
+*/
+/*顶部样式 start*/
+.dialog-box>.dialog-box-title{
+    background:#4C8DF7 ;
+}
+/*顶部样式 end*/
+.dialog-box>.dialog-box-content{
+    height: auto;
+}
+.content-a{
+    height:25px;
+    border-bottom: 1px solid #4C8DF7;
+    margin: 0;
+    padding: 0;
+}
+.content-a li{
+    width: 69px;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    margin-right:10px;
+    text-align: center;
+    border:1px solid #4C8DF7;
+    background:#F5F9FF;
+}
+.content-a .content-style {
+    border-bottom: 1px solid #ffffff;
+    background:#FFF;
+}
+.box{
+    height:210px;
+    /*overflow: auto;*/
+    /*overflow-y:scroll;*/
+}
+.content-b .box .yun-y{
+    padding: 0 0 0 40px ;
+}
+.content-c{
+    height: 240px;
+    position: relative;
+    padding: 0 0 20px 0;
+}
+.content-b{
+    width: 100%;
+    border:1px solid #DDDDDD;
+    max-height: 254px;
+    overflow: auto;
+    margin: 20px 0 0 0;
+    position: absolute;
+    display: none;
+}
+.content-b dt{
+    height: 30px;
+    line-height: 30px;
+    padding:0 0 0 30px ;
+    background: #ECF1FA;
+}
+
+.content-b dd label{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 70px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+.content-b .content-b-a span{
+    /*display: block;*/
+    height: 29px;
+    line-height: 29px;
+}
+
+.content-b-a-a li label{
+    line-height: 29px;
+    padding: 0px;
+}
+.content-b-a-a li{
+    height: 29px;
+    line-height: 29px;
+    padding: 0 0 0 94px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+.content-b-a-a .yun-dan li {
+    padding:0 0 0 120px;
+
+}
+.content-b-a-a  .yun-dan-xin{
+    height: auto;
+    padding-left: 0px;
+}
+.content-b-a-a  .yun-dan-xin .g-li{
+    padding: 0 0 0 80px;
+}
+
+
+
+.content-show{
+    display: block;
+}
+

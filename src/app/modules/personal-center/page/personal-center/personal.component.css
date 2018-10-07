@@ -1,0 +1,239 @@
+.personal-center-content {
+  padding: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .personal-center-content {
+    width: 480px;
+  }
+}
+
+
+/*mobile*/
+
+.dialog-box {
+  display: none;
+  width: 412px;
+}
+
+.dialog-box>.dialog-content {
+  padding: 25px 25px 0;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+
+.dialog-box>.dialog-content>div {
+  margin-top: 15px;
+}
+
+.dialog-box>.dialog-content>div:first-child {
+  margin-top: 0;
+}
+
+.dialog-box>.dialog-content>div>label {
+  display: inline-block;
+  width: 64px;
+  text-align: center
+}
+
+.dialog-box>.dialog-content>div>label {
+  margin-right: 10px;
+}
+
+.dialog-box>.dialog-content>div>span {
+  margin-left: 9px;
+  display: inline-block;
+}
+
+.dialog-box>.dialog-content>div>input {
+  padding-left: 9px
+}
+
+.dialog-box>.dialog-content>div>input.identify-code {
+  width: 173px;
+  height: 30px
+}
+
+.dialog-box>.dialog-content>div>.get-code {
+  width: 80px;
+  height: 32px;
+  float: right;
+  margin-right: 8px;
+  background-color: #0d85e4;
+  border: none;
+  color: #fff;
+  padding: 5px;
+}
+
+.dialog-box>.dialog-content>div>input.new-mobile {
+  width: 270px;
+  height: 30px;
+}
+
+.dialog-box>.dialog-content>.mobile-tip {
+  margin: 25px 0 17px;
+}
+
+.dialog-box>.dialog-content>.mobile-tip>p {
+  color: #858585;
+}
+
+.dialog-box>.dialog-footer {
+  padding: 15px 40px 15px 238px;
+  border-top: 1px solid #ccc;
+}
+
+.dialog-box>.dialog-footer>.default-btn {
+  margin-right: 0;
+}
+
+
+/*password*/
+
+#change_email {
+  height: 226px;
+}
+
+#change_password {
+  height: 300px;
+}
+
+.dialog-box {
+  width: 413px;
+}
+
+.dialog-box-content {
+  padding: 23px 23px 0;
+}
+
+.dialog-box>.dialog-box-content>div>label {
+  width: 60px;
+  text-align: right;
+  height: 28px;
+  display: inline-block;
+}
+
+.dialog-box>.dialog-box-content>div>input {
+  width: 270px;
+  height: 28px;
+  margin-left: 15px;
+  padding-left: 5px;
+}
+
+.dialog-box>.dialog-box-content>div {
+  margin-bottom: 16px;
+}
+
+.dialog-box>.dialog-box-content {
+  height: auto;
+}
+
+.dialog-box>.dialog-box-footer {
+  padding: 12px 12px 12px 210px;
+  box-sizing: border-box;
+}
+
+
+/*content*/
+
+.personal-center-title {
+  padding-left: 5px;
+  border-left: 3px solid #0d85e4;
+  font-size: 16px;
+  color: #5c5c5c
+}
+
+.personal-center-content {
+  padding-left: 65px;
+}
+
+.personal-center-content>.touxiang-change {
+  height: 40px;
+}
+
+.personal-center-content>div {
+  margin-top: 17px;
+  position: relative;
+}
+
+.personal-center-content>.touxiang-change>label {
+  margin-top: 14px;
+  float: left;
+}
+
+.personal-center-content>.touxiang-change>img {
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+}
+
+.personal-center-content>.touxiang-change>button {
+  float: left;
+  margin-top: 8px;
+  width: 65px;
+  height: 26px;
+  color: #fff;
+  background-color: #0d85e4;
+  border: none;
+  border-radius: 2px;
+  margin-left: 12px;
+}
+
+.personal-center-content>div>label {
+  display: inline-block;
+  height: 30px;
+  width: 40px;
+}
+
+.personal-center-content>div>input {
+  width: 300px;
+  height: 30px;
+  background-color: #eee;
+  border-radius: 2px;
+  border: none;
+  padding-left: 10px;
+}
+
+.personal-center-content>div>input:focus {
+  border: 1px solid #0d85e4;
+}
+
+.personal-center-content>div>a {
+  display: inline-block;
+  margin-left: 12px;
+  color: #0d85e4;
+  cursor: pointer;
+}
+
+.personal-center-content>div>i {
+  display: inline-block;
+  width: 13px;
+  height: 19px;
+  background: url('/assets/spirticon.png') no-repeat 0 -169px;
+  position: absolute;
+  top: 6px;
+  margin-left: -21px;
+}
+
+.personal-center-content>div>.primary-btn {
+  width: 120px;
+  height: 30px;
+  border-radius: 2px;
+  margin-left: 40px;
+}
+
+.error-info {
+  color: red!important;
+  margin-left: 80px;
+}
+
+
+/* email的错误提示信息 */
+
+.personal-center-content>div>.email-info {
+  color: red;
+  position: absolute;
+  top: 32px;
+  left: 45px;
+}

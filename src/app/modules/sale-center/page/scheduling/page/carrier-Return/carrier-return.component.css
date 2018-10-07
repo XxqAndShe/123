@@ -1,0 +1,269 @@
+.outer-container {
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	position: relative;
+
+    height: 100%;
+}
+.inner-container {
+    width: 100%;
+
+    position: relative;
+    height: 100%;
+}
+
+ul.nav-list {
+    margin: 15px 0 20px;
+    height: 30px;
+}
+ul.nav-list>li {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    min-width: 94px;
+    margin-right: 10px;
+}
+ul.nav-list>li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 30px;
+    text-align: center;
+    padding: 0 7px;
+    box-sizing: border-box;
+    background-color: #eeeeee;
+}
+ul.nav-list>li.active a, ul.nav-list>li:hover a {
+    background-color: #0da0fd;
+    color: #ffffff;
+}
+
+
+.content-header {
+    height: 30px;
+    margin-bottom: 10px;
+}
+label {
+    width: 80px;
+    text-align: right;
+    line-height: 30px;
+    margin-right: 6px;
+    float: left;
+}
+
+input[type="text"] {
+    height: 30px;
+    border: 1px solid #dddddd;
+    margin-right: 15px;
+    padding: 0 10px;
+    width: 130px;
+    box-sizing: border-box;
+    float: left;
+}
+select {
+    width: 100px;
+    height: 30px;
+    border: 1px solid #dddddd;
+    padding: 0 10px;
+    box-sizing: border-box;
+    float: left;
+}
+@media screen and ( max-width: 1370px ) {
+    input[type="text"] {
+        width: 105px;
+    }
+    .addr-control {
+        width: 95px;
+    }
+    select {width: 70px;}
+}
+a#select-btn {
+    font-size: 13px;
+    margin-left: 12px;
+    line-height: 30px;
+    padding-left: 24px;
+    background: url(/assets/icon/select.png) left center no-repeat;
+    background-size: 21px 21px;
+}
+
+.content-hide {
+    width: 78%;
+    height: 70px;
+    margin-top: 10px;
+}
+.form-div {
+    margin-bottom: 10px;
+    float: left;
+}
+.form-div> .taskTime{
+    margin-right: 2px;
+}
+.form-div> .traceTime {
+    width: 50px;
+    margin-right: 2px;
+}
+.form-div:nth-child(1){
+    padding-left: 0;
+}
+.form-div:nth-child(1) label {
+    width: 50px;
+}
+
+.primary-btn{
+    margin-left:20px;
+}
+.time-control {
+	float: left;
+	margin-left: 4px;
+	position: relative;
+}
+.addr-control {
+    width: 125px;
+    float: left;
+    margin-right: 0;
+}
+div.time-control>input {
+	width: 86px;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 8px;
+   	font-size: 12px;
+   	border: 1px solid #cccccc;
+   	margin-right: 0;
+}
+div.time-control>input:focus, div>input.focus {
+	border: 1px solid #0d85e4;
+}
+div.time-control>my-date-picker {
+	position: absolute;
+	top: 33px;
+	left: 0;
+	z-index: 10;
+}
+.form-div>div.time-control:nth-of-type(1) {
+	margin-right: 4px;
+}
+.form-div>div.time-control:nth-of-type(2) {
+	margin-right: 15px;
+}
+
+
+
+.table-header {
+	margin-top: 10px;
+    width: 100%;
+    background-color: #f7f8fa;
+    height: 40px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #1a9cf2;
+    padding: 0 15px;
+}
+.table-header>span {
+    line-height: 38px;
+}
+span.select-num {
+    color: #0d85e4;
+    padding: 0 7px;
+}
+span.split-line {
+	margin: 0 12px 0 15px;
+	color: #c9c9c9;
+}
+a.operation-a {
+    display: inline-block;
+    height: 17px;
+    line-height: 17px;
+    text-align: left;
+    color: #728597;
+    border-left: 2px solid #ccc;
+    margin-left: 5px;
+}
+a.operation-a>i {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+a.operation-finish>i {
+    background: url(/assets/operation.png) no-repeat -51px -50px;
+    background-size: 122px;
+}
+a.operation-cancel>i {
+    background: url(/assets/operation.png) no-repeat -77px 0px;
+    background-size: 122px;
+}
+a.operation-track>i {
+    background: url(/assets/operation.png) no-repeat -78px -98px;
+    background-size: 122px;
+}
+a.operation-end>i {
+    background: url(/assets/operation.png) no-repeat -103px -50px;
+    background-size: 122px;
+}
+a.operation-check>i {
+    background: url(/assets/operation.png) no-repeat -25px -25px;
+    background-size: 122px;
+}
+a.verify-distribute>i{
+    background: url(/assets/operation.png) no-repeat -51px -98px;
+    background-size: 122px;
+}
+a.distribute-master>i{
+    background: url(/assets/operation.png) no-repeat -25px -73px;
+    background-size: 122px;
+}
+a.accept>i{
+    background: url(/assets/operation.png) no-repeat -103px -74px;
+    background-size: 122px;
+}
+a.reservation>i{
+    background: url(/assets/operation.png) no-repeat -50px -120px;
+    background-size: 122px;
+}
+.table-header>span.close-btn {
+    position: absolute;
+    right: 32px;
+    height: 38px;
+    line-height: 38px;
+    color: #999999;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+
+.table-header1 {
+    background-color: #ffffff;
+    padding: 11px 0 11px;
+    height: 40px;
+}
+.table-header1>h4 {
+    font-size: 16px;
+    font-weight: normal;
+    height: 16px;
+    line-height: 16px;
+    padding: 0 5px;
+    border-left: 3px solid #0d85e4;
+    box-sizing: border-box;
+}
+
+
+.table-container {
+    height: calc(100% - 225px);
+}
+.table-container.expand {
+    height: calc(100% - 305px);
+}
+
+.modal {
+    width: 1020px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -1040px;
+}
+.content-hide .form-div .addr-control{
+    width: 95px;
+}

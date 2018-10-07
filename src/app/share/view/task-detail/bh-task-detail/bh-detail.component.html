@@ -1,0 +1,80 @@
+<detail-modal class="modal" [selectLineInfo]="rowData" *ngIf="isModuleDisplayArr[1]"
+              [@modalState]="isModuleDisplayArr1[1] ?'in':'out'"
+              (closeModal)="closeModal2(1)"></detail-modal>
+<div class="outer-modal-container">
+    <div class="modal-header">
+        <div class="first-line">
+            <span class="new-tap">售后</span>
+            <span class="gray-text">运单号</span>
+            <span class="blue-text">{{nodeVo.waybillId}}</span>
+            <span class="gray-text">任务单号</span>
+            <span class="blue-text">{{nodeVo.title}}</span>
+            <span class="gray-text">异常编号</span>
+            <span class="blue-text">{{nodeVo.abnormalNum}}</span>
+            <span class="gray-text">处理人</span>
+            <span class="blue-text">{{nodeVo.handlePerson}}</span>
+        </div>
+        <div class="second-line">
+            <span class="gray-text">任务状态</span>
+            <p-steps [(activeIndex)]="nodeVo.stepActive" [model]="items"></p-steps>
+            <div class="shadow-div" *ngIf="isCanStop" (click)="showPanel()">终止任务</div>
+            <div class="handle-time">
+                <span *ngFor="let handleTime of nodeVo.stepTimes">{{handleTime}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-content">
+        <div class="nav-bar">
+            <button ngClass="{{infoTypeActive==='rwxx'?'active':''}}" (click)="selectInfoPanel('rwxx')">任务信息</button>
+            <button ngClass="{{infoTypeActive==='gjxx'?'active':''}}" (click)="selectInfoPanel('gjxx')">轨迹信息</button>
+            <button ngClass="{{infoTypeActive==='ycxx'?'active':''}}" (click)="selectInfoPanel('ycxx')">异常信息</button>
+            <button ngClass="{{infoTypeActive==='gzxx'?'active':''}}" (click)="selectInfoPanel('gzxx')">跟踪信息</button>
+        </div>
+
+        <!--任务信息-->
+        <div class="modal-content">
+            <div *ngIf="infoTypeActive==='rwxx'">
+                <div class="rw-container">
+                    <div class="task-detail">
+                        <p>任务类型: <span>{{detailsVo.taskType}}</span></p>
+                        <p>商家承担金额: <span>{{detailsVo.assumeFee}}</span></p>
+                        <p>补件状态: <span>{{detailsVo.partState}}</span></p>
+                        <p>补件运单号: <span (click)="daSearch($event)">{{detailsVo.waybillId}}</span></p>
+                    </div>
+                    <div>
+                        <p class="left-border">补件信息</p>
+                        <ui-grid
+                            title="&nbsp;"
+                            [data]="taskLogList"
+                            (load)="load($event)"
+                            [columns]="columns"
+                            (cellClick)="cellClick($event)"
+                        >
+                        </ui-grid>
+                    </div>
+                    <div class="beizhu">备注: {{detailsVo.remark}}</div>
+                    <div>
+                        <ul class="img-wrap">
+                            <li class="img-item" *ngFor="let imgUrl of imgUrls">
+                                <a rel="fancybox" href="{{imgUrl}}"><img src="{{imgUrl}}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <task-path-msg [selectLineInfo]="selectLineInfo" *ngIf="infoTypeActive === 'gjxx'"></task-path-msg>
+            <abnormal-msg [selectLineInfo]="selectLineInfo" *ngIf="infoTypeActive === 'ycxx'"></abnormal-msg>
+            <task-track-msg [selectLineInfo]="selectLineInfo" *ngIf="infoTypeActive === 'gzxx'"></task-track-msg>
+        </div>
+
+    </div>
+
+    <a href="javascript:; " class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--终止订单-->
+<operation-end *ngIf="isoperationEnd" [content]="rowData" (hideSave)="doHideSave()"
+               (hideWin)="hideWin($event)"></operation-end>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

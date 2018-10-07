@@ -1,0 +1,27 @@
+<div [@boxState]="boxState" #main_box id="markInfo_box" [ngStyle]="setPos()">
+    <header id="mark_move_area"><span class="title">添加跟踪备注</span><span class="close-btn" (click)="closeHideModal()">×</span>
+    </header>
+    <div class="info-content">
+        <p>
+            <span>是否下次跟踪</span>
+            <span><input #isTrace type="radio" value="yes" name="isTrace" (click)="ShowTraceTime(isTrace.value)" checked="checked"/> 是</span>
+            <span><input #noTrace type="radio" value="no" name="isTrace" (click)="ShowTraceTime(noTrace.value)"/> 否</span>
+        </p>
+        <p class='don-remark' *ngIf="isShowTraceTime">
+            <span class="mark">选择下次跟踪时间 </span>
+            <!-- <time class="time mark" id="time">2015-05-26</time>-->
+            <!--<input class="time mark"  type="text" readonly="readonly" value="{{dateText1}}" (click)="hidden1=false">-->
+            <!-- <my-date-picker class="mark"  tabindex="1" #datePlane (blur)="hidden1=false" [hasDatePickerHidden]="hasHidden1" [datePickerHidden]="hidden1" [dateText]="dateText1" (changeDateText)="changeDateText1($event)"></my-date-picker> -->
+            <p-calendar class="mark" [(ngModel)]="traceAddRequestVo.nextTrackDate" [locale]="zh" dateFormat="yy.mm.dd" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" showTime="showTime" hourFormat="24" [readonlyInput]="true" [(ngModel)]="Date"></p-calendar>
+            <!--<span class="mark"  (click)="clickShowTime(timeTable)" id="select_period"><span id="hour">00</span>:<span id="min">00</span> </span>-->
+            <!--<a style="background-color: #f8f8f8" class="select-btn" href="javascript:" (click)="dontRemark($event)">不跟踪</a>-->
+        </p>
+        <textarea name="" id="text_content" [(ngModel)]="traceAddRequestVo.trackContent" cols="61" rows="9" placeholder="请输入备注信息(最多200字)" maxlength="200"></textarea>
+    </div>
+    <div class="btn-group">
+        <a class="cancel-btn btn" (click)="closeHideModal()">取消</a>
+        <a class="save-btn btn" (click)="saveTrace()">保存</a>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

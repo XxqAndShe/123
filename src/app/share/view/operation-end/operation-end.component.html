@@ -1,0 +1,15 @@
+<div class="dialog-box" id="deposit_apply" [ngStyle]="drag.setPosition(400,250)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialogdialog-left">终止任务</span>
+        <span class="dialog-right" (click)="hideWindow()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <label><i>*</i>终止原因</label>
+        <textarea [(ngModel)]="reason"></textarea>
+        <div><input type="checkbox" name="isNewAbornWaybill" value="isNewAbornWaybill" [(ngModel)]="isNewAbornWaybill" (ngModelChange)="abnormalChange()">生成新异常单</div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">保存</span>
+        <span class="btn default-btn" (click)="hideWindow()">取消</span>
+    </div>
+</div>

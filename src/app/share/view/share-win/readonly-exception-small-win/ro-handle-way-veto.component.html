@@ -1,0 +1,17 @@
+<div class="handle_tank yc05" id="box" [ngStyle]="drag.setPosition(450,452)">
+    <div class="top_tank" id="move">
+        <span class="left">否决</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <div class="zho_tank">
+        <span class="veto_titi"><em>*</em>驳回原因</span>
+        <textarea class="veto_text" [(ngModel)]="rejectReason"></textarea>
+    </div>
+    <div class="bottom_tank">
+        <ul>
+            <ul>
+                <li><a class="cancel1" href="javascript:;" (click)="close()">关闭</a></li>
+            </ul>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div>
+    <p class="left-border">轨迹信息</p>
+    <ui-grid
+            title="&nbsp;"
+            [data]="taskLogList"
+            (load)="load($event)"
+            [columns]="columns">
+    </ui-grid>
+</div>

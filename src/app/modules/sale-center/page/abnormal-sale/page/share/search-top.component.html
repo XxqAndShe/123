@@ -1,0 +1,157 @@
+<form>
+    <ul class="top-search-content">
+        <li  class="sub-select-list">
+            <span style="width: 60px">开单网点</span>
+            <span style="display: inline-block; width: 95px;">
+            <department-select name="billDepart" [(ngModel)]="abnormalTaskRequestVo.billDepart" [width]="departmentWidth"></department-select>
+        </span>
+        </li>
+        <!--<li>
+            <span class="number">任务号</span>
+            <span>
+            <p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.waybillId" [suggestions]="suggestionResult2" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </span>
+        </li>-->
+        <li>
+            <span>任务单号</span>
+            <span>
+            <!--<input [(ngModel)]="abnormalTaskRequestVo.maintno" type="text">-->
+            <p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.taskId" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </span>
+        </li>
+        <li>
+            <span>发货人</span>
+            <span>
+            <!--<input [(ngModel)]="abnormalTaskRequestVo.shipper" type="text">-->
+                <!--<p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.shipper" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+            <shipper-select name="shipper" [(ngModel)]="abnormalTaskRequestVo.shipper"></shipper-select>
+        </span>
+        </li>
+        <li>
+            <button (click)="doSearch()" class="primary-btn btn" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <button type="reset" class="default-btn btn">清空</button>
+        </li>
+        <a _ngcontent-knr-15="" href="javacript:;" id="select-btn" (click)="showShaixuan()">筛选</a>
+    </ul>
+    <ul class="top-search-content" *ngIf="isshowSX">
+        <li>
+            <span style="width: 60px">目的地址</span>
+            <div class="addr-control">
+                <area-select name="destination" [(ngModel)]="abnormalTaskRequestVo.destination"></area-select>
+            </div>
+        </li>
+
+        <li>
+            <span>处理方式</span>
+            <span>
+          <!--  <input [(ngModel)]="abnormalTaskRequestVo.vWaybillAbnormal.handleWay" type="text">-->
+                <!--<p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.handelWay" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+            <select name="handleWay" [(ngModel)]="abnormalTaskRequestVo.handelWay">
+                <option value="All">全部</option>
+                <option value="repair">维修</option>
+                <option value="part">补件</option>
+                <option value="back">返货</option>
+                <option value="other">其他</option>
+                <option value="veto">否决</option>
+            </select>
+        </span>
+
+        </li>
+        <li>
+            <span>责任方</span>
+            <span>
+          <!--  <input [(ngModel)]="abnormalTaskRequestVo.vWaybillAbnormal.vAbnormalDuty.name" type="text">-->
+            <p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.abnormalDutyName" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </span>
+        </li>
+        <li  class="sub-select-list">
+            <span>处理人</span>
+            <span>
+         <!--   <input [(ngModel)]="abnormalTaskRequestVo.vWaybillAbnormal.handlePersonName" type="text">-->
+            <p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.handlePerson" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </span>
+        </li>
+        <li  class="sub-select-list">
+            <span>处理时间</span>
+            <!--<span class="deal-time">-->
+            <!--<input [(ngModel)]="abnormalTaskRequestVo.handleTimeStart" type="text" readonly="readonly" value="{{dateText1}}" (click)="hidden1=false;hidden2=true">-->
+            <!--<my-date-picker [hasDatePickerHidden]="hasHidden1" [datePickerHidden]="hidden1" [dateText]="dateText1" (changeDateText)="changeDateText1($event)"></my-date-picker>-->
+            <!--</span>-->
+            <!--<span  class="deal-time">-->
+            <!--<input [(ngModel)]="abnormalTaskRequestVo.handleTimeEnd" type="text" readonly="readonly" value="{{dateText2}}" (click)="hidden2=false;hidden1=true">-->
+            <!--<my-date-picker [hasDatePickerHidden]="hasHidden2" [datePickerHidden]="hidden2" [dateText]="dateText2" (changeDateText)="changeDateText2($event)"></my-date-picker>-->
+            <!--</span>-->
+            <span class="time">
+            <!-- TODO(样式) -->
+            <p-calendar name="startDate" [(ngModel)]="abnormalTaskRequestVo.handelStartTime" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </span>
+            <span class="time">
+            <!-- TODO(样式) -->
+            <p-calendar name="endDate" [(ngModel)]="abnormalTaskRequestVo.handelEndTime" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </span>
+        </li>
+    </ul>
+    <ul class="top-search-content" *ngIf="isshowSX">
+        <li  class="sub-select-list">
+            <span style="width: 60px">异常类型</span>
+            <span style="display: inline-block; width: 95px;">
+            <exception-select name="abnormalTypeId" [(ngModel)]="abnormalTaskRequestVo.abnormalTypeId"></exception-select>
+        </span>
+        </li>
+        <!--<li>
+            <span>异常小类</span>
+            <span>
+              &lt;!&ndash;  <input [(ngModel)]="abnormalTaskRequestVo.vWaybillAbnormal.vAbnormalType.id" type="text">&ndash;&gt;
+                <p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.abnormalChildType" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+            </span>
+        </li>-->
+        <li>
+            <span>异常来源</span>
+            <span>
+           <!-- <input [(ngModel)]="abnormalTaskRequestVo.vWaybillAbnormal.source" type="text">-->
+                <!--<p-autoComplete class="input" name="tt" [(ngModel)]="abnormalTaskRequestVo.source" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+            <select class="totel-width" name="source" [(ngModel)]="abnormalTaskRequestVo.source">
+                <option value="All">全部</option>
+                <option value="tms_service">tms客服</option>
+                <option value="tms_dispatch">tms调度</option>
+                <option value="tms_undertake">tms承接</option>
+                <option value="wms">wms</option>
+                <option value="ips">ips</option>
+                <option value="website">官网</option>
+                <option value="cmp">cmp</option>
+                <option value="app">app</option>
+            </select>
+        </span>
+        </li>
+        <li>
+            <span>服务类型</span>
+            <span>
+                <meta-select name="serviceType" [(ngModel)]="abnormalTaskRequestVo.serviceType" type="billService" [width]="metaWidth"></meta-select>
+            </span>
+        </li>
+        <li>
+            <span>返货运营商</span>
+            <span>
+            <select class="totel-width" name="returnOperator" [(ngModel)]="abnormalTaskRequestVo.taskReturnType">
+                <option value="All">所有</option>
+                <option value="SERVICE">服务商</option>
+                <option value="CARRIERS">承运商</option>
+            </select>
+        </span>
+        </li>
+      <li>
+          <span>跟踪时间</span>
+          <p-calendar  name="trackedTime" [(ngModel)]="abnormalTaskRequestVo.trackTime" [locale]="zh" dateFormat="yy-mm-dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+      </li>
+    </ul>
+</form>
+<div class="show-flow-chart">
+    <ul class="show-flow-list">
+        <li><span>已选中<i>{{selected?.length || 0}}</i>项</span></li>
+        <li (click)="showTraceModal()"><i></i><span>跟踪</span></li>
+    </ul>
+    <span class="cancel-icon" (click)="showTitle()">×</span>
+</div>

@@ -1,0 +1,26 @@
+<div class="dialog-box" style="display:block">
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <label><i>* </i>物流公司名称:</label><input type="text" [(ngModel)]="logisticsComName"
+                                                  placeholder="{{PlogisticsComName}}" maxlength="20">
+            <label><i>* </i>物流单号:</label><input type="text" [(ngModel)]="logisticsNumber"
+                                                placeholder="{{PlogisticsNumber}}" maxlength="30"><br>
+            <label><i>* </i>物流公司电话:</label><input type="text" [(ngModel)]="logisticsCompTel"
+                                                  placeholder="{{PlogisticsCompTel}}" maxlength="
+24">
+            <label><i>* </i>到付金额:</label><input type="text" [(ngModel)]="payableAmount" placeholder="{{PpayableAmount}}"
+                                                maxlength="5" onkeyup="this.value=this.value.replace(/\D/g,'')"
+                                                onafterpaste="this.value=this.value.replace(/\D/g,'')">
+        </div>
+        <label class="imageLable">上传图片:</label>
+        <!--<ui-upload name="maintenanceComplete[]" url="http://localhost:3000/upload" multiple="multiple"-->
+                   <!--accept="image/*" chooseLabel="选择" uploadLabel="上传" cancelLabel="取消"></ui-upload>-->
+        <ui-upload [(ngModel)]="imgfiles"></ui-upload>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="savePickGoodsFinish()">保存</span>
+        <span class="btn default-btn" (click)="cancelPickGoodsFinish()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,18 @@
+<div class="test-content">
+  <p><a href="/modules/demo/test" class="back" >返回demo首页</a>  </p>
+  <div>
+    <h3>师傅选择组件---单选</h3><br>
+    <workers-select width="150px" defaultLabel="请选择…" [(ngModel)]="workerCode"></workers-select>
+    <span>{{workerCode}}</span>
+    <br>
+    <button (click)="doTest()">测试取Code</button>
+  </div>
+  <div class="component">
+    <h3>师傅选择组件---多选</h3>
+    <p>multiSelect="true" 属性控制多选</p><br>
+    <workers-select width="150px" defaultLabel="请选择…" multiSelect="true" [(ngModel)]="workerCode"></workers-select>
+    <span>{{workerCode}}</span>
+    <br>
+    <button (click)="doTest()">测试取Code</button>
+  </div>
+</div>

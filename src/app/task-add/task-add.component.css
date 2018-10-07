@@ -1,0 +1,61 @@
+.msf{ width: 100%; height: 50px; background: #0d85e4; }
+.msf .msf_in{ width: 1000px; height: 50px; margin: 0 auto; }
+.msf .msf_in .left{ float: left; }
+.msf .msf_in .left>h1{ width: 90px; height: 28px;}
+.msf .msf_in .left>h1>a{ display: block; width: 100%; height: 100%; }
+.msf .msf_in .right{ float: right; }
+.msf .msf_in .right ul li{ float: left;  margin: 0 8px; margin-top: 13px;color: #fff;}
+.msf .msf_in .right ul li a{ color: #fff; font-size: 14px; }
+
+.content{
+    display: inline-block;
+}
+.left-con{
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: 320px;
+    display: inline-block;
+    float: left;
+    height: 650px;
+    overflow-y: auto;
+}
+
+.right-con{
+    position: absolute;
+    right: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    float: left;
+    width: 300px;
+    height: 180px;
+}
+.right-con textarea{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (max-width: 576px) {
+    .content,.left-con,.right-con{
+        display: block;
+        clear: both;
+        min-width: 360px;
+        margin:5px;
+        float: none;
+    }
+    .left-con{
+        width: 100%;
+    }
+    .table-con span{
+        word-break: break-all;
+    }
+    .right-con textarea{
+        height:150px;
+        margin: 0 5px 0 5px;
+    }
+    .right-con button{
+        margin-left: 5px;
+    }
+    .msf .msf_in .left{
+        margin-left: 5px;
+    }
+}

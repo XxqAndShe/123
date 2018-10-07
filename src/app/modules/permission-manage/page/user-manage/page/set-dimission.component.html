@@ -1,0 +1,14 @@
+<div class="dialog-box" #dialogDimission id="dialog_box_dimission" [ngStyle]="drag.setPosition(260, 154)">
+    <div class="dialog-box-title blue" id="dialog_title_dimission">
+
+        <span class="dialog-left">提示</span>
+        <span class="dialog-right" (click)="dealHide(dialogDimission)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="content-text">{{simpleDialogText}}</div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn">确认</span>
+        <span class="btn default-btn" (click)="dealHide(dialogDimission)">取消</span>
+    </div>
+</div>

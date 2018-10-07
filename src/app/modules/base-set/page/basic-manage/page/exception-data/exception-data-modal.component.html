@@ -1,0 +1,162 @@
+<div class="outer-modal-container" #modal>
+    <div class="inner-modal-container">
+        <div class="content">
+            <h6>{{modalTitle}}</h6>
+            <a href="javascript:;" class="close-btn" (click)="hideModal(modal)">×</a>
+
+            <div class="line title-line">
+                <span class="start-symbol add-redcolor">*</span>
+                <span>异常来源</span>
+            </div>
+            <ul class="checkbox-list">
+                <li>
+                    <label>
+                        <p-checkbox name="All" value="All" label="全选" [(ngModel)]="selectedAll" (click)="checkAll()"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <p-checkbox name="group" value="tms_dispatch" label="TMS调度" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <p-checkbox name="group" value="tms_undertake" label="TMS承接" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <p-checkbox name="group" value="tms_service" label="TMS客服" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <p-checkbox name="group" value="website" label="官网" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+
+                    <label>
+                        <p-checkbox name="group" value="app" label="APP" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+
+                    <label>
+                        <p-checkbox name="group" value="cmp" label="CMP" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <p-checkbox name="group" value="ips" label="IPS" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <p-checkbox name="group" value="Plat" label="BMS系统" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <p-checkbox name="group" value="self" label="直营系统" [(ngModel)]="abSource"></p-checkbox>
+                    </label>
+                </li>
+            </ul>
+
+            <span *ngIf="isAbnormalIf">
+                <div class="line long-line">
+                    <span class="start-symbol add-start-symbol add-redcolor">*</span>
+            <span>异常类型</span>
+            <div class="select-div" style="width: 150px;margin-left: 10px;">
+                <exception-select [(ngModel)]="abNormalTypeSId" [label]="abnormalTypeLabel"></exception-select>
+            </div>
+        </div>
+
+        <div class="line long-line sp">
+            <div class="select-container">
+                <span class="responsible-party"><span class="start-symbol add-start-symbol add-redcolor">*</span>责任方</span>
+                <div class="select-div">
+                    <meta-select width="140px" defaultLabel="请选择…" [(ngModel)]="abNormalDutyId" type="abnormalDuty"></meta-select>
+                </div>
+            </div>
+
+            <div class="select-container">
+                <span>费用标准</span>
+                <input type="text" placeholder="请输入费用标准" [(ngModel)]="abFeeStandard">
+            </div>
+        </div>
+        </span>
+        <span *ngIf="!isAbnormalIf">
+                <div class="line long-line">
+                    <span class="start-symbol add-start-symbol add-redcolor">*</span>
+        <span>异常类型</span>
+        <div class="select-div" style="width: 150px;margin-left: 10px;">
+            <exception-select [(ngModel)]="abNormalTypeSId" [label]="abnormalTypeLabel"></exception-select>
+            <!-- <input type="text" name="abnormalTypeSId" class="ready-input" [(ngModel)]="updExceptionDataReqVo.abnormalType" readonly="readonly"> -->
+        </div>
+    </div>
+
+    <div class="line long-line sp">
+        <div class="select-container">
+            <span class="responsible-party"><span class="start-symbol add-start-symbol add-redcolor">*</span>责任方</span>
+            <div class="select-div">
+                <!-- <input type="text" name="abnormalDutyId" [(ngModel)]="updExceptionDataReqVo.abnormalDuty" class="ready-input" readonly="readonly"> -->
+                <meta-select width="140px" defaultLabel="请选择…" [(ngModel)]="abNormalDutyId" type="abnormalDuty"></meta-select>
+            </div>
+        </div>
+
+        <div class="select-container">
+            <span>费用标准</span>
+            <input type="text" placeholder="请输入费用标准" [(ngModel)]="abFeeStandard">
+        </div>
+    </div>
+    </span>
+    <div class="line title-line">
+        <span class="start-symbol add-redcolor">*</span>
+        <span>处理方式</span>
+    </div>
+    <ul class="checkbox-list">
+
+        <li>
+            <label>
+                <p-checkbox name="dealway" value="repair" label="维修" [(ngModel)]="dealways"></p-checkbox>
+            </label>
+        </li>
+        <li>
+            <label>
+                <p-checkbox name="dealway" value="part" label="补件" [(ngModel)]="dealways"></p-checkbox>
+            </label>
+        </li>
+        <li>
+            <label>
+                <p-checkbox name="dealway" value="return_" label="返货" [(ngModel)]="dealways"></p-checkbox>
+            </label>
+        </li>
+        <li>
+            <label>
+                <p-checkbox name="dealway" value="other" label="其他" [(ngModel)]="dealways"></p-checkbox>
+            </label>
+        </li>
+    </ul>
+
+    <div class="textarea-div">
+        <span class="start-symbol add-marleft add-redcolor">*</span>
+        <span>操作步骤</span>
+        <textarea placeholder="请输入" [(ngModel)]="abOperateType"></textarea>
+    </div>
+
+    <div class="textarea-div">
+        <span class="exception-remark">异常描述</span>
+        <textarea placeholder="例如：商家反馈货物破损，签收单显示xx签收/无签收单" [(ngModel)]="abDescription" class="div-textarea"></textarea>
+    </div>
+</div>
+
+<footer>
+    <button class="btn primary-btn" (click)="addAbnormal()">确定</button>
+    <button class="btn default-btn" (click)="hideModal(modal)">取消</button>
+</footer>
+
+</div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

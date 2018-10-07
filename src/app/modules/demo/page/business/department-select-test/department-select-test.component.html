@@ -1,0 +1,12 @@
+<div class="test-content">
+    <p><a href="/modules/demo/test" class="back">返回demo首页</a></p>
+    <div>
+        <h3>开单网点选择组件</h3>
+        <!--复制开始-->
+        <department-select width="200px" defaultLabel="请选择…" [(ngModel)]="departmentCode"></department-select>
+        <!--复制结束-->
+        <span>{{departmentCode}}</span>
+        <br>
+        <button (click)="doTest()">测试取Code</button>
+    </div>
+</div>

@@ -1,0 +1,169 @@
+
+.ui-select-div{
+    display: inline-block;
+}
+input.select-input{
+    /*width: 100%;*/
+    box-shadow:none !important;
+    border-color:none !important;
+}
+input.select-input:hover{
+    /*width: 100%;*/
+    box-shadow:none !important;
+    border-color:none !important;
+}
+.select-box{
+    position: absolute;
+    width: 395px;
+    box-shadow: 2px 4px 12px rgb(123, 123, 123);
+    z-index: 19999;
+    background-color: #ffffff;
+}
+
+.hide {
+    display: none;
+}
+
+ul.header {
+    margin: 0;
+    list-style: none;
+    background-color: #2577e3;
+    height: 32px;
+    padding: 6px 6px 0px;
+    box-sizing: border-box;
+    position: relative;
+}
+ul.header>li {
+    padding: 0 8px 0 8px;
+    margin-right: 12px;
+    height: 26px;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    line-height: 24px;
+    cursor: pointer;
+}
+ul.header>li.active {
+    color: #2577e3;
+    background-color: #fff;
+}
+
+ul.body>div>li {
+    font-size: 12px;
+    color: #333;
+    margin-top: 5px;
+    float: left;
+    text-align: left;
+    width: 120px;
+    margin-right: 11px;
+}
+
+ul.body>div>li>a {
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    padding: 4px 12px;
+    position: relative;
+}
+
+ul.body>div>li>a.active,ul.body>div>li>a:hover{
+    background: #3172c8;
+    color: #fff;
+}
+
+button.close {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    color: #ffffff;
+    top: 3px;
+    right: 5px;
+    font-size: 20px;
+}
+span.reset-btn{
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    background: url("/assets/deleted.png");
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+}
+
+@media screen and (max-width: 1024px) {
+    input.select-input {
+        width: 48px;
+    }
+}
+
+
+.selected{
+    background-color: #0d82de;
+    color: #ffffff !important;
+}
+
+
+/* 表格样式 */
+.body > div > .table {
+    display:block;
+    width: 360px;
+    max-width: 360px;
+    margin: 10px;
+    border: 1px solid #D5D5D5;
+    border-collapse: none!important;
+}
+.body > div.scroll {
+    margin-bottom: 10px;
+}
+.body > div > .table .header {
+    height: 25px;
+    background-color: #ebedf0;
+}
+.body > div > .table > #tbody {
+    display:block;
+    width: 360px;
+    max-height: 180px;
+    overflow-y:auto;
+}
+.body > div > .table .header > th {
+    font-weight: normal;
+    border-right: 1px solid #d5d5d5;
+}
+.body > div > .table tr.body {
+    height: 25px;
+    border-bottom: 1px solid #d5d5d5;
+}
+.body > div > .table tr.body > td {
+    padding: 5px;
+    text-align: center;
+    border-right: 1px solid #d5d5d5;
+}
+.body > div > .table tr.body a {
+    color: #333;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+/* 滚动条 */
+.width1 {
+    width: 90px;
+    max-width: 90px;
+    min-width: 90px;
+    box-sizing: border-box;
+}
+.width2 {
+    width: 185px;
+    max-width: 185px;
+    min-width: 185px;
+    box-sizing: border-box;
+}
+.width3 {
+    width: 65px;
+    max-width: 65px;
+    min-width: 65px;
+    box-sizing: border-box;
+}
+input{
+    border: 1px solid #d6d6d6;
+}

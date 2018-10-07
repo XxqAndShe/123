@@ -1,0 +1,22 @@
+<div class="ui-select-div" (mouseleave)="onMouseout($event)">
+    <input class="select-input ui-inputtext"
+           [ngStyle]="{'width': width,'height':height,'border':border,'placeholder':placeholder}" type="text"
+           (mouseover)="onMouseover($event)" pInputText [(ngModel)]="label" readonly (click)="inputClick($event)"
+           (focus)="onInputFocus($event)" (blur)="onInputBlur($event)">
+    <span *ngIf="label && overFlag" (click)="clear()" type="button" class="reset-btn"></span>
+    <div class="select-box" [ngClass]="{hide:showBox!=true}" (blur)="blur()" (click)="panelClick($event)">
+        <ul class="header">
+            <li *ngFor="let selectBox of selectBoxs;let i = index" [ngClass]="{active:i==activeIndex}"
+                (click)="activeIndex=i">
+                {{selectBox.title}}
+            </li>
+        </ul>
+        <button class="close" (click)="showBox=false">&times;</button>
+        <ul class="body" *ngFor="let selectBox of selectBoxs;let i = index" [ngClass]="{hide:i!=activeIndex}"
+            (mouseenter)="onMouseEnterHandler($event)">
+            <li *ngFor="let select of selectBox.data">
+                <a href="javascript:void(0)" (click)="choose(select,i)" [ngClass]="{'selected':select.checked}">{{select.label}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

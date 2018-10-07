@@ -1,0 +1,51 @@
+<div class="financial-top">
+  <ul class="account-detail">
+    <li>
+      <span class="detail-first-span">账户余额</span>
+      <i (mouseover)="showExplanation(0)" (mouseout)="ngOnInit()">？</i>
+      <span class="detail-second-span">{{totalMoneyVo.totalMoney}}</span>
+      <div *ngIf="isshow[0]" class="mouse-hover-info">
+        <div class="mouse-hover-tip mouse-hover-one">所有师傅的账户余额总金额，师傅的余额=已签收且未提现的任务总金额</div>
+        <div class="triangle-down"></div>
+      </div>
+    </li>
+    <li>
+      <span class="detail-first-span">提现中</span>
+      <i (mouseover)="showExplanation(1)"  (mouseout)="ngOnInit()">？</i>
+      <span class="detail-second-span">{{totalMoneyVo.inWithdraw}}</span>
+      <div *ngIf="isshow[1]" class="mouse-hover-info">
+        <div class="mouse-hover-tip mouse-hover-one">所有师傅账户提现中的未付金额总额</div>
+        <div class="triangle-down"></div>
+      </div>
+    </li>
+    <li>
+      <span class="detail-first-span">已提现</span>
+      <i (mouseover)="showExplanation(2)"  (mouseout)="ngOnInit()">？</i>
+      <span class="detail-second-span">{{totalMoneyVo.alreadyWithdrawed}}</span>
+      <div *ngIf="isshow[2]" class="mouse-hover-info">
+        <div class="mouse-hover-tip mouse-hover-one">所有师傅的账户中已提现的任务总金额</div>
+        <div class="triangle-down"></div>
+      </div>
+    </li>
+    <li id="add-width-momay">
+      <span class="detail-first-span ">未出账单金额</span>
+      <i (mouseover)="showExplanation(3)"  (mouseout)="ngOnInit()">？</i>
+      <span class="detail-second-span">{{totalMoneyVo.cannotWithdraw}}</span>
+      <div *ngIf="isshow[3]" class="mouse-hover-info">
+        <div class="mouse-hover-tip mouse-hover-one">未出账单金额=月经师傅已签收且未生产账单的任务总金额</div>
+        <div class="triangle-down"></div>
+      </div>
+    </li>
+    <li>
+      <span class="detail-first-span">可提现</span>
+      <i (mouseover)="showExplanation(4)"  (mouseout)="ngOnInit()">？</i>
+      <span class="detail-second-span">{{totalMoneyVo.canWithdraw}}</span>
+      <div *ngIf="isshow[4]" class="mouse-hover-info">
+        <div class="mouse-hover-tip mouse-hover-one">所有师傅的可提现总金额，可提现=师傅是现结时签收且未提现的任务+师傅是月结时生成账单且未提现的任务</div>
+        <div class="triangle-down"></div>
+      </div>
+    </li>
+  </ul>
+  <span class="export-span"><a href="javacript:;" class="export-div">导出</a></span>
+
+</div>

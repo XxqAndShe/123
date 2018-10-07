@@ -1,0 +1,33 @@
+<div class="dialog-box" style="display:block;width: 450px;margin-left: -300px;margin-top: -300px">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">分享</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <div class="title">
+                <span><i class="start-symbol add-start-symbol">*</i>分享链接</span>
+                <input name="titleName" maxlength="25" [(ngModel)]="articleUrl"/>
+                <button class="btn primary-btn" (click)="copyLink($event)">复制链接</button>
+                <i class="page-icon">
+                    <div class="img-icon" id="qrcontent"></div>
+                </i>
+            </div>
+            <div class="title">
+                <span><i class="start-symbol add-start-symbol">*</i>密码</span>
+                <input style="width: 100px" name="titleName" onkeyup="value=value.replace(/[\W]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" [(ngModel)]="pwd" maxlength="16" *ngIf="password"/>
+                <input style="width: 100px" name="titleName" [(ngModel)]="pwd"  readonly="readonly" class="only-ready" *ngIf="!password" maxlength="25"/>
+                <button class="btn primary-btn" (click)="startPassWord()">{{pwdBtnText}}密码</button>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

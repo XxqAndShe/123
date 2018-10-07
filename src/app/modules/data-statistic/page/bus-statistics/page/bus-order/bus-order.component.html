@@ -1,0 +1,94 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <!--导航栏-->
+        <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+        <div class="content-header">
+            <form>
+                <span>统计月份</span>
+                <select name="twelveMonth" [(ngModel)]="BusOrder.statisticalMonth">
+                    <option value="{{month}}" *ngFor="let month of twelveMonth">{{month}}</option>
+                </select>
+
+                <span>商家名称</span>
+                <div class="seller"> <shipper-select name="shipperselect" width="150px" defaultLabel="请选择…" [(ngModel)]="BusOrder.shipperCode"></shipper-select>
+                </div>
+                <div style="margin-left:30px">
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                </div>
+                <button class="btn default-btn" type="reset">清空</button>
+
+            </form>
+
+        </div>
+        <!--这里是显示订单区域统计图部分-->
+        <div class="content-body">
+            <div class="table-header table-header1">
+                <h4>商家订单统计</h4>
+            </div>
+            <div class="content-img">
+                <div class="table-container">
+                    <p-dataTable selectionMode="single" #dt
+                                 emptyMessage="没有记录"
+                                 (onRowSelect)="onRowSelect($event)"
+                                 [value]="tableData.content"
+                                 [totalRecords]="tableData.totalElements"
+                                 [rows]="10"
+                                 [paginator]="true"
+                                 [pageLinks]="3"
+                                 [rowsPerPageOptions]="[5,10,20]"
+                                 scrollable="true"
+                                 scrollWidth="100%"
+                                 [(selection)]="selectionRow"
+                                 [lazy]="true"
+                                 (onLazyLoad)="load($event)">
+                        <p-header>
+                            <div class="ui-helper-clearfix">
+                                <button type="button" pButton icon="fa-file-o" iconPos="left" label="导出"
+                                        (click)="dt.exportCSV()" style="float:right"></button>
+                            </div>
+                        </p-header>
+                        <p-headerColumnGroup>
+                            <p-row>
+                                <p-column [style]="{'width':'28px'}" rowspan="2"></p-column>
+                                <p-column [style]="{'width': '120px'}" header="商家" rowspan="2"></p-column>
+                                <p-column [style]="{'width': '500px'}" header="订单数据" colspan="5"></p-column>
+                                <p-column [style]="{'width': '300px'}" header="纠纷比例" colspan="3"></p-column>
+
+                            </p-row>
+                            <p-row>
+                                <p-column header="订单总数"></p-column>
+                                <p-column header="订单总价"></p-column>
+                                <p-column header="日均订单量"></p-column>
+                                <p-column header="客单价"></p-column>
+                                <p-column header="关单率"></p-column>
+                                <p-column header="申请退款率"></p-column>
+                                <p-column header="异常率"></p-column>
+                                <p-column header="仲裁率"></p-column>
+
+                            </p-row>
+                        </p-headerColumnGroup>
+
+                        <p-column [style]="{'width':'28px'}" selectionMode="single"></p-column>
+                        <p-column [style]="{'width': '120px'}" field="shipper"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="orderCount"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="totalCost"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="avgCount"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="avgprice"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="closeRate"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="refundsRate"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="excepRate"></p-column>
+                        <p-column [style]="{'width': '100px'}" field="arbRate"></p-column>
+                    </p-dataTable>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+
+

@@ -1,0 +1,318 @@
+.outer-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: auto;
+    height: 100%;
+}
+
+.inner-container {
+    width: 100%;
+    position: relative;
+    height: 100%;
+}
+
+.content-header {
+    height: 30px;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.content-header>span,
+.content-header>input,
+.content-header>label,
+.content-header>select,
+.content-header>div,
+.content-header>button {
+    float: left;
+    line-height: 30px;
+    height: 30px;
+}
+
+.content-header>span {
+    margin-right: 8px;
+}
+
+.content-header>a {
+    float: right;
+    display: block;
+    margin-right: 10px;
+    width: 46px;
+    line-height: 30px;
+    text-align: right;
+    height: 30px;
+    background: url(/assets/export_csv.png) no-repeat left center;
+    background-size: 17px 20px;
+    color: #b6b6b6;
+}
+
+.content-header .addr-control {
+    margin-right: 15px;
+}
+
+.content-header>label {
+    margin-right: 3px;
+}
+
+.content-header>input {
+    box-sizing: border-box;
+    padding: 0 6px;
+    border: 1px solid #cccccc;
+    margin-right: 15px;
+    width: 140px;
+}
+
+.content-header>select {
+    width: 122px;
+    margin-right: 25px;
+    padding: 0 10px;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.content-header>select:nth-of-type(3) {
+    margin-right: 0;
+}
+
+.content-header .primary-btn {
+    margin-left: 15px;
+}
+
+.table-header {
+    width: 100%;
+    background-color: #f7f8fa;
+    height: 40px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #1a9cf2;
+    padding: 0 15px;
+    position: relative;
+}
+
+.table-header>span {
+    line-height: 38px;
+}
+
+span.select-num {
+    color: #0d85e4;
+    padding: 0 7px;
+}
+
+span.split-line {
+    margin: 0 12px 0 15px;
+    color: #c9c9c9;
+}
+
+a.certify-a {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    text-align: left;
+    color: #728597;
+}
+
+a.operation-a>i {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+a.certify-pass>i {
+    background: url(/assets/operation.png) no-repeat -50px -98px;
+    background-size: 122px;
+}
+
+a.certify-nopass>i {
+    background: url(/assets/operation.png) no-repeat -103px 0px;
+    background-size: 122px;
+}
+
+.table-header>span.close-btn {
+    position: absolute;
+    right: 15px;
+    height: 38px;
+    line-height: 38px;
+    color: #d6d6d6;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.table-header1 {
+    background-color: #ffffff;
+    padding: 11px 0;
+}
+
+.table-header1>h4 {
+    font-size: 16px;
+    font-weight: normal;
+    height: 16px;
+    line-height: 16px;
+    padding: 0 5px;
+    border-left: 3px solid #0d85e4;
+    box-sizing: border-box;
+}
+
+.table-container {
+    width: 100%;
+    margin: 0;
+    border: 1px solid #d8e3ef;
+    border-top: none;
+    position: relative;
+    box-sizing: border-box;
+}
+
+p-autoComplete {
+    float: left;
+    margin: 0 8px 0 0;
+}
+
+
+/*搜索框媒体查询*/
+
+@media screen and (max-width: 1024px) {
+    .content-header {
+        width: 1024px;
+    }
+}
+
+
+/*搜索框*/
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    .content-header {
+        width: 1200px;
+    }
+}
+
+.inner-container .content-header .addr-control {
+    width: 95px;
+}
+
+
+/*地址选择框*/
+
+.inner-container .content-header .addr-control ui-select-box {
+    line-height: 16px;
+}
+
+
+/*弹出框（公共样式，以下是长宽高修改）和其他样式有重复，需合并*/
+
+.dialog-box-mm {
+    /*修改项*/
+    width: 280px;
+    margin-top: -155px;
+    margin-left: -206px;
+    /*修改项*/
+    box-shadow: 1px 2px 10px #717171, -1px 2px 10px #717171;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1500;
+    background-color: #fff;
+}
+
+.dialog-box-mm>.dialog-box-title-mm>span {
+    font-size: 14px;
+    color: #fff;
+    line-height: 33px;
+}
+
+.dialog-box-mm>.dialog-box-title-mm>.dialog-left {
+    float: left;
+}
+
+.dialog-box-mm>.dialog-box-title-mm>.dialog-right {
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0.7;
+    line-height: 29px;
+}
+
+.dialog-box-mm>.dialog-box-content-mm {
+    padding: 15px;
+    height: 66px;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    text-align: center
+}
+
+.dialog-box-mm>.dialog-box-footer-mm {
+    height: 55px;
+    text-align: center;
+}
+
+.dialog-box-mm>.dialog-box-footer-mm>span {
+    display: inline-block;
+    width: 58px;
+    height: 30px;
+    background-color: #f8f8f8;
+    line-height: 30px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+.dialog-box-mm>.dialog-box-footer-mm>.primary-btn {
+    background-color: #0d85e4;
+}
+
+.dialog-box>.dialog-box-content>.dialog-box-com>span {
+    height: 30px;
+    width: 77px;
+    text-align: center;
+    display: inline-block;
+    line-height: 30px;
+    float: left;
+}
+
+.dialog-box>.dialog-box-content>.dialog-box-com>textarea {
+    display: inline-block;
+    height: 90px;
+    width: 272px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgb(221, 221, 221);
+    background: rgb(248, 248, 248);
+    outline: none;
+}
+
+#btn-not-through {
+    height: 55px;
+    line-height: 55px
+}
+
+#dialog-not-through {
+    display: block;
+    width: 400px;
+    margin-left: -160px;
+    margin-top: -120px
+}
+
+.content-header2 .master-id {
+    margin-left: 25px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .inner-container .content-header .addr-control,
+    .content-header>select {
+        width: 95px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .inner-container .content-header .addr-control,
+    .content-header>select {
+        width: 48px;
+    }
+}
+
+@media screen and (min-width: 1367px) and (max-width: 1920px) {
+    .inner-container .content-header .addr-control,
+    .content-header>select {
+        width: 150px;
+    }
+}

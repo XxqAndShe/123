@@ -1,0 +1,80 @@
+<div [@boxState]="boxState" id="abnormal_box" [ngStyle]="setPos()">
+    <div id="abnormal_move_area" class="header">
+        <span class="abnormal-text">异常修改</span>
+        <span (click)="closeBox()" class="close-btn">×</span>
+    </div>
+    <div class="transport">
+        <span><span class="start-symbol ab-addleft">*</span>任务号</span>
+        <input type="text" disabled [(ngModel)]="waybillAbnormalEditVo.waybillId"/>
+        <span (click)="clickShowOrderDetail($event,detailBox)"
+              style="background:url('/assets/tip-box-img/transport-icon.gif')0 0 no-repeat;" class="transport-btn">
+        </span>
+    </div>
+    <div [@detailBoxState]="orderState" #detailBox class="transport-detail">
+        <table>
+            <tr style="background-color: #e5e5e5">
+                <th>收货人</th>
+                <th>承运商</th>
+                <th>发货人</th>
+                <th>目的地</th>
+                <th>开单网点</th>
+                <th>品名/件数</th>
+            </tr>
+            <tr style="background-color: #efefef">
+                <td>{{selectedWaybillAbnormal.consignee}}</td>
+                <td>{{selectedWaybillAbnormal.outName}}</td>
+                <td>{{selectedWaybillAbnormal.shipper}}</td>
+                <td>{{selectedWaybillAbnormal.endCity}}</td>
+                <td>{{selectedWaybillAbnormal.billDepart}}</td>
+                <td>{{selectedWaybillAbnormal.goods}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="abnormal-type">
+        <span class="abnormal-des-con">
+            <span class="start-symbol">*</span>异常类型
+        </span>
+        <div class="select-div" style="width: 200px;">
+        <exception-select [(ngModel)]="waybillAbnormalEditVo.abnormalTypeId" [label]="selectedWaybillAbnormal.abnormalTypeName + '/' + selectedWaybillAbnormal.abnormalTypeChildren" style="position: relative"></exception-select>
+        </div>
+        <!--<p-dropdown [options]="abnormalBigType" [style]="{'width':'150px'}" (onChange)="getAbnormalSmallType()"></p-dropdown>-->
+        <!--<span class="abnormal-small">-->
+            <!--<span class="start-symbol">*</span>-->
+            <!--异常小类-->
+        <!--</span>-->
+        <!--<p-dropdown [options]="abnormalSmallType" [style]="{'width':'150px'}"></p-dropdown>-->
+    </div>
+    <div class="abnormal-des">
+        <span class="abnormal-des-con"><span class="start-symbol">*</span>异常描述</span>
+        <textarea name="" id="" cols="66" rows="5" placeholder="请输入" [(ngModel)]="waybillAbnormalEditVo.describe"></textarea>
+    </div>
+    <div (click)="removePreUploadPic($event)" class="abnormal-pic">
+        <span class="abnormal-des-con">
+            <span class="abnormal-des-con"><i class="start-symbol">*</i>异常图片</span>
+            <div class="ui-upload">
+                <ui-upload [(ngModel)]="waybillAbnormalEditVo.fileInfos" [files]="waybillAbnormalEditVo.files"></ui-upload>
+            </div>
+            <!--<span id="max_num">最多上传6张图片</span>-->
+        </span>
+        <!--<div class="upload-pic" style="display: none">-->
+            <!--<input disabled type="file"/>-->
+            <!--<span>×</span>-->
+            <!--<img alt="">-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--<div class="add-abnormal-pic">-->
+            <!--<input #tar (change)="upLoadAbnormalPic($event,tar)" type="file" [(ngModel)]="selectedWaybillAbnormal.fileInfos"/>-->
+        <!--</div>-->
+    </div>
+    <div class="feedback-person">
+        <span class="abnormal-des-con"><span class="start-symbol">*</span>反馈人</span>
+        <input type="text" placeholder="请输入姓名" [(ngModel)]="waybillAbnormalEditVo.feedbackMan"/>
+        <span>反馈人联系方式</span>
+        <input type="text" placeholder="请输入联系方式" [(ngModel)]="waybillAbnormalEditVo.feedBackPhone"/>
+    </div>
+    <div class="btn-group">
+        <a class="confirm-btn btn" href="javascript:" (click)="addAbnormal()">确定</a>
+        <a (click)="closeBox()" class="cancel-btn btn" href="javascript:void(0)">取消</a>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

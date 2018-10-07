@@ -1,0 +1,63 @@
+.dialog-box-content{
+    height: auto;
+    overflow: auto;
+}
+.title{
+    height: 40px;
+}
+.title input{
+    width: 350px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(221, 221, 221);
+}
+.title select{
+    width: 100px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(221, 221, 221);
+}
+.title span{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    padding-right: 10px;
+    text-align: right;
+}
+.dialog-box-content .describe span{
+    vertical-align: top;
+    display: inline-block;
+    width: 100px;
+    padding-right: 10px;
+    text-align: right;
+}
+.describe .editor{
+    display: inline-block;
+    width: 90%;
+    vertical-align: middle;
+}
+.dialog-box-content .start-symbol {
+    color: #ff5454;
+    position: relative;
+    width: 0px;
+    top: 2px;
+    right: 5px;
+}
+.dialog-box > .dialog-box-content{
+    box-sizing:inherit;
+}
+
+.dialog-box > .dialog-box-content > .dialog-box-com > .add-start-symbol {
+    height: 30px;
+    width: 0px;
+    margin-left: -5px;
+    display: inline-block;
+    line-height: 30px;
+    float: left;
+}
+.hintText{
+    display: inline-block;
+    margin-left: 10px;
+    color: #e0e0e0;
+}

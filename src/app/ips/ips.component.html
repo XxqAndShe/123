@@ -1,0 +1,24 @@
+<div id="main-header">
+    <header-top [widthSpread]="widthSpread" (widthChange)="widthChange($event)" (gotoPerson)="navPerson($event)" (headerHome)="headerHome($event)"></header-top>
+    <menu-bar (selectMenu)="changeMenu($event)" [widthSpread]="widthSpread"></menu-bar>
+    <sub-menu [selectMenuContent]="selectMenu" (leftChange)="leftChange($event)"></sub-menu>
+    <im-box *ngIf="hasIMPermission" (click)="openChatList()" (canOpen)="canOpen($event)" (isJoinIn)="receiveJoinIn($event)" (imgsrc)="getImg($event)"></im-box>
+    <div class="dialog_bj" *ngIf="isJoinInShow && hasIMPermission">
+        <dialog-box
+                (isJoinIn)="receiveJoinIn($event)"
+                [historyData]="historyData"
+                [memberData]="memberData"
+                [teamerData]="teamerData"
+                (isJoinInHide)="receiveJoinInHide($event)"
+                [imGroupData]="imGroupData"
+                [dialog]="ips_dialog"
+                [imgsrc]="imgsrc"
+        ></dialog-box>
+    </div>
+
+</div>
+<div id="main-con" [ngStyle]="setContentStyle()">
+    <router-outlet></router-outlet>
+</div>
+<div id="mask" class="mask-layer"></div>
+

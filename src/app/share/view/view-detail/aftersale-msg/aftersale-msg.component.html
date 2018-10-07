@@ -1,0 +1,43 @@
+<div class="task-type">
+    <label>任务类型</label>
+    <select [ngModel]="taskType" (ngModelChange)="onChange($event)">
+        <option value="All">全部</option>
+        <option value="fhreturn">返货</option>
+        <option value="repair">维修</option>
+        <option value="part">补件</option>
+        <option value="other">其他</option>
+    </select>
+</div>
+<div class="data-table">
+    <ui-grid title="&nbsp;" [columns]="columns"
+             [data]="data"
+             (load)="load($event)"
+             (cellClick)="cellClick($event)"
+             (rowSelect)="rowSelect($event)"
+    ></ui-grid>
+</div>
+<readonly-exception-info (close)="hideDialog($event)" [selectionRow]="selectLineInfo" *ngIf="controlException === 'show'" [abnormalSaleFlag]="abnormalSale"></readonly-exception-info>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+<!--维修详情-->
+<repair-detail [selectedRowData]="selectLineInfo" class="modal" *ngIf="isModuleDisplayArr[0]"
+               (closeModal)="closeModal(0)"
+               [@modalState]="isModuleDisplayArr1[0] ?'in':'out'"></repair-detail>
+<!--返货详情-->
+<supplier-detail [selectedRowData]="selectLineInfo" class="modal" *ngIf="isModuleDisplayArr[1]"
+                 (closeModal)="closeModal(1)"
+                 [@modalState]="isModuleDisplayArr1[1] ?'in':'out'"></supplier-detail>
+<!--承运商返货详情-->
+<carrier-detail [selectedRowData]="selectLineInfo" class="modal" *ngIf="isModuleDisplayArr[5]"
+                (closeModal)="closeModal(5)"
+                [@modalState]="isModuleDisplayArr1[5] ?'in':'out'"></carrier-detail>
+<!--其他详情-->
+<other-task-detail [selectedRowData]="selectLineInfo" class="modal" *ngIf="isModuleDisplayArr[4]" (closeModal)="closeModal(4)" [@modalState]="isModuleDisplayArr1[4] ?'in':'out'"></other-task-detail>
+<!--调度详情-->
+<detail-modal class="modal" [selectLineInfo]="selectLineInfo" *ngIf="isModuleDisplayArr[2]"
+              [@modalState]="isModuleDisplayArr1[2] ?'in':'out'"
+              (closeModal)="closeModal(2)"></detail-modal>
+<!--补件详情-->
+<bh-detail class="modal" [selectLineInfo]="selectLineInfo"  *ngIf="isModuleDisplayArr[3]"
+           [@modalState]="isModuleDisplayArr1[3] ?'in':'out'"
+           (closeModal)="closeModal(3)"></bh-detail>

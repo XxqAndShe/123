@@ -1,0 +1,62 @@
+<script src="add-modify-master.component.ts"></script>
+<div class="aside-frame">
+    <header>
+        <h4 class="edit-title">修改师傅资料</h4>
+    </header>
+    <div>
+        <form>
+            <ul class="state-search">
+                <li>
+                    <span class="state-search-text">地区</span>
+                    <div class="addr-control">
+                        <area-select name="area" [(ngModel)]="addModifyMasterVo.area"></area-select>
+                    </div>
+                </li>
+                <li>
+                    <span class="state-search-text">发货人</span>
+                    <span class="ul-list-wrap">
+                   <shipper-select width="150px" defaultLabel="请选择…" name="shipperName" [valueField]="valueField" [(ngModel)]="addModifyMasterVo.shipper"></shipper-select>
+            </span>
+                </li>
+                <li>
+                    <span class="state-search-text">订单类型</span>
+                    <span class="state-search-select">
+                    <select id="modify-ordertype" name="ordertype" [(ngModel)]="addModifyMasterVo.ordertype">
+                        <option value="branch">支装</option>
+                        <option value="trunk">干支装</option>
+                        <option value="all">全部</option>
+                    </select>
+                </span>
+                </li>
+                <li>
+                    <span class="state-search-text">物流公司</span>
+                    <span class="state-search-input">
+                     <!--<p-autoComplete name="transportCompany" [(ngModel)]="addModifyMasterVo.transportCompany"-->
+                                     <!--[suggestions]="suggestionTransportResult"-->
+                                     <!--(completeMethod)="searchTransport()"></p-autoComplete>-->
+                        <transporter-select name="transportCoop" [(ngModel)]="addModifyMasterVo.transportCompany"></transporter-select>
+                </span>
+                </li>
+            </ul>
+        </form>
+        <div class="add-modify-master">
+            <span class="state-search-master">师傅姓名</span>
+            <span class="state-search-input add-modify-left">
+                <workers-select width="170px" defaultLabel="请选择…" multiSelect="true" [(ngModel)]="workerValues"></workers-select>
+            </span>
+            <ul class="service-list">
+                <li *ngFor="let each of workerValues; let i = index">
+                    <span>{{each.realName}}</span>
+                    <a (click)="deleteTypeOfService(i)">×</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="add-address-btn">
+        <span class="btn primary-btn btn-cente" (click)="preservation()">保存</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+    <a class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

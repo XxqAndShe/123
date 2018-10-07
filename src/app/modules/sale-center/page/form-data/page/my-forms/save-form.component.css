@@ -1,0 +1,30 @@
+.dialog-box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: -150px;
+    margin-left: -300px;
+    z-index: 9999;
+    width: 410px;
+    height: 230px;
+}
+.dialog-box-content{
+    padding: 30px 40px;
+}
+.dialog-box-content>label>i{
+    color: red;
+}
+.dialog-box-content>input{
+    box-sizing: border-box;
+    height: 30px;
+    width: 250px;
+    margin-left: 10px;
+}
+.dialog-box-footer{
+    padding: 10px;
+}
+.dialog-box>.dialog-box-content>div{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+}

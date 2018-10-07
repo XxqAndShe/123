@@ -1,0 +1,39 @@
+.content{height:100%; padding: 20px;}
+.content>.title{font-size:14px;border-bottom:1px solid #eff1f4;height:25px;}
+.content>.left-content{width:20%;float:left;height:calc(100% - 63px);}
+.content>.right-content{width:79%;float:right;height:calc(100% - 63px);}
+.content .content-title{font-weight:bold;height:36px;line-height:36px;margin-top:10px;}
+.content .content-title>span{margin-left:12px;display: inline-block;font-weight:normal;cursor:pointer;}
+.content .content-title>span>i{width:16px;height:16px;display: inline-block;top: 4px; position: relative;}
+.content .content-title>span>i.add{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') 0 -21px no-repeat;}
+.content .content-title>span>i.modify{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -18px -21px no-repeat;}
+.content .content-title>span>i.delete{background:url('../../../../../../assets/permission-sys/role/role-iocn.png')  -38px 0 no-repeat;}
+.content .content-title>span>i.export{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -38px -21px no-repeat;}
+.content .content-title>span>i.search{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -55px 0 no-repeat;}
+
+.content  .table-wrap{height: calc(100% - 48px); border:1px solid #ebeff4; border-top:1px solid #417cf3;}
+.content  .table-wrap>.wrap-title{padding:10px 0 10px 20px;background-color: #f7f9fc;border-bottom:1px solid #fff;}
+.content  .table-wrap>.wrap-ul{padding:0;margin:0;}
+.content  .table-wrap>.wrap-ul>li{padding:10px 0;background-color: #f7f9fc;}
+.content  .table-wrap>.wrap-ul>li>ul{padding:0;margin-top:5px;display: none}
+.content  .table-wrap>.wrap-ul>li>ul.show{display: block}
+.content  .table-wrap>.wrap-ul>li>ul>li{padding:10px 0 10px;background-color: #f7f9fc;}
+.content  .table-wrap>.wrap-ul>li>ul>li:hover{background-color: #417cf3;}
+.content  .table-wrap>.wrap-ul>li>ul>li>span.text{margin-left:45px;}
+.content  .table-wrap>.wrap-ul>li>ul>li:hover>span.text{color:#fff}
+.content  .table-wrap>.wrap-ul>li>ul>li>span.view-btn{ width:60px;height:20px;text-align:center;display:inline-block;border-radius:2px; border:1px solid #417cf3;color:#417cf3;margin-right:45px;float:right}
+.content  .table-wrap>.wrap-ul>li>ul>li:hover>span.view-btn{  border:1px solid #fff;color:#fff;}
+.content  .table-wrap>.wrap-ul>li>i{width:14px;height:12px;display: inline-block;margin-left:20px;}
+.content  .table-wrap>.wrap-ul>li>i.low{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -20px 0 no-repeat;}
+.content  .table-wrap>.wrap-ul>li>i.add{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') 0 0 no-repeat;}
+.content>.right-content>.table-wrap>table{width: 100%; text-align: center;}
+.content>.right-content>.table-wrap>table tr{height:37px;line-height:37px; background-color: #ecf1fa}
+.content>.right-content>.table-wrap>table tr>th{ background-color: #ecf1fa}
+.content>.right-content>.table-wrap>table tr>td{ background-color: #f7f9fc}
+.content>.right-content>.table-wrap>table tr>td:nth-child(2){color:#417cf3;}
+.content>.right-content>.table-wrap>table tr>th:nth-child(1),.content>.right-content>.table-wrap>table tr>td:nth-child(1){  border-bottom:1px solid #fff }
+.content>.right-content>.table-wrap>table tr>th+th,.content>.right-content>.table-wrap>table tr>td+td{border:1px solid #fff;border-top:none; }
+.content>.right-content>.table-wrap>table tr i{width:17px;height:17px; display: inline-block;position: relative;  top: 4px;}
+.content>.right-content>.table-wrap>table tr i.null{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') 0 -42px no-repeat;}
+.content>.right-content>.table-wrap>table tr i.tick{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -24px -42px no-repeat;}
+.content>.right-content>.table-wrap>table tr i.select{background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -48px -42px no-repeat;}

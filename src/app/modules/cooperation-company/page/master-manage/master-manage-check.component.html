@@ -1,0 +1,141 @@
+<div class="outer-modal-container add-auto">
+    <header>
+        <h4 class="check-title">查看资料</h4>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <section>
+                <div class="title">
+                    <span>基本信息</span>
+                    <div class="title-line"></div>
+                </div>
+                <p>
+                    <span>师傅账号：<span>{{masterMangerCheckResponse.masterAccount}}</span></span>
+                    <span>师傅姓名：<span>{{masterMangerCheckResponse.masterName}}</span></span>
+                </p>
+                <p>
+                    <span>最大接单量：<span>{{masterMangerCheckResponse.maxOrder}}</span></span>
+                </p>
+            </section>
+
+            <section>
+                <div class="title">
+                    <span>服务信息</span>
+                    <div class="title-line"></div>
+                </div>
+                <p>
+                    <span>常规服务：</span>
+                </p>
+                <ul id="add-master-checkngfor1">
+                    <li *ngFor="let serve of typeOfservice ">{{serve.name}}: {{serve.label}}</li>
+                </ul>
+
+                <p class="addr-position">
+					<span id="AddService">增值服务：
+						<span class="add-eft" *ngFor="let addes of valueAddService">{{addes.returngoodsLabel}}{{addes.repairLabel?"维修：":""}}{{addes.repairLabel}}</span>
+					</span>
+                </p>
+                <p class="addr-sp">
+                    <span>服务地区：</span>
+                </p>
+                <ul>
+                    <li *ngFor="let Area of userWorkerServiceArea">{{Area}}</li>
+                </ul>
+            </section>
+
+            <section>
+                <div class="title">
+                    <span>认证信息</span>
+                    <div class="title-line"></div>
+                </div>
+                <p class="idpic">
+                    <!--<span>身份证照片：</span>-->
+                </p>
+                <ul class="idpic-list">
+                    <li *ngFor="let oImg of imaArr">
+                        <div>
+                            <p>图片</p>
+                            <a rel="fancybox" href="{{oImg}}"><img src="{{oImg}}"></a>
+                            <span *ngIf="!oImg">未上传</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <div class="title">
+                    <span>师傅资料</span>
+                    <div class="title-line"></div>
+                </div>
+                <p>
+                    <span>保证金阈值：<span class="grey">{{masterMangerCheckResponse.marginThreshold}}</span></span>
+                    <span>已缴纳保证金：<span>{{masterMangerCheckResponse.marginPaid}}</span></span>
+                </p>
+                <p>
+                    <span>团队人数：<span>{{masterMangerCheckResponse.teamsNum}}</span></span>
+                    <span>合作方式：<span>{{masterMangerCheckResponse.cooperationMethod}}</span></span>
+                </p>
+                <p>
+                    <span>车辆数量：<span>{{masterMangerCheckResponse.carsNum}}</span></span>
+                    <span>车辆容积（方）：<span>{{masterMangerCheckResponse.carVolume}}</span></span>
+                </p>
+                <p>
+                    <span>仓库容积（方）：<span class="grey">{{masterMangerCheckResponse.warehouseVolume}}</span></span>
+                    <span style="width: 400px;">仓库地址：<span>{{masterMangerCheckResponse.warehouseAddress}}</span></span>
+                </p>
+                <p>
+                    <span>通行证：<span>{{masterMangerCheckResponse.passport}}</span></span>
+                    <span>入行时间：<span>{{masterMangerCheckResponse.cooperationDate}}</span></span>
+                </p>
+                <p>
+                    <span>合作方式：<span>{{masterMangerCheckResponse.cooperationMethod}}</span></span>
+                    <span>商品范围：<span>{{masterMangerCheckResponse.ProductRange}}</span></span>
+                </p>
+                <p>
+                    <span>结款方式：<span>{{masterMangerCheckResponse.paymentMethod}}</span></span>
+                    <span>工资结算方式：<span>{{masterMangerCheckResponse.wageSettlement}}</span></span>
+
+                </p>
+                <p>
+                    <span>开发票：<span></span>{{masterMangerCheckResponse.invoice}}</span>
+                    <span>电商节最大处理订单数：<span>{{masterMangerCheckResponse.maxOrders}}</span></span>
+                </p>
+                <p>
+                    <span>平均日订单量：<span>{{masterMangerCheckResponse.averageOrder}}</span></span>
+                    <span>合作时间：<span>{{masterMangerCheckResponse.cooperationTime | date:'yyyy-MM-dd'}}</span></span>
+                </p>
+                <p>
+                    <span>一智通订单占比（%）：<span>{{masterMangerCheckResponse.orderProportion}}</span></span>
+                    <span style="width: 400px;">合作单位：<span>{{masterMangerCheckResponse.cooperationUnit}}</span></span>
+                </p>
+            </section>
+
+            <section class="userAccount">
+                <div class="title">
+                    <span>提现账号信息</span>
+                    <div class="title-line"></div>
+                </div>
+                <p>
+                    <span>账号类型：<span>{{masterMangerCheckResponse.userAccount}}</span></span>
+                    <span *ngIf="masterMangerCheckResponse.userAccount  == '支付宝'">
+					<span>账号：<span>{{masterMangerCheckResponse.bankAccount}}</span></span>
+					<span>姓名：<span>{{masterMangerCheckResponse.accountName}}</span></span>
+				</span>
+                    <span id="add-userAccount" *ngIf="masterMangerCheckResponse.userAccount == '银行卡'">
+					<span>银行名称：<span>{{masterMangerCheckResponse.bankName}}</span></span>
+					<span>支行名称：<span>{{masterMangerCheckResponse.subBranchName}}</span></span>
+                <p>
+                    <span class="add-bankAccount">银行账号：<span>{{masterMangerCheckResponse.bankAccount}}</span></span>
+                    <span class="name">姓名：<span>{{masterMangerCheckResponse.accountName}}</span></span>
+                </p>
+
+                </span>
+
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <a href="javascript:" class="close-modal-btn" (click)="close()"></a>
+</div>
+

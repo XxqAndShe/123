@@ -1,0 +1,7 @@
+<div>
+    <p class="left-border">异常信息</p>
+    <ui-grid [columns]="columns" [data]="dataFindAbnormal" (cellClick)="cellClick($event)"></ui-grid>
+</div>
+<!--<readonly-exception-info [selectionRow]="selectionRow" *ngIf="isshowExceptionWin" (close)="hideWin()"></readonly-exception-info>-->
+<readonly-exception-info *ngIf="isshowExceptionWin" [selectionRow]="selectionRow" [abnormalSaleFlag]="abnormalSale" (close)="hideWin()"></readonly-exception-info>
+<view-arbitration-result-win *ngIf="isshowArbitrationWin" [selections]="selectionRow" [selectLineInfo]="selectionRow" (hideWin)="hideWin()"></view-arbitration-result-win>

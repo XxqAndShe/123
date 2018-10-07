@@ -1,0 +1,22 @@
+<div class="dialog-box" id="container" [ngStyle]="drag.setPosition(550,376)">
+    <div id="header" class="dialog-box-title">
+        <span class="dialog-left" *ngIf="flag === 'fwsGoods' || flag === 'cysGoods'">货物到达</span>
+        <span class="dialog-left" *ngIf="flag === 'fwsClient' || flag === 'cysClient'">返回客户</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="row">
+            <label class="verTop"><i>*</i>备注</label>
+            <textarea name="remark" [(ngModel)]="remark"></textarea>
+        </div>
+        <div class="row">
+            <label>描述图片</label>
+            <ui-upload name="imgs" [(ngModel)]="imgs"></ui-upload>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,14 @@
+<div class="outer-modal-container adress-auto">
+    <div class="add-adress-header"><span>添加服务区域</span></div>
+    <div class="adress-add-area">
+        <div id="adress-ui" class="intel-match-area"><ui-tree [(ngModel)]="selectNodes" cache="area-tree"  (load)="load($event)" (onNodeUnselect)="NodeUnselect($event)" [width]="width"></ui-tree></div>
+    </div>
+    <div class="add-address-btn">
+        <span class="btn primary-btn" (click)="preservation()">确定</span>
+        <span class="btn default-btn" (click)="close()">返回</span>
+    </div>
+
+    <a href="javascript:void(0); " class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

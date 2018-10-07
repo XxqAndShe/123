@@ -1,0 +1,128 @@
+<div>
+    <div class="jbxx-container">
+        <div class="details-basicinfo-people">
+
+            <div class="details-basicinfo-people1">
+                <div class="details-basicinfo-people1-send">
+                            <span>
+                                <b>发</b>
+                                <p title="{{dataWaybillDetail.sendName}}"> {{dataWaybillDetail.sendName}}</p>
+                                <p  class="limit-length" title="{{dataWaybillDetail.sendTel}}">{{dataWaybillDetail.sendTel}}</p>
+                            </span>
+                    <p title="{{dataWaybillDetail.sendAddres}}">{{dataWaybillDetail.sendAddres}}</p>
+                </div>
+                <div class="details-basicinfo-people1-get">
+                            <span>
+                                <b>收</b>
+                                <p title="{{dataWaybillDetail.receiveName}}">{{dataWaybillDetail.receiveName}}</p>
+                                <p class="limit-length" title="{{dataWaybillDetail.receiveTel}}">{{dataWaybillDetail.receiveTel}}</p>
+                            </span>
+                    <p title="{{dataWaybillDetail.receiveAddres}}">{{dataWaybillDetail.receiveAddres}}</p>
+                </div>
+
+                <div class="details-basicinfo-people1-money" style="width: 190px">
+                    <p><b>付款方式：</b>{{dataWaybillDetail.incomeMoneyList}}</p>
+                    <p><b>合计金额：</b>{{dataWaybillDetail.totalCost}}</p>
+                </div>
+                <div class="details-basicinfo-people1-money details-basicinfo-people1-upstair">
+                    <label>楼层:{{dataWaybillDetail.floors}}</label>
+                    <label><input type="checkbox" disabled [(ngModel)]="isElevator">电梯</label>
+                    <label><input type="checkbox" disabled [(ngModel)]="!isElevator">步梯</label>
+                </div>
+            </div>
+
+            <div class="details-basicinfo-people2">
+                <div class="details-basicinfo-people2-shifu">
+                            <span>
+                                <b>师傅</b>
+                                <p>{{dataWaybillDetail.workerNme}}</p>
+                                <p>{{dataWaybillDetail.workerPhone}}</p>
+                            </span>
+                    <span>
+                                <b>师傅</b>
+                                <p>{{dataWaybillDetail.workerToNme}}</p>
+                                <p>{{dataWaybillDetail.workerToPhone}}</p>
+                            </span>
+                </div>
+
+                <div class="details-basicinfo-people2-money">
+                    <p><b>总费用：</b>{{dataWaybillDetail.serverFee}}</p>
+                    <p><b>配送费：</b>{{dataWaybillDetail.branchFee}}</p>
+                    <p><b>安装费：</b>{{dataWaybillDetail.installFee}}</p>
+                    <p><b>调解费：</b>{{dataWaybillDetail.mediateFee || 0}}</p>
+                </div>
+                <div class="details-basicinfo-people2-time">
+                    <p><b>预约上门时间：</b>{{dataWaybillDetail.appointmentDate}}</p>
+                    <p><b>是否需要核销：</b>{{dataWaybillDetail.tmail}}</p>
+                    <p *ngIf="dataWaybillDetail.checkId"><b>核销单号：</b>{{dataWaybillDetail.checkId}}</p>
+                </div>
+            </div>
+
+        </div>
+        <!--<ui-grid title="&nbsp;" [columns]="columns" [data]="dataTaskWaybillGoods" ></ui-grid>-->
+        <p-dataTable #dt [value]="dataContent" selectionMode="single" [style]="{'text-align': 'center'}" emptyMessage="没有记录"
+                     [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[5,10,20]">
+            <p-column field="goods" header="商品名称" [style]="{'width':'110px'}"></p-column>
+            <p-column field="goodsServiceType" header="服务类型"></p-column>
+            <p-column field="packingItems" header="包装件数"></p-column>
+            <p-column field="installItems" header="安装数量"></p-column>
+            <p-column field="volumes" header="体积"></p-column>
+            <p-column field="weight" header="重量"></p-column>
+            <p-column field="packing" header="包装"></p-column>
+            <p-column field="installCharge" header="安装费"></p-column>
+            <p-column field="deliveryCharge" header="送货费"></p-column>
+            <p-column field="tranSportCharge" header="运费"></p-column>
+            <p-column field="protectioncharge" header="保价费"></p-column>
+            <p-column field="valueCharge" header="声明价值"></p-column>
+            <p-footerColumnGroup>
+                <p-row>
+                    <p-column footer="合计:" colspan="2"></p-column>
+                    <p-column footer="{{totalPackingItem}}"></p-column>
+                    <p-column footer="{{totalInstallItem}}"></p-column>
+                    <p-column footer="{{totalVolume}}"></p-column>
+                    <p-column footer="{{totalWeight}}"></p-column>
+                    <p-column footer="-"></p-column>
+                    <p-column footer="{{totalInstallCharge}}"></p-column>
+                    <p-column footer="{{totalDeliveryCharge}}"></p-column>
+                    <p-column footer="{{totalTranSportCharge}}"></p-column>
+                    <p-column footer="{{totalProtectionCharge}}"></p-column>
+                    <p-column footer="{{totalValueCharge}}"></p-column>
+                </p-row>
+            </p-footerColumnGroup>
+        </p-dataTable>
+
+        <!-- 提货信息-->
+        <div class="details-basicinfo-pickup">
+            <h3> 提货信息</h3>
+            <p>物流公司：<span class="overflow-box" title="{{dataWaybillDetail.logisticsName}}">{{dataWaybillDetail.logisticsName}}</span></p>
+            <p>物流单号：<span class="overflow-box" title="{{dataWaybillDetail.logisticsBill}}">{{dataWaybillDetail.logisticsBill}}</span></p>
+            <p>提货码：<span class="overflow-box" title="{{dataWaybillDetail.takeCode}}">{{dataWaybillDetail.takeCode}}</span></p>
+            <p>提货电话：<span class="overflow-box" title="{{dataWaybillDetail.takeTel}}">{{dataWaybillDetail.takeTel}}</span></p>
+            <span>提货地址：<span class="overflow-box1" title="{{dataWaybillDetail.takeAddr}}">{{dataWaybillDetail.takeAddr}}</span></span>
+            <span>运单备注：<span  class="overflow-box1" title="{{dataWaybillDetail.remark}}">{{dataWaybillDetail.remark}}</span></span>
+        </div>
+
+        <!-- 签收信息-->
+        <div class="details-basicinfo-pickup">
+            <h3>签收信息</h3>
+            <p>签收人：{{dataWaybillDetail.signer}}</p>
+            <p>签收状态：{{dataWaybillDetail.normalSign}}</p>
+            <span>签收描述：{{dataWaybillDetail.describe}}</span>
+
+            <span class="sign-pic">签收图片：</span>
+            <ul class="img-wrap" *ngFor="let imgUrl of imgUrls">
+                <li class="img-item">
+                    <a rel="fancybox" href="{{imgUrl}}"><img src="{{imgUrl}}"></a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+<!--收发货人地址显示框-->
+<p-overlayPanel #op [showCloseIcon]="true" [dismissable]="false">
+    <div style="width: 200px;">
+        {{showaAress}}
+    </div>
+</p-overlayPanel>

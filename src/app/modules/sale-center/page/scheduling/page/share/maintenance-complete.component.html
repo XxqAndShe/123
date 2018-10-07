@@ -1,0 +1,20 @@
+<div class="dialog-box" style="display:block">
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <label>维修完成描述:</label>
+            <textarea name="maintenance-complete" id="maintenance-description" cols="50" rows="8" #text
+                      [(ngModel)]="maintenanceCompleteText" placeholder="{{msgMaintenanceComplete}}"
+                      (keyup.enter)="judgeText(text.value)" (blur)="judgeText(text.value)" maxlength="200"></textarea>
+        </div>
+        <label>上传图片:</label>
+        <!--<ui-upload name="maintenanceComplete[]" url="http://localhost:3000/upload" multiple="multiple" accept="image/*"-->
+                   <!--chooseLabel="选择" uploadLabel="上传" cancelLabel="取消"></ui-upload>-->
+        <ui-upload [(ngModel)]="files"></ui-upload>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">保存</span>
+        <span class="btn default-btn" (click)="cancel()">关闭</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

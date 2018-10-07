@@ -1,0 +1,21 @@
+/*顶部样式 start*/
+.dialog-box{width:313px}
+.dialog-box>.dialog-box-title{
+    background:#4C8DF7 ;
+}
+.dialog-box-footer{padding-top:15px;}
+.dialog-box-content{text-align: center;}
+/*顶部样式 end*/
+.dialog-box-content li{
+    height:25px;
+}
+.dialog-box-content span{
+    width:50px;
+    height:28px;
+    margin-right:10px;
+}
+.dialog-box-content select{
+    width:170px;
+    height:28px;
+}
+.dialog-box .dialog-box-footer{height:30px; text-align: center; padding: 20px;}

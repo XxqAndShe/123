@@ -1,0 +1,13 @@
+.dialog-box{
+    margin-top: -270px;
+    margin-left: -350px;
+}
+.dialog-box-footer{
+    padding: 5px 0;
+}
+label{
+    float: left;
+}
+textarea{
+    margin-bottom: 15px;
+}

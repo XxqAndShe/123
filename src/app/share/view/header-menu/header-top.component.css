@@ -1,0 +1,309 @@
+ul {
+    padding-start: 0;
+    -webkit-padding-start: 0;
+    -mos-padding-start: 0;
+    -ms-padding-start: 0;
+    -o-padding-start: 0;
+}
+
+.header-top {
+    height: 50px;
+    background-color: #0d85e4;
+    padding: 0 20px;
+    box-sizing: border-box;
+    line-height: 50px;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    position: relative;
+}
+
+.header-top > .company-logo {
+    display: inline-block;
+    float: left;
+    width: 90px;
+    height: 28px;
+    background: url('/assets/spirticon.png') no-repeat -70px 0;
+    margin-top: 11px;
+}
+
+.header-top > .pull-down-menu {
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    width: 18px;
+    height: 15px;
+    background: url('/assets/spirticon.png') no-repeat -160px 0;
+    margin: 17px 12px;
+}
+
+/*.header-top>.search-input-form{display: inline-block;top: -10px;position: relative;left: 35px;}*/
+.header-top .search-input {
+    border-radius: 10px;
+    height: 26px;
+    width: 160px;
+    background-color: #2999f2;
+    border-width: 0;
+    padding-left: 15px;
+    box-sizeing: border-box;
+    color: #fff;
+    font: 12px '微软雅黑';
+    margin: 12px 21px;
+    float: left;
+}
+
+/*input框的placeholder样式*/
+input.search-input::-webkit-input-placeholder {
+    color: #bbddf7;
+    font: 12px '微软雅黑';
+}
+
+input.search-input:-moz-placeholder {
+    color: #bbddf7;
+    font: 12px '微软雅黑';
+}
+
+input.search-input.search-input::-moz-placeholder {
+    color: #bbddf7;
+    font: 12px '微软雅黑';
+}
+
+input.search-input:-ms-input-placeholder {
+    color: #bbddf7;
+    font: 12px '微软雅黑';
+}
+
+.search-logo {
+    width: 13px;
+    height: 17px;
+    display: inline-block;
+    background: url('/assets/spirticon.png') no-repeat 0 -56px;
+    position: relative;
+    left: -45px;
+    top: 17px;
+    float: left;
+    cursor: pointer;
+}
+
+.header-top > .come-back-home {
+    float: left;
+    width: 27px;
+    height: 27px;
+    display: inline-block;
+    background: url('/assets/spirticon.png') no-repeat -179px 0;
+    cursor: pointer;
+    margin: 11px -25px;
+}
+
+.header-top > .header-content {
+    border-radius: 10px;
+    background-color: #079dff;
+    height: 26px;
+    width: 88px;
+    display: inline-block;
+    line-height: 25px;
+    margin: 12px 0 12px 12px;
+    padding-left: 10px;
+}
+
+.header-top > .header-content > span {
+    color: #fff;
+}
+
+.header-top > .header-content > .cancel-icon {
+    font-size: 14px;
+    opacity: 0.5;
+    cursor: pointer;
+    float: right;
+    margin-right: 10px;
+    color: #fff;
+}
+
+.header-top > .header-content-last {
+    box-sizing: border-box;
+    background-color: #0677cf;
+}
+
+.header-top > .header-content-last > span {
+    opacity: 0.5;
+}
+
+.header-top > .header-right {
+    float: right;
+}
+
+.header-top > .header-right > .header-right-info {
+    float: left;
+    width: 90px;
+    height: 50px;
+    text-align: center;
+    line-height: 65px;
+    border-right: 1px solid #0677cf;
+    border-left: 1px solid #0677cf;
+}
+
+.header-top > .header-right > .header-right-info > i {
+    display: inline-block;
+    width: 16px;
+    height: 24px;
+    background: url('/assets/spirticon.png') no-repeat -210px 0;
+}
+
+.header-top > .header-right > .header-right-info > span {
+    display: inline-block;
+    width: 17px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 3px;
+    background-color: #0677cf;
+    text-align: center;
+    color: #fff;
+    opacity: 0.5;
+    margin: 0 5px;
+    position: relative;
+    top: -8px;
+}
+
+.header-right-portrait {
+    float: left;
+    text-align: center;
+    line-height: 50px;
+    margin: 0 20px 0 10px;
+}
+
+.header-right-portrait > span {
+    color: #fff;
+    margin-right: 5px;
+    width: 43px;
+    display: inline-block;
+    overflow: hidden;
+    height: 52px;
+    float: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.header-right-portrait > i {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 7px solid #095ea0;
+    cursor: pointer;
+}
+
+.header-right-portrait > .protrait-img {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top: 10px
+}
+
+.header-right-portrait > .protrait-img > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.header-right-portrait > .protrait-img > i {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border: 1.5px solid #0d85e4;
+    background-color: #5ae825;
+    position: absolute;
+    top: 21px;
+    left: 20px;
+    border-radius: 6px;
+}
+
+.header-right-portrait > span.login {
+    width: 100px;
+}
+
+.header-right-portrait > span.login a {
+    color: white;
+}
+
+.user-mode {
+    width: 132px;
+    box-shadow: 3px 4px 7px #c8c8c8, -3px 4px 7px #c8c8c8;
+    position: absolute;
+    top: 0;
+    right: 19px;
+    background-color: #fff;
+    z-index: 10000;
+}
+
+.user-mode > .header-right-portrait {
+    float: none;
+    border-bottom: 1px solid #eee;
+    padding: 0 20px;
+    margin: 0;
+    overflow: hidden;
+}
+
+.user-mode > .header-right-portrait > span {
+    color: #095ea0;
+}
+
+.user-mode > .header-right-portrait > .protrait-img > i {
+    border: 1px solid #fff;
+}
+
+.user-mode > .user-mode-choice > li {
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    margin: 0 5px 0 10px;
+}
+
+.user-mode > .user-mode-choice > li:hover {
+    background-color: #c6e9ff;
+}
+
+.user-mode > .user-mode-choice > li:nth-child(4) {
+    border-bottom: 1px solid #eee;
+}
+
+.user-mode > .user-mode-choice > li > i {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    display: inline-block;
+    margin: 0 5px 0 10px;
+}
+
+.user-mode > .user-mode-choice > li > a {
+    width: 100%;
+    display: inline-block;
+    padding-left: 22px;
+    box-sizing: border-box
+}
+
+.user-mode > .user-mode-choice > li:nth-child(1) > i {
+    background: url('/assets/spirticon.png') no-repeat -54px -56px;
+}
+
+.user-mode > .user-mode-choice > li:nth-child(2) > i {
+    background: url('/assets/spirticon.png') no-repeat -13px -55px;
+}
+
+.user-mode > .user-mode-choice > li:nth-child(3) > i {
+    background: url('/assets/spirticon.png') no-repeat -27px -55px;
+}
+
+.user-mode > .user-mode-choice > li:nth-child(4) > i {
+    background: url('/assets/spirticon.png') no-repeat -40px -56px;
+}
+
+/*媒体查询*/
+@media screen and (max-width: 860px) {
+    .header-top {
+        width: 860px;
+    }
+}

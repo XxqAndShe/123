@@ -1,0 +1,51 @@
+<div  id="header-top" class="header-top">
+    <i class="company-logo"></i>
+    <i id="pull-down-menu" class="pull-down-menu" (click)="menuWidthChange()"></i>
+    <input (keyup.enter)="navigateToPath('modules/adjustable-manage/mix-search')" id="header-search-input" class="search-input" type="text" placeholder="运单号或收货人查询" name="waybillOrConee" [(ngModel)]="waybillOrConee">
+    <i class="search-logo" (click)="navigateToPath('modules/adjustable-manage/mix-search')"></i>
+    <i  id="come-back-home" class="come-back-home" (click)="gotoHome()"></i>
+   <!-- <div class="header-content">
+        &lt;!&ndash;<span>调度任务</span>&ndash;&gt;
+        <span class="cancel-icon" (click)="remove($event)">×</span>
+    </div>
+    <div class="header-content header-content-last">
+        &lt;!&ndash;<span>维修任务</span>&ndash;&gt;
+    </div>-->
+    <div class="header-right"  id="header-right">
+        <!--<div class="header-right-info">
+          <i></i>
+          <span>1</span>
+        </div>-->
+        <div  class="header-right-portrait" *ngIf="username" (mouseover)="showUserMode()">
+            <span>{{username }}</span>
+            <i></i>
+            <div class="protrait-img">
+                <img [src]="portraitUrl">
+                <!--<i [style.backgroundColor]="userModeBg"></i>-->
+            </div>
+        </div>
+        <div class="header-right-portrait" *ngIf="!username" (mouseover)="showUserMode()">
+            <!--<span class="login"> <a title="点击注册" href="/security/login">注册</a> &nbsp;|&nbsp; <a title="点击登陆" href="/security/login">登陆</a></span>-->
+            <span class="login"><a title="点击登陆" href="/security/login">未登录</a></span>
+        </div>
+    </div>
+</div>
+<!--<menu-bar [widthSpread]="widthSpread"></menu-bar>-->
+
+<!-- 头像下拉框 -->
+<div [hidden]="!userModeDisplay" class="user-mode" (mouseout)="hideUserMode()" (mousemove)="showUserMode()">
+    <div  class="header-right-portrait">
+        <span>{{username}}</span>
+        <i></i>
+        <div class="protrait-img">
+            <img [src]="portraitUrl">
+            <i [style.backgroundColor]="userModeBg"></i>
+        </div>
+    </div>
+    <ul class="user-mode-choice">
+        <li (click)="gotoPersonal('/modules/personal-center')">个人中心</li>
+        <li><a href="javascript:void(0);" (click)="doLogout()">退出</a></li>
+    </ul>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

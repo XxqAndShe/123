@@ -1,0 +1,19 @@
+<div class="dialog-box" style="display:block">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">预览数据</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="inner-container">
+            <div>
+                <h4>数据列表预览</h4>
+            </div>
+            <div class="table-container" [ngClass]="{expand: isSelect}">
+                <ui-grid title="&nbsp;" [columns]="columns"></ui-grid>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <button type="button" class="btn default-btn" (click)="close()">关闭</button>
+    </div>
+</div>

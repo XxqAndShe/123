@@ -1,0 +1,794 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1" charset="utf-8">
+    <link href="images/base.css" rel="stylesheet">
+    <title>运单详情</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../config/global_config.js"></script>
+    <script type="text/javascript" src="https://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+
+    <script type="text/javascript">
+        var urlParams = getUrlVars();
+        var map;
+        var gpsPoint;
+        var baiduPoint;
+        var gpsAddress;
+        var baiduAddress;
+        var qidian;
+        var zhongdian;
+        var numer;
+        var portraits;
+        var shifuname;
+        var thisUrl = document.URL;
+        var orderId = urlParams['id'];
+
+        /**
+         * 获取url参数
+         * @returns {{}}
+         */
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&#]*)/gi,
+                function (m, key, value) {
+                    vars[key] = value;
+                }
+            );
+            return vars;
+        }
+
+        $(document).ready(function () {
+            $('#peopleTitle').html(orderId);
+
+        });
+
+        //以下面这个地址为标准
+        //http://localhost:63342/%E7%9F%AD%E4%BF%A1%E7%BD%91%E9%A1%B5/evaluationService.html?id=1zt0183737
+
+        function getLocation() {
+            //根据IP获取城市
+            try {
+                var geolocation = new BMap.Geolocation();
+                geolocation.getCurrentPosition(function (r) {
+                    if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                        showMap(r.point.lng, r.point.lat)
+                    }
+                    else {
+                        alert('百度地图定位失败：' + this.getStatus());
+                    }
+                }, { enableHighAccuracy: true });
+            } catch (e) {
+                showMap();
+            }
+        }
+
+        function showMap(longitude, latitude) {
+            map = new BMap.Map("map");
+
+            if (longitude && latitude) {
+                gpsPoint = new BMap.Point(longitude, latitude);    // 创建点坐标
+                map.centerAndZoom(gpsPoint, 15);
+            }
+
+            map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+            map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+            map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+
+
+            var driving = new BMap.DrivingRoute(map, {
+                renderOptions: {
+                    map: map
+                }
+            });
+
+            /*
+             根据传过来的地点，显示导航线
+             */
+            driving.search(qidian, zhongdian);
+
+
+            if (gpsPoint) {
+                setTimeout(function () {
+                    map.setViewport([gpsPoint]);          //调整到最佳视野
+                }, 1);
+
+                //根据坐标逆解析地址
+                var geoc = new BMap.Geocoder();
+                geoc.getLocation(gpsPoint, getCityByCoordinate);
+
+                BMap.Convertor.translate(gpsPoint, 0, translateCallback);
+            }
+        }
+
+        translateCallback = function (point) {
+            baiduPoint = point;
+            var geoc = new BMap.Geocoder();
+            geoc.getLocation(baiduPoint, getCityByBaiduCoordinate);
+        }
+
+        function getCityByCoordinate(rs) {
+            gpsAddress = rs.addressComponents;
+            var address = "GPS标注：" + gpsAddress.province + "," + gpsAddress.city + "," + gpsAddress.district + "," + gpsAddress.street + "," + gpsAddress.streetNumber;
+            var marker = new BMap.Marker(gpsPoint);  // 创建标注
+            //map.addOverlay(marker);              // 将标注添加到地图中
+            var labelgps = new BMap.Label(address, { offset: new BMap.Size(20, -10) });
+            //marker.setLabel(labelgps); //添加GPS标注
+        }
+
+        function getCityByBaiduCoordinate(rs) {
+            baiduAddress = rs.addressComponents;
+            var address = "百度标注：" + baiduAddress.province + "," + baiduAddress.city + "," + baiduAddress.district + "," + baiduAddress.street + "," + baiduAddress.streetNumber;
+            var marker = new BMap.Marker(baiduPoint);  // 创建标注
+            //map.addOverlay(marker);              // 将标注添加到地图中
+            var labelbaidu = new BMap.Label(address, { offset: new BMap.Size(20, -10) });
+            //marker.setLabel(labelbaidu); //添加百度标注
+        }
+
+        //根据IP获取城市
+        function getCityByIP(rs) {
+            var cityName = rs.name;
+            return cityName;
+            //alert("根据IP定位您所在的城市为:" + cityName);
+        }
+
+        function handleError(value) {
+            switch (value.code) {
+                case 1:
+                    alert("位置服务被拒绝");
+                    break;
+                case 2:
+                    alert("暂时获取不到位置信息");
+                    break;
+                case 3:
+                    alert("获取信息超时");
+                    break;
+                case 4:
+                    alert("未知错误");
+                    break;
+            }
+        }
+
+        function init() {
+            initMapMessage();
+            getLocation();
+            //getrRating();
+//            changeIcon();
+            changeTxet();
+            initTextmessage;
+
+
+        }
+
+        window.onload = init;
+        function getrRating() {
+            var rating = document.getElementById('rating');
+            if (rating.style.display == "block") {
+                rating.style.display = "none";
+            } else {
+                rating.style.display = "block";
+            }
+
+        }
+
+        /*
+         *文字模式
+         */
+        function changeTxet() {
+            var changetext = document.getElementById('changetext');
+            var changeicon = document.getElementById('changeicon');
+            var hmap = document.getElementById('map');
+            var textdiv = document.getElementById('textDiv');
+            var dianhua = document.getElementById('dianhua');
+            var pingjia = document.getElementById('pingjia');
+
+            changetext.style.background = "dodgerblue";
+            changeicon.style.background = "white";
+            changetext.style.color = "white";
+            changeicon.style.color = "black";
+            hmap.style.display = "none";
+            textdiv.style.display = "block";
+//            dianhua.style.display = "block";
+//            pingjia.style.display = "none";
+            initTextmessage();
+
+        }
+
+        /*
+         *图片模式
+         */
+        function changeIcon() {
+            var changetext = document.getElementById('changetext');
+            var changeicon = document.getElementById('changeicon');
+            var hmap = document.getElementById('map');
+            var textdiv = document.getElementById('textDiv');
+            var dianhua = document.getElementById('dianhua');
+            var pingjia = document.getElementById('pingjia');
+            changetext.style.background = "white";
+            changeicon.style.background = "dodgerblue";
+            changetext.style.color = "black";
+            changeicon.style.color = "white";
+            hmap.style.display = "block";
+            textdiv.style.display = "none";
+//            dianhua.style.display = "block";
+//            pingjia.style.display = "none";
+            initTextmessage();
+        }
+        //跳转到师傅评价页面
+        function evaluationService() {
+
+            window.location.href = 'evaluationService.html?id=' + numer;
+
+        }
+        function initTextmessage() {
+            var qianshouriqi = document.getElementById('qianshouriqi');
+            var tihuodate = document.getElementById('tihuodate');
+            var yuyuedate = document.getElementById('yuyuedate');
+            var shoulidate = document.getElementById('shoulidate');
+            var ganxianenddate = document.getElementById('ganxianenddate');
+            var ganxiandate = document.getElementById('ganxiandate');
+            var shifuname2 = document.getElementById('shifuname2');
+            var shifuname3 = document.getElementById('shifuname3');
+            var shifuname4 = document.getElementById('shifuname4');
+            var shifuname5 = document.getElementById('shifuname5');
+            var destinationend = document.getElementById('destinationend');
+            var destination = document.getElementById('destination');
+
+            var qianshoudiv = document.getElementById('qianshoudiv');
+            var tihuodiv = document.getElementById('tihuodiv');
+            var yuyuediv = document.getElementById('yuyuediv');
+            var shoulidiv = document.getElementById('shoulidiv');
+            var ganxianenddiv = document.getElementById('ganxianenddiv');
+            var ganxiandiv = document.getElementById('ganxiandiv');
+
+            var qianshouimg = document.getElementById('qianshouimg');
+            var tihuoimg = document.getElementById('tihuoimg');
+            var yuyueimg = document.getElementById('yuyueimg');
+            var shouliimg = document.getElementById('shouliimg');
+            var ganxianendimg = document.getElementById('ganxianendimg');
+            var ganxianimg = document.getElementById('ganxianimg');
+            var tel = document.getElementById('tel');
+            var dianhua = document.getElementById('dianhua');
+            var pingjia = document.getElementById('pingjia');
+            var fontColor1 = document.getElementById('fontColor1');
+            var fontColor2 = document.getElementById('fontColor2');
+            var fontColor3 = document.getElementById('fontColor3');
+            var fontColor4 = document.getElementById('fontColor4');
+            var fontColor5 = document.getElementById('fontColor5');
+            var fontColor6 = document.getElementById('fontColor6');
+            var yuyueshangmen = document.getElementById('yuyueshangmen');
+
+            //            yuyueshangmen
+
+//            alert(window.baseUrl+"dddd");
+            $.ajax({
+                url: window.baseUrl + '/MessageShipper/queryWayTrack',
+//                url: 'http://192.168.1.60:12000/MessageShipper/queryWayTrack',
+
+                type: 'post',
+                data: {
+                    'id': orderId
+//                      'id':"1zt10534761171"
+
+                },
+                success: function (data) {
+                    console.log(data);
+                    //shifu.style.background = "black";
+                    if (data.signTime) {
+                        qianshouriqi.innerText = data.signTime;
+                    }
+                    if (data.trunkStartDate) {
+                        ganxiandate.innerText = data.trunkStartDate;
+                    }
+                    if (data.trunkEndDate) {
+                        ganxianenddate.innerText = data.trunkEndDate;
+                    }
+                    if (data.acceptTime) {
+                        shoulidate.innerText = data.acceptTime;
+                    }
+                    if (data.appointmentTime) {
+                        yuyuedate.innerText = data.appointmentTime;
+                        yuyueshangmen.innerText = data.appointmentTime;
+                    }
+
+                    if (data.pickTime) {
+                        tihuodate.innerText = data.pickTime;
+                    }
+
+                    if (data.masterName) {
+                        shifuname2.innerText = data.masterName;
+                    }
+                    if (data.masterName) {
+                        shifuname3.innerText = data.masterName;
+                    }
+                    if (data.masterName) {
+                        shifuname4.innerText = data.masterName;
+                    }
+                    if (data.masterName) {
+                        shifuname5.innerText = data.masterName;
+                    }
+                    if (data.deliverArea) {
+                        destinationend.innerText = data.deliverArea;
+                        destination.innerText = data.deliverArea;
+                    }
+                    if (data.mobile) {
+                        tel.href = "tel:" + data.mobile;
+                    }
+                    if(!data.signTime){
+
+                     dianhua.style.display = "block";
+                     pingjia.style.display = "none";
+                    }else {
+                        if(data.gradService == "0"){
+                            dianhua.style.display = "none";
+                            pingjia.style.display = "block";
+                        }
+                        else {
+                            dianhua.style.display = "block";
+                            pingjia.style.display = "none";
+                        }
+
+
+                    }
+
+
+
+                    if (data.signTime) {
+                        qianshouimg.src = "images/xian_lan@2x.png";
+                        fontColor1.style.color = "#0D85E4";
+                    } else if (!data.signTimer && data.pickTime) {
+
+                        qianshoudiv.style.display = "none";
+                        tihuodiv.style.marginTop = "0.7rem";
+                        tihuoimg.src = "images/xian_lan@2x.png";
+                        fontColor2.style.color = "#0D85E4";
+                    } else if (data.appointmentTime && !data.pickTime) {
+
+                        qianshoudiv.style.display = "none";
+                        tihuodiv.style.display = "none";
+                        yuyuediv.style.marginTop = "0.7rem";
+                        yuyueimg.src = "images/xian_lan@2x.png";
+                        fontColor3.style.color = "#0D85E4";
+                    } else if (!data.appointmentTime && data.acceptTime) {
+
+                        qianshoudiv.style.display = "none";
+                        tihuodiv.style.display = "none";
+                        yuyuediv.style.display = "none";
+                        shoulidiv.style.marginTop = "0.7rem";
+                        shouliimg.src = "images/xian_lan@2x.png";
+                        fontColor4.style.color = "#0D85E4";
+                    } else if (data.trunkEndDate && !data.acceptTime) {
+
+                        qianshoudiv.style.display = "none";
+                        tihuodiv.style.display = "none";
+                        yuyuediv.style.display = "none";
+                        shoulidiv.style.display = "none";
+                        ganxianenddiv.style.marginTop = "0.7rem";
+                        ganxianendimg.src = "images/xian_lan@2x.png";
+                        fontColor5.style.color = "#0D85E4";
+                    }
+                    else if (!data.trunkEndDate && data.trunkStartDate) {
+
+                        qianshoudiv.style.display = "none";
+                        tihuodiv.style.display = "none";
+                        yuyuediv.style.display = "none";
+                        shoulidiv.style.display = "none";
+                        ganxianenddiv.style.display = "none";
+                        ganxiandiv.style.marginTop = "0.7rem";
+                        ganxianimg.src = "images/xian_lan@2x.png";
+                        fontColor6.style.color = "#0D85E4";
+                    }
+
+                    // if(data && data.resultcode == '200'){
+                    //     alert(data.result.today);
+                    // }
+                }
+            });
+
+        }
+        function initMapMessage() {
+
+
+            peopletitle = document.getElementById('peopleTitle');
+            var destarea = document.getElementById('destArea');
+            var deliverarea = document.getElementById('deliverArea');
+            var shifuname1 = document.getElementById('shifuname');
+            var xing1 = document.getElementById('xing1');
+            var xing2 = document.getElementById('xing2');
+            var xing3 = document.getElementById('xing3');
+            var xing4 = document.getElementById('xing4');
+            var xing5 = document.getElementById('xing5');
+            var touxiang = document.getElementById('touxiang');
+            var dianhua = document.getElementById('dianhua');
+            var pingjia = document.getElementById('pingjia');
+
+            $.ajax({
+                url: window.baseUrl + '/MessageShipper/queryWayByTaskId',
+//                url: 'http://192.168.1.60:12000/MessageShipper/queryWayByTaskId',
+
+                type: 'post',
+                data: {
+                    'id': orderId
+//                    'id':"1zt10534761171"
+                },
+                success: function (data) {
+                    console.log(data);
+                    numer = data.title;
+                    peopletitle.innerText = data.title;
+                    if (data.deliverArea) {
+                        deliverarea.innerText = data.deliverArea;
+                        qidian = data.deliverArea;
+                    }
+
+                    if (data.destArea) {
+                        destarea.innerText = data.destArea;
+                        zhongdian = data.destArea;
+                    }
+
+
+                    portraits = data.portraits;
+
+                    if (data.masterName) {
+                        shifuname = data.masterName;
+                        shifuname1.innerText = data.masterName;
+                    }
+
+                    if (data.portraits[0]) {
+                        touxiang.src = data.portraits;
+                    }
+
+//                    if((data.gradService == "0"))
+//                    {
+//                       dianhua.style.display = "block";
+//                       pingjia.style.display = "none";
+//                    }
+
+                    if (data.gradService == "1.00") {
+                        xing1.src = "images/xing_xx@2x.png";
+                    } else if (data.gradService == "2.00") {
+                        xing2.src = "images/xing_xx@2x.png";
+                        xing1.src = "images/xing_xx@2x.png";
+                    } else if (data.gradService == "3.00") {
+                        xing2.src = "images/xing_xx@2x.png";
+                        xing1.src = "images/xing_xx@2x.png";
+                        xing3.src = "images/xing_xx@2x.png";
+                    } else if (data.gradService == "4.00") {
+                        xing2.src = "images/xing_xx@2x.png";
+                        xing1.src = "images/xing_xx@2x.png";
+                        xing3.src = "images/xing_xx@2x.png";
+
+                        xing4.src = "images/xing_xx@2x.png";
+                    }
+                    else if (data.gradService == "5.00") {
+                        xing2.src = "images/xing_xx@2x.png";
+                        xing1.src = "images/xing_xx@2x.png";
+                        xing3.src = "images/xing_xx@2x.png";
+                        xing5.src = "images/xing_xx@2x.png";
+
+                        xing4.src = "images/xing_xx@2x.png";
+                    }
+
+
+                    // if(data && data.resultcode == '200'){
+                    //     alert(data.result.today);
+                    // }
+                },
+                error: function (err) {
+                    // console.log(err)
+                    try {
+                        var json = JSON.parse(err.responseText);
+                        var code = json.code;
+                        if (code == 102) {
+                            // alert('未发货，请稍后查询！');
+                            $('#main_content').hide()
+                            $('#main_footer').hide()
+                            $('#no_data_img').show()
+                        }
+
+                    } catch (e) {
+                        alert('查询信息失败！')
+                    }
+                }
+            });
+        }
+    </script>
+    <style>
+        #textDiv,
+        #map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+
+        #pingjia,
+        #dianhua {
+            height: 100%;
+            background: dodgerblue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script type="text/javascript">
+        var deviceWidth = document.documentElement.clientWidth;
+        if (deviceWidth > 750) deviceWidth = 750;
+        // alert(deviceWidth)
+        document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+    </script>
+    <div class="nav" style="background: white;color: blue; border-bottom: 1px solid #E4E4E4;" id="nav"><span class="nav" style="color: black;background: white">任务号</span><span id="peopleTitle" class="nav" style="background: white;color: dodgerblue"></span></div>
+    <div id="no_data_img">
+          <img src="./images/no_data_img.png" alt="" width="90px"/>
+          <p>暂无结果，请稍后查看</p>
+    </div>
+    <div id="main_content">
+        <!-- <div class="nav" style="background: white;color: blue" id="nav"><span class="nav" style="color: black;background: white">任务号</span><span id="peopleTitle" class="nav" style="background: white;color: dodgerblue"></span></div> -->
+        <div class="cont_wap">
+
+            <div style="height: 0.8rem;background: white; ">
+
+                <div style="float: left; margin-left: 0.5rem;">
+                    <img style="width: 0.44rem;height: 0.44rem; margin-top: 0.18rem;" src="images/qi@2x.png">
+                </div>
+                <div id="deliverArea" style="font-size: 0.32rem;line-height:0.8rem;margin-left:1.25rem; display: block;">
+
+                </div>
+
+            </div>
+            <div style="margin-left: 0px;height: 1px;width: 100%;">
+            </div>
+
+
+            <div style="height: 0.8rem;background: white; margin-top: -1px;">
+
+                <div style="float: left; margin-left: 0.5rem;">
+                    <img style="width: 0.44rem;height: 0.44rem; margin-top: 0.18rem;" src="images/zhong@2x.png">
+                </div>
+                <div id="destArea" style="font-size: 0.32rem;line-height:0.8rem;margin-left:1.25rem; display: block; border-top: 1px solid #E4E4E4;">
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div style="position: relative;width: 100%;height: 11.5rem;overflow-y: hidden; padding-bottom: 0.8rem;">
+
+            <div id="map" style="height: 11.3rem"></div>
+
+
+            <div id="textDiv">
+                <ul>
+                    <li id="qianshoudiv">
+                        <div style="width: 100%;height: 1.5rem;">
+                            <div style="float: left;margin-top: 0.7rem;width: 25%;height: 90%;">
+
+                                <ul>
+                                    <li id="qianshouriqi" style="text-align: right;font-size: 0.3rem"></li>
+                                    <!-- <li style="text-align: right;font-size: 0.14rem">10:31</li> -->
+                                </ul>
+
+                            </div>
+
+                            <div style="float: left;margin-top: 0.7rem;width: 60%;height: 100%;">
+
+                                <ul id="fontColor1">
+                                    <img id="qianshouimg" style="float: left;width: 0.2rem;height: 1.5rem;margin-top: 5px; margin-left: 15px;" src="images/xian_hui@2x.png">
+
+                                    <li style="text-align: left;margin-left: 40px; font-size: 0.35rem;">已签收</li>
+                                    <li style="text-align: left;margin-left: 40px; font-size:0.30rem;">安装师傅：<span id="shifuname2" style="font-size: 0.30rem"></span>，已完成安装
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li id="tihuodiv">
+                        <div style="width: 100%;height: 1.5rem;">
+                            <div style="float: left;width: 25%;height: 90%;">
+
+                                <ul>
+
+                                    <li id="tihuodate" style="margin-top: -0.1rem;text-align: right;font-size: 0.3rem"></li>
+                                    <!-- <li style="text-align: right;font-size: 0.14rem">10:31</li> -->
+                                </ul>
+
+                            </div>
+
+                            <div style="float: left;width: 60%;height: 100%;">
+
+                                <ul id="fontColor2">
+                                    <img id="tihuoimg" style="float: left;width: 0.2rem;height: 1.5rem;margin-left: 15px;" src="images/xian_hui@2x.png">
+
+                                    <li style="text-align: left;  margin-left: 40px;font-size: 0.35rem">已提货</li>
+                                    <li style="text-align: left;  margin-left: 40px;font-size:0.3rem ">安装师傅：<span id="shifuname3" style="font-size: 0.3rem"></span>，已完成提货
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+
+                    <li id="yuyuediv">
+                        <div style="width: 100%;height: 1.5rem;">
+                            <div style="float: left;width: 25%;height: 90%;">
+
+                                <ul>
+
+                                    <li id="yuyuedate" style=" margin-top: -0.1rem;text-align: right;font-size: 0.3rem"></li>
+                                    <!-- <li style="text-align: right;font-size: 0.14rem">10:31</li> -->
+                                </ul>
+
+                            </div>
+                            <div style="float: left;margin-top: -5px;width: 70%;height: 100%;">
+
+                                <ul id="fontColor3">
+                                    <img id="yuyueimg" style="float: left;width: 0.2rem;height: 1.5rem; margin-left: 15px;" src="images/xian_hui@2x.png">
+
+                                    <li style="text-align: left;  margin-left: 40px;font-size: 0.35rem">已预约</li>
+                                    <li style="text-align: left;  margin-left: 40px;font-size:0.3rem ">安装师傅：<span id="shifuname4" style="font-size: 0.3rem"></span>，已完成预约
+                                    </li>
+                                    <li style="text-align: left; margin-left: 40px;font-size:0.24rem ">预约上门时间[<span id="yuyueshangmen" style="font-size: 0.24rem"></span>]</li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+
+                    <li id="shoulidiv">
+                        <div style="width: 100%;height: 1.5rem;">
+                            <div style="float: left;width: 25%;height: 90%;">
+
+                                <ul>
+                                    <li id="shoulidate" style="margin-top: -0.1rem;text-align: right;font-size: 0.3rem"></li>
+                                    <!-- <li style="text-align: right;font-size: 0.14rem">10:31</li> -->
+                                </ul>
+
+                            </div>
+                            <div style="float: left;margin-top: -5px; width: 60%;height: 100%;">
+
+                                <ul id="fontColor4">
+                                    <img id="shouliimg" style="float: left;width: 0.2rem;height: 1.5rem; margin-left: 15px;" src="images/xian_hui@2x.png">
+
+                                    <li style="text-align: left; margin-left: 40px;font-size: 0.35rem">已受理</li>
+                                    <li style="text-align: left; margin-left: 40px;font-size:0.3rem ">安装师傅：<span id="shifuname5" style="font-size: 0.3rem"></span>，已完成受理
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+
+                    <li id="ganxianenddiv">
+                        <div style="width: 100%;height: 1.5rem;">
+                            <div style="float: left;width: 25%;height: 90%;">
+
+                                <ul>
+                                    <li id="ganxianenddate" style="margin-top: -0.1rem;text-align: right;font-size: 0.3rem"></li>
+                                    <!-- <li style="text-align: right;font-size: 0.14rem">10:31</li> -->
+                                </ul>
+
+                            </div>
+                            <div style="float: left;margin-top: -5px;width: 60%;height: 100%;">
+
+                                <ul id="fontColor5">
+                                    <img id="ganxianendimg" style="float: left;width: 0.2rem;height: 1.5rem; margin-left: 15px;" src="images/xian_hui@2x.png">
+
+                                    <li style="text-align: left; margin-left: 40px;font-size: 0.35rem">干线结束</li>
+                                    <li style="text-align: left; margin-left: 40px;font-size:0.3rem ">包裹已到达<span id="destinationend"style="font-size: 0.3rem">上海</span>。
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li id="ganxiandiv">
+                        <div style="width: 100%;height: 1.5rem;">
+                            <div style="float: left;width: 25%;height: 90%;">
+
+                                <ul>
+                                    <li id="ganxiandate" style="margin-top: -0.1rem;text-align: right;font-size: 0.3rem"></li>
+                                    <!-- <li style="text-align: right;font-size: 0.14rem">10:31</li> -->
+                                </ul>
+
+                            </div>
+                            <div style="float: left;margin-top: -5px;width: 60%;height: 100%;">
+
+                                <ul id="fontColor6">
+                                    <img id="ganxianimg" style="float: left;width: 0.2rem;height: 1.5rem; margin-left: 15px;" src="images/xian_hui@2x.png">
+
+                                    <li style="text-align: left; margin-left: 40px;font-size: 0.35rem">干线开始</li>
+                                    <li style="text-align: left; margin-left: 40px;font-size:0.3rem ">包裹已发往<span id="destination"style="font-size: 0.3rem"></span>。
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div style="position: absolute; border-radius: 8rem 8rem 8rem 8rem;margin-top: 10px; float:left;width: 0.7rem;height:2.7rem;background: white;margin-left:6.5rem ; padding:0.1rem; box-shadow:0 4px 16px 1px rgba(0, 0, 0, 0.05);">
+
+                <div id="changetext" style="height: 1.2rem;width: 0.7rem; border-radius: 0.7rem; padding-top: 0.15rem;" onclick="changeTxet()">
+                    <ul>
+                        <li style="font-size: 0.38rem;text-align: center">文</li>
+                        <li style="font-size: 0.38rem ;text-align: center">字</li>
+                    </ul>
+                </div>
+                <div id="changeicon" style="height: 1.2rem;width: 0.7rem; border-radius: 0.7rem; padding-top: 0.15rem;" onclick="changeIcon()">
+                    <ul>
+                        <li style="font-size: 0.38rem;text-align: center">地</li>
+                        <li style="font-size: 0.38rem ;text-align: center">图</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://api.map.baidu.com/api?v=2.0&ak=CmNNVnl9fdodGxbbIMXpxSl4logH9gii&callback=initialize" type="text/javascript"></script>
+</body>
+<footer  id="main_footer" style="position: fixed; bottom: 0;left: 0;width: 100%;height: 1rem;">
+    <div style="float: left;background: white;width:60%;height: 100%;">
+        <div  style="float: left;height:1rem; margin-left: 0.35rem;">
+            <img id="touxiang" style="height: 0.8rem ;width: .8rem ;border-radius: 1rem;margin-top: 0.12rem;" src="images/abc.jpg">
+        </div>
+        <div style="float: left;font-size: 0.35rem;margin-top: 0.05rem;margin-left: 0.1rem;color: black">
+            <span id="shifuname" style="font-size: 0.32rem;margin-left: 0.1rem; line-height: 0.32rem;">咱三</span>
+
+            <div id="rating" style="margin-top: 0.03rem">
+                <!--<img id="xing1" src="images/xing_xx@2x.png">-->
+                <img id="xing1" style="width: 0.3rem;height: 0.3rem" src="images/xing_xm@2x.png">
+
+                <img id="xing2" style="width: 0.3rem;height: 0.3rem" src="images/xing_xm@2x.png">
+                <img id="xing3" style="width: 0.3rem;height: 0.3rem" src="images/xing_xm@2x.png">
+                <img id="xing4" style="width: 0.3rem;height: 0.3rem" src="images/xing_xm@2x.png">
+                <img id="xing5" style="width: 0.3rem;height: 0.3rem" src="images/xing_xm@2x.png">
+            </div>
+
+        </div>
+
+    </div>
+    <div id="pingjia" onclick="evaluationService()">
+
+        <div style="float: left;height: 30px; margin-left: 0.1rem;margin-top: 0.35rem;">
+            <img style="height: 0.4rem ;width: 0.4rem" src="images/pingjia@2x.png">
+        </div>
+        <div style="float: left;font-size: 0.32rem;margin-top: 0.25rem;margin-left: 0.2rem;color: white">
+            评价安装师傅
+        </div>
+
+
+    </div>
+    <div id="dianhua" onclick="evaluationService()">
+
+        <div style="float: left;height: 30px;margin-left: 0.1rem;margin-top: 0.35rem;">
+            <img style="height: 0.4rem ;width: 0.4rem" src="images/dianhua@2x.png">
+        </div>
+        <a id="tel" style="float: left;font-size: 0.32rem;margin-top: 0.35rem;margin-left: 0.2rem;color: white" href="">联系安装师傅</a>
+
+        <!--<div style="float: left;font-size: 0.35rem;margin-top: 0.5rem;margin-left: 0.2rem;color: white">-->
+        <!--</div>-->
+    </div>
+
+
+</footer>
+
+</html>

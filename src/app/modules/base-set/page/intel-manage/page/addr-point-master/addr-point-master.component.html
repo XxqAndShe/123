@@ -1,0 +1,52 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <form>
+    <ul class="top-search-content">
+        <li  class="sub-select-list">
+            <span>提货人电话</span>
+            <div class="addr-control pickup-phone">
+                <input type="text" name="tellPhone" [(ngModel)]="tellPhone">
+            </div>
+        </li>
+        <li  class="sub-select-list">
+            <span>地区</span>
+            <div class="addr-control">
+                <ui-select-box name="area" [(ngModel)]="area" [data-handler]="dataHandler"></ui-select-box>
+            </div>
+        </li>
+        <li  class="sub-select-list" style="position: relative">
+            <span>推荐师傅</span>
+            <div class="addr-control addr-position">
+                <master-select name="workerName" workerCode="true" defaultLabel="请选择…" [(ngModel)]="workerCode" type="name"></master-select>
+            </div>
+        </li>
+        <li class="addr-btn">
+            <button class="primary-btn btn" (click)="query($event)" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <button class="default-btn btn" type="reset" type="reset">清空</button>
+        </li>
+    </ul>
+    </form>
+    <div *ngIf="!isClickModify" class="table-title">
+        <span class="title-name">提货电话指定师傅</span>
+        <span class="right primary-btn btn" (click)="displayModal()"><i class="rmb-icon add"></i>新增</span>
+        <span class="right btn primary-btn" (click)="disableModify()"><i class="rmb-icon save"></i>修改</span>
+        <span class="right btn primary-btn" (click)="disable()"><i class="rmb-icon delete" ></i>删除</span>
+    </div>
+    <div class="table-container">
+        <ui-grid [columns]="columns" [data]="data" (load)="load($event)" (exportCSV)="exportCSV($event)" (rowSelect)="onselect($event)" [(selections)]="selectionRow"></ui-grid>
+    </div>
+</div>
+<addr-aside  *ngIf="isshowModal" (closeModal)="closeModal($event)"  [@modalState]="isshowModalAni ?'in':'out'" (onSave)="doSave()"></addr-aside>
+<add-modify-master *ngIf="masterIf" class="modify-master" (closeAddMaster)="closeMaster()" (saveAddMaster)="saveMaster()" [@modalState]="isshowMater ?'in':'out'"[currentRow]="currentRow"></add-modify-master>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>
+<!--确认、取消提示框-->
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

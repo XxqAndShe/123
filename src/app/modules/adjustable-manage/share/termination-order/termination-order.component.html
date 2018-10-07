@@ -1,0 +1,22 @@
+<div class="dialog-box" style="display:block;width: 400px;margin-left: -160px;margin-top: -120px">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">终止订单</span>
+        <span class="dialog-right" (click)="DeleteSymbol()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <span><b class="mustFill">*</b>终止原因</span>
+            <textarea placeholder="{{msgTerminationOrder}}" [(ngModel)]="TerminationOrderText"  #box (blur)="TerminationOrderOut(box.value)" maxlength="200"></textarea><br>
+                <input type="checkbox" style="margin-left: 15px;margin-top: 5px" [(ngModel)]="createAbnormal" (ngModelChange)="abnormalChange()"> 生成新异常单
+        </div>
+    </div>
+    <div class="dialog-box-footer"  style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="ConfirmTerminationOrder()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <span class="btn default-btn" (click)="CancelTerminationOrder()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

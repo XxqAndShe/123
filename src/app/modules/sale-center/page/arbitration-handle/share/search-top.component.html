@@ -1,0 +1,113 @@
+<form>
+<div class="select_state">
+    <div class="register">
+        <span class="title">登记时间</span>
+        <!--<span class="time">-->
+            <!--<input type="text" readonly="readonly" value="{{dateText1}}" (click)="hidden1=false;hidden4=true;hidden2=true;hidden3=true">-->
+            <!--<my-date-picker [hasDatePickerHidden]="hasHidden1" [datePickerHidden]="hidden1" [dateText]="dateText1" (changeDateText)="changeDateText1($event)"></my-date-picker>-->
+        <!--</span>-->
+
+        <!--<span class="time">-->
+            <!--<input type="text" readonly="readonly" value="{{dateText2}}" (click)="hidden2=false;hidden1=true;hidden3=true;hidden4=true">-->
+            <!--<my-date-picker [hasDatePickerHidden]="hasHidden2" [datePickerHidden]="hidden2" [dateText]="dateText2" (changeDateText)="changeDateText2($event)"></my-date-picker>-->
+        <!--</span>-->
+
+        <span class="time">
+            <!-- TODO(样式) -->
+            <p-calendar name="startDate" [(ngModel)]="arbqueryRequst.dateStart" [locale]="zh" dateFormat="yy-mm-dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </span>
+        <span class="time">
+            <!-- TODO(样式) -->
+            <p-calendar name="endDate" [(ngModel)]="arbqueryRequst.dateEnd" [locale]="zh" dateFormat="yy-mm-dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </span>
+
+        <div class="yuandan">
+            <span class="yundanhao">任务号</span>
+            <!--<input type="text" id="yc_id">-->
+            <p-autoComplete name="waybillID"  [(ngModel)]="arbqueryRequst.waybillId" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+        <div class="yuandan">
+            <span>异常编号</span>
+            <p-autoComplete name="abID" [(ngModel)]="arbqueryRequst.abId" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+        <div class="yuandan" [ngClass]="{'hide':curIndex!==0}" >
+            <span>仲裁状态</span>
+            <select name="isArbState" [(ngModel)]="arbqueryRequst.arbStatus" class="sele">
+                <option value="All">全部</option>
+                <option>已仲裁</option>
+                <option>未仲裁</option>
+            </select>
+        </div>
+
+        <button class="btn primary-btn" (click)="cmdQuery()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            查询
+        </button>
+        <button class="btn default-btn" type="reset">清空</button>
+        <a class="shaixuan" (click)="showShaixuan()">筛选</a>
+    </div>
+</div>
+<div *ngIf="isshowSX" class="select_state">
+    <div class="register">
+        <span class="title">处理时间</span>
+        <span class="time">
+            <!-- TODO(样式) -->
+            <p-calendar  name="handleStartDate" [(ngModel)]="arbqueryRequst.handleStartDate" [locale]="zh" dateFormat="yy-mm-dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </span>
+        <span class="time">
+            <!-- TODO(样式) -->
+            <p-calendar name="handleEndDate" [(ngModel)]="arbqueryRequst.handleEndDate" [locale]="zh" dateFormat="yy-mm-dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </span>
+        <div class="yuandan">
+            <span>仲裁时间</span>
+            <!--<input type="text" id="yc_id">-->
+            <p-calendar name="arbDate" [(ngModel)]="arbqueryRequst.arbDate" [locale]="zh" dateFormat="yy-mm-dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </div>
+        <div class="yuandan">
+            <span>异常类型</span>
+            <exception-select class="typeCode" name="typeCode" [(ngModel)]="arbqueryRequst.abTypeCode" [label]="testLabel"></exception-select>
+        </div>
+
+        <div class="yuandan">
+            <span>跟踪时间</span>
+            <!--<input type="text" id="yc_id">-->
+            <p-calendar  name="trackedTime" [(ngModel)]="arbqueryRequst.trackTime" [locale]="zh" dateFormat="yy-mm-dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+        </div>
+
+        <div class="yuandan">
+            <span class="abnormalFrom">异常来源</span>
+            <meta-select name="source" [(ngModel)]="arbqueryRequst.source" width="125px"  defaultLabel="请选择…" type="abnoSource"></meta-select>
+            <!--<select name="absource" [(ngModel)]="arbqueryRequst.source" class="sele">-->
+            <!--<option value="All">全部</option>-->
+            <!--<option>tms客服</option>-->
+            <!--<option>tms调度</option>-->
+            <!--<option>tms承接</option>-->
+            <!--<option>wms</option>-->
+            <!--<option>ips</option>-->
+            <!--<option>官网</option>-->
+            <!--<option>cmp</option>-->
+            <!--<option>app</option>-->
+            <!--</select>-->
+        </div>
+    </div>
+</div>
+<div *ngIf="isshowSX" class="select_state">
+
+    <div class="yuandan" [ngClass]="{'hide':curIndex===3}" *ngIf="curIndex === 3">
+        <span>是否跟踪</span>
+        <select name="isTrack"  [(ngModel)]="arbqueryRequst.isTrack" class="sele">
+            <option value="yes">是</option>
+        </select>
+    </div>
+</div>
+</form>
+<div *ngIf="selectedNum == 0" class="table-title"><span class="title-name">仲裁列表</span></div>
+<div  *ngIf="selectedNum != 0" class="show-flow-chart">
+    <ul class="show-flow-list">
+        <li><span>已选中<i>{{selected?.length || 0}}</i>项</span></li>
+        <li (click)="showModal()"><i></i><span>仲裁处理</span></li>
+        <!--<li (click)="showModal()"><i></i><span>仲裁修改</span></li>-->
+        <li (click)="showTraceModal()"><i></i><span>跟踪</span></li>
+    </ul>
+    <span class="cancel-icon" (click)="showTitle()">×</span>
+</div>

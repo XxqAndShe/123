@@ -1,0 +1,28 @@
+
+<div class="dialog-box" style="display:block;width:400px;margin-left: -260px;margin-top: -100px">
+
+    <div class="dialog-box-title">
+        <span  class="dialogdialog-left">返回客户</span>
+        <span class="dialog-right" (click)="returnSure()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-bott dialog-box-com sign-div">
+            <span class="start-symbol add-start-symbol">*</span>
+            <span>签收人：</span>
+            <input type="" maxlength="20" name="signMan" id="signMan" [(ngModel)]="signMan" placeholder="不能超过20个字符" >
+        </div>
+        <div class="dialog-box-bott dialog-box-com sign-div-files">
+            <span class="start-symbol">*</span>
+            <span>上传签收图：</span>
+            <div class="sign-files">
+                <ui-upload [(ngModel)]="files"></ui-upload>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <span class="btn primary-btn" (click)="returnSure()">确定</span>
+        <span class="btn default-btn" (click)="returnCancle()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

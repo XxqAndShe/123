@@ -1,0 +1,33 @@
+<div class="app-container">
+    <div class="app-container">
+        <div class="content-header">
+            <form>
+                <label>版本号</label>
+                <input name="versionNumber" [(ngModel)]="appManageVo.versionNumber"/>
+                <label>标题名称</label>
+                <input name="titleName" [(ngModel)]="appManageVo.titleName"/>
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset">清空</button>
+            </form>
+        </div>
+        <div>
+            <button class="btn primary-btn" (click)="showWin(1)">新增</button>
+            <button class="btn primary-btn" (click)="showWin(2)" *ngIf="selectRows.length">编辑</button>
+        </div>
+        <div class="table-header table-header1">
+            <h4>详情列表</h4>
+        </div>
+        <div class="table-container">
+            <ui-grid (rowSelect)="rowSelect($event)"
+                     (load)="load($event)"
+                     [data]="data"
+                     [(selections)]="selections"
+                     [columns]="columns" [showEditColumn]="false" [enableExport] = "false"></ui-grid>
+        </div>
+    </div>
+    <!--新增-->
+    <add-app-manage *ngIf="showAdd" (success)="success()" (closeWin)="closeWin()" [record]="selectRows"></add-app-manage>
+</div>

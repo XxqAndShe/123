@@ -1,0 +1,123 @@
+<div class="handle_tank" id="handle_tank" [ngStyle]="drag.setPosition(450,452)">
+    <div class="top_tank" id="top_tank">
+        <span class="left">维修任务</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <form>
+        <div class="zho_tank repair-content">
+            <div class="row">
+                <p-dataTable #dt [value]="goodsData" selectionMode="multiple" emptyMessage="没有数据" [rows]="10" [paginator]="true"
+                             [pageLinks]="3" [(selection)]="selectGoods">
+                    <p-column selectionMode="multiple" [style]="{'width':'28px'}"></p-column>
+                    <p-column field="goodsName" header="维修品名"></p-column>
+                </p-dataTable>
+                <!--<label class="normal-lb">维修品名</label>
+                <repairGoods-select required name="goodName" width="124px" [defaultLabel]="repairResult.taskRepairGoodsLabel || '请选择…'"
+                                    (onChange)="onChange($event)"  multiSelect="true"  [(ngModel)]="repairResult.taskRepairGoods"
+                                    [waybillId]="waybillId"></repairGoods-select>-->
+            </div>
+            <div class="row">
+                <span>
+                    <label class="normal-lb"><em>*</em>维修类型</label>
+                    <select name="taskType" [(ngModel)]="repairResult.taskRepairType" class="select-lg">
+                        <option value="Weixiu">维修</option>
+                        <option value="Ecishangmen">二次上门</option>
+                        <option value="Shangmentiaoshi">上门调试</option>
+                    </select>
+                </span>
+                <span style="padding-left: 19px;box-sizing: border-box">
+                    <label class="normal-lb">安装师傅</label>
+                    <master-select name="insMaster" width="124px" defaultLabel="请选择…" [(ngModel)]="repairResult.insMaster" required></master-select>
+                </span>
+            </div>
+            <div class="row">
+                <span>
+                    <label class="normal-lb"><em>*</em>维修费用</label>
+                    <input class="inline-input input-lg" id="repairFee" type="text"
+                           name="repairFee" [(ngModel)]="repairResult.repairFee" (keyup)="onlyPositive(repairResult.repairFee,'repair')"/>
+                </span>
+                <span style="padding-left: 19px;box-sizing: border-box">
+                    <label class="normal-lb">承担金额</label>
+                    <input id="shipperFee" type="text" class="inline-input input-lg"
+                            name="selerFee" [(ngModel)]="repairResult.shipperFee" (keyup)="onlyPositive(repairResult.shipperFee,'sale')"/>
+                </span>
+            </div>
+            <div class="row">
+                <label class="normal-lb"><em>*</em>责任方</label>
+                <meta-select required name="responsiber" width="124px" defaultLabel="请选择…" [(ngModel)]="repairResult.responsibers" (onChange)="onDutyChange($event)"
+                             type="abnormalDuty"></meta-select>
+            </div>
+            <div class="row">
+                <label class="normal-lb verTop">描述图片</label>
+                <ui-upload name="pic" [(ngModel)]="repairResult.pics" [files]="repairResult.repairPicPath"
+                           style="display: inline-block;width: 355px"></ui-upload>
+            </div>
+            <div class="row">
+                <label class="normal-lb verTop">备注</label>
+                <textarea required name="remark" [(ngModel)]="repairResult.remark" placeholder="请填写备注信息"
+                          style="width: 347px;height: 60px"></textarea>
+            </div>
+            <!--<div class="repair01">
+            <span class="left_m">
+                <h3>任务类型</h3>
+                <select name="taskType" [(ngModel)]="repairResult.taskRepairType">
+                    <option value="Weixiu">维修</option>
+                    <option value="Ecishangmen">二次上门</option>
+                    <option value="Shangmentiaoshi">上门调试</option>
+                </select>
+            </span >-->
+                <!--<span class="right_m" >
+                    <h3><em>* </em>安装师傅</h3>
+                    <master-select name="insMaster" width="150px" defaultLabel="请选择…" [(ngModel)]="repairResult.insMaster" required></master-select>
+                </span>
+            </div>-->
+            <!--<div class="repair01">
+            <span class="left_m">
+                <h3><em>* </em>维修品名</h3>
+                &lt;!&ndash;<select [(ngModel)]="repairResult.repairGood">&ndash;&gt;
+                <repairGoods-select required name="goodName" width="150px" [defaultLabel]="repairResult.taskRepairGoodsLabel || '请选择…'" (onChange)="onChange($event)"  multiSelect="true"  [(ngModel)]="repairResult.taskRepairGoods" [waybillId]="waybillId"></repairGoods-select>
+                &lt;!&ndash;<option value="">请选择维修商品</option>&ndash;&gt;
+                &lt;!&ndash;</select>&ndash;&gt;
+            </span>
+            </div>-->
+
+            <!--<div class="repair01">
+            <span class="left_m">
+                <h3><em>* </em>维修费用</h3>
+                <input required id="repairFee" type="number" step="0.01" placeholder="0.00" value="0.00" (blur)="validateHandle($event,'repair')" name="repairFee" [(ngModel)]="repairResult.repairFee"/>
+            </span>
+                <span class="right_m">
+                <h3>商家承担金额</h3>
+                <input id="shipperFee" type="number" step="0.01" placeholder="0.00" value="0.00" (blur)="validateHandle($event,'seller')" name="selerFee" [(ngModel)]="repairResult.shipperFee"/>
+            </span>
+            </div>-->
+            <!--<div class="repair01">
+                <h3><em>* </em>描述图片</h3>
+                &lt;!&ndash;<ui-upload required name="pic" [(ngModel)]="repairResult.pics"></ui-upload>&ndash;&gt;
+                <ui-upload required name="pic" [(ngModel)]="repairResult.pics" [files]="repairResult.repairPicPath"></ui-upload>
+            </div>-->
+            <!--<div class="repair01">
+            <span class="left_m">
+                <h3><em>* </em>责任方</h3>
+                &lt;!&ndash;                <select name="dutySide" [(ngModel)]="repairResult.dutySide">
+                                    <option value="">请选择</option>
+                                </select>&ndash;&gt;
+                <meta-select required name="responsiber" width="150px" defaultLabel="请选择…" [(ngModel)]="repairResult.responsibers" (onChange)="onDutyChange($event)"
+                             type="abnormalDuty"></meta-select>
+            </span>
+            </div>-->
+
+            <!--<span class="ren_wu"><em>* </em>备注</span>
+            <span class="drop_down">
+            <textarea required name="remark" [(ngModel)]="repairResult.remark"></textarea>
+        </span>-->
+
+        </div>
+        <div class="bottom_tank">
+            <button type="button" class="btn primary-btn" (click)="save()">确定</button>
+            <button type="button" class="btn default-btn" (click)="close()">取消</button>
+        </div>
+    </form>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

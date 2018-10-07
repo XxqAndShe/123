@@ -1,0 +1,15 @@
+<div class="dialog-box" style="display:block">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">修改报表确认</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div>确定保存修改报表？</div>
+        <label for="table-name"><i>* </i>报表名称</label>
+        <input id="table-name" name="formName" [(ngModel)]="formName" type="text" class="name-input">
+    </div>
+    <div class="dialog-box-footer">
+        <button type="button" class="btn primary-btn" (click)="save()">确定</button>
+        <button type="button" class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>

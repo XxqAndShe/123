@@ -1,0 +1,71 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+
+        <div class="content-header">
+            <span>创建时间</span>
+            <div class="start-time time-control">
+                <p-calendar [(ngModel)]="exceptionDataRequestVo.startRegDate" dateFormat="yy/mm/dd" [locale]="zh" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+            <div class="end-time time-control">
+                <p-calendar [(ngModel)]="exceptionDataRequestVo.endRegDate" dateFormat="yy/mm/dd" [locale]="zh" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+
+            <span class="select-span">异常类型</span>
+            <div class="select-div" style="width: 200px;margin-left: 10px;">
+                <exception-select [(ngModel)]="cabnormalTypeSId" [label]="abnormalTypeLabel"></exception-select>
+            </div>
+            <span class="select-span">异常来源</span>
+            <select name="abnormalStatus" [(ngModel)]="abnormalStatus">
+                <option value="All">全部</option>
+                <option value="tms_service">tms客服</option>
+                <option value="tms_dispatch">tms调度</option>
+                <option value="tms_undertake">tms承接</option>
+                <option value="ips">ips</option>
+                <option value="website">官网</option>
+                <option value="cmp">cmp</option>
+                <option value="app">app</option>
+                <option value="Plat">BMS系统</option>
+                <option value="self">直营系统</option>
+            </select>
+
+            <button class="btn primary-btn abnormal-search" (click)="doSearch($event)" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <button class="btn default-btn" (click)="clearSearch()">清空</button>
+        </div>
+
+
+        <div *ngIf='selectionRow.length != 0' class="table-header">
+            <span class="select-text">已选中<span class="select-num">{{selectionRow?.length || 0}}</span>项</span>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-modify" (click)="updateExceptionData();"><i></i>修改</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-delete" (click)="deleteExceptionData()"><i></i>删除</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-addw" (click)="saveExceptionData()"><i></i>添加异常处理指引</a>
+            <span class="close-btn" (click)="changeTitle()">×</span>
+        </div>
+        <div *ngIf='selectionRow.length == 0' class="table-header table-header1">
+            <h4>任务列表</h4>
+            <a href="javascript:;" (click)="saveExceptionData()">添加异常资料/指引</a>
+        </div>
+
+        <div class="table-container">
+            <ui-grid [columns]="columns" [data]="data" (load)="load($event)" (rowSelect)="rowSelect($event)" [(selections)]="selectionRow" (exportCSV)="exportCSV($event)"></ui-grid>
+        </div>
+
+
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<!--确认、取消提示框-->
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<exception-data-modal *ngIf="isModalshow" (isshow)="isshow($event)" [selectInfo]="selectLineInfo" [isAbnormalIf]="isAbnormalIf"></exception-data-modal>

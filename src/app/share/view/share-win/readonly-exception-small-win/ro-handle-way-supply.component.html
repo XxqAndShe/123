@@ -1,0 +1,43 @@
+<div class="handle_tank" id="box" [ngStyle]="drag.setPosition(450,399)">
+    <div class="top_tank" id="move">
+        <span class="left">补件任务</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <div class="zho_tank content_supply" style="height: 300px; overflow: auto">
+        <table style="margin: 0 auto 30px auto;">
+            <tr style="background-color: #E4E4E4">
+                <th>补件品名</th>
+                <th>补件数量</th>
+                <th>货物体积</th>
+            </tr>
+            <tr *ngFor="let good of supplyResult.goodArr; let i=index">
+                <td>{{good['partsName']}}</td>
+                <td>{{good['pieces']}}</td>
+                <td>{{good['volume']}}</td>
+            </tr>
+        </table>
+        <div class="row">
+                <span>
+                    <label class="normal-lb">补件类型</label>
+                    <input class="inline-input input-md" [(ngModel)]="supplyResult.taskPartType"/>
+                </span>
+            <span>
+                <label>商家承担金额</label>
+                <input name="assumeFee" [(ngModel)]="supplyResult.assumeFee" class="inline-input input-md" type="number"/>
+            </span>
+        </div>
+        <div class="row">
+            <label class="normal-lb">责任方</label>
+            <input class="inline-input input-md" [(ngModel)]="supplyResult.abnormalDuty"/>
+        </div>
+        <div class="row">
+            <label class="normal-lb verTop">备注</label>
+            <textarea style="width: 325px;height: 60px" name="remark" [(ngModel)]="supplyResult.remark"></textarea>
+        </div>
+    </div>
+    <div class="bottom_tank">
+        <ul>
+            <li><a class="cancel1" href="javascript:;" (click)="close()">关闭</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<p-dataTable [value]="goodsShow" class="table" [style]="{'width':'700px'}">
+    <p-headerColumnGroup>
+        <p-row>
+            <p-column header="产品"></p-column>
+            <p-column header="包装"></p-column>
+            <p-column header="安装数量"></p-column>
+            <p-column header="包装数量"></p-column>
+            <p-column header="重量"></p-column>
+            <p-column header="体积"></p-column>
+            <p-column header="计费方式"></p-column>
+            <p-column header="单价"></p-column>
+            <p-column header="服务类型"></p-column>
+            <p-column header="安装费"></p-column>
+        </p-row>
+    </p-headerColumnGroup>
+
+    <p-column field="goods"></p-column>
+    <p-column field="packing"></p-column>
+    <p-column field="installItems"></p-column>
+    <p-column field="packingItems"></p-column>
+    <p-column field="weight"></p-column>
+    <p-column field="volumes"></p-column>
+    <p-column field="chargeType"></p-column>
+    <p-column field="price"></p-column>
+    <p-column field="goodsServiceType"></p-column>
+    <p-column field="installCharge"></p-column>
+
+    <p-footerColumnGroup>
+        <p-row>
+            <p-column footer="合计"></p-column>
+            <p-column footer=""></p-column>
+            <p-column footer="{{goodsDetailsCount.tInstallNum || 0}}"></p-column>
+            <p-column footer="{{goodsDetailsCount.tPackNum || 0}}"></p-column>
+            <p-column footer="{{goodsDetailsCount.tWeight || 0}}"></p-column>
+            <p-column footer="{{goodsDetailsCount.tVolume || 0}}"></p-column>
+            <p-column footer=""></p-column>
+            <p-column footer="{{goodsDetailsCount.tUnitPrice || 0}}"></p-column>
+            <p-column footer=""></p-column>
+            <p-column footer="{{goodsDetailsCount.tInstallationFee || 0}}"></p-column>
+        </p-row>
+    </p-footerColumnGroup>
+</p-dataTable>

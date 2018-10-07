@@ -1,0 +1,9 @@
+<div style="width: 100%;">
+    <div style="width: 50%;float: left;">
+        <ui-tree [(ngModel)]="selectNodes" cache="area-tree" (onNodeSelect)="nodeSelect($event)" selectionMode="checkbox" (load)="load($event)"></ui-tree>
+    </div>
+    <div style="width: 49%;float: left;">Selected Nodes: <span *ngFor="let node of selectNodes">{{node.label+':'+node.data}} </span></div>
+</div>
+
+
+

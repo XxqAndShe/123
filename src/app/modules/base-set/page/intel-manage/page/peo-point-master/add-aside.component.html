@@ -1,0 +1,51 @@
+<div class="aside-frame">
+    <div class="aside-frame-title">
+        <label>发货人</label>
+        <span class="ul-list-wrap">
+             <span class="state-search-input">
+                  <shipper-select width="150px" defaultLabel="请选择…" [(ngModel)]="shipper" [valueField]="object"></shipper-select>
+            </span>
+        </span>
+        <label>订单类型</label>
+        <select name="orderType" id="" [(ngModel)]="orderType">
+            <option value="">请选择</option>
+            <option value="branch">支装</option>
+            <option value="trunk">干支装</option>
+            <option value="all">所有</option>
+    </select>
+        <!--被选中的订单类型: {{orderType||'none'}}-->
+    <label for="">物流公司</label>
+    <span class="ul-list-wrap">
+           <!--<input type="text" [(ngModel)]="transportCompany">-->
+        <transporter-select name="transportCoop" [(ngModel)]="transportCompany"></transporter-select>
+       <!--被选中的物流公司: {{transportCompany||'none'}}-->
+        </span>
+</div>
+    <span class="area-choice">区域选择</span>
+    <div class="aside-frame-content">
+        <intel-match-area (selectChange)="nodeSelect($event)" [(selectedAreas)]="add"></intel-match-area>
+    </div>
+    <!--<p-dropdown [options]="suggestionResult2" [(ngModel)]="worker" [style]="{'width':'150px'}" editable="editable" placeholder="Enter a Master" ></p-dropdown>-->
+    <!--<p>被选中的发货人: {{worker||'none'}}</p>-->
+
+    <div class="footer-button">
+        <div class="intro-master">
+            <label for="">推荐师傅</label>
+            <span class="ul-list-wrap">
+                    <workers-select width="150px" defaultLabel="请选择…" multiSelect="true" [(ngModel)]="workerCode"></workers-select>
+            </span>
+                <ul class="service-list">
+            <li *ngFor="let name of workerCode; let i = index">
+                <span>{{name.realName}}</span>
+                <a (click)="deleteTypeOfService(i)">×</a>
+            </li>
+        </ul>
+        </div>
+        <div class="save">
+            <span class="primary-btn btn" (click)="save()" >保存</span>
+        </div>
+    </div>
+    <a class="close-modal-btn" (click)="hideModal()"></a>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

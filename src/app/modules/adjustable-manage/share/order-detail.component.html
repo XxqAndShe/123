@@ -1,0 +1,486 @@
+<!-- 运单详情大div --><!---->
+<div #box (blur)="infoBox.infoBoxBlur(box)" [@orderState]="infoBox.controlInfoBox" tabindex="3" id="order_detail" class="details-container">
+  <!-- 运单详情头 begin-->
+  <div class="details-head">
+    <div class="details-head-info">
+      <!--详情头信息绑定 ↓ -->
+      <span><b>新</b>{{orderInfo.orderNum}}</span>
+      <span>配送+安装</span>
+      <span><b>客户单号 </b>{{orderInfo.customerTel}}</span>
+      <span><b>开单网点 </b>{{orderInfo.openOrderAdd}}</span>
+      <span><b>目的地 </b>{{orderInfo.destination}}</span>
+    </div>
+
+    <div class="deal-time">
+        <span>{{dealStatusTime | date:'yy/MM/dd HH:mm'}}</span>
+        <span>{{dealStatusTime | date:'yy/MM/dd HH:mm'}}</span>
+        <span>{{dealStatusTime | date:'yy/MM/dd HH:mm'}}</span>
+        <span>{{dealStatusTime | date:'yy/MM/dd HH:mm'}}</span>
+        <span>{{dealStatusTime | date:'yy/MM/dd HH:mm'}}</span>
+        <span>{{dealStatusTime | date:'yy/MM/dd HH:mm'}}</span>
+        <span>{{dealStatusTime | date:'yy/MM/dd HH:mm'}}</span>
+    </div>
+
+    <div class="details-head-status">
+      <span>任务状态</span>
+      <ul>
+        <!--添加/删除相应类名，就可以切换状态-->
+        <li class="details-head-status-finished">干线开始</li>
+        <li class="details-head-status-finished">干线结束</li>
+        <li class="details-head-status-running" [ngClass]="currentStat">待分配</li>
+        <li class="">待接单</li>
+        <li class="">待预约</li>
+        <li class="">待签收</li>
+        <li class="">已签收</li>
+      </ul>
+    </div>
+  </div>
+  <!--运单详情头 end-->
+
+  <!--运单详情导航 begin-->
+  <div class="details-nav">
+    <ul>
+      <!--添加/删除相应类名，切换内容页-->
+      <li class="details-nav-selected"><a (click)="selectNav(0)" [class.cur-select]="logInfoNav[0]">基本信息</a></li>
+      <li class=""><a (click)="selectNav(1)" [class.cur-select]="logInfoNav[1]">日志信息</a></li>
+      <li class=""><a (click)="selectNav(2)" [class.cur-select]="logInfoNav[2]" >异常信息</a></li>
+      <li class=""><a (click)="selectNav(3)" [class.cur-select]="logInfoNav[3]">售后信息</a></li>
+      <li class=""><a (click)="selectNav(4)" [class.cur-select]="logInfoNav[4]">跟踪信息</a></li>
+    </ul>
+  </div>
+  <!--运单详情导航 end-->
+
+  <!--运单详情-基本信息页 begin-->
+  <div [ngStyle]="setHeight(0)" class="details-basicinfo">
+    <!-- 发货人、收货人、师傅详情-->
+    <div class="details-basicinfo-people">
+      <div class="details-basicinfo-people1">
+        <div class="details-basicinfo-people1-send">
+                    <span>
+                        <b>发</b>
+                        <p>{{orderBaseInfo.sendMan}}</p>
+                        <p>{{orderBaseInfo.sendTel}}</p>
+                    </span>
+          <p>{{orderBaseInfo.sendAdd}}</p>
+        </div>
+        <div class="details-basicinfo-people1-get">
+                    <span>
+                        <b>收</b>
+                        <p>{{orderBaseInfo.receiveMan}}</p>
+                        <p>{{orderBaseInfo.receiveTel}}</p>
+                    </span>
+          <p>{{orderBaseInfo.receiveAdd}}</p>
+        </div>
+        <div class="details-basicinfo-people1-money">
+          <p><b>付款方式：</b>{{orderBaseInfo.paymentMethod}}（现付¥90，到付¥200）</p>
+          <p><b>合计金额：</b>{{orderBaseInfo.allFee}}</p>
+        </div>
+
+      </div>
+      <div class="details-basicinfo-people2">
+        <div class="details-basicinfo-people2-shifu">
+                    <span>
+                        <b>师傅</b>
+                        <p>{{orderBaseInfo.sendMaster}}</p>
+                        <p>{{orderBaseInfo.sendMasterTel}}</p>
+                    </span>
+          <span>
+                        <b>师傅</b>
+                        <p>{{orderBaseInfo.receiveMaster}}</p>
+                        <p>{{orderBaseInfo.receiveMasterTel}}</p>
+                    </span>
+        </div>
+        <div class="details-basicinfo-people2-money">
+          <p><b>总费用：</b>{{orderBaseInfo.allFee}}</p>
+          <p><b>配送费：</b>{{orderBaseInfo.sendFee}}</p>
+          <p><b>安装费：</b>{{orderBaseInfo.installFee}}</p>
+        </div>
+        <div class="details-basicinfo-people2-time">
+          <p><b>预约上门时间：</b>{{orderBaseInfo.timeBooking}}</p>
+          <p><b>是否需要核销：</b>{{orderBaseInfo.verification}}</p>
+        </div>
+      </div>
+    </div>
+    <!-- 产品信息-->
+    <div class="details-basicinfo-products clearfix">
+      <ul class="details-basicinfo-products-title clearfix add-bc">
+        <li>产品（详情）</li>
+        <li>包装</li>
+        <li><p>件数</p><p>{{orderBaseInfo.production.length}}</p></li>
+        <li><p>重量</p><p>{{orderBaseInfo.allWeight}}</p></li>
+        <li><p>体积</p><p>1.20</p></li>
+        <li>计费方式</li>
+        <li><p>运费</p><p>332.0</p></li>
+        <li><p>声明价值</p><p>4938.0</p></li>
+        <li><p>保价费</p><p>24.0</p></li>
+        <li><p>安装费</p><p>24.0</p></li>
+        <li><p>送货费</p><p>24.0</p></li>
+        <li><p>提货费</p><p>0.0</p></li>
+      </ul>
+      <ul class="details-basicinfo-products-style clearfix" *ngFor="let pro of orderBaseInfo.production">
+        <li><img src="/assets/adjustable-manager-img/a.jpg" alt=""/><b>6</b>{{pro.productionName}}（板式、大理石）</li>
+        <li>{{pro.packaging}}</li>
+        <li>{{pro.productionNum}}</li>
+        <li>{{pro.weight}}</li>
+        <li>{{pro.volume}}</li>
+        <li>{{pro.billingWay}}</li>
+        <li>{{pro.fee}}</li>
+        <li>{{pro.declaredValue}}</li>
+        <li>{{pro.valuationFee}}</li>
+        <li>{{pro.installFee}}</li>
+        <li>{{pro.sendGoodFee}}</li>
+        <li>{{pro.pickUpFee}}</li>
+      </ul>
+    </div>
+    <!-- 提货信息-->
+    <div class="details-basicinfo-pickup">
+      <h3> 提货信息</h3>
+      <p>物流公司：{{pickupGoodInfo.logisticsCompany}}</p><p>物流单号：{{pickupGoodInfo.logisticsOrder}}</p><p>提货电话：{{pickupGoodInfo.pickUpTel}}</p><p>提货码：{{pickupGoodInfo.pickUpNum}}</p>
+      <span>提货地址：{{pickupGoodInfo.pickUpAdd}}</span>
+      <span>提货备注：{{pickupGoodInfo.pickUpMark}}</span>
+    </div>
+    <!-- 签收信息-->
+    <div class="details-install-signinfo">
+      <p>签收信息</p>
+      <p>签&nbsp;收&nbsp;人：{{signInfo.signMan}}</p>
+      <p>签收状态：{{signInfo.signState}}</p>
+      <p>签收描述：{{signInfo.signDes}}</p>
+
+      <p>签收图片：</p>
+      <ul class="img-wrap">
+        <li class="img-item"><img src="/assets/adjustable-manager-img/touxiang.jpg" alt=""><span class="play-big-bc"></span><span class="play-big"></span></li>
+        <li class="img-item"><img src="/assets/adjustable-manager-img/IPs_testpicukpic.png" alt=""><span class="play-big-bc"></span><span class="play-big"></span></li>
+        <li class="img-item"><img src="/assets/adjustable-manager-img/touxiang.jpg" alt=""><span class="play-big-bc"></span><span class="play-big"></span></li>
+      </ul>
+    </div>
+  </div>
+  <!--运单详情-基本信息页 end-->
+
+  <!--运单详情-日志信息页 begin-->
+  <div [ngStyle]="setHeight(1)" class="details-loginfo">
+    <h3> 日志信息</h3>
+    <div class="details-loginfo-log clearfix">
+      <ul class="details-loginfo-log-title clearfix">
+        <li>操作时间</li>
+        <li>日志类型</li>
+        <li>操作信息</li>
+        <li>操作人</li>
+        <li>网点名称</li>
+        <li>操作系统</li>
+      </ul>
+      <!--添加details-loginfo-log-style类和clearfix类完成样式渲染-->
+      <ul class="details-loginfo-log-style clearfix">
+        <li>2016-12-12 15:17:11</li>
+        <li>制单</li>
+        <li title="新开单">新开单</li>
+        <li>夏春花-支装事业部</li>
+        <li>一智通支装业务事业部</li>
+        <li>TMS</li>
+      </ul>
+      <ul class="details-loginfo-log-style clearfix">
+        <li>2016-12-12 15:17:11</li>
+        <li>短途交接</li>
+        <li title="制作短途交接单，交接单号：JD56453">制作短途交接单，交接单号：JD56453</li>
+        <li>夏春花-支装事业部</li>
+        <li>一智通支装业务事业部</li>
+        <li>TMS</li>
+      </ul>
+      <ul class="details-loginfo-log-style clearfix">
+        <li>2016-12-12 15:17:11</li>
+        <li>短途交接</li>
+        <li title="制作短途交接单，交接单号：JD56453 制作短途交接单，交接单号：JD56453">制作短途交接单，交接单号：JD56453 制作短途交接单，交接单号：JD56453</li>
+        <li>夏春花-支装事业部</li>
+        <li>一智通支装业务事业部</li>
+        <li>TMS</li>
+      </ul>
+      <ul class="details-loginfo-log-style clearfix">
+        <li>2016-12-12 15:17:11</li>
+        <li>短途交接</li>
+        <li title="制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453">制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453</li>
+        <li>夏春花-支装事业部</li>
+        <li>一智通支装业务事业部</li>
+        <li>TMS</li>
+      </ul>
+      <ul class="details-loginfo-log-style clearfix">
+        <li>2016-12-12 15:17:11</li>
+        <li>短途交接</li>
+        <li title="制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453">制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453</li>
+        <li>夏春花-支装事业部</li>
+        <li>一智通支装业务事业部</li>
+        <li>TMS</li>
+      </ul>
+      <ul class="details-loginfo-log-style clearfix">
+        <li>2016-12-12 15:17:11</li>
+        <li>短途交接</li>
+        <li title="制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453">制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453</li>
+        <li>夏春花-支装事业部</li>
+        <li>-</li>
+        <li>APP</li>
+      </ul>
+    </div>
+  </div>
+  <!--运单详情-日志信息页 end-->
+
+  <!--运单详情-异常信息 begin-->
+  <div [ngStyle]="setHeight(2)" class="details-abnormalinfo">
+    <h3> 异常信息</h3>
+    <div class="details-abnormalinfo-log clearfix">
+      <ul class="details-abnormalinfo-log-title clearfix">
+        <li>异常编号</li>
+        <li>异常类型</li>
+        <li>异常小类</li>
+        <li>异常描述</li>
+        <li>异常状态</li>
+        <li>处理人</li>
+        <li>处理时间</li>
+        <li>反馈人</li>
+        <li>登记部门</li>
+      </ul>
+
+      <ul class="details-abnormalinfo-log-style clearfix">
+        <li>YC52565846</li>
+        <li>开单错误</li>
+        <li>天猫单号错误</li>
+        <li><p title="天猫订单错误，帮忙改下1">天猫订单错误，帮忙改下1</p><s></s></li>
+        <li>已处理</li>
+        <li>夏春花</li>
+        <li>2016-12-13 10:08:39</li>
+        <li>李艺荣</li>
+        <li>一智通支装</li>
+      </ul>
+      <ul class="details-abnormalinfo-log-style clearfix">
+        <li>YC52565846</li>
+        <li>开单错误</li>
+        <li>天猫单号错误</li>
+        <li><p title="天猫订单错误，帮忙改下2">天猫订单错误，帮忙改下2</p><s></s></li>
+        <li>已处理</li>
+        <li>夏春花</li>
+        <li>2016-12-13 10:08:39</li>
+        <li>李艺荣</li>
+        <li>一智通支装</li>
+      </ul>
+      <ul class="details-abnormalinfo-log-style clearfix">
+        <li>YC52565846</li>
+        <li>开单错误</li>
+        <li>天猫单号错误</li>
+        <li><p title="天猫订单错误，帮忙改下3">天猫订单错误，帮忙改下3</p><s></s></li>
+        <li>已处理</li>
+        <li>夏春花</li>
+        <li>2016-12-13 10:08:39</li>
+        <li>李艺荣</li>
+        <li>一智通支装</li>
+      </ul>
+      <ul class="details-abnormalinfo-log-style clearfix">
+        <li>YC52565846</li>
+        <li>开单错误</li>
+        <li>天猫单号错误</li>
+        <li><p title="">帮忙改下 天猫订单错误，帮忙改下</p><s></s></li>
+        <li>已处理</li>
+        <li>夏春花</li>
+        <li>2016-12-13 10:08:39</li>
+        <li>李艺荣</li>
+        <li>一智通支装</li>
+      </ul>
+      <ul class="details-abnormalinfo-log-style clearfix">
+        <li>YC52565846</li>
+        <li>开单错误</li>
+        <li>天猫单号错误</li>
+        <li><p title="天猫订单错误，帮忙改下4">天猫订单错误，帮忙改下4</p><s></s></li>
+        <li>已处理</li>
+        <li>夏春花</li>
+        <li>2016-12-13 10:08:39</li>
+        <li>李艺荣</li>
+        <li>一智通支装</li>
+      </ul>
+
+    </div>
+  </div>
+  <!--运单详情-异常信息 end-->
+
+  <!--运单详情-售后信息 begin-->
+  <div [ngStyle]="setHeight(3)" class="details-aftersaleinfo">
+    <div class="details-aftersaleinfo-nav">
+      <ul>
+        <li class="details-aftersaleinfo-nav-selected">维修任务(<span>8</span>)</li>
+        <li class="">返货任务(<span>1</span>)</li>
+        <li class="">补件任务(<span>2</span>)</li>
+        <li class="">其他任务(<span>3</span>)</li>
+      </ul>
+    </div>
+    <div class="details-aftersaleinfo-container">
+      <!--维修任务页-->
+      <div class="details-aftersaleinfo-maintenance">
+        <!--每个无类名的div就是一票任务-->
+        <div>
+          <!--进度条div-->
+          <div class="aftersaleinfo-maintenance-status">
+            <span>进度</span>
+            <ul>
+              <!--添加/删除相应类名，就可以切换状态-->
+              <li class="aftersaleinfo-maintenance-status-finished">订单生成</li>
+              <li class="aftersaleinfo-maintenance-status-finished">订单分配</li>
+              <li class="">订单受理</li>
+              <li class="">预约上门时间</li>
+              <li class="">维修完成</li>
+            </ul>
+            <span>&lt;<s></s><span>
+                            <p>查看日志</p>
+                            <p>反馈图片</p>
+                            <p>签收图片</p>
+                        </span></span>
+          </div>
+          <!--操作时间div-->
+          <div class="aftersaleinfo-maintenance-times">
+            <span>操作时间</span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p></p><p></p></span>
+            <span><p></p><p></p></span>
+            <span><p></p><p></p></span>
+          </div>
+          <!--备注信息div-->
+          <div class="aftersaleinfo-maintenance-remarks">
+            <p>维修单号：1zt13285219632-wx1</p>
+            <p>安装师傅：陈小华</p>
+            <p>维修费用：<s>140.00</s></p><br/>
+            <p>异常单号：YC005556</p>
+            <p>备注：破损安排维修</p>
+          </div>
+        </div>
+
+        <div>
+          <!--进度条div-->
+          <div class="aftersaleinfo-maintenance-status">
+            <span>进度</span>
+            <ul>
+              <!--添加/删除相应类名，就可以切换状态-->
+              <li class="aftersaleinfo-maintenance-status-finished">订单生成</li>
+              <li class="aftersaleinfo-maintenance-status-finished">订单分配</li>
+              <li class="">订单受理</li>
+              <li class="">预约上门时间</li>
+              <li class="">维修完成</li>
+            </ul>
+            <span>&lt;<s></s><span>
+                            <p>查看日志</p>
+                            <p>反馈图片</p>
+                            <p>签收图片</p>
+                        </span></span>
+          </div>
+          <!--操作时间div-->
+          <div class="aftersaleinfo-maintenance-times">
+            <span>操作时间</span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p></p><p></p></span>
+            <span><p></p><p></p></span>
+            <span><p></p><p></p></span>
+          </div>
+          <!--备注信息div-->
+          <div class="aftersaleinfo-maintenance-remarks">
+            <p>维修单号：1zt13285219632-wx1</p>
+            <p>安装师傅：陈小华</p>
+            <p>维修费用：<s>140.00</s></p><br/>
+            <p>异常单号：YC005556</p>
+            <p>备注：破损安排维修</p>
+          </div>
+        </div>
+
+        <div>
+          <!--进度条div-->
+          <div class="aftersaleinfo-maintenance-status">
+            <span>进度</span>
+            <ul>
+              <!--添加/删除相应类名，就可以切换状态-->
+              <li class="aftersaleinfo-maintenance-status-finished">订单生成</li>
+              <li class="aftersaleinfo-maintenance-status-finished">订单分配</li>
+              <li class="aftersaleinfo-maintenance-status-finished">订单受理</li>
+              <li class="aftersaleinfo-maintenance-status-finished">预约上门时间</li>
+              <li class="aftersaleinfo-maintenance-status-finished">维修完成</li>
+            </ul>
+            <span>&lt;<s></s><span>
+                            <p>查看日志</p>
+                            <p>反馈图片</p>
+                            <p>签收图片</p>
+                        </span></span>
+          </div>
+          <!--操作时间div-->
+          <div class="aftersaleinfo-maintenance-times">
+            <span>操作时间</span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+            <span><p>2016-10-19</p><p>16:20:49</p></span>
+          </div>
+          <!--备注信息div-->
+          <div class="aftersaleinfo-maintenance-remarks">
+            <p>维修单号：1zt13285219632-wx1</p>
+            <p>安装师傅：陈小华</p>
+            <p>维修费用：<s>140.00</s></p><br/>
+            <p>异常单号：YC005556</p>
+            <p>备注：破损安排维修</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--运单详情-售后信息 end-->
+
+  <!--运单详情-跟踪信息 begin-->
+  <div [ngStyle]="setHeight(4)" class="details-trackinginfo">
+    <h3> 跟踪信息</h3>
+    <div class="details-trackinginfo-log clearfix">
+      <ul class="details-trackinginfo-log-title clearfix">
+        <li>上次跟踪时间</li>
+        <li>跟踪人</li>
+        <li>备注</li>
+        <li>下次跟踪时间</li>
+      </ul>
+
+      <ul class="details-trackinginfo-log-style clearfix">
+        <li>2016-12-13 10:08:39</li>
+        <li>严晨豪</li>
+        <li title="天猫订单有误，帮忙改下">天猫订单有误，帮忙改下</li>
+        <li>2016-12-13 10:08:39</li>
+      </ul>
+      <ul class="details-trackinginfo-log-style clearfix">
+        <li>2016-12-13 10:08:39</li>
+        <li>严晨豪</li>
+        <li title="天猫订单有误，帮忙改下">天猫订单有误，帮忙改下</li>
+        <li>2016-12-13 10:08:39</li>
+      </ul>
+      <ul class="details-trackinginfo-log-style clearfix">
+        <li>2016-12-13 10:08:39</li>
+        <li>严晨豪</li>
+        <li title="天猫订单有误，帮忙改下">天猫订单有误，帮忙改下</li>
+        <li>2016-12-13 10:08:39</li>
+      </ul>
+      <ul class="details-trackinginfo-log-style clearfix">
+        <li>2016-12-13 10:08:39</li>
+        <li>严晨豪</li>
+        <li title="帮忙改下 天猫订单有误，帮忙改下">订单有误，帮忙改下 天猫订单有误，帮忙改下</li>
+        <li>2016-12-13 10:08:39</li>
+      </ul>
+      <ul class="details-trackinginfo-log-style clearfix">
+        <li>2016-12-13 10:08:39</li>
+        <li>严晨豪</li>
+        <li title="天猫订单有误，帮忙改下">天猫订单有误，帮忙改下</li>
+        <li>2016-12-13 10:08:39</li>
+      </ul>
+      <ul class="details-trackinginfo-log-style clearfix">
+        <li>2016-12-13 10:08:39</li>
+        <li>严晨豪</li>
+        <li title="天猫订单有误，帮忙改下">天猫订单有误，帮忙改下</li>
+        <li>2016-12-13 10:08:39</li>
+      </ul>
+
+    </div>
+
+    <div class="details-trackinginfo-btn">
+      <p>添加跟踪信息</p>
+    </div>
+  </div>
+  <!--运单详情-跟踪信息 end-->
+</div>
+<!--运单详情大div end-->

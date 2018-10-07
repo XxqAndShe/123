@@ -1,0 +1,18 @@
+<div class="dialog-box" style="display:block">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">取消分配</span>
+        <span class="dialog-right" (click)="DeleteSymbol()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <label>填写原因</label>
+            <textarea placeholder="{{msgCancelSign}}" [(ngModel)]="CancelSignText"  #box (keyup.enter)="CancelSignOut(box.value)" (blur)="CancelSignOut(box.value)" maxlength="200"></textarea>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save(fromWhere)">确定</span>
+        <span class="btn default-btn" (click)="CancelCancelSign()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

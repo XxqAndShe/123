@@ -1,0 +1,236 @@
+#time_abnormal>.province {
+    min-width: 1018px;
+    height: 36px;
+    line-height: 36px;
+}
+
+#time_abnormal input {
+    font-size: 12px;
+    font-family: '微软雅黑';
+    border: 1px solid #ddd;
+    color: #333;
+    padding-left: 8px;
+    height: 32px;
+    display: inline-block;
+    outline: none;
+}
+
+#time_abnormal .all_state {
+    font-size: 14px;
+    font-family: '微软雅黑';
+    border: 1px solid #ddd;
+    color: #333;
+    padding-left: 4px;
+    height: 30px;
+    display: inline-block;
+    outline: none;
+}
+
+.province>my-addr-select1 {
+    width: 160px !important;
+    display: inline-block;
+}
+
+.province>.province-input {
+    width: 160px;
+    margin-left: 14px;
+}
+
+.province>.transport-num-input {
+    width: 96px;
+    margin-right: 12px;
+}
+
+.province>.line-end-date>input {
+    width: 94px !important;
+    height: 30px;
+    box-sizing: border-box;
+    font-size: 12px !important;
+}
+
+.province>.all_state {
+    position: relative;
+    color: #333;
+    width: 94px;
+    height: 32px;
+    outline: none;
+    border: 1px solid #ddd;
+}
+
+.province>.all_state[name='send_num'] {
+    width: 104px;
+}
+
+.province>.all_state>option {
+    overflow: hidden;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    color: #6d6d6d;
+    -webkit-appearance: none;
+    /*去除系统默认的样式*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* 点击去除高亮的颜色*/
+    background-color: #fff;
+    /*当input框禁止输入的时候会有一个灰色的底色 项目需要我设置了 白色*/
+}
+
+.province>.line-state {
+    position: relative;
+    margin-right: 4px;
+}
+
+.deal-state {
+    margin-left: 69px !important;
+}
+
+.task-state {
+    margin-left: 34px !important;
+}
+
+.yundanhao1 {
+    margin-left: 29px !important;
+}
+
+.kaidanriqi {
+    margin-left: 85px !important;
+}
+
+.province>.btn {
+    margin-left: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    width: 60px;
+    height: 30px;
+}
+
+.province>.search-btn {
+    background-color: #0d85e4;
+    color: white;
+    margin-left: 6px;
+}
+
+.province>.clear-btn {
+    background-color: #f7f7f7;
+    line-height: 28px;
+    border: 1px solid #ddd;
+}
+
+
+/*发货人*/
+
+#time_abnormal>.send-good {
+    margin-top: 15px;
+    min-width: 1018px;
+}
+
+#time_abnormal>.send-good input {
+    width: 80px;
+}
+
+.send-good>.receive-text {
+    margin: 0 6px;
+}
+
+#time_abnormal>.send-good>.select-time {
+    display: inline-block;
+    margin-left: 2px;
+}
+
+#time_abnormal>.send-good>.select-time>input {
+    font-size: 12px;
+}
+
+.send-good>select {
+    margin-left: 6px;
+}
+
+.order-state-btn>.export {
+    float: right;
+    color: #b6b6b6;
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 32px;
+    line-height: 42px;
+    padding-left: 24px;
+    background: url(/assets/adjustable-manager-img/export_csv.png) no-repeat 0 9px
+}
+
+ui-select-box {
+    line-height: 16px;
+}
+
+#time_abnormal .Consignee.ConsigneeFirst {
+    margin-left: 0px;
+}
+
+.province-address {
+    margin-left: 5px;
+}
+
+.add-address-width {
+    margin-left: 12px;
+}
+
+.send-good .search-btn {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+@media screen and (min-width:1024px) and (max-width:1366px) {
+    /*增加地址组件的宽度*/
+    #time_abnormal .add-address-width {
+        width: 120px;
+    }
+    .deal-state {
+        margin-left: 17px !important;
+    }
+    .task-state {
+        margin-left: 4px !important;
+    }
+    .yundanhao1 {
+        margin-left: 5px !important;
+    }
+    .kaidanriqi {
+        margin-left: 5px !important;
+    }
+}
+
+@media screen and (min-width:1366px) and (max-width:1920px) {
+    /*增加地址组件的宽度*/
+    #time_abnormal .add-address-width {
+        width: 150px;
+    }
+    .deal-state {
+        margin-left: 46px !important;
+    }
+    .task-state {
+        margin-left: 19px !important;
+    }
+    .yundanhao1 {
+        margin-left: 0px !important;
+    }
+    .kaidanriqi {
+        margin-left: 45px !important;
+    }
+    #time_abnormal .Consignee.ConsigneeFirst {
+        margin-left: 0px;
+    }
+    #time_abnormal .all_state.Consigneet {
+        margin-left: 10px!important;
+    }
+    #time_abnormal .line-state.Consignee {
+        margin-left: 60px;
+    }
+    #time_abnormal .Consignee.ConsigneeSecond {
+        margin-left: 20px;
+    }
+    #time_abnormal .receive-text.Consignee {
+        margin-left: 60px;
+    }
+}

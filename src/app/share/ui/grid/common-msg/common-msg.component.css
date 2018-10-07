@@ -1,0 +1,20 @@
+.pop-modal-body {
+    height: 70px;
+    text-align: center;
+    line-height: 50px;
+}
+.pop-modal-header{
+    height: 30px;
+    background: #1f89ce;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+}
+.pop-modal-container{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    background: #fff;
+    z-index: 11111;
+    width: 200px;
+}

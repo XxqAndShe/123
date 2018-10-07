@@ -1,0 +1,51 @@
+<div class="outer-container">
+  <div class="inner-container">
+    <!--导航栏-->
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <div class="content-header">
+      <form>
+        <span>统计月份</span>
+          <select name="twelveMonth" [(ngModel)]="AbnormalSingleTrendVo.stringTime">
+              <option value="{{month}}" *ngFor="let month of twelveMonth">{{month}}</option>
+          </select>
+
+        <button class="btn primary-btn" (click)="doSearch($event)" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            查询
+        </button>
+        <button class="btn default-btn" type="reset">清空</button>
+      </form>
+
+    </div>
+
+    <!--异常单量统计部分-->
+    <div class="content-body">
+      <div class="table-header table-header1">
+        <h4>异常单量统计</h4>
+      </div>
+      <div class="content-img">
+        <div class="order-info">时间段内异常总单量：<span>{{abnormalTotal}}</span></div>
+        <h2 class="order-chart-title">异常单量统计</h2>
+        <div class="left-content">
+          <div class="intel-match-area" style="width: 350px;">
+            <ui-tree (onNodeSelect)="nodeSelect($event)" selectionMode="single" (load)="load($event)"></ui-tree>
+          </div>
+        </div>
+        <div class="right-content">
+          <div class="table-title"><span class="title-name">列表展示<i class="triangle-up"></i><i
+              class="triangle-down"></i></span></div>
+          <div class="table-container">
+            <ui-grid [columns]="columns"
+            		 [data]="abnormalSingleTrendResponse"
+
+                     (load)="doSearch($event)"></ui-grid>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+
+

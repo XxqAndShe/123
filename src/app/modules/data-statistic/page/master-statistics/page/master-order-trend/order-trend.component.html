@@ -1,0 +1,39 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <!--导航栏-->
+        <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+        <div class="content-header">
+            <form>
+                <span>时间段</span>
+                <div class="calendar-div">
+                    <p-calendar name="startDate" [(ngModel)]="MasterOrderTrendVo.startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="calendar-div">
+                    <p-calendar name="endDate" [(ngModel)]="MasterOrderTrendVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <span>师傅</span>
+                <div class="seller" style="margin-right: 20px;">
+                    <master-select name="masterMobile" width="300px" [(ngModel)]="userWorker" defaultLabel="请选择…"></master-select>
+                </div>
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset">清空</button>
+            </form>
+
+        </div>
+
+        <div class="content-body">
+            <div class="table-header table-header1">
+                <h4>师傅各项单趋势</h4>
+            </div>
+            <div class="content-img">
+                <a href="javascript:;" class="exportExcel">导出EXCEL</a>
+                <div echarts [options]="OrderTrendOption" style="height: 500px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

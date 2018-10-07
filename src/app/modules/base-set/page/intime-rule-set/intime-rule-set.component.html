@@ -1,0 +1,27 @@
+<div class="content" [ngClass]="{show:!isAdd,hide:isAdd}">
+    <div class="mounting-cost-top">
+        <select class="select">
+            <option selected value="standard">标准</option>
+        </select>
+    </div>
+    <div class="table-title">
+        <span class="title-name">及时率规则</span>
+        <span class="right btn primary-btn" (click)="showOthBtn()"><i class="rmb-icon add"></i>新增</span>
+    </div>
+    <div class="table-container">
+        <ui-grid
+                [columns]="columns"
+                [data]="data"
+                (exportCSV)="exportCSV($event)"
+                (rowSelect)="rowSelect($event)"
+                (load)="load($event)">
+        </ui-grid>
+    </div>
+</div>
+<!--<intime-aside  *ngIf="isshowModal" (closeModal)="closeModal($event)" [@modalState]="isshowModalAni ?'in':'out'"></intime-aside>-->
+<!--原型修改后-->
+<div [ngClass]="{show:isAdd,hide:!isAdd}" *ngIf="isAddIf" class="content">
+    <timely-setting (isReturnCredit)="isReturnCredit(event)" (notReturnCredit)="notReturnCredit()"></timely-setting>
+</div>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,444 @@
+<div id="dialog_box" class="dialog-box arbitration_tk" [ngStyle]="drag.setPosition(668,620)">
+    <div id="dialog_title" class="dialog-box-title">
+        <ul>
+            <li [ngClass]="{current: isshowContent[0]}" (click)="changeContent(0)">仲裁处理</li>
+            <li [ngClass]="{current: isshowContent[1]}" (click)="changeContent(1)">历史跟进信息</li>
+            <!--<li  [ngClass]="{current: isshowContent[2]}" (click)="changeContent(2)">处理结果明细</li>-->
+            <li [ngClass]="{current: isshowContent[3]}" (click)="changeContent(3)">历史仲裁修改</li>
+        </ul>
+        <span style="color: white;font-size: 14px;text-align: center">{{source}}</span>
+        <span class="historical-top-status">{{arbStatus}}</span>
+        <span class="dialog-right Close_a" (click)="hideModal()">×</span>
+    </div>
+    <div class="service_class">
+        <div class="class1" [ngClass]="{current: isshowContent[0]}">
+            <div class="dialog-box-content">
+                <div class="top_abn">
+                    <ul>
+                        <li>
+                            <span class="left">异常编码:{{arbinfo.abnormalNum}} </span>
+                            <span class="right">运单号:{{arbinfo.waybillId}}</span>
+                        </li>
+                        <li>
+                            <span class="left">登记部门:{{arbinfo.registryDept}}</span>
+                            <span class="right">登记时间:{{arbinfo.dateCreate}}</span>
+                        </li>
+                        <li>
+                            <span class="left">反馈人:{{arbinfo.feedbackMan}}</span>
+                            <span class="right">联系方式:{{arbinfo.feedbackTel}}</span>
+                        </li>
+                        <li>
+                            <span class="left">异常类型:{{arbinfo.bigAbnormalType}}</span>
+                            <span class="right">异常小类:{{arbinfo.smallAbnormalType}}</span>
+                        </li>
+                        <li>
+                            <span class="left">承运商:{{arbinfo.carrier}}</span>
+                            <span class="right">安装师傅:{{arbinfo.worker}}</span>
+                        </li>
+                        <li>
+                            <span class="left">异常描述:{{arbinfo.abnomalDescript}}</span>
+                            <span class="picture"><button type="text" pButton label="查看图片" (click)="op1.toggle($event)"></button></span>
+                            <p-overlayPanel #op1>
+                                <p *ngIf="abnormalPics.length==0">无图片</p>
+                                <div *ngFor="let abnormalPic of abnormalPics">
+                                    <img width="304px" src={{abnormalPic.picUrlPath}}/>
+                                </div>
+                            </p-overlayPanel>
+                            <!--<ul class="imgarr">
+                                <li *ngFor="let item of arbinfo.pictures"><img src={{item.path}} alt="">
+                                    <s>×</s>
+                                </li>
+                            </ul>-->
+
+
+                            <li>
+                                <span class="left left-spec">责任方:{{arbinfo.responsible}}</span>
+                                <span class="middle">处理结果:{{arbinfo.processResult}}</span>
+                                <span class="right">承担金额:{{arbinfo.incomeAmount}}</span>
+                            </li>
+
+                    </ul>
+                </div>
+                <!--仲裁处理-->
+                <div class="bottom_abn">
+                    <div class="wrap">
+                        <span class="chuli deep-blue">仲裁处理<i></i></span>
+                    </div>
+                    <div class="wrap wrap2">
+                        <div class="yuandan">
+                            <span><em>* </em>仲裁异常类型</span>
+                            <exception-select [(ngModel)]="arbitrationWinVo.abnoTypecode" [label]="testLabel" style="display: inline-block; position: relative"></exception-select>
+                        </div>
+                    </div>
+
+                    <div class="respon">
+                        <ul>
+                            <li>
+                                <span class="se1"><em>* </em>责任方</span>
+                                <span class="se2">责任主体</span>
+                                <!--<span class="se3">承担金额</span>-->
+                            </li>
+                            <li *ngFor="let obj of responsibles;let i=index;trackBy:trackByResponsible">
+                                <span class="se1">
+                                    <div class="yuandan se1_in">
+                                        <meta-select  [(ngModel)]="obj['responsible']['dutyName']" width="130px"
+                                                      (ngModelChange)="onChangeHandler($event,i)"
+                                                      defaultLabel="请选择…"
+                                                      type="abnormalDuty"></meta-select>
+                                    </div>
+                                </span>
+                                <span class="se2">
+                                    <!--<input readonly type="text" [(ngModel)]="obj['subject']" class="se2_in" placeholder="请输入" />-->
+
+                                </span>
+                                <!--<span class="se3"><input type="text" class="se3_in"placeholder="请输入" /></span>-->
+                                <p-dropdown [options]="obj['arbsubject']" editable="true" [(ngModel)]="obj['responsible']['subject']" [style]="{'width':'150px'}" [filter]="ifYZT">
+                                </p-dropdown>
+                                    <span class="se4-and-se5">
+                                        <span class="se4" (click)="removeRespon(i)">-</span>
+                                        <span class="se5" *ngIf="i==responsibles.length-1" (click)="addRespon()">+</span>
+                                    </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="opinion">
+                        <span class="opinion_bt"><em>* </em>仲裁意见</span>
+                        <textarea class="opinion_sr" [(ngModel)]="arbitrationWinVo.arbitrationOpinions" placeholder="请输入内容，显示相应的内容" maxlength="200"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="class2" [ngClass]="{current: isshowContent[1]}">
+            <div class="more">
+                <div class="zui_more">
+                    <span class="titl lan">最新跟进</span>
+                    <span class="information" *ngFor="let new of latestFollow">
+                        <span class="left">{{new.followContent}}</span>
+                    <span class="zho">{{new.follower}}</span>
+                    <span class="right">{{new.followTime}}</span>
+                    </span>
+                    <div><span>历史跟进</span><button pButton type="button" label="跟进图片" (click)="op2.toggle($event)" style="float:right"></button></div>
+                    <p-overlayPanel #op2>
+                        <p *ngIf="GZImgs.length==0">无跟进图片</p>
+                        <ul>
+                            <li *ngFor="let GZImg of GZImgs" style="float:left;padding-left: 10px;">
+                                <img width="200px" src={{GZImg.picUrlPath}}/><br>
+                                <p>跟进时间：{{GZImg.picDate}}</p>
+                            </li>
+                        </ul>
+                    </p-overlayPanel>
+                    <span class="information" *ngFor="let history of historyFollow">
+                        <span class="left">{{history.followContent}}</span>
+                    <span class="zho">{{history.follower}}</span>
+                    <span class="right">{{history.followTime}}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--产品要求删除-->
+        <!--<div class="class3"  [ngClass]="{current: isshowContent[2]}">
+            <div class="result_mingxi">
+                &lt;!&ndash;其他&ndash;&gt;
+                <div class="Other">
+                    <span class="top_titl">其他</span>
+                    <div class="bottom_xingxi">
+                        <ul>
+                            <li>
+                                <span class="left">新单编号: 5565455566</span>
+                            </li>
+                            <li>
+                                <span class="left">安装师傅: 李师傅（15565455566）</span>
+                                <span class="right">接收短信电话: 13565455566</span>
+                            </li>
+                            <li>
+                                <span class="left">异常状态: 转理赔</span>
+                                <span class="right">出险原因: 理赔有问题</span>
+                            </li>
+                            <li>
+                                <span class="left nuo"><span class="left_in">备注:</span><span class="right_in">转理赔</span></span>
+                            </li>
+                        </ul>
+                        <div class="report_form">
+                            <table border="" cellspacing="" cellpadding="">
+                                <tr>
+                                    <th>费用名称</th>
+                                    <th><em class="ying">原</em></th>
+                                    <th><em class="gai">改</em></th>
+                                    <th>给服务商金额</th>
+                                    <th>给承运商金额</th>
+                                    <th>商家承担金额</th>
+                                </tr>
+                                <tr>
+                                    <td>安装费</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <span class="form_tit">收货信息</span>
+                        <div class="report_form">
+                            <table class="tab1" border="" cellspacing="" cellpadding="">
+                                <tr>
+                                    <th class="h1">目的地</th>
+                                    <th class="h2">广州白云<em class="primary">原</em></th>
+                                    <th class="h3">广州白云<em class="change">改</em></th>
+                                </tr>
+                                <tr>
+                                    <td class="h1">收货地址</td>
+                                    <td class="h2">广州白云区</td>
+                                    <td class="h3">广州白云</td>
+                                </tr>
+                                <tr>
+                                    <td class="h1">收货人姓名</td>
+                                    <td class="h2">李丽</td>
+                                    <td class="h3">焕丽</td>
+                                </tr>
+                                <tr>
+                                    <td class="h1">收货人手机</td>
+                                    <td class="h2">15201362145</td>
+                                    <td class="h3">12635241023</td>
+                                </tr>
+                                <tr>
+                                    <td class="h1">到站</td>
+                                    <td class="h2">广州白云</td>
+                                    <td class="h3">广州白云</td>
+                                </tr>
+                                <tr>
+                                    <td class="h1">服务类型</td>
+                                    <td class="h2">广州白云</td>
+                                    <td class="h3">广州白云</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <span class="form_tit">产品信息</span>
+                        <div class="report_form">
+                            <div class="left_for">
+                                <table class="tab2" border="" cellspacing="" cellpadding="">
+                                    <tr>
+                                        <th class="h1">品名<em class="primary">原</em></th>
+                                        <th class="h2">包装件数</th>
+                                        <th class="h3">安装件数</th>
+                                        <th class="h4">重量</th>
+                                        <th class="h5">体积</th>
+                                    </tr>
+                                    <tr>
+                                        <td>子母床</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>子母床</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="right_for">
+                                <table class="tab2" border="" cellspacing="" cellpadding="">
+                                    <tr>
+                                        <th class="h1">品名<em class="change">改</em></th>
+                                        <th class="h2">包装件数</th>
+                                        <th class="h3">安装件数</th>
+                                        <th class="h4">重量</th>
+                                        <th class="h5">体积</th>
+                                    </tr>
+                                    <tr>
+                                        <td>子母床</td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>子母床</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>1</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                &lt;!&ndash;补件&ndash;&gt;
+                <div class="Patch">
+                    <span class="top_titl">补件</span>
+                    <div class="bottom_xingxi">
+                        <ul>
+                            <li>
+                                <span class="left">补件单号: 5565455-bj</span>
+                                <span class="right">任务类型: 干支装补件</span>
+                            </li>
+                            <li>
+										<span class="left nuo">
+											<span class="left_in">备注:</span>
+											<span class="right_in">虽然这边常加班，但是工作还是自由，时间长了点而已</span>
+										</span>
+                            </li>
+                        </ul>
+                        <div class="report_form">
+                            <table class="tab3" border="" cellspacing="" cellpadding="">
+                                <tbody>
+                                <tr>
+                                    <th>补件名称</th>
+                                    <th>补件数量</th>
+                                    <th>货物体积</th>
+                                </tr>
+                                <tr>
+                                    <td>子母床</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                &lt;!&ndash;否决&ndash;&gt;
+                <div class="veto">
+                    <span class="top_titl">否决</span>
+                    <div class="bottom_xingxi">
+                        <span class="reject">驳回原因: 5565455-bj</span>
+                    </div>
+                </div>
+
+                &lt;!&ndash;维修&ndash;&gt;
+                <div class="Repair">
+                    <span class="top_titl">维修</span>
+                    <div class="bottom_xingxi">
+                        <ul>
+                            <li>
+                                <span class="left">维修单号: 545564215-wx</span>
+                                <span class="right">任务类型: 干线维修<span class="chakan">查看图片</span></span>
+                            </li>
+                            <li>
+                                <span class="left">安装师傅: 胡歌</span>
+                                <span class="right">维修费用: <em class="ho">56</em></span>
+                            </li>
+                            <li>
+										<span class="left nuo">
+											<span class="left_in">备注:</span>
+											<span class="right_in">虽然这边常加班，但是工作还是自由，时间长了点而已</span>
+										</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                &lt;!&ndash;返货&ndash;&gt;
+                <div class="Return">
+                    <span class="top_titl">返货</span>
+                    <div class="bottom_xingxi">
+                        <ul>
+                            <li>
+                                <span class="left">返货单号: 5565455-bj</span>
+                                <span class="right">返货运营商: 服务商</span>
+                            </li>
+                            <li>
+                                <span class="left">收货人:李四</span>
+                                <span class="right">收货人手机号:15626270808</span>
+                            </li>
+                            <li>
+										<span class="left nuo">
+											<span class="left_in">收货地址:</span>
+											<span class="right_in">广州天河英唐</span>
+										</span>
+                            </li>
+                            <li>
+                                <span class="left">提货人:张三</span>
+                                <span class="right">提货人手机号:15626270808</span>
+                            </li>
+                            <li>
+										<span class="left nuo">
+											<span class="left_in">提货人地址:</span>
+											<span class="right_in">广州白云区</span>
+										</span>
+                            </li>
+                            <li>
+                                <span class="left">指定物流：德邦物流</span>
+                                <span class="right">物流电话：15236698562</span>
+                            </li>
+                            <li>
+										<span class="left nuo">
+											<span class="left_in">安装师傅:</span>
+											<span class="right_in">刘师傅(5265532012)</span>
+										</span>
+                            </li>
+                            <li>
+										<span class="left nuo">
+											<span class="left_in">备注:</span>
+											<span class="right_in">虽然这边常加班，但是工作还是自由，时间长了点而已</span>
+										</span>
+                            </li>
+                        </ul>
+                        <div class="report_form">
+                            <table class="tab3" border="" cellspacing="" cellpadding="">
+                                <tbody>
+                                <tr>
+                                    <th>返件名称</th>
+                                    <th>返件数量</th>
+                                    <th>货物体积</th>
+                                </tr>
+                                <tr>
+                                    <td>子母床</td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="responsible">
+                <ul>
+                    <li>
+                        <span class="left">责任方：一智通</span>
+                        <span class="right">商家承担总金额：<em class="ho">￥200</em><span class="pinzhen">查看凭证</span></span>
+                    </li>
+                    <li>
+								<span class="left nuo">
+									<span class="left_in">处理结果描述：</span>
+									<span class="right_in">维修、返货、补件、否决、其他等所有结果处理信息之后显示</span>
+								</span>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="dialog-box-footer">
+                <ul>
+                    <li class="determine1">确定</li>
+                    <li class="cancel1" (click)="hideModal()">取消</li>
+                </ul>
+            </div>
+        </div>-->
+        <div class="class4" [ngClass]="{current: isshowContent[3]}">
+            <div class="modify">
+                <ui-grid [columns]="columns" (load)="load($event)" [data]="data" [enableExport]="false" [showEditColumn]="false" ></ui-grid>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <ul>
+            <li class="determine1" (click)="SaveArbitration()">确定</li>
+            <li class="cancel1" (click)="hideModal()">取消</li>
+        </ul>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,41 @@
+<div class="aside-frame">
+    <div class="aside-frame-title">
+        <label>提货人电话</label>
+        <div class="addr-control pickup-phone">
+            <input type="text" name="tellPhone" oninput="value=value.replace(/[^\d{1,}]/g,'')" [(ngModel)]="tellPhone">
+        </div>
+        <label>订单类型</label>
+        <select name="orderType" id="" [(ngModel)]="orderType">
+            <option value="">请选择</option>
+            <option value="branch">支装</option>
+            <option value="trunk">干支装</option>
+``            <option value="all">所有</option>
+        </select>
+    </div>
+    <span class="area-choice">目的地</span>
+    <div class="aside-frame-content">
+        <intel-match-area (selectChange)="getSelections($event)"></intel-match-area>
+    </div>
+
+    <div class="footer-button">
+        <div class="intro-master">
+            <label for="">推荐师傅</label>
+            <span class="ul-list-wrap">
+                    <workers-select name="workersname" width="150px" multiSelect="true"  defaultLabel="请选择…" [(ngModel)]="workerCode" ></workers-select>
+            </span>
+            <ul class="service-list">
+                <li *ngFor="let name of workerCode; let i = index">
+                    <span>{{name.realName}}</span>
+                    <a (click)="deleteTypeOfService(i)">×</a>
+                </li>
+            </ul>
+        </div>
+        <div class="save">
+            <span class="primary-btn btn" (click)="save()">保存</span>
+        </div>
+    </div>
+    <a class="close-modal-btn" (click)="hideModal()"></a>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+

@@ -1,0 +1,84 @@
+<div id="deposit_apply" class="deposit-apply" #depositapply  [ngStyle]="drag.setPosition(900,600)">
+    <div id="deposit_apply_title" class="deposit-apply-title">
+        <span class="apply-left">流水详情</span>
+        <span class="apply-right" (click)="hideWin()">×</span>
+    </div>
+    <form>
+    <ul class="account-search">
+        <li>
+            <span>任务号</span>
+            <span><input #count type="text" name="waybillId" [(ngModel)]="masterFlowDetailRequestVo.waybillId"></span>
+        </li>
+        <li>
+            <span>提现流水号</span>
+            <span><input #count type="text" name="withdrawId" [(ngModel)]="masterFlowDetailRequestVo.wdNo"></span>
+        </li>
+        <li>
+            <span>审批人</span>
+            <span><input #count type="text" name="auditPerson" [(ngModel)]="masterFlowDetailRequestVo.auditPerson"></span>
+        </li>
+        <!--<li>
+            <span>打款人</span>
+            <span><input #count type="text" name="playMoneyPerson" [(ngModel)]="masterFlowDetailRequestVo.playMoneyPerson"></span>
+        </li>-->
+        <li>
+            <select name="selectState" [(ngModel)]="masterFlowDetailRequestVo.dateType" class="all_state_distribution">
+                <option value="ALL">全部日期</option>
+                <option value="SIGN">签收日期</option>
+                <option value="APPLY">申请日期</option>
+            </select>
+            <span class="time">
+                <p-calendar name="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [(ngModel)]="masterFlowDetailRequestVo.signTime" [readonlyInput]="true"></p-calendar>
+            </span>
+        </li>
+        <li>
+            <span>截止时间</span>
+            <span class="time">
+                <p-calendar name="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [(ngModel)]="masterFlowDetailRequestVo.endTime" [readonlyInput]="true"></p-calendar>
+            </span>
+        </li>
+        <li>
+            <span>提现状态</span>
+            <span>
+                <select name="withdrawStatus" [(ngModel)]="masterFlowDetailRequestVo.withdrawStatus">
+                    <option value="All">全部</option>
+                    <option value="cannotWithdraw">未出账单</option>
+                    <option value="canWithdraw">可提现</option>
+                    <option value="inWithdraw">提现中</option>
+                    <option value="alreadyWithdrawed">已提现</option>
+                </select>
+            </span>
+        </li>
+        <li>
+            <button class="btn primary-btn" (click)="doQuery()" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <button class="btn default-btn" (click)="reset()">清空</button>
+        </li>
+    </ul>
+    </form>
+    <div class="table-container">
+        <ui-grid
+                [columns]="columns"
+                [pageRow]="pageRow"
+                (exportCSV)="exportCSV($event)"
+                [data]="data"
+                (load)="load($event)"
+                (cellClick)="cellClick($event)"></ui-grid>
+    </div>
+</div>
+<!--维修任务-->
+<repair-detail class="modal" *ngIf="isModuleDisplayArr[0]"
+               (closeModal)="closeDetailModal(0)"
+               [@modalState]="isModuleDisplayArr1[0] ?'in':'out'" [selectedRowData]="selections"></repair-detail>
+<!--返货任务-->
+<supplier-detail class="modal" *ngIf="isModuleDisplayArr[1]"
+                 (closeModal)="closeDetailModal(1)"
+                 [@modalState]="isModuleDisplayArr1[1] ?'in':'out'" [selectedRowData]="selections"></supplier-detail>
+<!--调度任务-->
+<detail-modal class="modal" *ngIf="isModuleDisplayArr[2]"
+              [@modalState]="isModuleDisplayArr1[2] ?'in':'out'"
+              (closeModal)="closeDetailModal(2)" [selectLineInfo]="selections"></detail-modal>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

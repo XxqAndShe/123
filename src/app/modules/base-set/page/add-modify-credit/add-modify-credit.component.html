@@ -1,0 +1,37 @@
+<div class="timeli-setting">
+    <h2>信用分规则设置</h2>
+        <div class="line">
+            <div class="right-div">
+                <label><i>*</i>KPI考核项</label>
+                <select name="assessment" [(ngModel)]="assessment" (ngModelChange)="changeValue($event)">
+                    <option value="">请选择</option>
+                    <option value="reservationRate_credit">预约及时率</option>
+                    <option value="installationRate_credit">安装及时率</option>
+                    <option value="installationCompletionRate48_credit">48小时及时率</option>
+                    <!--<option value="damageRate_credit">货损率</option>-->
+                </select>
+            </div>
+        </div>
+        <div class="line-content">
+            <div class="line">
+                <span class="start-symbol">*</span>
+                <label class="declare" for="">设置规则</label>
+                <textarea class="declart-textarea" name="tt" [(ngModel)]="setDescription"></textarea>
+            </div>
+            <div class="line">
+                <span class="start-symbol">*</span>
+                <label class="declare" for="">规则说明</label>
+                <textarea class="declart-textarea" name="tt" id="" [(ngModel)]="ruleDescription"></textarea>
+            </div>
+        </div>
+        <div class="add-detail">
+            <h4>操作说明：</h4>
+            <textarea [(ngModel)]="detailFun" readonly="readonly"></textarea>
+        </div>
+        <div class="footer">
+            <button class="primary-btn btn" (click)="preservation()">保存</button>
+            <button class="primary-btn btn" type="reset" (click)="returnCredit();">取消</button>
+        </div>
+ </div>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

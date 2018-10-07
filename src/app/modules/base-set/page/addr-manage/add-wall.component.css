@@ -1,0 +1,10 @@
+.dialog-box{width:320px;}
+.dialog-box-content{
+    text-align: center;
+}
+.dialog-box>.dialog-box-footer{padding:10px 0;}
+label{
+    display: inline-block;
+    width: 48px;
+    text-align: right;
+}

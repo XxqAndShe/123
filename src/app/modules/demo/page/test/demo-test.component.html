@@ -1,0 +1,21 @@
+<h1>This is a demo test mybatisPage.</h1>
+<button (click)="testAPI()">测试API服务</button>
+<p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
+<p-calendar [locale]="zh" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+
+
+<br>
+<br>
+<br>
+
+<div class="data-box">
+    <label>选择上门时间:</label>
+    <p-calendar [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [showTime]="true" [(ngModel)]="Date" [readonlyInput]="true"></p-calendar>
+</div>
+
+<br>
+<hr>
+<div class="test-content">
+    <h3>测试demo，点击菜单项查看对应组件demo</h3><br>
+    <p-menu [model]="items" ></p-menu>
+</div>

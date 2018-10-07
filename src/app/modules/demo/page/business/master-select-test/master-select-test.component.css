@@ -1,0 +1,15 @@
+.test-content{
+    margin:30px 0 0 30px;
+}
+.meta-select{
+    width: 100px;
+}
+.component{
+    margin-top:50px;
+}
+.test-content a.back{
+    color: #0b7dd8;
+    font-size: 16px;
+    margin-left: 280px;
+    text-decoration: underline;
+}

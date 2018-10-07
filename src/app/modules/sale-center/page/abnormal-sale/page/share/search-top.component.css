@@ -1,0 +1,119 @@
+/*搜索框*/
+li > span {
+    margin-right: 5px;
+}
+
+.top-search-content {
+    margin-top: 8px;
+    width: 1600px;
+    display: inline-block;
+}
+
+.top-search-content > li {
+    float: left;
+    position: relative;
+}
+
+.top-search-content > li + li {
+    margin-left: 10px;
+}
+
+.top-search-content > li > span:nth-of-type(1) {
+    width: 80px;
+    display: inline-block;
+    text-align: right;
+}
+
+.top-search-content > li > span.primary-btn {
+    text-align: center;
+    margin-left: 10px;
+}
+
+.top-search-content > li > span.deal-time {
+    position: relative;
+    display: inline-block;
+}
+
+.top-search-content > li > span > input[type="text"], .top-search-content > li > span > select {
+    width: 95px;
+    height: 30px;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+}
+
+.top-search-content > li:last-child > span + span {
+    margin-left: 0;
+}
+
+.table-title > .right > .add-icon {
+    background: url('/assets/sale-after/add-icon.png') no-repeat 0 0;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 3px;
+    left: -3px;
+}
+
+.show-flow-list > li:nth-child(2) > i {
+    background: url('/assets/sale-after/follow.png') no-repeat 0 0;
+}
+
+a#select-btn {
+    font-size: 13px;
+    margin-left: 12px;
+    line-height: 30px;
+    padding-left: 24px;
+    background: url(/assets/icon/select.png) left center no-repeat;
+    background-size: 21px 21px;
+}
+
+my-date-picker {
+    position: absolute;
+    z-index: 10;
+    left: 0px;
+    height: 30px;
+}
+
+.addr-control {
+    display: inline-block;
+}
+
+/*表格头*/
+.show-flow-list > li > i {
+    width: 17px;
+    height: 17px;
+}
+
+.show-flow-list > li:nth-child(2) > i {
+    background: url('/assets/operation.png') no-repeat -94px -117px;
+}
+.top-search-content li .addr-control{
+    width: 95px;
+}
+.top-search-content li .totel-width{
+    width: 95px;
+}
+/*搜索框媒体查询*/
+@media screen and (max-width: 1024px) {
+    .top-search-content {
+        width: 1024px;
+    }
+}
+/*搜索框媒体查询*/
+@media screen and (min-width: 1367px) and (max-width: 1920px) {
+    .top-search-content > li > span > input[type="text"], .top-search-content > li > span > select {
+        width: 125px;
+    }
+}
+/*搜索框*/
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .top-search-content {
+        width: 1366px;
+    }
+    .top-search-content li .totel-width{
+        width: 95px;
+    }
+
+}
+

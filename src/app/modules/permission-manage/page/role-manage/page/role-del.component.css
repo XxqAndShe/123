@@ -1,0 +1,8 @@
+.dialog-box{width:200px;}
+.dialog-box>.fukuan-title{
+    background:#4C8DF7 ;
+}
+.dialog-box>.dialog-box-content{
+    text-align: center;
+}
+.dialog-box .dialog-box-footer{height:30px; text-align: center; padding: 20px;}

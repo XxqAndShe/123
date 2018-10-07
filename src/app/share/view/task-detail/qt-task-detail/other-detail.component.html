@@ -1,0 +1,336 @@
+<div class="outer-modal-container">
+    <div class="modal-header">
+        <div class="first-line">
+            <span class="new-tap">售后</span>
+            <span class="gray-text">运单号</span>
+            <span class="blue-text">{{nodeVo.waybillId}}</span>
+            <span class="gray-text">任务单号</span>
+            <span class="blue-text">{{nodeVo.title}}</span>
+            <span class="gray-text">异常编号</span>
+            <span class="blue-text">{{nodeVo.abnormalNum}}</span>
+            <span class="gray-text">处理人</span>
+            <span class="blue-text">{{nodeVo.handlePerson}}</span>
+        </div>
+        <div class="second-line">
+            <span class="gray-text">任务状态</span>
+            <p-steps [(activeIndex)]="nodeVo.stepActive" [model]="items"></p-steps>
+            <span class="stop-task" (click)="stopTask()">终止任务</span>
+            <div class="handle-time">
+                <span *ngFor="let handleTime of nodeVo.stepTimes">{{handleTime}}</span>
+            </div>
+
+            <!--终止订单-->
+            <operation-end *ngIf="isoperationEnd" [content]="selectedRowData" (hideSave)="doHideSave()"
+                           (hideWin)="hideWin($event)"></operation-end>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <button ngClass="{{infoTypeActive==='rwxx'?'active':''}}" (click)="selectInfoPanel('rwxx')">任务信息</button>
+        <button ngClass="{{infoTypeActive==='gjxx'?'active':''}}" (click)="selectInfoPanel('gjxx')">轨迹信息</button>
+        <button ngClass="{{infoTypeActive==='ycxx'?'active':''}}" (click)="selectInfoPanel('ycxx')">异常信息</button>
+        <button ngClass="{{infoTypeActive==='gzxx'?'active':''}}" (click)="selectInfoPanel('gzxx')">跟踪信息</button>
+    </div>
+    <div class="modal-content">
+        <!--任务信息start-->
+        <div class="others_content" *ngIf="infoTypeActive==='rwxx'">
+            <form action="">
+                <div class="content_title"><h3>基本信息</h3></div>
+                <div class="content_jiben">
+                    <div class="jiben_item" style="margin-top: 0px;">
+                        <span class="item1"></span>
+                        <span class="item2" style="color: #419FFC;">原</span>
+                        <span class="item3" style="color: #25C26F;">改</span>
+                    </div>
+                    <div class="jiben_item" style="margin-top: 0px;">
+                        <span class="item1">服务类型</span>
+                        <input readonly class="readonly-input" name="waybillServiceTypeOld"
+                               [(ngModel)]="otherResult.waybillServiceTypeOld">
+                        <span class="item3">
+                        <input readonly class="readonly-input" name="waybillServiceType"
+                               [(ngModel)]="otherResult.waybillServiceType">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">收货人姓名</span>
+                        <input readonly class="readonly-input" name="consigneeOld"
+                               [(ngModel)]="otherResult.consigneeOld">
+                        <span class="item3">
+                        <input type="text" readonly required name="consignee" [(ngModel)]="otherResult.consignee">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">收货人手机</span>
+                        <input readonly class="readonly-input" name="consigneeMobileOld"
+                               [(ngModel)]="otherResult.consigneeMobileOld">
+                        <span class="item3">
+                        <input type="text" readonly required name="consigneeMobile"
+                               [(ngModel)]="otherResult.consigneeMobile">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">收货人地址</span>
+                        <input readonly class="readonly-input" name="consigneeAddressOld"
+                               [(ngModel)]="otherResult.consigneeAddressOld">
+                        <span class="item3">
+                        <input type="text" readonly required name="consigneeAddress"
+                               [(ngModel)]="otherResult.consigneeAddress">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">到站</span>
+                        <input readonly class="readonly-input" name="siteArrivalOld"
+                               [(ngModel)]="otherResult.siteArrivalOld">
+                        <span class="item3">
+                        <input readonly class="readonly-input" name="siteArrival" [(ngModel)]="otherResult.siteArrival">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">目的站</span>
+                        <input readonly class="readonly-input" name="distinationOld"
+                               [(ngModel)]="otherResult.distinationOld">
+                        <span class="item3" style="position: relative;">
+                        <input readonly class="readonly-input" name="distination" [(ngModel)]="otherResult.distination">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">提货电话</span>
+                        <input readonly class="readonly-input" name="pickUpMobileOld"
+                               [(ngModel)]="otherResult.pickUpMobileOld">
+                        <span class="item3">
+                        <input name="pickUpMobile" readonly name="pickUpMobile" [(ngModel)]="otherResult.pickUpMobile">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">提货地址</span>
+                        <input readonly class="readonly-input" name="pickUpAdrOld"
+                               [(ngModel)]="otherResult.pickUpAdrOld">
+                        <span class="item3">
+                        <input name="pickUpAdr" readonly name="pickUpAdr" [(ngModel)]="otherResult.pickUpAdr">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">是否核销</span>
+                        <input readonly name="checkOld" class="readonly-input"
+                               [(ngModel)]="otherResult.checkOld">
+                        <span class="item3">
+                        <input readonly name="check" class="readonly-input"
+                               [(ngModel)]="otherResult.checkNew">
+                    </span>
+                    </div>
+                    <div class="jiben_item" *ngIf="otherResult.check">
+                        <span class="item1"></span>
+                        <input name="hidden0" readonly class="readonly-input" style="visibility: hidden;">
+                        <span class="item3">
+                        <input name="verificationCode" readonly class="readonly-input"
+                               [(ngModel)]="otherResult.verificationCode">
+                    </span>
+                    </div>
+                    <div class="jiben_item" *ngIf="otherResult.check">
+                        <span class="item1"></span>
+                        <input name="hidden1" readonly class="readonly-input" style="visibility: hidden;">
+                        <span class="item3">
+                        <input name="serviceTypeTmall" readonly class="readonly-input"
+                               [(ngModel)]="otherResult.serviceTypeTmall">
+                    </span>
+                    </div>
+                    <div class="jiben_item" *ngIf="otherResult.check">
+                        <span class="item1"></span>
+                        <input name="hidden2" readonly class="readonly-input" style="visibility: hidden;">
+                        <span class="item3">
+                        <input name="surceType" readonly class="readonly-input" [(ngModel)]="otherResult.surceType">
+                    </span>
+                    </div>
+                    <div class="jiben_zerenfang clearfix">
+                        <div class="zerenfang_title">责任方</div>
+                        <div class="zerenfang_content">
+                            <div class="zerenfang_item" *ngFor="let duty of otherResult.dutys;let i=index">
+                                <span class="zerenfang_item_list">{{duty}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="jiben_tihuo clearfix">
+                        <!--<div class="tihuo_title">提货信息</div>
+                        <div class="tihuo_genggai">更改</div>-->
+                    </div>
+
+                </div>
+
+                <div class="content_title"><h3>商品费用信息</h3></div>
+                <div class="content_feiyongxinxi clearfix">
+                    <div class="feiyongxinxi_yuan">
+                        <div class="feiyongxinxi_yuan_top">原</div>
+
+                        <div class="feiyongxinxi_yuan_item">
+                            <ul class="clearfix">
+                                <li class="yuan_pinming">品名</li>
+                                <li class="yuan_baozhuang">包装件数</li>
+                                <li class="yuan_anzhuang">安装件数</li>
+                                <li class="yuan_zhongliang">重量</li>
+                                <li class="yuan_tiji">体积</li>
+                                <li class="yuan_anzhuangfee">安装费</li>
+                                <li class="yuan_shangloufee">上楼费</li>
+                            </ul>
+                        </div>
+                        <div class="feiyongxinxi_yuan_item" *ngFor="let good of otherResult.vTaskOtherWaybillGoodsList">
+                            <ul class="clearfix">
+                                <li class="yuan_pinming" title="{{good.oldName}}">{{good.oldName}}</li>
+                                <li class="yuan_baozhuang">{{good.oldPackageNumber}}</li>
+                                <li class="yuan_anzhuang">{{good.oldInstallNumber}}</li>
+                                <li class="yuan_zhongliang">{{good.oldweight}}</li>
+                                <li class="yuan_tiji">{{good.oldVolume}}</li>
+                                <li class="yuan_anzhuangfee">{{good?.installChargeOld}}</li>
+                                <li class="yuan_shangloufee" title="50">{{good?.upstairsChargeOld}}</li>
+                            </ul>
+                        </div>
+
+                        <div class="feiyongxinxi_yuan_item font_bold">
+                            <ul class="clearfix">
+                                <li class="yuan_pinming">合计</li>
+                                <li class="yuan_baozhuang">{{obj.oldPackageSumNumber}}</li>
+                                <li class="yuan_anzhuang">{{obj.oldInstallSumNumber}}</li>
+                                <li class="yuan_zhongliang">{{obj.oldweightSum}}</li>
+                                <li class="yuan_tiji">{{obj.oldVolumeSum}}</li>
+                                <li class="yuan_anzhuangfee">{{obj.installChargeOldSum}}</li>
+                                <li class="yuan_shangloufee">{{obj.upstairsChargeOldSum}}</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="feiyongxinxi_gai">
+                        <div class="feiyongxinxi_gai_top">改</div>
+
+                        <div class="feiyongxinxi_gai_item">
+                            <ul class="clearfix">
+                                <li class="gai_pinming">品名</li>
+                                <li class="gai_baozhuang">包装件数</li>
+                                <li class="gai_anzhuang">安装件数</li>
+                                <li class="gai_zhongliang">重量</li>
+                                <li class="gai_tiji">体积</li>
+                                <li class="gai_anzhuangfee">安装费</li>
+                                <li class="gai_shagnloufee">上楼费</li>
+                            </ul>
+                        </div>
+
+                        <div class="feiyongxinxi_gai_item" *ngFor="let good of otherResult.vTaskOtherWaybillGoodsList">
+                            <ul class="clearfix">
+                                <li class="gai_pinming" title="{{good.name}}">{{good.name}}</li>
+                                <li class="gai_baozhuang">{{good.packageNumber}}</li>
+                                <li class="gai_anzhuang">{{good.installNumber}}</li>
+                                <li class="gai_zhongliang">{{good.weight}}</li>
+                                <li class="gai_tiji">{{good.volume}}</li>
+                                <li class="gai_anzhuangfee">{{good?.installCharge}}</li>
+                                <li class="gai_shangloufee">{{good?.upstairsCharge}}</li>
+                            </ul>
+                        </div>
+
+                        <div class="feiyongxinxi_gai_item font_bold">
+                            <ul class="clearfix">
+                                <li class="gai_pinming">合计</li>
+                                <li class="gai_baozhuang">{{obj.packageSumNumber}}</li>
+                                <li class="gai_anzhuang">{{obj.installSumNumber}}</li>
+                                <li class="gai_zhongliang">{{obj.weightSum}}</li>
+                                <li class="gai_tiji">{{obj.volumeSum}}</li>
+                                <li class="gai_anzhuangfee">{{obj.installChargeSum}}</li>
+                                <li class="gai_shangloufee">{{obj.upstairsChargeSum}}</li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="content_title"><h3>费用处理</h3></div>
+                <div class="content_feiyongchuli clearfix">
+                    <div class="feiyongchuli_title">
+                        <ul class="clearfix">
+                            <li class="feiyongchuli_mingcheng">费用名称</li>
+                            <li class="feiyongchuli_yuan" style="color: #2997FC;">原</li>
+                            <li class="feiyongchuli_gai" style="color: #25C26F;">改</li>
+                            <li class="feiyongchuli_chae">差额</li>
+                            <li class="feiyongchuli_zerenren">责任方</li>
+                            <li class="feiyongchuli_jine">承担金额</li>
+                            <li class="feiyongchuli_buchang">补偿对象</li>
+                        </ul>
+                    </div>
+
+                    <div class="feiyongchuli_item" *ngFor="let fee of otherResult.vTaskOtherFeeDataList; let i=index">
+                        <ul class="clearfix">
+                            <li class="feiyongchuli_mingcheng">
+                                <span>{{fee.feeName}}</span>
+                            </li>
+                            <li class="feiyongchuli_yuan">
+                                <span>{{fee.oldFee}}</span>
+                            </li>
+                            <li class="feiyongchuli_gai">
+                                <span>{{fee.fee}}</span>
+                            </li>
+                            <li class="feiyongchuli_chae">
+                                <span>{{(fee.fee-fee.oldFee) || ''}}</span>
+                            </li>
+                            <li class="feiyongchuli_zerenren">
+                            <span class="feiyongchuli_zerenren_list"
+                                  *ngFor="let dutyInfo of fee.vTaskOtherFeeDutyDataList;">{{dutyInfo.dutyName}}</span>
+                            </li>
+                            <li class="feiyongchuli_jine">
+                            <span class="feiyongchuli_jine_list"
+                                  *ngFor="let dutyInfo of fee.vTaskOtherFeeDutyDataList;">{{dutyInfo.assumeFee}}</span>
+                            </li>
+                            <li class="feiyongchuli_buchang">
+                                <span class="feiyongchuli_buchang_list">{{fee.vTaskOtherFeeRepayData.repayName}}</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="feiyongchuli_jieguo">
+                        <h4>费用判决结果</h4>
+                        <div class="jieguo_item" style="margin-right: 30px">
+                            <p-dataTable emptyMessage="没有记录" [value]="dutyData">
+                                <p-column field="name" header="责任方" [style]="{'text-align': 'center'}"></p-column>
+                                <p-column field="value" header="合计承担金额" [style]="{'text-align': 'center'}"></p-column>
+                            </p-dataTable>
+                        </div>
+                        <div class="jieguo_item">
+                            <p-dataTable emptyMessage="没有记录" [value]="repayData">
+                                <p-column field="name" header="补偿对象" [style]="{'text-align': 'center'}"></p-column>
+                                <p-column field="value" header="合计补偿金额" [style]="{'text-align': 'center'}"></p-column>
+                            </p-dataTable>
+                        </div>
+                        <div class="clearfix"></div>
+                        <h4>上传聊天记录</h4>
+                        <ul class="img-wrap">
+                            <li class="img-item" *ngFor="let singImg of otherResult.chatRecord">
+                                <a rel="fancybox" href="{{singImg.url}}">
+                                    <img src="{{singImg.url}}" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="content_title"><h3>其他</h3></div>
+                <div class="content_qita clearfix">
+
+                    <div class="qita_zhuan clearfix">
+                        <input type="checkbox" name="claims" disabled [checked]="otherResult.claims">
+                        <span>&nbsp; 转理赔</span>
+                    </div>
+                    <h4>处理备注：</h4>
+                    <textarea name="remark" readonly cols="30" rows="10" [(ngModel)]="otherResult.remark"></textarea>
+
+                </div>
+            </form>
+        </div>
+        <!--任务信息end-->
+
+
+        <task-path-msg [selectLineInfo]="selectedRowData" *ngIf="infoTypeActive === 'gjxx'"></task-path-msg>
+        <abnormal-msg [selectLineInfo]="selectedRowData" *ngIf="infoTypeActive === 'ycxx'"></abnormal-msg>
+        <task-track-msg [selectLineInfo]="selectedRowData" *ngIf="infoTypeActive === 'gzxx'"></task-track-msg>
+    </div>
+
+    <a href="javascript:; " class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

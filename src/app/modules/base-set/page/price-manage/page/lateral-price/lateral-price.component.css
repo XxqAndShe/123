@@ -1,0 +1,124 @@
+.content {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+}
+.table-container {
+    height: calc(100% - 210px);
+}
+
+.right-content {
+    position: absolute;
+    left:400px;
+    margin-right: 20px;
+    float: right;
+}
+
+.left-content {
+    position: relative;
+    float: left;
+    margin:25px 20px 0 10px;
+    width: 400px;
+}
+.intel-match-area {
+    width: 350px;
+    height: 450px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+/*搜索框*/
+.top-search-content {
+    margin-top: 17px;
+    width: 90%;
+    display: inline-block;
+    line-height: 30px;
+}
+
+.top-search-content > li {
+    float: left;
+}
+
+.top-search-content > li + li {
+    margin-left: 15px;
+}
+
+.top-search-content > li > span + span {
+    margin-left: 12px;
+}
+
+.top-search-content > li > span > input[type="text"] {
+    width: 123px;
+    height: 28px;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+}
+
+.top-search-content > li:last-child > span {
+    width: 60px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+}
+
+.table-title > span > i {
+    position: absolute;
+    cursor: pointer;
+}
+
+.table-title > span > i.triangle-down {
+    display: inline-block;
+    left: 75px;
+}
+
+.table-title > span > i.triangle-up {
+    left: 75px;
+}
+
+/*@media screen and (max-width:900px) {
+    .top-search{width:900px;}
+}*/
+.addr-control {
+    display: inline-block;
+    margin-left: 12px;
+}
+
+ui-select-box {
+    line-height: 16px;
+}
+
+/*文本框下拉框*/
+.top-search-content > .sub-select-list {
+    position: relative;
+}
+
+.top-search-content > .sub-select-list > .select-list-ul {
+    box-shadow: 3px 3px 3px #ccc, -3px 3px 3px #ccc;
+    position: absolute;
+    display: none;
+    background-color: #fff;
+    z-index: 1;
+    width: 127px;
+    left: 40px;
+}
+
+.top-search-content > .sub-select-list > .select-list-ul > li {
+    padding: 5px 10px;
+}
+
+.top-search-content > .sub-select-list > .select-list-ul > li:hover {
+    background-color: #0d85e4;
+    color: #fff;
+}
+
+.table-title> span.right{  width: 68px;  height: 30px;  }
+.table-title> span.delete-btn{background-color: #bbb;}
+.table-title> span.right >i{height:16px;}
+.table-title> span.right >i.add{background:url('/assets/button-icon.png') no-repeat 0 0;}
+.table-title> span.right >i.modify{background:url('/assets/button-icon.png') no-repeat -24px 0;}
+.table-title> span.right >i.delete{background:url('/assets/button-icon.png') no-repeat -48px 0;background-color: #bbb;}
+.show{display: block;}
+.hide{display: none;}

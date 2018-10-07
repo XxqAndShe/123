@@ -1,0 +1,17 @@
+<div class="meta-select" *ngIf="multiSelect">
+    <p-multiSelect [options]="metas"
+                   [defaultLabel]="defaultLabel"
+                   [style]="{'width':width}"
+                   (onChange)="onChangeHandler($event)"
+                   [(ngModel)]="value"></p-multiSelect>
+</div>
+<div class="meta-select" *ngIf="!multiSelect">
+    <p-dropdown [options]="metas"
+                [placeholder]="defaultLabel"
+                [style]="{'width':width,'height':height}"
+                [(ngModel)]="value"
+                (onChange)="onChangeHandler($event)"
+                (onBlur)="onBlurHandler($event)"
+                (onFocus)="onFocusHandler($event)"
+                filter="filter"></p-dropdown>
+</div>

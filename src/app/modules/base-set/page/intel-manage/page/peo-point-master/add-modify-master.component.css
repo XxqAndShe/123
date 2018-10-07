@@ -1,0 +1,100 @@
+.aside-frame{width:1020px; height:100%;background-color: #f7f7f7;box-shadow: 1px 2px 10px #717171;    position: relative; }
+a.close-modal-btn{  position: absolute;  top: 50%;  width: 12px;  height: 78px;  background: url(/assets/close-modal.png);  margin-top: -39px;  }
+.add-modify-master .add-btn{padding:6px;background-color: #0D85E4;position: absolute;color:#fff;margin-left:10px;cursor:pointer;}
+.add-address-btn{
+    position: absolute;
+    bottom: 50px;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
+}
+.state-search{
+    display: block;
+}
+.aside-frame .edit-title{
+    font-size: 14px;
+    line-height: 60px;
+    height: 60px;
+    font-weight: normal;
+    margin-left: 20px;
+}
+.state-search{
+    width: 900px;
+    height: 100%;
+    margin: 10px auto;
+    display: block;
+}
+.state-search li{
+    /*width: 300px;*/
+    display: inline-block;
+    margin-left: 20px;
+}
+.state-search .state-search-text{
+    width: 300px;
+}
+.state-search-master{
+    margin-top: 5px;
+    position: absolute;
+}
+.add-modify-master{
+    margin-left: 55px;
+    position: relative;
+}
+ul.service-list {
+    margin-top: 8px;
+    margin-left: 80px;
+    position: absolute;
+    left: -85px;
+    top: 40px;
+}
+ul.service-list>li {
+    border: 1px solid #5499ef;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+ul.service-list span {
+    padding: 0 6px;
+    vertical-align: top;
+}
+ul.service-list a {
+    display: inline-block;
+    font-size: 20px;
+    height: 23px;
+    line-height: 23px;
+    width: 23px;
+    text-align: center;
+    color: #9f9f9f;
+    vertical-align: top;
+    cursor:pointer;
+}
+.add-address-btn .btn-cente{
+    display: inline-block;
+    position: absolute;
+}
+#modify-ordertype{
+    width: 120px;
+    height: 30px;
+    background: #FFFFFF;
+}
+div.add-modify-position{
+    position: relative;
+}
+.add-modify-master .add-modify-left {
+display: inline-block;
+width: 160px;
+position: absolute;
+left: 53px;
+}
+.aside-frame header {
+    height: 60px;
+    padding-left: 22px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 5px #cccccc;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}

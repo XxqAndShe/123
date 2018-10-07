@@ -1,0 +1,119 @@
+.dialog-box{/*修改项*/width:680px;
+    box-shadow: 1px 2px 10px #717171, -1px 2px 10px #717171;background-color: #fff;}
+.dialog-box>.dialog-box-title{width: 100%;height: 40px;background: #2d3244;display: block;padding: 4px 15px;box-sizing: border-box;}
+.dialog-box>.dialog-box-title>span{font-size:14px;color:#fff;line-height:33px;  }
+.dialog-box>.dialog-box-title>.dialog-left{float:left;}
+.dialog-box>.dialog-box-title>.dialog-right{float:right;font-size:30px;cursor: pointer;opacity: 0.7;line-height: 29px;}
+
+.dialog-box>.dialog-box-content{overflow: auto;padding:15px; height: 338px; border-bottom:1px solid #e5e5e5;box-sizing: border-box;}
+.dialog-box>.dialog-box-footer{height:63px; text-align: center;}
+.dialog-box>.dialog-box-footer>span{display: inline-block;width:58px; height: 30px; background-color: #f8f8f8;line-height:30px;border:1px solid #ddd;margin-top:15px;}
+
+/*按钮样式*/
+.dialog-box>.dialog-box-footer>span.btn {
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+.dialog-box>.dialog-box-footer>span.primary-btn {
+    background-color: #0d85e4;
+    color: #ffffff;
+    margin-right: 10px;
+    border: 1px solid #0d85e4;
+}
+.dialog-box>.dialog-box-footer>span.primary-btn:hover {
+    background: #269bf8;
+
+    border: 1px solid #269bf8;
+}
+.dialog-box>.dialog-box-footer>span.default-btn {
+    color: #333;
+    border: 1px solid #dddddd;
+    background-color: #f7f7f7;
+}
+.dialog-box>.dialog-box-footer>span.default-btn:hover {
+    background-color:#ffffff;
+}
+/*按钮样式end*/
+
+/*新增*/
+.dialog-box>.blue{
+    background-color: #417cf3;
+}
+.dialog-box>.dialog-box-title>.dialog-right{
+    color: #fff;
+    opacity: 1;
+}
+.dialog-box>.dialog-box-content{
+    height: auto;
+    border: none;
+}
+/*标签*/
+.dialog-box>.dialog-box-content .content-text{
+    margin-top: 13px;
+    line-height: 28px;
+    margin-right: 15px;
+    padding-left: 5px;
+}
+/*输入框*/
+.dialog-box>.dialog-box-content .content-input{
+    width: 200px;
+    height: 28px;
+    margin-top: 13px;
+    box-sizing: border-box;
+    margin-right: 15px;
+    padding-left: 5px;
+    border: 1px solid #ccc;
+}
+/*下拉框*/
+.dialog-box>.dialog-box-content select{
+    padding: 5px 35px 5px 8px;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    /*background: url("assets/company/down-icon.png") no-repeat right center;*/
+    border: 1px solid #ccc;
+}
+/*图片*/
+.dialog-box>.dialog-box-content .content-image{
+    margin: 7px 0;
+}
+.dialog-box>.dialog-box-content .content-image img{
+    width: 135px;
+    height: 90px;
+}
+/*红色星号*/
+.dialog-box>.dialog-box-content .required{
+    color: #F24747;
+    font-size: 1.2rem;
+}
+/*textarea*/
+.dialog-box>.dialog-box-content textarea{
+    width: 510px;
+    height: 80px;
+    padding: 5px;
+    margin-top: 13px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+.upload{
+    position: absolute;
+    margin-left: -70px;
+    margin-top: 3px;
+    opacity: 0;
+    z-index: 1000;
+    width: 72px;
+}
+button{
+    padding: 2px 5px;
+    color: #777;
+    outline: none;
+    background-color: #faf5f5;
+    border: 1px solid #dadce1;
+    font-size: 14px;
+}

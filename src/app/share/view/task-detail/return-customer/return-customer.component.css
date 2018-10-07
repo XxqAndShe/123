@@ -1,0 +1,24 @@
+.start-symbol {
+    color: #ff5454;
+    position: relative;
+    top: 2px;
+}
+#signMan{
+    height: 30px;
+    width: 272px;
+    line-height: 30px;
+    padding-left: 10px;
+    border:1px solid rgb(13,133,228) ;
+    outline: none;
+    margin-top: 10px;
+}
+div.dialog-box div.dialog-box-content div.sign-div{
+    margin-left: 23px;
+}
+div.dialog-box div.dialog-box-content div.sign-div-files{
+    margin-top: 10px;
+}
+div.dialog-box div.dialog-box-content div.sign-div-files .sign-files{
+    display: inline-block;
+    width: 284px;
+}

@@ -1,0 +1,281 @@
+<div class="others_tank" id="box" [ngStyle]="drag.setPosition(800,600)">
+    <div class="others_top" id="move">
+        <span class="top_left">其他</span>
+        <span class="top_right" (click)="close()">×</span>
+    </div>
+    <div style="margin-top: 15px;padding-left: 10px;">
+        <panel-nav [navs]="navs" [curIndex]="curIndex" (chanCurIndex)="chanCurIndex($event)"></panel-nav>
+    </div>
+    <div class="others_content">
+        <form action="">
+            <div class="content_feiyongxinxi clearfix" [hidden]="curIndex !== 0">
+                <table border="1" style="margin: 30px auto;">
+                    <tr style="background-color: #E4E4E4">
+                        <th>品名</th>
+                        <th>改</th>
+                        <th>包装件数</th>
+                        <th>改</th>
+                        <th>安装件数</th>
+                        <th>改</th>
+                        <th>重量</th>
+                        <th>改</th>
+                        <th>体积</th>
+                        <th>改</th>
+                        <th>安装费</th>
+                        <th>改</th>
+                        <th>上楼费</th>
+                        <th>改</th>
+                    </tr>
+                    <tr *ngFor="let good of otherResult.vTaskOtherWaybillGoodsList">
+                        <td style="max-width: 130px">{{good.oldName}}</td>
+                        <td>{{good.name}}</td>
+                        <td>{{good.oldPackageNumber}}</td>
+                        <td>{{good.packageNumber}}</td>
+                        <td>{{good.oldInstallNumber}}</td>
+                        <td>{{good.installNumber}}</td>
+                        <td>{{good.oldweight}}</td>
+                        <td>{{good.weight}}</td>
+                        <td>{{good.oldVolume}}</td>
+                        <td>{{good.volume}}</td>
+                        <td>{{good?.installChargeOld}}</td>
+                        <td>{{good?.installCharge}}</td>
+                        <td>{{good?.upstairsChargeOld}}</td>
+                        <td>{{good?.upstairsCharge}}</td>
+                    </tr>
+                    <tr *ngIf="otherResult.vTaskOtherWaybillGoodsList.length">
+                        <td colspan="2">合计</td>
+                        <td>{{obj.oldPackageSumNumber}}</td>
+                        <td>{{obj.packageSumNumber}}</td>
+                        <td>{{obj.oldInstallSumNumber}}</td>
+                        <td>{{obj.installSumNumber}}</td>
+                        <td>{{obj.oldweightSum}}</td>
+                        <td>{{obj.weightSum}}</td>
+                        <td>{{obj.oldVolumeSum}}</td>
+                        <td>{{obj.volumeSum}}</td>
+                        <td>{{obj.installChargeOldSum}}</td>
+                        <td>{{obj.installChargeSum}}</td>
+                        <td>{{obj.upstairsChargeOldSum}}</td>
+                        <td colspan="2">{{obj.upstairsChargeSum}}</td>
+                    </tr>
+                    <tr *ngIf="!otherResult.vTaskOtherWaybillGoodsList.length">
+                        <td colspan="10">暂无数据</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content_jiben" [hidden]="curIndex !== 1">
+                <table border="1" style="margin: 30px auto;">
+                    <tr style="background-color: #E4E4E4">
+                        <th>收货人与地址信息</th>
+                        <th>原</th>
+                        <th>改</th>
+                    </tr>
+                    <tr>
+                        <td>服务类型</td>
+                        <td>{{otherResult.waybillServiceTypeOld}}</td>
+                        <td>{{otherResult.waybillServiceType}}</td>
+                    </tr>
+                    <tr>
+                        <td>收货人姓名</td>
+                        <td>{{otherResult.consigneeOld}}</td>
+                        <td>{{otherResult.consignee}}</td>
+                    </tr>
+                    <tr>
+                        <td>收货人手机</td>
+                        <td>{{otherResult.consigneeMobileOld}}</td>
+                        <td>{{otherResult.consigneeMobile}}</td>
+                    </tr>
+                    <tr>
+                        <td>收货人地址</td>
+                        <td>{{otherResult.consigneeAddressOld}}</td>
+                        <td>{{otherResult.consigneeAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td>到站</td>
+                        <td>{{otherResult.siteArrivalOld}}</td>
+                        <td>{{otherResult.siteArrival}}</td>
+                    </tr>
+                    <tr>
+                        <td>目的地</td>
+                        <td>{{otherResult.distinationOld}}</td>
+                        <td>{{otherResult.distination}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content_hx" [hidden]="curIndex !== 2">
+                <table style="margin: 30px auto;">
+                    <tr style="background-color: #E4E4E4">
+                        <th>核销信息</th>
+                        <th>原</th>
+                        <th>改</th>
+                    </tr>
+                    <tr>
+                        <td>是否核销</td>
+                        <td>{{otherResult.checkOld}}</td>
+                        <td>{{otherResult.checkNew}}</td>
+                    </tr>
+                    <tr *ngIf="otherResult.check">
+                        <td>核销单号</td>
+                        <td></td>
+                        <td>
+                            {{otherResult.verificationCode}}
+                        </td>
+                    </tr>
+                    <tr *ngIf="otherResult.check">
+                        <td>订单来源</td>
+                        <td></td>
+                        <td>
+                            {{otherResult.serviceTypeTmall}}
+                        </td>
+                    </tr>
+                    <tr *ngIf="otherResult.check">
+                        <td>服务编码</td>
+                        <td></td>
+                        <td>
+                            {{otherResult.surceType}}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content_jiben" [hidden]="curIndex !== 3">
+                <table style="margin: 30px auto;">
+                    <tr style="background-color: #E4E4E4">
+                        <th>提货信息</th>
+                        <th>原</th>
+                        <th>改</th>
+                    </tr>
+                    <tr>
+                        <td>提货电话</td>
+                        <td>{{otherPickOldRespVo.pickUpTel}}</td>
+                        <td>{{otherPickUpRespVo.pickUpTel}}</td>
+                    </tr>
+                    <tr>
+                        <td>提货地址</td>
+                        <td>{{otherPickOldRespVo.pickUpAddress}}</td>
+                        <td>{{otherPickUpRespVo.pickUpAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td>提货区域</td>
+                        <td><area-select name="addrCodeOld" [(ngModel)]="otherPickOldRespVo.addrCode"></area-select></td>
+                        <td><area-select name="addrCode" [(ngModel)]="otherPickUpRespVo.addrCode"></area-select></td>
+                    </tr>
+                    <tr>
+                        <td>提货码</td>
+                        <td>{{otherPickOldRespVo.pickUpCode}}</td>
+                        <td>{{otherPickUpRespVo.pickUpCode}}</td>
+                    </tr>
+                    <tr>
+                        <td>物流单号</td>
+                        <td>{{otherPickOldRespVo.logisticsBill}}</td>
+                        <td>{{otherPickUpRespVo.logisticsBill}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content_feiyongchuli clearfix" [hidden]="curIndex !== 4">
+                <table style="margin: 0 auto 30px auto;">
+                    <tr style="background-color: #E4E4E4">
+                        <th>费用名称</th>
+                        <th>原</th>
+                        <th>改</th>
+                        <th>差额</th>
+                        <th>责任方</th>
+                        <th>承担金额</th>
+                        <th>收款对象</th>
+                        <th>收款金额</th>
+                    </tr>
+                    <tr *ngFor="let fee of otherResult.vTaskOtherFeeDataList; let i=index">
+                        <td>{{fee.feeName}}</td>
+                        <td>{{fee.oldFee}}</td>
+                        <td>{{fee.fee}}</td>
+                        <td>{{(fee.fee-fee.oldFee) || 0}}</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let dutyInfo of fee.vTaskOtherFeeDutyDataList" style="margin-bottom: 2px;">
+                                    {{dutyInfo.dutyName}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let dutyInfo of fee.vTaskOtherFeeDutyDataList" style="margin-bottom: 6px;">
+                                    {{dutyInfo.assumeFee}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>{{fee.vTaskOtherFeeRepayData.repayName}}</td>
+                        <td>{{fee.vTaskOtherFeeRepayData.repayFee}}</td>
+                    </tr>
+                    <tr *ngIf="!otherResult.vTaskOtherFeeDataList.length">
+                        <td colspan="8">暂无数据</td>
+                    </tr>
+                </table>
+                <div class="feiyongchuli_jieguo">
+                    <div class="row" *ngIf="showMasterBox" style="margin-top: 10px;">
+                        <label>责任方或补偿对象的师傅姓名</label>
+                        <input class="inline-input input-lg" name="installMaster" [(ngModel)]="installMaster"/>
+                    </div>
+                    <div style="width: 702px;margin: auto">
+                        <div class="jieguo_item" style="margin-right: 30px">
+                            <div class="title-line">合计承担金额</div>
+                            <p-dataTable emptyMessage="没有记录" [value]="dutyData">
+                                <p-column field="name" header="责任方" [style]="{'text-align': 'center'}"></p-column>
+                                <p-column field="value" header="合计承担金额" [style]="{'text-align': 'center'}"></p-column>
+                            </p-dataTable>
+                        </div>
+                        <div class="jieguo_item">
+                            <div class="title-line">合计收款金额</div>
+                            <p-dataTable emptyMessage="没有记录" [value]="repayData">
+                                <p-column field="name" header="收款对象" [style]="{'text-align': 'center'}"></p-column>
+                                <p-column field="value" header="合计收款金额" [style]="{'text-align': 'center'}"></p-column>
+                            </p-dataTable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content_qita clearfix">
+                <div class="row">
+                    <span>
+                        <table style="margin: auto">
+                            <tr style="background-color: #E4E4E4">
+                                <th>责任方</th>
+                            </tr>
+                            <tr *ngFor="let duty of otherResult.dutys">
+                                <td>{{duty}}</td>
+                            </tr>
+                            <tr *ngIf="!otherResult.dutys.length">
+                                <td>暂无数据</td>
+                            </tr>
+                        </table>
+                    </span>
+                    <span style="min-height: 55px;vertical-align: bottom">
+                        <span style="margin-right: 30px">
+                            <input type="checkbox" name="claims" disabled [checked]="otherResult.claims"
+                                   style="display: inline-block;vertical-align: middle">
+                            <span>转理赔</span>
+                        </span>
+                        <span *ngIf="otherResult.claims">
+                            <label>出险原因</label>
+                            <input name="riskReason" class="inline-input input-lg" [(ngModel)]="otherResult.reason"/>
+                        </span>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="normal-lb verTop">描述图片</label>
+                    <ul class="img-wrap">
+                        <li class="img-item" *ngFor="let singImg of otherResult.chatRecord">
+                            <a rel="fancybox" href="{{singImg.url}}">
+                                <img src="{{singImg.url}}" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <label class="normal-lb verTop">备注</label>
+                    <textarea name="remark" [(ngModel)]="otherResult.remark"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="others_btn clearfix">
+        <span class="others_btn_cancel" (click)="close()">关闭</span>
+    </div>
+</div>

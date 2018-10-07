@@ -1,0 +1,53 @@
+.nav-div {
+    width: 100%;
+    height: 37px;
+    border-bottom: 1px solid #dddddd;
+    box-sizing: border-box;
+}
+/*搜索框媒体查询*/
+@media screen and (max-width: 1024px) {
+    .nav-div {width: 800px;}
+}
+nav>div {
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    font-size: 13px;
+    background-color: #eeeeee;
+    margin-right: 10px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0 7px;
+    min-width: 85px;
+}
+nav>div.current {
+    border-top: 2px solid #0d85e4;
+    margin: -1px 10px 0 0;
+    background-color: #ffffff;
+    color: #147cce;
+    height: 38px;
+    line-height: 38px;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+}
+ nav>div:hover {
+    background-color: #0d85e4;
+    color: #ffffff;
+} 
+nav>div.current:hover {
+    background-color: #ffffff;
+    color: #147cce;
+}
+.nav-div>a {
+    float: right;
+    display: block;
+    margin-right: 10px;
+    width: 46px;
+    line-height: 36px;
+    text-align: right;
+    height: 36px;
+    background: url(/assets/export_csv.png) no-repeat left center;
+    background-size: 17px 20px;
+    color: #b6b6b6;
+}

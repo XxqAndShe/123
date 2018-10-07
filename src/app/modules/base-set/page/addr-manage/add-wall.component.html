@@ -1,0 +1,21 @@
+<div class="dialog-box" id="deposit_apply" [ngStyle]="drag.setPosition(400,250)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialog-left">添加街道</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div>
+            <label style="margin-right: 8px">省市区：</label>
+            <span style="position: relative"><area-select name="area" level="2" width="175px" [(ngModel)]="areaCode" (onChange)="getId($event)"></area-select></span>
+        </div>
+        <div style="margin-top: 20px;">
+            <label style="margin-right: 8px">街道：</label>
+            <input style="width: 175px;height: 30px;box-sizing: border-box" name="wall" [(ngModel)]="wall">
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<p-growl [value]="msgs"></p-growl>

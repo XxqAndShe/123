@@ -1,0 +1,21 @@
+<div class="dialog-box" id="container" [ngStyle]="drag.setPosition(420,222)">
+    <div id="header" class="dialog-box-title">
+        <span class="dialog-left">货物外发</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="row">
+            <label><i>*</i>外发承运商</label>
+            <input type="text" [(ngModel)]="outCarrier">
+        </div>
+        <div class="row">
+            <label>返货费</label>
+            <input type="text" [(ngModel)]="returnFee">
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<p-growl [value]="msgs"></p-growl>

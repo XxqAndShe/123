@@ -1,0 +1,4 @@
+.dialog-box{width:580px;}
+.dialog-box>.dialog-box-footer{padding:10px 0;}
+.dialog-box>.dialog-box-content{height:360px;text-align: center;padding:20px;}
+#deposit_apply{display: none;}

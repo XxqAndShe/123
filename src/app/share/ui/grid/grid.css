@@ -1,0 +1,49 @@
+.column-link{
+    text-decoration:underline;
+}
+
+.ui-datatable-scrollable-wrapper {
+    overflow: visible;
+}
+
+.grid_tips {
+    display: block;
+    position: fixed;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    max-width: 300px;
+    min-height: 50px;
+    height: auto;
+    line-height: 20px;
+    padding: 5px;
+    color: #000;
+}
+
+span[hidden]{
+    display: none;
+}
+span{
+    word-wrap: break-word;
+}
+a.operation-a {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    text-align: left;
+    color: #728597;
+}
+a.operation-a>i {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+a.operation-unlock>i {
+    background: url(/assets/operation.png) no-repeat -1px -120px;
+    background-size: 122px;
+}
+a.operation-lock>i {
+    background: url(/assets/operation.png) no-repeat 0px -49px;
+    background-size: 122px;
+}

@@ -1,0 +1,15 @@
+<!--师傅名称-->
+<p-autoComplete *ngIf="type==='name'" name="realName" [(ngModel)]="value"
+                 [suggestions]="suggestions"
+                 (completeMethod)="queryData($event)"
+                 field="realName" [maxlength]=10 ></p-autoComplete>
+<!--师傅账号-->
+<p-autoComplete *ngIf="type==='mobile'" name="realName" [(ngModel)]="value"
+                 [suggestions]="suggestions"
+                 (completeMethod)="queryData($event)"
+                 field="mobile" [maxlength]=11></p-autoComplete>
+<!--师傅账号-->
+<p-autoComplete *ngIf="type!=='mobile' && type!=='name'" name="realName" [(ngModel)]="value"
+                 [suggestions]="suggestions"
+                 (completeMethod)="queryData($event)"
+                 field="name" [maxlength]=11></p-autoComplete>

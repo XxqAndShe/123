@@ -1,0 +1,6 @@
+<div class="nav-div">
+	<nav>
+		<div class="chart-nav" *ngFor="let nav of navs; let i=index" [ngClass]='{current: curArr[i]}' (click)="changeNav(i)">{{nav}}<span *ngIf="navNumArr.length">({{navNumArr[i]}})</span></div>
+	</nav>
+	<a href="javascript:void(0);" class="export-div">导出</a>
+</div>

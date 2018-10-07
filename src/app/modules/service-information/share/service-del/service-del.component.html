@@ -1,0 +1,16 @@
+<div class="dialog-box" style="display:block;width: 300px;margin-left: -200px;margin-top: -300px">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">提示</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <p style="text-align: center;padding: 20px 0">是否确定删除数据？</p>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>

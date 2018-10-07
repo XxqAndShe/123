@@ -1,0 +1,164 @@
+.dialog_bj{ display:block; position: relative;}
+.dialog_bj{ width:100%; height:100%;  }
+.dialog_bj{text-align: center; padding:0px; background:rgba(0,0,0,0.6); position:absolute; top:0px;z-index:9999;}
+.dialog_bj:before{content: '';display: inline-block;height: 100%;vertical-align: middle;}
+.group_bg {text-align: center; padding:0px; position:absolute; top:0px;z-index:99;}
+
+.text_chat {
+}
+.text_chat img {
+    max-width: 400px;
+}
+.chat_history img {
+    max-width: 200px;
+}
+.chat_box{ padding:10px;}
+.chat_box .left{ width:100%; float:left; margin-top:15px;}
+.chat_box .left .u_pic{ width:32px; height:32px; border-radius:16px; font-size:12px; color:#fff; line-height:32px; overflow:hidden; float:left; background:#d6dce1; overflow:hidden;}
+.chat_box .u_pic img{ width:32px; height:32px;}
+.chat_box p{ padding-bottom:5px; font-size:12px; color:#8e9399;}
+.chat_box .left .u_cont p{ text-align:left; padding-bottom:5px; font-size:12px;}
+.chat_box .left .u_cont{ float:left; padding-left:10px;}
+
+.chat_box .left .u_cont .text_chat{ background:#1a9cf2; padding:10px; padding-left:15px; padding-right:15px; line-height:20px; height:100%; color:#fff; border-radius: 0px 10px 10px 10px; max-width:210px; word-wrap: break-word;}
+
+
+.chat_box .right{width:100%; float:right; margin-top:15px; margin-bottom:10px;}
+.chat_box .right .u_pic{ width:32px; height:32px; border-radius:16px; font-size:12px; color:#fff; line-height:32px;  float:right; background:#d6dce1;overflow:hidden;}
+.chat_box p{ padding-bottom:5px; font-size:12px; color:#8e9399;}
+.chat_box .right .u_cont p{ text-align:right; padding-bottom:5px; font-size:12px;}
+.chat_box .right .u_cont{ float:right; padding-right:10px;}
+.chat_box .right .u_cont .text_chat{ text-align:left; background:#e6eaf0; padding:10px; padding-left:15px; padding-right:15px;line-height:20px; height:100%; color:#21212c; border-radius: 10px 0px 10px 10px; max-width:400px; word-wrap: break-word;}
+
+/*信息发送订单样式*/
+.order_chat {
+    cursor: pointer;
+    text-align:left; background:#e6eaf0; padding:10px; padding-left:15px; padding-right:15px;line-height:20px; height:100%; color:#21212c; border-radius: 10px 0px 10px 10px; max-width:400px; word-wrap: break-word;
+}
+.chat_box .left .u_cont .order_chat p {
+    line-height: 20px;
+    color: #333;
+}
+.chat_box .left .u_cont .order_chat #task_id_a { cursor: pointer;}
+
+.chat_box .right .u_cont .order_chat{ text-align:left; background:#e6eaf0; padding:10px; padding-left:15px; padding-right:15px;line-height:20px; height:100%;  border-radius: 10px 0px 10px 10px; max-width:400px; word-wrap: break-word;}
+.chat_box .right .u_cont .order_chat p {
+    line-height: 20px;
+    color: #333;
+}
+.chat_box .right .u_cont .order_chat #task_id_a { cursor: pointer;}
+/*文件样式*/
+.chat_box .right .u_cont .file_chat{ cursor: pointer; text-align:left; background:#e6eaf0; padding:10px; padding-left:15px; padding-right:15px;line-height:20px; height:100%;  border-radius: 10px 0px 10px 10px; max-width:400px; word-wrap: break-word;}
+.chat_box .right .u_cont .file_chat p {
+    line-height: 20px;
+    color: #1f8aec;
+}
+/*文件样式*/
+.chat_box .right .u_cont .file_chat{ display: block; text-align:left; background:#e6eaf0; padding:10px; padding-left:15px; padding-right:15px;line-height:20px; height:100%;  border-radius: 10px 0px 10px 10px; max-width:400px; word-wrap: break-word; overflow: hidden;}
+.chat_box .right .u_cont .file_chat p {
+    border-bottom: 1px solid #ccc;
+}
+.chat_box .right .u_cont .file_chat img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.chat_box .right .u_cont .file_chat a {
+    float: right;
+    margin: 5px 5px 0;
+    color: #009bdb;
+}
+
+
+
+
+.chat_content::-webkit-scrollbar             { width:6px; height:10px;}
+.chat_content::-webkit-scrollbar-button      { background-color:#FF7677; display:none;}
+.chat_content::-webkit-scrollbar-track       { background:#efefef;}
+.chat_content::-webkit-scrollbar-track-piece {/*background:url(http://www.lyblog.net/wp/wp-content/themes/mine/img/stripes_tiny_08.png);*/}
+.chat_content::-webkit-scrollbar-thumb       {background:#ccc;/*border-radius:4px;*/}
+.chat_content::-webkit-scrollbar-corner      {background:#82AFFF;}
+.chat_content::-webkit-scrollbar-resizer     { background:#FF0BEE; }
+.chat_content::-webkit-scrollbar-thumb:hover {background-color:#aaa}
+.chat_content::-webkit-scrollbar-thumb:active{background-color:#adbdcc}
+
+.chatImg {
+    margin:3px 3px;
+    max-width: 400px;
+}
+
+/*任务栏公共样式*/
+.right_box .cont_order{}
+.right_box .cont_order.noll{ background:url(/assets/im-img/bj.png) center no-repeat; height:510px;}
+/*.right_box .cont_order.noll .cont{ display:none;}*/
+
+.right_box .cont_order ul{ padding:15px;}
+.right_box .cont_order ul li{ width:100%; float:left; text-align:left; font-size:12px;}
+.right_box .cont_order ul li b{ color:#ff2a00;}
+.right_box .cont_order ul li.h1{ font-size:16px; font-weight:bold; padding-top:15px;}
+.right_box .cont_order ul li.h1 b{ float:right; color:#017dfb;}
+
+/*成员蒙版*/
+.group_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ccc;
+}
+.choice {
+    width: 450px;
+    height: 350px;
+    background:#fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -275px;
+    margin-top:-175px;
+
+}
+
+.group_bg > .choice > p {
+    background: #F5F5F5;
+    text-align: center;
+    line-height: 35px;
+}
+.group_bg > .choice > ul {
+    flex-wrap: wrap;
+    padding-top: 10px;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+.group_bg > .choice li  {
+
+    float: left;
+    width: 43%;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.group_bg > .choice li:hover  {
+    background: #ccc;
+}
+.group_bg > .choice li > div {
+    float: left;
+}
+.group_bg > .choice li > .worker {
+    font-size: 12px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height:40px;
+    margin-right:3px;
+}
+.group_bg > .choice li > .worker_title {
+    padding-top: 5px;
+    box-sizing: border-box;
+}
+.clean_bg{
+    float: right;
+    margin-right: 20px;
+    font-size: 16px;
+}

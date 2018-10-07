@@ -1,0 +1,44 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <!--导航栏-->
+        <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+        <div class="content-header">
+            <form>
+                <span>时间段</span>
+                <div class="calendar-div">
+                    <p-calendar name="startDate" [(ngModel)]="BusRanking.startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="BusRanking.endDate" [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="calendar-div">
+                    <p-calendar name="endDate" [(ngModel)]="BusRanking.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="BusRanking.startDate" [readonlyInput]="true"></p-calendar>
+                </div>
+                 <div style="margin-left:20px">
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                 </div>
+                <button class="btn default-btn" type="reset">清空</button>
+            </form>
+
+        </div>
+        <!--这里是显示订单区域统计图部分-->
+        <div class="content-body">
+            <div class="table-header table-header1">
+                <h4>商家排名</h4>
+            </div>
+            <div class="table-container" [class.expand]="isSelect">
+                <ui-grid
+                        [columns]="columns"
+                        (load)="load($event)"
+                        [data]="data"
+                        [(selections)]="selectionRow"
+
+                ></ui-grid>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+
+

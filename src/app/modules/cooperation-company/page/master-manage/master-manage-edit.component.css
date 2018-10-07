@@ -1,0 +1,124 @@
+.outer-modal-container header {
+    height: 60px;
+    padding-left: 22px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 5px #cccccc;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+.outer-modal-container header div>span:first-child {
+	font-size: 14px;
+}
+.outer-modal-container header div:first-child {
+    margin-bottom: 12px;
+    height: 20px;
+    position: relative;
+}
+.outer-modal-container header div:first-child>span {
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+.outer-modal-container .content>.service-section>.service-list a{
+    cursor: default;
+}
+span.audit-icon {
+    margin-left: 22px;
+    box-sizing: border-box;
+    padding-left: 23px;
+    background: #f8f0f0 url(/assets/cooperation-company/identify.png) no-repeat 3px center;
+    background-size: 17px 17px;
+    display: inline-block;
+    width: 65px;
+    border-radius: 9px;
+    color: #fcb39b;
+}
+
+a.close-modal-btn {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 78px;
+    background: url(/assets/close-modal.png);
+    margin-top: -39px;
+}
+
+.data span.line-container.line-left {
+    width: 233px;
+}
+
+/*地址选择框*/
+.container .content ui-select-box{
+    line-height: 16px;
+}
+
+.content .time-control p-calendar{
+    line-height: 16px;
+}
+.addr-control{
+    width: 315px;
+}
+/*样式*/
+.outer-modal-container section>p.idpic {
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: top;
+}
+.outer-modal-container section>p.idpic>span {
+    width: auto;
+}
+ul.idpic-list>li {
+    display: inline-block;
+    width: 148px;
+    vertical-align: top;
+    margin-right: 22px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+ul.idpic-list>li>div {
+    margin-bottom: 4px;
+    width: 100%;
+    height: 95px;
+    border: 1px solid #d2d2d2;
+    position: relative;
+    box-sizing: border-box;
+}
+ul.idpic-list>li>div>a>img {
+    width: 144px;
+    height: 91px;
+    position: absolute;
+    left: 1px;
+    top: 1px;
+}
+ul.idpic-list>li>div>span {
+    line-height: 93px;
+    color: #999999;
+}
+ul.idpic-list>li>span {
+    color: #666666;
+}
+.add-float-right{
+    float: right;
+}
+.checkboxServe{
+    width: 110px;
+    line-height: 30px;
+    margin-left: 20px;
+    float: left;
+}
+.checkboxServe>input{
+    padding-left: 5px;
+}
+.add-accountName{
+    margin-top: 10px;
+}
+.outer-modal-container header .edit-title{
+    font-size: 14px;
+    line-height: 60px;
+    height: 60px;
+    font-weight: normal;
+}
+.add-float-right #install{
+    margin-left: 10px;
+}

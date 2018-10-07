@@ -1,0 +1,16 @@
+<div id="deposit_del" class="dialog-box">
+    <div id="deposit_del_title" class="dialog-box-title">
+        <span class="dialogdialog-left">提示</span>
+        <span class="dialog-right" (click)="hideWindow()">×</span>
+    </div>
+    <div class="dialog-box-content del-center">
+        是否确认删除？
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="affirm()">确认</span>
+        <span class="btn default-btn" (click)="hideWindow()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+

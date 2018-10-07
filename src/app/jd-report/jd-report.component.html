@@ -1,0 +1,135 @@
+<div class="jd-body">
+    <h1>京东订单价格表</h1>
+    <form>
+        <ul class="search">
+            <li style="width: 400px">
+                <span>推单日期</span>
+                <div class="line-end-date">
+                    <p-calendar name="maintainTime"
+                                [locale]="zh" dateFormat="yy/mm/dd"
+                                [inputStyle]="inputStyle"
+                                [monthNavigator]="true"
+                                [yearNavigator]="true"
+                                [yearRange]="yearRange"
+                                [maxDate]="dateMax"
+                                [(ngModel)]="beginDate"
+                                [readonlyInput]="true"></p-calendar>
+                </div>
+                <i>-</i>
+                <div class="line-end-date">
+                    <p-calendar name="maintainTime"
+                                [locale]="zh" dateFormat="yy/mm/dd"
+                                [inputStyle]="inputStyle"
+                                [monthNavigator]="true"
+                                [yearNavigator]="true"
+                                [yearRange]="yearRange"
+                                [minDate]="beginDate"
+                                [maxDate]="dateMax"
+                                [(ngModel)]="endDate"
+                                [readonlyInput]="true"></p-calendar>
+                </div>
+            </li>
+            <li>
+                <span>运单号</span>
+                <input type="text" name="waybill" [(ngModel)]="jdRportVo.waybillId">
+            </li>
+            <li>
+                <span>是否签收</span>
+                <select name="signStatus" [(ngModel)]="jdRportVo.signStatus">
+                    <option value="all">全部</option>
+                    <option value="signed">已签收</option>
+                    <option value="notSign">未签收</option>
+                </select>
+            </li>
+        </ul>
+        <ul class="search">
+            <li style="width: 400px">
+                <span>签收日期</span>
+                <div class="line-end-date">
+                    <p-calendar name="maintainTime"
+                                [locale]="zh" dateFormat="yy/mm/dd"
+                                [inputStyle]="inputStyle"
+                                [monthNavigator]="true"
+                                [yearNavigator]="true"
+                                [yearRange]="yearRange"
+                                [maxDate]="dateMax"
+                                [(ngModel)]="signStartDate"
+                                [readonlyInput]="true"></p-calendar>
+                </div>
+                <i>-</i>
+                <div class="line-end-date">
+                    <p-calendar name="maintainTime"
+                                [locale]="zh" dateFormat="yy/mm/dd"
+                                [inputStyle]="inputStyle"
+                                [monthNavigator]="true"
+                                [yearNavigator]="true"
+                                [yearRange]="yearRange"
+                                [minDate]="signStartDate"
+                                [maxDate]="dateMax"
+                                [(ngModel)]="signEndDate"
+                                [readonlyInput]="true"></p-calendar>
+                </div>
+            </li>
+            <li>
+                <span>京东订单号</span>
+                <input type="text" name="jd_order" [(ngModel)]="jdRportVo.orderNo">
+            </li>
+            <li></li>
+            <li class="last">
+                <button class="primary-btn btn" (click)=doSearch() [disabled]="searchLoading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="searchLoading"></i>
+                    查询
+                </button>
+                <button type="reset" class="default-btn btn" type="reset">清空</button>
+                <button (click)="doExport()" class="default-btn btn btn-export">导出</button>
+            </li>
+        </ul>
+    </form>
+    <div class="gird-table">
+        <p-dataTable #dt [value]="data"
+                     [style]="{'text-align': 'center','border-top': '1px solid #57A3EF'}"
+                     emptyMessage="没有记录"
+                     [rows]="20" [paginator]="true"
+                     [pageLinks]="20"
+                     [rowsPerPageOptions]="[20,50,100]"
+                     [totalRecords]="totalRecords"
+                     selectionMode="multiple"
+                     [(selection)]="selectionRow"
+                     (onLazyLoad)="load($event)"
+                     scrollable="true"
+                     scrollWidth="100%"
+                     scrollHeight="450px"
+                     [lazy]="true">
+            <p-column field="waybillId" header="运单号"></p-column>
+            <p-column field="orderNo" header="京东订单号"></p-column>
+            <p-column field="orderDate" header="推单时间"></p-column>
+            <p-column field="servicesScope" header="服务类型"></p-column>
+            <p-column field="signDate" header="签收时间"></p-column>
+            <p-column field="signStatus" header="是否签收"></p-column>
+            <p-column field="receiver" header="收货人姓名"></p-column>
+            <p-column field="receiverTel" header="收货人电话"></p-column>
+            <p-column field="receiverAddr" header="收货地址"></p-column>
+            <p-column header="品名" [style]="{'text-align': 'center','width':'200px'}">
+                <ng-template let-col let-row="rowData" pTemplate="body">
+            <span style="width: 100%;text-align: center" (mouseenter)="onCellMouseEnter($event,'tips',row,col)"
+                  (mouseleave)="onCellMouseLeave()">
+                {{replaceTextOmit(row['goodsNames'], row['goodsNames'].textLength?row['goodsNames'].textLength: 25)}}
+            </span>
+                </ng-template>
+            </p-column>
+            <p-column field="sumPri" header="费用金额(元)"></p-column>
+            <p-column field="colPri" header="揽件费用(元)"></p-column>
+            <p-column field="maiPri" header="干线费用(元)"></p-column>
+            <p-column field="braPri" header="支线费用(元)"></p-column>
+            <p-column field="vouPri" header="保价费用(元)"></p-column>
+            <p-column field="insPri" header="安装费用(元)"></p-column>
+        </p-dataTable>
+    </div>
+</div>
+<!--提示-->
+<div *ngIf="showWhichWin === 'tips' &&tips.length>25"
+     class="tips" [ngStyle]="{'left': leftSize+'px', 'top': topSize+'px'}">
+    {{tips}}
+</div>
+<p-growl [value]="msgs"></p-growl>
+

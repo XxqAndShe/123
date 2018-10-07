@@ -1,0 +1,1164 @@
+s{
+    text-decoration: none;
+    color: #858A90;
+}
+.clearfix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix {
+    zoom: 1;
+}
+
+
+.exception-container{
+    width: 1030px;
+    height: 100%;
+    box-shadow: -5px 0px 30px #787878;
+    position: absolute;
+    background-color: #fff;
+    outline: none;
+    top: 0;
+    right: 0;
+}
+
+.exception-basicinfo,
+.exception-aftersaleinfo,
+.exception-loginfo{
+    height:calc(100% - 150px)!important;
+    overflow: auto;
+}
+/*异常处理头 begin*/
+.exception-head{
+    width: 100%;
+    height: 94px;
+    border-bottom: 1px solid #D8D8D8;
+    box-shadow: 0px 2px 4px #D8D8D8;
+    background-color: #fff;
+}
+.exception-head-info{
+    width: 100%;
+    height: 53px;
+    line-height: 53px;
+}
+.exception-head-info span:nth-child(1){
+    display: inline-block;
+    width: 140px;
+    height: 100%;
+    font-size: 14px;
+    padding-left: 15px;
+    font-family: "microsoft yahei", "sans-serif";
+}
+.exception-head-info span:nth-child(1) b{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 26px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #0DA0FD;
+    font-weight: 400;
+    margin-right: 15px;
+    font-family: "microsoft yahei", "sans-serif";
+}
+.exception-head-info span:nth-child(2){
+    display: inline-block;
+    width: 90px;
+    height: 26px;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 26px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #1FC695;
+    font-family: "microsoft yahei", "sans-serif";
+    margin-right: 56px;
+}
+.exception-head-info span:nth-child(3){
+    display: inline-block;
+    width: 172px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #0D85E4;
+}
+.exception-head-info span:nth-child(3) b{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #666;
+}
+.exception-head-info span:nth-child(4){
+    display: inline-block;
+    width: 180px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #0D85E4;
+}
+.exception-head-info span:nth-child(4) b{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #666;
+}
+.exception-head-info span:nth-child(5){
+    display: inline-block;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #0D85E4;
+}
+.exception-head-info span:nth-child(5) b{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #666;
+}
+.exception-head-status{
+    width: 100%;
+    height: 26px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+}
+.exception-head-status span:nth-of-type(1){
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    line-height: 26px;
+    color: #666;
+    margin-left: 56px;
+    margin-right: 18px;
+    float: left;
+}
+.exception-head-status ul{
+    float: left;
+}
+.exception-head-status ul li{
+    display: inline-block;
+    float: left;
+    box-sizing: border-box;
+    width: 82px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    color: #82888E;
+    background-color: #EEE;
+    margin-right: 3px;
+    position: relative;
+    text-indent: 11px;
+    cursor: pointer;
+}
+.exception-head-status ul li:not(:first-child):before{
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 4px;
+    left: -9px;
+}
+.exception-head-status ul li:not(:last-child):after{
+    content: "";
+    display: inline-block;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    background-color: #eee;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 4px;
+    left: 73px;
+    z-index: 1;
+}
+/*已完成的状态样式*/
+.exception-head-status .exception-head-status-finished{
+    color: #fff!important;
+    background-color: #1FC695!important;
+}
+.exception-head .exception-head-status .exception-head-status-finished:after{
+    background-color: #1FC695!important;
+}
+/*进行中的状态样式*/
+.exception-head-status .exception-head-status-running{
+    color: #1FC695;
+    background-color: #fff!important;
+    border-top:1px solid #1FC695;
+    border-bottom:1px solid #1FC695;
+    line-height: 24px;
+}
+.exception-head .exception-head-status .exception-head-status-running:before{
+    border-top:1px solid #1FC695;
+    border-right:1px solid #1FC695;
+    top: 3px;
+}
+.exception-head .exception-head-status .exception-head-status-running:after{
+    background-color: #fff;
+    border-top:1px solid #1FC695;
+    border-right:1px solid #1FC695;
+    top: 3px;
+    left: 73px;
+}
+/*异常处理头 end*/
+
+/*异常处理导航 begin*/
+.exception-nav{
+    width: 100%;
+    height: 26px;
+    margin-top: 14px;
+    margin-bottom: 15px;
+}
+.exception-nav ul{
+    margin-left: 5px;
+}
+.exception-nav ul li{
+    display: inline-block;
+    float: left;
+    width: 91px;
+    height: 26px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    line-height: 26px;
+    text-align: center;
+    margin-left: 10px;
+}
+.exception-nav ul li a{
+    display: inline-block;
+    color: #82888E;
+    background-color: #EEE;
+    width: 91px;
+    height: 26px;
+}
+.exception-nav .exception-nav-selected a{
+    color: #fff !important;
+    background-color: #0DA0FD !important;
+}
+.exception-nav ul li a:hover{
+    background-color: #0DA0FD;
+    color: #fff;
+    cursor: pointer;
+}
+/*异常处理导航 end*/
+
+
+/*异常处理-基本信息页 begin*/
+.exception-basicinfo{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 15px;
+    background-color: #FBFAFA;
+}
+.exception-basicinfo-waybill{
+    width: 100%;
+    height: 214px;
+    box-sizing: border-box;
+}
+.exception-basicinfo-waybill1 , .exception-basicinfo-waybill2{
+    width: 488px;
+    height: 214px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0px 0px 6px #EFEEEE;
+}
+.exception-basicinfo-waybill1{
+    float: left;
+}
+.exception-basicinfo-waybill2{
+    float: right;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(1){
+    width: 100%;
+    height: 80px;
+    position: relative;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(1) p , .exception-basicinfo-waybill1 div:nth-of-type(2) p{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(1),.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(2){
+    top:28px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(1),.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(3){
+    left: 23px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(2),.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(4){
+    left: 258px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(3),.exception-basicinfo-waybill1 div:nth-of-type(1) p:nth-of-type(4){
+    top:48px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(2){
+    width: 100%;
+    height: 134px;
+    box-sizing: border-box;
+    border-top: 1px dashed #ccc;
+    position: relative;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-child(odd){
+    left: 23px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-child(even){
+    left: 258px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(1), .exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(2){
+    top: 20px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(3), .exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(4){
+    top: 40px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(5), .exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(6){
+    top: 60px;
+}
+.exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(7), .exception-basicinfo-waybill1 div:nth-of-type(2) p:nth-of-type(8){
+    top: 80px;
+}
+.exception-basicinfo-waybill2>div:nth-of-type(1){
+    width: 100%;
+    height: 130px;
+}
+.exception-basicinfo-waybill2 .waybill2-people{
+    width: 50%;
+    height: 130px;
+    float: left;
+    position: relative;
+}
+.exception-basicinfo-waybill2 .waybill2-people span:nth-of-type(1){
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    color: #fff;
+    line-height: 36px;
+    text-align: center;
+    background-color: #0DA0FD;
+    position: absolute;
+    top: 23px;
+    left: 15px;
+}
+.exception-basicinfo-waybill2 .waybill2-people:nth-of-type(2) span:nth-of-type(1){
+    background-color: #1FC695;
+}
+.exception-basicinfo-waybill2 .waybill2-people>p{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+    top: 26px;
+    left: 58px;
+}
+.exception-basicinfo-waybill2 .waybill2-people>p:nth-of-type(2){
+    top: 42px;
+}
+.exception-basicinfo-waybill2 .waybill2-people>p:nth-of-type(3){
+    color: #858585;
+    top: 80px;
+    left: 15px;
+}
+.exception-basicinfo-waybill2 .waybill2-people:nth-of-type(1):after{
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url("/assets/sale-after/exception-handle/arrow-right.png");
+    position: absolute;
+    top: 36px;
+    right: 36px;
+}
+.exception-basicinfo-waybill2>div:nth-of-type(2){
+    width: 100%;
+    height: 84px;
+    box-sizing: border-box;
+    border-top: 1px dashed #ccc;
+    position: relative;
+}
+.exception-basicinfo-waybill2>div:nth-of-type(2)>p{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+    top: 33px;
+    left: 16px;
+}
+.exception-basicinfo-waybill2>div:nth-of-type(2)>p:nth-of-type(2){
+    left: 260px;
+}
+
+.exception-basicinfo-productinfo{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15px;
+    box-shadow: 0px 3px 5px #E7EAEF;
+    background-color: #fff;
+}
+.exception-basicinfo-productinfo h3{
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: relative;
+    margin-bottom: 5px;
+    left: 10px;
+}
+.exception-basicinfo-productinfo h3:before{
+    content: "";
+    display: inline-block;
+    height: 14px;
+    border-left: 2px solid #0D85E4;
+    position: absolute;
+    top: 3px;
+    left: -8px;
+}
+.productinfo-log{
+    width: 100%;
+    margin-top: 12px;
+    box-sizing: border-box;
+    position: relative;
+}
+.productinfo-log-title li,.productinfo-log-style li{
+    display: inline-block;
+    float: left;
+    height:35px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #fff;
+    background-color: #1B97E6;
+    line-height: 35px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.productinfo-log-style li{
+    background-color: #fff;
+    color: #333;
+}
+.productinfo-log>ul:not(:first-child):nth-child(odd) li{
+    background-color:#F7F8FA;
+}
+.productinfo-log-title>li:nth-of-type(1)>s{
+    color: #fff;
+}
+.productinfo-log-title>li:nth-of-type(1)>s:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.productinfo-log>ul>li:nth-of-type(1){
+    width: 340px;
+    text-align: left;
+    text-indent: 8px;
+}
+.productinfo-log>ul>li:nth-of-type(2), .productinfo-log>ul>li:nth-of-type(3){
+    width: 52px;
+}
+.productinfo-log>ul>li:nth-of-type(4), .productinfo-log>ul>li:nth-of-type(5), .productinfo-log>ul>li:nth-of-type(6) {
+    width: 40px;
+}
+.productinfo-log>ul>li:nth-of-type(7), .productinfo-log>ul>li:nth-of-type(8){
+    width: 63px;
+}
+.productinfo-log>ul>li:nth-of-type(9), .productinfo-log>ul>li:nth-of-type(10), .productinfo-log>ul>li:nth-of-type(11), .productinfo-log>ul>li:nth-of-type(12), .productinfo-log>ul>li:nth-of-type(13), .productinfo-log>ul>li:nth-of-type(14){
+    width: 50px;
+}
+.productinfo-remarks{
+    width: 100%;
+    height: 90px;
+    margin-top: 18px;
+    border-top: 1px dashed #ccc;
+}
+.productinfo-remarks>ul{
+    display: inline-block;
+    width: 100%;
+    height: 90px;
+    position: relative;
+}
+.productinfo-remarks>ul>li{
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+}
+.productinfo-remarks>ul>li>s{
+    color: #1A9CF2;
+}
+.productinfo-remarks>ul>li:nth-of-type(1), .productinfo-remarks>ul>li:nth-of-type(2), .productinfo-remarks>ul>li:nth-of-type(3), .productinfo-remarks>ul>li:nth-of-type(4), .productinfo-remarks>ul>li:nth-of-type(5), .productinfo-remarks>ul>li:nth-of-type(6)  {
+    top:20px;
+}
+.productinfo-remarks>ul>li:nth-of-type(7), .productinfo-remarks>ul>li:nth-of-type(8), .productinfo-remarks>ul>li:nth-of-type(9){
+    top: 50px;
+}
+.productinfo-remarks>ul>li:nth-of-type(1), .productinfo-remarks>ul>li:nth-of-type(7){
+    left: 20px;
+}
+.productinfo-remarks>ul>li:nth-of-type(2){
+    left: 164px;
+}
+.productinfo-remarks>ul>li:nth-of-type(3), .productinfo-remarks>ul>li:nth-of-type(8){
+    left: 310px;
+}
+.productinfo-remarks>ul>li:nth-of-type(4), .productinfo-remarks>ul>li:nth-of-type(9){
+    left: 478px;
+}
+.productinfo-remarks>ul>li:nth-of-type(5){
+    left: 636px;
+}
+.productinfo-remarks>ul>li:nth-of-type(6){
+    left: 819px;
+}
+
+.exception-basicinfo-abnormalinfo{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15px;
+    box-shadow: 0px 3px 5px #E7EAEF;
+    background-color: #fff;
+}
+.exception-basicinfo-abnormalinfo h3{
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: relative;
+    margin-bottom: 5px;
+    left: 10px;
+}
+.exception-basicinfo-abnormalinfo h3:before{
+    content: "";
+    display: inline-block;
+    height: 14px;
+    border-left: 2px solid #0D85E4;
+    position: absolute;
+    top: 3px;
+    left: -8px;
+}
+.abnormalinfo-log{
+    width: 100%;
+    margin-top: 12px;
+    box-sizing: border-box;
+}
+.abnormalinfo-log-title li,.abnormalinfo-log-style li{
+    display: inline-block;
+    float: left;
+    height:35px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #fff;
+    background-color: #1B97E6;
+    line-height: 35px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.abnormalinfo-log-style li{
+    background-color: #fff;
+    color: #333;
+}
+.abnormalinfo-log>ul:not(:first-child):nth-child(odd) li{
+    background-color:#F7F8FA;
+}
+.abnormalinfo-log>ul>li:nth-of-type(1){
+    width: 86px;
+}
+.abnormalinfo-log>ul>li:nth-of-type(2){
+    width: 60px;
+}
+.abnormalinfo-log>ul>li:nth-of-type(3){
+    width: 80px;
+}
+.abnormalinfo-log>ul>li:nth-of-type(4){
+    width: 383px;
+    position: relative;
+}
+.abnormalinfo-log>ul>li:nth-of-type(5){
+    width: 53px;
+}
+.abnormalinfo-log>ul>li:nth-of-type(6){
+    width: 97px;
+}
+.abnormalinfo-log>ul>li:nth-of-type(7){
+    width: 68px;
+}
+.abnormalinfo-log>ul>li:nth-of-type(8){
+    width: 88px;
+}
+.abnormalinfo-log>ul>li:nth-of-type(9){
+    width: 75px;
+}
+.abnormalinfo-log-style>li:last-child{
+    color: #1A9CF2;
+    cursor: pointer;
+}
+.abnormalinfo-log-style>li:last-child:hover{
+    text-decoration: underline;
+}
+.abnormalinfo-log-style>li:nth-of-type(4) s{
+    display: inline-block;
+    width: 18px;
+    height: 15px;
+    background: url("/assets/sale-after/exception-handle/tupianBtn.png");
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 0px;
+}
+
+.productinfo-log-details{
+    width: 884px;
+    background-color: #F7FCFF;
+    border-radius: 3px;
+    box-shadow: 0px 3px 10px #aaa;
+    box-sizing: border-box;
+    position: absolute;
+    top: 2px;
+    left: 90px;
+    display: none;
+}
+.productinfo-log-details>ul>li{
+    display: inline-block;
+    float: left;
+    height:40px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    line-height: 35px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.productinfo-log-details>ul:nth-child(even){
+    background-color: #fff;
+}
+.productinfo-log-details>ul:nth-of-type(1) li{
+    color: #858585;
+}
+.productinfo-log-details>ul>li:nth-of-type(1){
+    width: 349px;
+    text-align: left;
+    text-indent: 1em;
+}
+.productinfo-log-details>ul>li:nth-of-type(2), .productinfo-log-details>ul>li:nth-of-type(3){
+    width: 53px;
+}
+.productinfo-log-details>ul>li:nth-of-type(4){
+    width: 65px;
+}
+.productinfo-log-details>ul>li:nth-of-type(5),.productinfo-log-details>ul>li:nth-of-type(6){
+    width: 38px;
+}
+.productinfo-log-details>ul>li:nth-of-type(7), .productinfo-log-details>ul>li:nth-of-type(8), .productinfo-log-details>ul>li:nth-of-type(9), .productinfo-log-details>ul>li:nth-of-type(10), .productinfo-log-details>ul>li:nth-of-type(11), .productinfo-log-details>ul>li:nth-of-type(12){
+    width: 48px;
+}
+.productinfo-log-details>ul:nth-of-type(1){
+    position: relative;
+}
+.productinfo-log-details>ul:nth-of-type(1):before{
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: #F7FCFF;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 10px;
+    left: -7px;
+}
+
+
+/*仲裁结果查看弹框*/
+.abnormalinfo-arbitration{
+    width: 344px;
+    height: 170px;
+    box-sizing: border-box;
+    background-color: #fff;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+}
+.abnormalinfo-arbitration p:nth-of-type(1), .abnormalinfo-arbitration p:nth-of-type(2){
+    display: inline-block;
+    width: 170px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-indent: 1em;
+}
+.abnormalinfo-arbitration>ul{
+    margin-left: 1em;
+}
+.abnormalinfo-arbitration>ul>li{
+    display: inline-block;
+    float: left;
+    height:30px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    line-height: 35px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: #F0F1F2;
+}
+.abnormalinfo-arbitration>ul:nth-of-type(2)>li{
+    background-color: #F7F8FA;
+}
+.abnormalinfo-arbitration>ul>li:nth-of-type(1), .abnormalinfo-arbitration>ul>li:nth-of-type(2){
+    width: 110px;
+}
+.abnormalinfo-arbitration>ul>li:nth-of-type(3){
+    width: 76px;
+}
+.abnormalinfo-arbitration p:nth-of-type(3), .abnormalinfo-arbitration p:nth-of-type(4){
+    text-indent: 1em;
+    line-height: 20px;
+}
+.abnormalinfo-arbitration s{
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    background: url("/assets/sale-after/exception-handle/close-button.png");
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+/*异常处理-基本信息页 end*/
+
+
+/*异常处理-售后任务信息 begin*/
+.exception-aftersaleinfo{
+    width: 992px;
+    height: 683px;  /*高度开发后删除*/
+    margin: 0 auto;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0px 3px 8px #e1e1e1;
+}
+.details-aftersaleinfo-nav{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid #EEF2F4;
+}
+.details-aftersaleinfo-nav ul li{
+    display: inline-block;
+    width: 100px;
+    height: 39px;
+    /*box-sizing: border-box;*/
+    float: left;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #858A90;
+    line-height: 39px;
+    text-align: center;
+    cursor: pointer;
+}
+.details-aftersaleinfo-nav ul li:not(.details-aftersaleinfo-nav-selected):hover{
+    background-color: #0DA0FD;
+    color: #fff;
+}
+.details-aftersaleinfo-nav ul li:not(.details-aftersaleinfo-nav-selected):hover s{
+    color: #fff;
+}
+.details-aftersaleinfo-nav-selected{
+    border-top: 2px solid #0DA0FD;
+    color: #333;
+    border-left: 1px solid #EEF2F4;
+    border-right: 1px solid #EEF2F4;
+}
+.details-aftersaleinfo-nav-selected s{
+    color: #0DA0FD;
+}
+.details-aftersaleinfo-container{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 10px 0px 10px;
+}
+.details-aftersaleinfo-maintenance{
+    width: 100%;
+}
+.details-aftersaleinfo-maintenance .aftersaleinfo-showlog{
+   display: none;
+}
+.details-aftersaleinfo-maintenance>div{
+    width: 100%;
+    height: 138px;
+    border-bottom: 1px dashed #ddd;
+    background: #fff;
+    box-sizing: border-box;
+    padding-top: 16px;
+}
+.details-aftersaleinfo-maintenance>div:hover{
+    background-color: #f7f7f7;
+}
+
+.aftersaleinfo-maintenance-status{
+    width: 100%;
+    height: 26px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    box-sizing: border-box;
+    position: relative;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(1){
+    display: inline-block;
+    width: 24px;
+    height: 26px;
+    line-height: 26px;
+    color: #888;
+    margin-left: 39px;
+    margin-right: 12px;
+    float: left;
+}
+.aftersaleinfo-maintenance-status ul{
+    float: left;
+}
+.aftersaleinfo-maintenance-status ul li{
+    display: inline-block;
+    float: left;
+    box-sizing: border-box;
+    width: 105px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    color: #82888E;
+    background-color: #EEE;
+    margin-right: 3px;
+    position: relative;
+}
+.aftersaleinfo-maintenance-status ul li:not(:first-child):before{
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 4px;
+    left: -9px;
+}
+.aftersaleinfo-maintenance-status ul li:not(:last-child):after{
+    content: "";
+    display: inline-block;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    background-color: #eee;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 4px;
+    left: 96px;
+    z-index: 1;
+}
+/*已完成的状态样式*/
+.details-aftersaleinfo-maintenance .aftersaleinfo-maintenance-status .aftersaleinfo-maintenance-status-finished{
+    color: #fff;
+    background-color: #0DA0FD;
+}
+.details-aftersaleinfo-maintenance .aftersaleinfo-maintenance-status .aftersaleinfo-maintenance-status-finished:after{
+    background-color: #0DA0FD;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2){
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: 1px solid #0D85E4;
+    background-color: #F7F7F7;
+    font:normal 600 12px "microsoft yahei", "sans-serif";
+    color: #1086E4;
+    line-height: 16px;
+    text-align: center;
+    float: right;
+    margin-right: 12px;
+    margin-top: 3px;
+    transform: rotate(270deg);
+    cursor: pointer;
+    position: relative;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2):hover{
+    background-color: #0D85E4;
+    color: #fff;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2)>span{
+    display: none;
+    width: 78px;
+    height: 71px;
+    box-sizing: border-box;
+    border: 1px solid #008EFF;
+    background-color: #fff;
+    box-shadow: -3px 0px 8px #E1E1E1;
+    border-radius: 3px;
+    position: absolute;
+    top: -39px;
+    left: -122px;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2)>s{
+    display:none;
+    width: 10px;
+    height: 10px;
+    box-sizing: border-box;
+    border-top: 1px solid #008EFF;
+    border-left: 1px solid #008EFF;
+    background-color: #fff;
+    transform: rotate(135deg);
+    position: absolute;
+    top:4px;
+    left:-10px;
+    z-index: 1;
+}
+.aftersaleinfo-maintenance-status>span:nth-of-type(2):hover>span,
+.aftersaleinfo-maintenance-status>span:nth-of-type(2):hover>s{
+    display: inline-block;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2)>span p{
+    width: 68px;
+    height: 20px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    text-align: center;
+    line-height: 20px;
+    background-color: #fff;
+    transform: rotate(90deg);
+    position: absolute;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2)>span p:nth-of-type(1){
+    top: 25px;
+    left: 25px;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2)>span p:nth-of-type(2){
+    top: 25px;
+    left: 5px;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2)>span p:nth-of-type(3){
+    top: 25px;
+    left: -15px;
+}
+.aftersaleinfo-maintenance-status span:nth-of-type(2)>span p:hover{
+    background-color: #008EFF;
+    color: #fff;
+}
+
+.aftersaleinfo-maintenance-times{
+    width: 100%;
+    height: 46px;
+}
+.aftersaleinfo-maintenance-times span:nth-of-type(1){
+    display: block;
+    float: left;
+    width: 75px;
+    height: 46px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #888;
+    line-height: 46px;
+    text-align: center;
+}
+.aftersaleinfo-maintenance-times span:not(:first-child){
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    width: 100px;
+    height: 46px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    margin-right: 10px;
+    text-align: center;
+    padding-top: 7px;
+}
+
+.aftersaleinfo-maintenance-remarks{
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+.aftersaleinfo-maintenance-remarks>p{
+    display: inline-block;
+    width: 302px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+}
+.aftersaleinfo-maintenance-remarks>p:nth-of-type(3) s{
+    color: red;
+}
+.aftersaleinfo-maintenance-remarks>p:nth-of-type(5){
+    width: 600px;
+}
+.details-aftersaleinfo-maintenance>div{
+    position: relative;
+
+}
+.details-aftersaleinfo-maintenance>div> .remarks-details{
+    width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    line-height: 22px;
+    box-shadow: 0px 3px 10px #aaa;
+    text-indent: 15px;
+    position: absolute;
+    top: 108px;
+    left: 145px;
+    z-index: 999;
+    /*display: none;*/
+}
+.details-aftersaleinfo-maintenance>div> .remarks-details>p:nth-of-type(8)>s{
+    color: red;
+}
+.details-aftersaleinfo-maintenance>div> .remarks-details>p:nth-of-type(1){
+    position: relative;
+}
+.details-aftersaleinfo-maintenance>div> .remarks-details>p:nth-of-type(1):before{
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 5px;
+    left: -5px;
+}
+
+/*查看日志弹框*/
+.aftersaleinfo-showlog{
+    width: 694px;
+    min-height: 258px;
+    box-sizing: border-box;
+    box-shadow: 0px 3px 8px #D4D4D4;
+    background-color: #fff;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-title{
+    width: 100%;
+    height: 35px;
+    background-color: #0D85E4;
+    position: relative;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-title>h3{
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    color: #fff;
+    line-height: 35px;
+    text-indent: 1em;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-title>s{
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background: url("/assets/sale-after/exception-handle/blue-close-btn.png");
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content{
+    width: 660px;
+    box-sizing: border-box;
+    margin:17px auto;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content>ul>li{
+    display: inline-block;
+    float: left;
+    height:30px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content>ul:nth-child(odd)>li{
+    background-color: #F7F8FA;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content>ul:first-child>li{
+    color: #666;
+    background-color: #E5EFF5;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content>ul>li:nth-of-type(1){
+    width: 135px;
+    text-indent: 8px;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content>ul>li:nth-of-type(2){
+    width: 95px;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content>ul>li:nth-of-type(3){
+    width: 165px;
+}
+.aftersaleinfo-showlog>.aftersaleinfo-showlog-content>ul>li:nth-of-type(4){
+    width: 265px;
+}
+
+
+
+/*异常处理-售后任务信息 end*/
+
+
+
+/*异常处理-运单日志信息 begin*/
+.exception-loginfo{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px 15px;
+    background-color: #f7f7f8;
+}
+.exception-loginfo h3{
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: relative;
+    margin-left: 8px;
+}
+.exception-loginfo h3:before{
+    content: "";
+    display: inline-block;
+    height: 14px;
+    border-left: 2px solid #0D85E4;
+    position: absolute;
+    top: 3px;
+    left: -8px;
+}
+.details-loginfo-log{
+    width: 100%;
+    margin-top: 12px;
+    box-sizing: border-box;
+    border: 1px solid #E7EAEF;
+    box-shadow: 0px 3px 5px #E7EAEF;
+}
+.details-loginfo-log-title li,.details-loginfo-log-style li{
+    display: inline-block;
+    float: left;
+    height:35px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #fff;
+    background-color: #1B97E6;
+    line-height: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.details-loginfo-log-style li{
+    background-color: #fff;
+    color: #333;
+}
+.details-loginfo-log-title li:nth-of-type(1),.details-loginfo-log-style li:nth-of-type(1){
+    width: 138px;
+    text-indent: 5px;
+}
+.details-loginfo-log-title li:nth-of-type(2),.details-loginfo-log-style li:nth-of-type(2){
+    width: 80px;
+}
+.details-loginfo-log-title li:nth-of-type(3),.details-loginfo-log-style li:nth-of-type(3){
+    width: 413px;
+}
+.details-loginfo-log-title li:nth-of-type(4),.details-loginfo-log-style li:nth-of-type(4){
+    width: 133px;
+}
+.details-loginfo-log-title li:nth-of-type(5),.details-loginfo-log-style li:nth-of-type(5){
+    width: 164px;
+}
+.details-loginfo-log-title li:nth-of-type(6),.details-loginfo-log-style li:nth-of-type(6){
+    width: 60px;
+    text-align: center;
+}
+.details-loginfo-log ul:not(:first-child):nth-child(odd) li{
+    background-color:#F7F8FA;
+}
+
+/*异常处理-运单日志信息 end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

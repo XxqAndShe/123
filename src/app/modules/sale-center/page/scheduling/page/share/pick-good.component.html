@@ -1,0 +1,15 @@
+<div id="deposit_apply01" class="dialog-box" #dialog [ngStyle]="drag.setPosition(300,170)">
+    <div id="deposit_apply_title01" class="dialog-box-title">
+        <span class="dialogdialog-left">提示</span>
+        <span class="dialog-right" (click)="hideWindow()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        请确认提货
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="showSuccess(null,dialog)">确认</span>
+        <span class="btn default-btn" (click)="hideWindow()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,10 @@
+.dialog-box{
+    width: 700px;
+}
+.dialog-box-content{
+    max-height: 400px;
+    overflow: auto;
+}
+.dialog-box-footer{
+    padding: 10px 0;
+}

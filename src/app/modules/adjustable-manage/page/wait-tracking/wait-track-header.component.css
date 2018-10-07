@@ -1,0 +1,236 @@
+#wait_trace {
+    width: 100%;
+}
+
+#wait_trace>.province {
+    min-width: 1018px;
+    line-height: 36px;
+}
+
+#wait_trace input {
+    font-size: 12px;
+    font-family: '微软雅黑';
+    border: 1px solid #ddd;
+    color: #333;
+    padding-left: 8px;
+    height: 32px;
+    display: inline-block;
+    outline: none;
+}
+
+#wait_trace .all_state {
+    font-size: 14px;
+    font-family: '微软雅黑';
+    border: 1px solid #ddd;
+    color: #333;
+    padding-left: 8px;
+    height: 32px;
+    display: inline-block;
+    outline: none;
+}
+
+.province>my-addr-select1 {
+    width: 160px !important;
+    display: inline-block;
+}
+
+.province>.province-input {
+    width: 160px;
+    margin-left: 14px;
+}
+
+.province>.transport-num {
+    margin-left: 20px;
+}
+
+.province>.transport-num-input {
+    width: 96px;
+    margin-right: 12px;
+}
+
+.province>.write-order-input {
+    width: 80px;
+    margin-right: 14px;
+}
+
+.province>.all_state {
+    position: relative;
+    color: #333;
+    width: 94px;
+    height: 32px;
+    outline: none;
+    border: 1px solid #ddd;
+}
+
+.province>.all_state>option {
+    overflow: hidden;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    color: #6d6d6d;
+    -webkit-appearance: none;
+    /*去除系统默认的样式*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* 点击去除高亮的颜色*/
+    background-color: #fff;
+    /*当input框禁止输入的时候会有一个灰色的底色 项目需要我设置了 白色*/
+}
+
+.province>.line-state {
+    position: relative;
+    margin-right: 4px;
+    margin-left: -9px;
+}
+
+.allDate {
+    margin-left: 45px !important;
+}
+
+.province>.btn {
+    margin-left: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    width: 60px;
+    height: 30px;
+}
+
+.search-btn {
+    color: white;
+    margin-left: 86px;
+}
+
+.province>.clear-btn {
+    background-color: #f7f7f7;
+    line-height: 28px;
+    border: 1px solid #ddd;
+}
+
+
+/* .province>.province-address {
+    margin-right: 2px;
+} */
+
+
+/*发货人*/
+
+#wait_trace>.send-good {
+    margin-top: 15px;
+    min-width: 1018px;
+}
+
+#wait_trace>.send-good input {
+    width: 80px;
+}
+
+.send-good>.send-man {
+    width: 142px;
+}
+
+.receive-text {
+    margin-right: 5px;
+}
+
+.shouhuoren {
+    margin-left: 79px;
+}
+
+.master-count {
+    margin-left: 30px;
+}
+
+.fenpeiren {
+    margin-left: 68px;
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1920px) {
+    .shouhuoren {
+        margin-left: 46px;
+    }
+    /*.master-count {
+        margin-left: 63px;
+    }
+    .fenpeiren {
+        margin-left: 97px;
+    }*/
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .line-state.taskzt {
+        margin-left: 30px !important;
+    }
+    .receive-text.shouhuoren {
+        margin-left: 46px !important;
+    }
+    .receive-text.fenpeiren {
+        margin-left: 96px !important;
+    }
+}
+
+.taskzt {
+    margin-left: 63px !important;
+}
+
+.send-good>select {
+    margin-left: 12px;
+}
+
+#wait_trace .send-good>.line-end-date>input {
+    font-size: 12px;
+}
+
+
+/*.order-state-btn>.export{*/
+
+
+/*float:right;*/
+
+
+/*color: #b6b6b6;*/
+
+
+/*cursor: pointer;*/
+
+
+/*display: inline-block;*/
+
+
+/*width: 30px;*/
+
+
+/*height: 32px;*/
+
+
+/*line-height: 42px;*/
+
+
+/*padding-left: 24px;*/
+
+
+/*background: url(/assets/adjustable-manager-img/export_csv.png)no-repeat 0 9px*/
+
+
+/*}*/
+
+ui-select-box {
+    line-height: 16px;
+}
+
+
+/*.addr-control {*/
+
+
+/*width: 166px;*/
+
+
+/*}*/
+
+.line-end-date {
+    height: 30px;
+    box-sizing: border-box;
+    font-size: 12px;
+    display: inline-block;
+}

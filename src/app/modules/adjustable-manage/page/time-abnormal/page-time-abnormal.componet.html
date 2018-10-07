@@ -1,0 +1,78 @@
+<div class="view-con">
+    <time-abnormal-header #searchBox (noSelect)="doSelect()"></time-abnormal-header>
+    <div id="table-top">
+        <span class="task-list">任务列表</span><span (click)="showNotData()" class="abnormal-feedback"
+                                                 *ngIf="selectionRow.length == 0">
+        <span class="circle">+</span>异常反馈</span>
+        <div [@btnState]="btnState" class="order-btn-wrap table-header" *ngIf="selectionRow.length !==0">
+            <span class="select-text">已选中<span class="select-num">{{selectionRow?.length || 0}}</span>项</span>
+            <span>
+                 <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-move" (click)="cancelAllocation()"><i></i>取消分配</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-end" (click)="trunkEnd()"><i></i>干线结束</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-abnormal"
+                   (click)="abnormalHandle()"><i></i>时效异常处理</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-order" (click)="doOrder()"><i></i>预约</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-check" (click)="Sign()"><i></i>签收</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-enregister" (click)="showAbnormalBox()"><i></i>异常登记</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <span (click)="closeBtn()" class="close-btn">×</span>
+        </div>
+    </div>
+    <div class="view-table" [ngStyle]="set.setTable('164px')">
+        <ui-grid title="&nbsp;"
+                 id="page-time-abnormal-grid"
+                 [data]="searchBox.data"
+                 (load)="searchBox.load($event)"
+                 (rowSelect)="rowSelect($event)"
+                 (exportCSV)="searchBox.exportCSV($event)"
+                 [(selections)]="selectionRow"
+                 (cellClick)="cellClick($event)"
+                 [columns]="columns"></ui-grid>
+    </div>
+</div>
+<abnormal-record *ngIf="controlAbnormalBox === 'show'" [selectLineInfo]="selectLineInfo" (boxClocs)="hideAbnormalBox()"
+                 (abnormal)="record()" [boxState]="controlAbnormalBox"></abnormal-record>
+
+<!--<time-abnormal-modal class="modal" [@modalState]="modalState" (closeModal)="closeModal()"></time-abnormal-modal>-->
+<!--更改提货信息弹窗-->
+<manage-ChangeInformation [selectLineInfo]="selectLineInfo" *ngIf="ChangeIf"
+                          (onChangeCancle)="onChangeInformation()"></manage-ChangeInformation>
+<!--干线结束弹窗-->
+<manage-EndOfLine [taskId]="taskId" *ngIf="TrunkEndIf" (TrunkEndSure)="TrunkEndOver()"
+                  (TrunkEndCancl)="trunkEndCancel()"></manage-EndOfLine>
+<!--取消签收-->
+<!--取消分配-->
+<manage-cancelAllocation *ngIf="cancelAllocationIf" (onCancelAllocation)="NoAllocation()"
+                         (onAllocation)="sureAllocation()" [taskId]="taskId"
+                         [selectLineInfo]="selectLineInfo"></manage-cancelAllocation>
+<manage-cancelSign [selectLineInfo]="selectLineInfo" *ngIf="CancelSignIf"
+                   (onCancelSign)="cancelCancelSign()"></manage-cancelSign>
+<!--签收-->
+<adjustable-manage-sign [selectLineInfo]="selectLineInfo" (onSignOrder)="changeSearch()" [taskId]="taskId"
+                        *ngIf="SignIf" (SignOrder)="onSign()"></adjustable-manage-sign>
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+    </p-footer>
+</p-confirmDialog>
+<!--预约-->
+<order-win [selectLineInfo]="selectLineInfo" [taskId]="taskId" *ngIf="orderWin" (hideWin)="hideWin('order')"
+           (onHideWin)="changeWin()"></order-win>
+<!--详情页-->
+<detail-modal class="modal" [selectLineInfo]="selectLineInfo" *ngIf="showDetailModal" [@modalState]="modalState"
+              (closeModal)="closeModal()"></detail-modal>
+
+<!--时效异常处理-->
+<abnormal-handle-win [selectLineInfo]="selectLineInfo" *ngIf="abnormalWin" (hideWin)="hideWin('abnormal')"
+                     (onWin)="doWin()"></abnormal-handle-win>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

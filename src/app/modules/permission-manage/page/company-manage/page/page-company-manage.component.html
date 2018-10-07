@@ -1,0 +1,183 @@
+<div class="content">
+    <h2 class="company-manage">公司管理</h2>
+    <div class="operation-btn">
+        <span class="company">公司</span>
+        <span (click)="showDialog('add')" class="add"><i></i>新增</span>
+        <span (click)="showDialog('modify')" class="modify"><i></i>修改</span>
+        <span (click)="showDialog('stop')" class="stop-use"><span class="del">×</span><span>停用</span></span>
+        <span (click)="showDialog('restart')" class="set-use"><i></i>设置启用</span>
+        <span (click)="showDialog('history')" class="check"><i></i>审核</span>
+        <span (click)="showDialog('search')" class="find"><i></i>查找</span>
+    </div>
+    <div class="table-con">
+        <div id="table_wrap" class="table-wrap">
+            <table>
+                <tr>
+                    <th><i class="null"></i></th>
+                    <th>公司简称</th>
+                    <th>公司名称</th>
+                    <th>负责人</th>
+                    <th>负责电话</th>
+                    <th>地址</th>
+                    <th>审核状态</th>
+                    <th>申请来源</th>
+                    <th>状态</th>
+                    <th>截止日期</th>
+                </tr>
+                <tr>
+                    <td><i class="tick"></i></td>
+                    <td>财务管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="null"></i></td>
+                    <td>销售管理员</td>
+                    <td>一智通供应链管理有限公司</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr class="stop-use">
+                    <td><i class="tick select"></i></td>
+                    <td>技术管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>PS系统-调度管理-维修任务</td>
+                    <td>未审核</td>
+                    <td>本系统申请-TMS</td>
+                    <td>停用</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+                <tr>
+                    <td><i class="select"></i></td>
+                    <td>产品管理员</td>
+                    <td>超级管理员</td>
+                    <td>大哥大</td>
+                    <td>15218582702</td>
+                    <td>IPS系统-调度管理-维修任务</td>
+                    <td>已审核</td>
+                    <td>TMS</td>
+                    <td>有效</td>
+                    <td>2016-12-12</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="bottom">
+        <system-bottom></system-bottom>
+    </div>
+    <stop-use (closeBox)="hideDialog($event)" [boxState]="stopBoxState"></stop-use>
+    <restart-use (closeBox)="hideDialog($event)" [boxState]="restartBoxState"></restart-use>
+    <add-company (closeBox)="hideDialog($event)" [boxState]="addBoxState"></add-company>
+    <modify-company (closeBox)="hideDialog($event)" [boxState]="modifyBoxState"></modify-company>
+    <search-company (closeBox)="hideDialog($event)" [boxState]="searchBoxState"></search-company>
+    <history-info (closeBox)="hideDialog($event)" [boxState]="historyBoxState"></history-info>
+</div>

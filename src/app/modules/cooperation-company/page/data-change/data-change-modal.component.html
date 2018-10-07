@@ -1,0 +1,100 @@
+<div class="outer-modal-container">
+    <header>
+        <h4 class="check-title">{{moduleInfo.title}}</h4>
+    </header>
+    <div class="content content1">
+        <h6>修改后（{{moduleInfo.tip}}）：</h6>
+        <p>
+            <span><strong>师傅姓名：</strong><span>{{dataChangeAfterModalResponseVo.masterName}}</span></span>
+            <span><strong>师傅账号：</strong><span>{{dataChangeAfterModalResponseVo.masterAccount}}</span></span>
+        </p>
+        <p>
+            <span><strong>账号类型：</strong><span>{{dataChangeAfterModalResponseVo.accountType}}</span></span>
+            <span><strong>支付宝账号：</strong><span>{{dataChangeAfterModalResponseVo.alipayAccount}}</span></span>
+        </p>
+        <p>
+            <span><strong>银行名称：</strong><span>{{dataChangeAfterModalResponseVo.bankName}}</span></span>
+            <span><strong>银行账号：</strong><span>{{dataChangeAfterModalResponseVo.bankAccount}}</span></span>
+            <span><strong>支行名称：</strong><span>{{dataChangeAfterModalResponseVo.subBranchName}}</span></span>
+        </p>
+        <p>
+            <span class="add-service"><strong>常规服务：</strong><span *ngFor="let data1 of dataChangeAfterModalResponseVo.typeOfServiceResponse">{{data1}}</span></span>
+        </p>
+        <p>
+            <span class="add-service"><strong>增值服务：</strong><span>{{dataChangeAfterModalResponseVo.valueAddService}}</span></span>
+        </p>
+        <p>
+            <span><strong>服务地区：</strong></span>
+        </p>
+        <ul class="service-area">
+            <li class="adress-left" *ngFor="let area of dataChangeAfterModalResponseVo.serviceArea">{{area}}</li>
+        </ul>
+    </div>
+    <div class="content content2">
+        <h6 class="before-modification"> 修改前（历史资料）：</h6>
+        <p>
+            <span><strong>师傅姓名：</strong><span>{{dataChangeBeforeModalResponseVo.masterName}}</span></span>
+            <span><strong>师傅账号：</strong><span>{{dataChangeBeforeModalResponseVo.masterAccount}}</span></span>
+        </p>
+        <p>
+            <span><strong>账号类型：</strong><span>{{dataChangeBeforeModalResponseVo.accountType}}</span></span>
+            <span><strong>支付宝账号：</strong><span>{{dataChangeBeforeModalResponseVo.alipayAccount}}</span></span>
+        </p>
+        <p>
+            <span><strong>银行名称：</strong><span>{{dataChangeBeforeModalResponseVo.bankName}}</span></span>
+            <span><strong>银行账号：</strong><span>{{dataChangeBeforeModalResponseVo.bankAccount}}</span></span>
+            <span><strong>支行名称：</strong><span>{{dataChangeBeforeModalResponseVo.subBranchName}}</span></span>
+        </p>
+        <p>
+			<span class="add-service"><strong>常规服务：</strong>
+				<span *ngFor="let data1 of dataChangeBeforeModalResponseVo.typeOfServiceResponse">{{data1}}</span>
+			</span>
+        </p>
+        <p>
+            <span class="add-service"><strong>增值服务：</strong><span>{{dataChangeBeforeModalResponseVo.valueAddService}}</span></span>
+        </p>
+        <p>
+            <span><strong>服务地区：</strong></span>
+        </p>
+        <ul class="service-area">
+            <li class="adress-left" *ngFor="let area of dataChangeBeforeModalResponseVo.serviceArea">{{area}}</li>
+        </ul>
+    </div>
+    <div class="btn-group" *ngIf='moduleInfo.isAudit'>
+        <button class="btn primary-btn" (click)="through()">审核通过</button>
+        <button class="btn primary-btn" (click)="notThrough()">审核不通过</button>
+        <button class="btn default-btn" (click)="close()">返回</button>
+    </div>
+    <div class="btn-group" *ngIf='!moduleInfo.isAudit'>
+        <button class="btn default-btn data-footer" (click)="close()">返回</button>
+    </div>
+
+    <a href="javascript:;" class="close-modal-btn" (click)="close()"></a>
+</div>
+
+<!--审核不通过弹窗-->
+<span *ngIf="NotThrough">
+<div class="dialog-box" id="not-through-box">
+	<div class="dialog-box-title">
+		<span class="dialogdialog-left">认证不通过编辑</span>
+		<span class="dialog-right" (click)="CancelNotThrough()">×</span>
+	</div>
+	<div class="dialog-box-content">
+		<div class="dialog-box-top dialog-box-com">
+			<span class="start-symbol">*</span>
+			<span>不通过原因</span>
+			<textarea maxlength="200" placeholder="{{itemsNotThrough}}" [(ngModel)]="NotPassTxT" #box
+                      (keyup.enter)="fnNot(box.value)" (blur)="fnNot(box.value)"></textarea>
+		</div>
+	</div>
+	<div class="dialog-box-footer" id="btn-not-through">
+		<button class="btn primary-btn" (click)="ConfirmNotThrough()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+		<span class="btn default-btn" (click)="CancelNotThrough()">取消</span>
+	</div>
+</div>
+</span>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

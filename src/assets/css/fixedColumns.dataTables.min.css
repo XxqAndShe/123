@@ -1,0 +1,28 @@
+table.DTFC_Cloned thead,
+table.DTFC_Cloned tfoot {
+    background-color: white
+}
+
+div.DTFC_Blocker {
+    background-color: white
+}
+
+div.DTFC_LeftWrapper table.dataTable,
+div.DTFC_RightWrapper table.dataTable {
+    margin-bottom: 0;
+    z-index: 2
+}
+
+div.DTFC_LeftWrapper table.dataTable.no-footer,
+div.DTFC_RightWrapper table.dataTable.no-footer {
+    border-bottom: none
+}
+
+table.dataTable.display tbody tr.odd.select>.sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd.select>.sorting_1 {
+    background-color: #fff6e5;
+}
+
+table.dataTable thead th:nth-last-child(2) {
+	border-right: none;
+}

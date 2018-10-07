@@ -1,0 +1,64 @@
+<p-dataTable #dt [value]="data.content" [lazy]="true" [rows]="pageRow" [rowsPerPageOptions]="pageRows" [paginator]="paginator" [pageLinks]="10" [loading]="loading" [totalRecords]="data.totalElements" (onLazyLoad)="onLazyLoad($event)" [selectionMode]="selectionMode"
+    [(selection)]="selections" (onRowSelect)="onRowSelectChange($event)" (onRowUnselect)="onRowSelectChange($event)" (onHeaderCheckboxToggle)="onHeaderCheckboxToggle($event)" reorderableColumns="false" scrollable="true" scrollWidth="100%" scrollHeight="450px"
+    emptyMessage="没有记录">
+    <p-header>
+        <div style="width: 100%;height: 24px;">
+            <div class="ui-helper-clearfix" [hidden]="!showEditColumn" style="width: 33%;text-align: left;float: left;">
+                <button class="edit-column-btn" (click)="showColumnsDialog=true" pButton icon="fa-external-link-square" label="编辑列"></button>
+            </div>
+            <div class="ui-helper-clearfix" style="width: 33%;text-align: center;vertical-align: middle; float: left;">
+                &nbsp;{{title}}&nbsp;</div>
+            <div class="ui-helper-clearfix" [hidden]="!enableExport" style="width: 33%;text-align: right;float: left;">
+                <button class="export-btn" pButton icon="fa-file-o" iconPos="left" label="导出" [disabled]="exportDisable" (click)="exportCSVIntenal()" style="float: right;">
+                     <i class="fa fa-spinner fa-pulse fa-3x fa-fw" *ngIf="exportDisable" style="margin-left:18px"></i>
+                </button>
+            </div>
+        </div>
+    </p-header>
+    <p-column [style]="{'width':'30px'}" [selectionMode]="selectionMode"></p-column>
+    <p-column *ngFor="let column of columns" field="{{column.field}}" header="{{column.header}}" [hidden]="column.hidden" [sortable]="column.sortable" filter="{{column.filter1}}" filterMatchMode="startsWith" [style]="{'width':column.width?column.width:'120px','text-align':column.textAlign?column.textAlign:'center', 'overflow': 'visible'}">
+
+        <ng-template let-col let-row="rowData" let-ri="rowIndex" pTemplate="body">
+            <!--天猫订单-->
+            <img *ngIf="col.field=='waybillId' && row['tmail']" src="assets/icon/mao-order.png" alt="天猫订单" width="15" />
+            <!--京东订单-->
+            <img *ngIf="col.field=='waybillId' && row['jingdong']" src="assets/icon/jd-order.png" alt="京东订单" width="15" />
+            <!--48小时订单-->
+            <img *ngIf="col.field=='waybillId' && row['completionRate48']" src="assets/icon/48-order.png" alt="48小时订单" width="15" />
+            <!--异常处理锁定与未锁定-->
+            <a *ngIf="col.field=='abnormalNum' && row['lock']" href="javascript:void(0);" title="锁定" class="operation-a operation-lock"><i></i></a>
+            <a *ngIf="col.field=='abnormalNum' && !row['lock']" href="javascript:void(0);" title="未锁定" class="operation-a operation-unlock"><i></i></a>
+            <!--点击事件-->
+            <a href="javascript:void(0)" *ngIf="column.link" class="column-link">
+                <span (click)="onCellClick($event,row,col.field)" (mouseover)="onCellMouseover($event,row,col.field)">{{row[col.field]}}</span>
+            </a>
+            <!--悬浮框-->
+            <span *ngIf="!column.link && !column.lock && !column.thumbnail" (mouseenter)="onCellMouseEnter($event,row,col.field,ri, col)" (mouseleave)="onCellMouseLeave($event,row,col.field)" [ngStyle]="{'color':((column.isNegative && row[col.field]<0) || (column.isWarn && row[col.field]<=0))?'red':''}">
+                {{replaceTextOmit(row[col.field], column.textLength?column.textLength: 20 )}}
+                <div [hidden]="!(row[col.field].length>(column.textLength?column.textLength: 20) && (ri==index) && (column.field==refield) && !column.defaultTipsHidden)"
+                     class="grid_tips" [ngStyle]="{'left': leftSize, 'top': topSize}">
+                    {{row[col.field]}}
+                </div>
+            </span>
+            <!--锁定图标-->
+            <button *ngIf="column.lock" type="button" pButton (click)="onCellLockClick($event,row,col.field)" icon="{{row[col.field]?'fa-lock':'fa-unlock'}}"></button>
+            <!--图片附件-->
+            <div *ngIf="column.thumbnail">
+                <a *ngFor="let addr of row[col.field]" rel="fancybox{{ri}}" href="{{addr}}" target="_blank">
+                    <span class="fa fa-file-image-o"></span>
+                </a>
+            </div>
+
+        </ng-template>
+    </p-column>
+</p-dataTable>
+<p-dialog header="编辑列" [(visible)]="showColumnsDialog">
+    <p-pickList [source]="targetColumns" [target]="columns" sourceHeader="隐藏" targetHeader="显示" [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}">
+        <ng-template let-column pTemplate="item">
+            <div class="ui-helper-clearfix">
+                <div style="font-size:14px;float:right;margin:15px 5px 0 0">{{column.header}}</div>
+            </div>
+        </ng-template>
+    </p-pickList>
+</p-dialog>
+<common-msg *ngIf="exportDisable" [info]="'导出表格中……'"></common-msg>

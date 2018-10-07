@@ -1,0 +1,11 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs" [nodeNumber]="nodeNumber"></my-nav>
+    <search-top [loading]="loading" [selected]="selected" (doSearchEvent)="grid.doSearch()"  [abnormalTaskRequestVo]="abnormalTaskRequestVo" class="search-top" (isExplane)="changeExplane($event)"  (showTraceWin)="showOrHideTraceWin($event)" (cancelSelect)="grid.cancelSelect()"></search-top>
+    <div class="table-container" [ngClass]="{explane:isExplane}">
+        <saleException-grid (loadEvent)="loadEvent($event)" (selected)="selectedRow($event)" (rowInfo)="rowInfo($event)" [abnormalTaskRequestVo]="abnormalTaskRequestVo" [selectLineInfo]="selectLineInfo" (load)="load($event)" #grid></saleException-grid>
+        <!--<data-table [tableHeight]="tableHeight" [datum]="datum" *ngIf="isTableShow"></data-table>-->
+    </div>
+</div>
+<trace-win (save)="doSave($event)" *ngIf="isshowTraceWin" (hideWin)="showOrHideTraceWin($event)"  trackFlag="SHYC" [selectLineInfo]="selectLineInfo"></trace-win>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,18 @@
+<div class="handle_tank yc05" id="veto_tank" [ngStyle]="drag.setPosition(450,452)">
+    <div class="top_tank" id="veto_top">
+        <span class="left">否决</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <form (ngSubmit)="save()">
+        <div class="zho_tank">
+            <span class="veto_titi"><em>*</em>驳回原因</span>
+            <textarea id="veto-content" class="veto_text" name="rejectReason" [(ngModel)]="vetoResult.rejectReason" required></textarea>
+        </div>
+        <div class="bottom_tank">
+            <button type="submit" class="btn primary-btn">确定</button>
+            <button type="button" class="btn default-btn" (click)="close()">取消</button>
+        </div>
+    </form>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

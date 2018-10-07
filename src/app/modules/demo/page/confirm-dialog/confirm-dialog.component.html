@@ -1,0 +1,17 @@
+<br><span>以下是测试按钮，使用p-confirmDialog组件</span><br>
+
+<div class="test">
+
+ <p-confirmDialog  width="360" #cd>
+     <p-footer>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+ </p-confirmDialog>
+
+<button type="button" (click)="confirm1()" pButton icon="fa-check" label="确定"></button>
+
+<button type="button" (click)="confirmDel()" pButton icon="fa-trash" label="删除"></button>
+
+
+</div>

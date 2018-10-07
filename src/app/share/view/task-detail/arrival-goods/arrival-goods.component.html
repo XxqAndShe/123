@@ -1,0 +1,33 @@
+
+<div class="dialog-box" style="display:block;width:400px;margin-left: -260px;margin-top: -100px">
+
+    <div class="dialog-box-title">
+        <span _ngcontent-c19="" class="dialogdialog-left">货物到达</span>
+        <span class="dialog-right" (click)="changeCancle()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <span >到货电话：</span>
+            <input type="text" maxlength="24" name="arrivalTell" id="Change-input1" [(ngModel)]="arrivalTell" placeholder="请输入到货电话">
+        </div>
+        <div class="dialog-box-bott dialog-box-com">
+            <span class="add-margin-left">地址：</span>
+            <input type="" maxlength="100" id="Change-input2" [(ngModel)]="arrivalAddress" placeholder="请输入地址">
+        </div>
+        <div class="dialog-box-bott dialog-box-com">
+            <span>物流公司：</span>
+            <input type="" maxlength="20" id="Change-input3" [(ngModel)]="logisticsCompany" placeholder="请输入物流公司">
+        </div>
+        <div class="dialog-box-bott dialog-box-com">
+            <span class="add-margin-float">备注：</span>
+            <textarea name="arrialItem" [(ngModel)]="arrialItem" placeholder="请输入要备注的信息..."></textarea>
+        </div>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <span class="btn primary-btn" (click)="changeSure()">确定</span>
+        <span class="btn default-btn" (click)="changeCancle()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+

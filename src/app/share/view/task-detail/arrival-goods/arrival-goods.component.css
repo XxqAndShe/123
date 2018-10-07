@@ -1,0 +1,50 @@
+#Change-input1{
+    height: 30px;
+    width: 272px;
+    line-height: 30px;
+    padding-left: 10px;
+    border:1px solid rgb(13,133,228) ;
+    outline: none;
+    margin-top: 10px;
+}
+#Change-input2{
+    height: 30px;
+    width: 272px;
+    line-height: 30px;
+    padding-left: 10px;
+    border:1px solid rgb(13,133,228) ;
+    outline: none;
+    margin-top: 10px;
+}
+#Change-input3{
+    height: 30px;
+    width: 272px;
+    line-height: 30px;
+    padding-left: 10px;
+    border:1px solid rgb(13,133,228) ;
+    outline: none;
+    margin-top: 10px;
+}
+.dialog-box .dialog-box-content .dialog-box-bott span.add-margin-left{
+    margin-left: 24px;
+}
+.dialog-box-bott>.start-symbol {
+    color: #ff5454;
+    position: relative;
+    top: 2px;
+}
+.dialog-box-bott>.add-start-symbol{
+    left: 13px;
+}
+.dialog-box .dialog-box-content .dialog-box-bott textarea{
+    border:1px solid rgb(13,133,228) ;
+    margin-top: 10px;
+    width: 283px;
+    height: 80px;
+    margin-left: 5px;
+}
+.dialog-box .dialog-box-content .add-margin-float{
+    margin-top: 40px;
+    float: left;
+    margin-left: 24px;
+}

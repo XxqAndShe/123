@@ -1,0 +1,266 @@
+<div class="dialog-box" #dialogNew id="dialog_box_new" [ngStyle]="drag.setPosition(650,510)">
+    <div class="dialog-box-title top-title" id="dialog_title_new">
+        <span class="dialogdialog-left">{{dialogTitle}}</span>
+        <span class="dialog-right" (click)="dealHide(dialogNew)">×</span>
+    </div>
+    <div class="dialog-container" id="dialog-container-1" [ngClass]="displayContainer(1)">
+        <div class="dialog-box-content">
+            <ul class="content-a">
+                <li>
+                    <i>1</i>
+                    <span>填写成员信息</span>
+                    <b></b>
+                </li>
+                <li>
+                    <i class="x-j">2</i>
+                    <span>选择角色</span>
+                    <b></b>
+                </li>
+                <li>
+                    <i class="x-j">3</i>
+                    <span>设置数据权限</span>
+                </li>
+
+            </ul>
+            <ul class="content-b">
+                <li class="li-float">
+                    <ul class="content-b-a">
+                        <li>
+                            <p class="text">
+                                <i>*</i>
+                                <span>姓名</span>
+                            </p>
+                            <input type="text" placeholder="请输入">
+                        </li>
+                        <li>
+                            <p class="text">
+                                <i>*</i>
+                                <span>工号</span>
+                            </p>
+                            <input type="text" placeholder="请输入">
+                        </li>
+                        <li>
+                            <p class="text">
+                                <i>*</i>
+                                <span>部门</span>
+                            </p>
+                            <select>
+                                <option selected="selected" value ="xuanze">请选择</option>
+                                <option value ="saab">Saab</option>
+                                <option value="opel">Opel</option>
+                                <option value="audi">Audi</option>
+                            </select>
+                        </li>
+                    </ul>
+                </li>
+                <li class="li-float">
+                    <ul class="content-b-b">
+                        <li>
+                            <p class="text">
+                                <i>*</i>
+                                <span>性别</span>
+                            </p>
+                            <select>
+                                <option selected="selected" value ="xuanze">请选择</option>
+                                <option value ="saab">男</option>
+                                <option value="opel">女</option>
+                            </select>
+                        </li>
+                        <li>
+                            <p class="text">
+                                <i>*</i>
+                                <span>手机号</span>
+                            </p>
+                            <input type="text" placeholder="请输入">
+                        </li>
+                        <li>
+                            <p class="text">
+                                <span>身份证号</span>
+                            </p>
+                            <input type="text" placeholder="请输入">
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="content-c">
+                <li>
+                    <p class="text">
+                        <span>入职时间</span>
+                    </p>
+                    <input type="date" placeholder="请输入">
+                </li>
+                <li>
+                    <p class="text">
+                        <span>地址</span>
+                    </p>
+                    <select>
+                        <option selected="selected" value ="xuanze">请选择省市区</option>
+                        <option value ="saab">男</option>
+                        <option value="opel">女</option>
+                    </select>
+                    <input class="di-z" type="text" placeholder="请输入详细地址">
+                </li>
+                <li class="b-z">
+                    <p class="text b-zhu">
+                        <span>备注</span>
+                    </p>
+                    <textarea rows="3" cols="38" placeholder="请输入"></textarea>
+                </li>
+            </ul>
+        </div>
+        <div class="dialog-box-footer">
+            <span class="primary-btn btn"  (click)="dealNext()">下一步</span>
+        </div>
+    </div>
+    <div class="dialog-container" id="dialog-container-2" [ngClass]="displayContainer(2)">
+        <div class="dialog-box-content">
+            <ul class="content-a">
+                <li>
+                    <i>1</i>
+                    <span>填写员工信息</span>
+                    <b></b>
+                </li>
+                <li>
+                    <i>2</i>
+                    <span>选择角色</span>
+                    <b></b>
+                </li>
+                <li>
+                    <i class="x-j">3</i>
+                    <span>设置数据权限</span>
+                </li>
+
+            </ul>
+            <div class="content-b" style="overflow: auto">
+                <div class="content-b-l">
+                    <i class="che" [ngClass]="{'input-che':allSelect==0,'tick-che':allSelect==1,'select-che':allSelect==2}" (click)="chaAllSelect()"></i>
+                    <span>系统管理员</span>
+                </div>
+                <div class="content-b-r">
+                    <i class="b-b"></i>
+                    <ul class="content-b-r-box">
+                        <li *ngFor="let data of mockData;let i=index">
+                            <p class="msg">
+                                <i class="h"></i>
+                                <i class="che-t" [ngClass]="{'w-che':firSelect[i]==0,'x-che':firSelect[i]==1,'b-che':firSelect[i]==2}" (click)="chanFirSelect(i)">{{data.flabel}}</i>
+                            </p>
+                            <ul>
+                                <li *ngFor="let dataChild of mockData[i].children;let j=index">
+                                    <p>
+                                        <i class="z-j"></i>
+                                        <i class="che-t le"  [ngClass]="{'w-che':secSelect[i][j]==0,'x-che':secSelect[i][j]==1,'b-che':secSelect[i][j]==2}" (click)="chanSecSelect(i,j)">{{dataChild.clabel}}</i>
+                                    </p>
+                                    <ul>
+                                        <li>
+                                            <p class="msg grand-children">
+                                                <i class="z-j z-jj "></i>
+                                                <i  *ngFor="let dataGrandChild of mockData[i].children[j].grandchild;let k=index" class="che-t le" [ngClass]="{'w-che':thirSelect[i][j][k]==0,'x-che':thirSelect[i][j][k]==1,'b-che':thirSelect[i][j][k]==2}" (click)="chanTirSelect(i,j,k)">{{dataGrandChild.glabel}}</i>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-box-footer">
+            <span class="primary-btn btn" (click)="dealPrev()">上一步</span>
+            <span class="primary-btn btn" (click)="dealNext()">下一步</span>
+        </div>
+    </div>
+    <div class="dialog-container" id="dialog-container-3" [ngClass]="displayContainer(3)">
+        <div class="dialog-box-content">
+            <ul class="content-a">
+                <li>
+                    <i>1</i>
+                    <span>填写员工信息</span>
+                    <b></b>
+                </li>
+                <li>
+                    <i>2</i>
+                    <span>选择角色</span>
+                    <b></b>
+                </li>
+                <li>
+                    <i>3</i>
+                    <span>设置数据权限</span>
+                </li>
+
+            </ul>
+            <ul class="content-aa">
+                <li *ngFor="let panelTitle of panelTitles;let i=index" [ngClass]="{'content-style':isClicked[i]}" (click)="panelChange(i)">{{panelTitle}}</li>
+            </ul>
+            <div class="content-d">
+                <div class="content-l">
+                    <div class="content-c">
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[0]}">
+                            <p-tree  [value]="files1" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[1]}">
+                            <p-tree  [value]="files2" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[2]}">
+                            <p-tree  [value]="files3" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[3]}">
+                            <p-tree  [value]="files4" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[4]}">
+                            <p-tree  [value]="files5" selectionMode="checkbox"></p-tree>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-r">
+                    <ul class="content-r-top">
+                        <li *ngFor="let subTitle of subPanelTitles;let i=index">
+                            <label>
+                                <i [ngClass]="{'input-che':!isSubClicked[i],'xu-che':isSubClicked[i]}" (click)="changeSubTitle(i)"></i>
+                                <span class="TMS">{{subTitle}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="content-c con-l">
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[0]}">
+                            <p-tree  [value]="files6" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b "[ngClass]="{'content-show':isClicked[1]}">
+                            <p-tree  [value]="files7" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[2]}">
+                            <p-tree  [value]="files8" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[3]}">
+                            <p-tree  [value]="files9" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[4]}">
+                            <p-tree  [value]="files10" selectionMode="checkbox"></p-tree>
+                        </div>
+                    </div>
+                    <div class="content-c con-r">
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[0]}">
+                            <p-tree  [value]="files11" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b "[ngClass]="{'content-show':isClicked[1]}">
+                            <p-tree  [value]="files12" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[2]}">
+                            <p-tree  [value]="files13" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[3]}">
+                            <p-tree  [value]="files14" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[4]}">
+                            <p-tree  [value]="files15" selectionMode="checkbox"></p-tree>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-box-footer">
+            <span class="primary-btn btn" (click)="dealPrev()">上一步</span>
+            <span class="primary-btn btn" (click)="dealHide(dialogNew)">保存</span>
+        </div>
+    </div>
+</div>

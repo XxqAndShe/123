@@ -1,0 +1,6 @@
+<div class="meta-select" *ngIf="!multiSelect">
+   <!-- <p-dropdown [options]="shipper" [placeholder]="defaultLabel" [style]="{'width':width,'height':height}" [(ngModel)]="value"  filter="filter"></p-dropdown>-->
+    <p-autoComplete  name="transport" [(ngModel)]="value"
+                     [suggestions]="suggestions" (completeMethod)="queryTransport($event)"
+                     field="name"></p-autoComplete>
+</div>

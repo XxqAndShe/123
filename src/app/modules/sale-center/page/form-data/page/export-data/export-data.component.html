@@ -1,0 +1,66 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <div class="data1 current">
+        <div class="abnormal">
+            <div class="query_sj">
+                <span class="title">查询时间</span>
+                <span class="time">
+                    <p-calendar name="startDate" [(ngModel)]="datePickerService.date8" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </span>
+                <span class="time">
+                    <p-calendar name="endDate" [(ngModel)]="datePickerService.date3" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </span>
+            </div>
+            <div class="query_sj">
+                <div class="yuandan Choice">
+                    <span>选择指标</span>
+                    <input type="text" id="yc_id">
+                </div>
+                <a class="determine1 cha">查询</a>
+            </div>
+            <div  class="query_sj">
+                <div class="typep">
+                    <ul>
+                        <li (click)="addItem($event)">运单号</li>
+                        <li (click)="addItem($event)">体积</li>
+                        <li (click)="addItem($event)">重量</li>
+                        <li (click)="addItem($event)">产品</li>
+                        <li (click)="addItem($event)">异常状态</li>
+                        <li (click)="addItem($event)">异常大类</li>
+                        <li (click)="addItem($event)">异常小类</li>
+                        <li (click)="addItem($event)">重量</li>
+                        <li (click)="addItem($event)">运单号</li>
+                        <li (click)="addItem($event)">异常状态</li>
+                        <li (click)="addItem($event)">运单号</li>
+                        <li (click)="addItem($event)">重量</li>
+                        <li (click)="addItem($event)">运单号</li>
+                        <li (click)="addItem($event)">运单号</li>
+                        <li (click)="addItem($event)">重量</li>
+                        <li (click)="addItem($event)">重量</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="query_sj">
+                <span class="Selected">已选中<em>{{itemNumber}}</em>项</span>
+                <div class="screen_m">
+                    <ul>
+                        <li *ngFor="let itemUl of itemsUl;let i=index">
+                            <span class="left">{{itemUl}}</span>
+                            <span class="right" (click)="removeItem(i)">×</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="preview">
+                    <span class="acco" (click)="viewData()">预览数据</span>
+                    <span (click)="addTable()">加入报表</span>
+                    <span (click)="clean()">重置</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <add-table-win class="export-add-win" (closeWin)="closeWin()" [@winState]="winState"></add-table-win>
+    <view-data-win *ngIf="winInit" (winInit)="closeWin1()" [itemsUl]="itemsUl" class="view-data-win" (closeWin1)="closeWin1()"></view-data-win>
+</div>
+

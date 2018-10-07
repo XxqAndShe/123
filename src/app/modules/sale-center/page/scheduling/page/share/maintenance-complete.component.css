@@ -1,0 +1,22 @@
+.dialog-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 400px;
+}
+.dialog-box-content{
+    height: 350px;
+    overflow: auto;
+    padding-top: 30px;
+}
+.dialog-box-footer{
+    height: 55px;
+    line-height: 55px;
+}
+label{
+    float: left;
+    margin-right: 10px;
+}

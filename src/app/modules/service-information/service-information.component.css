@@ -1,0 +1,223 @@
+.content{
+    width: 100%;
+    /*min-width: 1360px;*/
+    height: auto;
+    overflow: auto;
+}
+.content-left{
+    width: 16%;
+    overflow-x: hidden;
+    float: left;
+    margin-right: 20px;
+    background: #F8F8F8;
+    position: relative;
+}
+.navigation {
+    width: 90%;
+    padding-top: 20px;
+    margin-left: 20px;
+    overflow-x: hidden;
+    overflow-y:auto;
+}
+.navigation .children-nav{
+    height: auto;
+    padding-left: 20px;
+}
+.navigation .children-nav level1{
+    padding-left: 60px;
+}
+.navigation .children-nav  level2{
+    height: auto;
+    padding-left: 90px;
+}
+.navigation li{
+    width: 100%;
+    cursor: pointer;
+    text-align: left;
+    height: auto;
+    line-height: 40px;
+    background: #F2F2F2;
+    margin-top: 5px;
+}
+.navigation li span{
+    display: inline-block;
+    width: 100%;
+    padding-left: 15px;
+    position: relative;
+    z-index: 10;
+}
+.navigation li>span:hover{
+    background: #5DABE8;
+    color: #ffffff;
+}
+.navigation li:hover .btnClick{
+    display: none;
+}
+.navigation .current {
+    background: #0099FF;
+    color: #ffffff;
+    /*height: 40px;*/
+    line-height: 40px;
+}
+.navigation .current:hover {
+    background-color: #0099FF;
+}
+.navigation .currentClick:hover .btnClick {
+    display: inline-block;
+}
+#navigation .current:hover .btnClick {
+    display: inline-block;
+}
+.content-right{
+    float: left;
+    padding-top: 25px;
+    width: 80%;
+    height: 100%;
+    /*overflow: auto;*/
+    position: relative;
+    z-index: 100;
+}
+.right-top{
+    height: 40px;
+}
+.btn-left{
+    float: left;
+}
+.btn-add{
+    display: inline-block;
+}
+ul.menu{
+    z-index: 10;
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
+    padding: 5px 5px 0;
+}
+.menu li{
+    width: 90px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #d6d6d6;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: #EEEEEE;
+
+}
+.btn-right{
+    float: right;
+}
+.btn-right select{
+    width: 100px;
+    height: 30px;
+    border: 1px solid #d6d6d6;
+    margin-right: 10px;
+
+}
+.btn-right input{
+    width: 200px;
+    height: 30px;
+    border: 1px solid #d6d6d6;
+}
+
+.btn-click{
+    position: relative;
+    z-index: 500;
+}
+.btnClick {
+    display: none;
+    padding: 0px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: #0099FF;
+    text-align: center;
+    cursor: pointer;
+    background: #ffffff;
+    margin-left: 10px;
+    position: relative;
+    z-index: 100;
+}
+.btnClick-reduce{
+    line-height: 18px;
+    font-size: 25px;
+}
+.btnClick-add{
+    line-height: 17px;
+    font-size: 23px;
+}
+.no{
+    display: none;
+}
+.one-file{
+    font-size: 14px;
+    background: #EAEDF1;
+}
+.two-file{
+    font-size: 12px;
+}
+.navigation li .img-btn{
+    width: 1px;
+    display: inline-block;
+
+}
+.navigation li .img-b{
+    width: 1px;
+    height: 5px;
+    background: url("/assets/arrow-b.png") no-repeat ;
+}
+.navigation li .img-r{
+    width: 1px;
+    height: 10px;
+    background: url("/assets/arrow-r.png") no-repeat ;
+}
+.btn-icon{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-top: -4px;
+    margin-right: 5px;
+}
+.add{
+    background: url("/assets/service_03.png") no-repeat;
+    background-size: 100% 100%;
+}
+.edit{
+    background: url("/assets/service_03-02.png") no-repeat;
+    background-size: 100% 100%;
+}
+.add-star{
+     background: url("/assets/service_03-03.png") no-repeat;
+     background-size: 100% 100%;
+ }
+.add-share{
+     background: url("/assets/service_03-04.png") no-repeat;
+     background-size: 100% 100%;
+ }
+.add-copy{
+      background: url("/assets/service_03-06.png") no-repeat;
+      background-size: 100% 100%;
+  }
+.add-move{
+      background: url("/assets/service_03-07.png") no-repeat;
+      background-size: 100% 100%;
+  }
+.add-remove{
+      background: url("/assets/service_03-08.png") no-repeat;
+      background-size: 100% 100%;
+  }
+.add-del{
+      background: url("/assets/service_03-05.png") no-repeat;
+      background-size: 100% 100%;
+  }
+
+
+.default-btn{
+    color: #1A9CF2;
+    width: 70px;
+    background: white;
+}
+
+

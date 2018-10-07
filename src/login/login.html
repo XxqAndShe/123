@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	</head>
+	<body>
+		<div class="content1">
+			<div class="content1_in">
+				<div class="top_cun">
+					<div class="j_currtun">
+						<h1 class="logo"><a href="#"></a></h1>
+						<p>只做品质家装服务</p>
+					</div>
+				</div>
+				
+				<div class="bottom_cun">
+					<div class="left_cun"></div>
+					<div class="right_cun">
+						<span class="cun_titl">欢迎登录</span>
+						<span class="cun_user">
+							<label><i class="iconfont yonhu" title="会员名"></i></label>
+							<input id="user_name" class="User_name" type="text" placeholder="用户名/邮箱/手机号" />
+							<span id="clear_name" class="xi guan_bi"></span>
+						</span>
+						<span class="cun_user">
+							<label><i class="iconfont mima" title="mima"></i></label>
+							<input class="User_name" type="password" maxlength="16" placeholder="密码" />
+							<span id="show_password" class="xi cha_kan"></span>
+						</span>
+						<span class="cun_user forget">
+							<span class="left"><input type="checkbox" name="check">7天内自动登录</span>
+							<span class="right"><a href="http://localhost:4200/login/forget-password.html?">忘记密码？</a></span>
+						</span>
+						<span class="cun_user Signin">
+							<a class="cun_Signin" href="http://localhost:4200">登录</a>
+						</span>
+					</div>
+				</div>
+				<div class="cun_about">
+					<ul>
+						<li>Copyright©20016</li>
+						<li>|</li>
+						<li><a href="#">关于我们 </a></li>
+						<li>|</li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script>
+			var clearName=document.getElementById('clear_name');
+			var userName=document.getElementById('user_name');
+			var userPassword=document.querySelector('.cun_user>input[type="password"]');
+			var showPassword=document.getElementById('show_password');
+			function showOrHideTar(input,tar) {
+                if(input.value!==''){
+                    tar.style.visibility='visible';
+                }
+                else {
+                    tar.style.visibility='hidden';
+                }
+            }
+			clearName.onclick=function(){
+				userName.value='';
+				this.style.visibility='hidden';
+            };
+			userName.onkeyup=function () {
+			  showOrHideTar(this,clearName);
+            };
+            userPassword.onkeyup=function (){
+                showOrHideTar(this,showPassword);
+            };
+            showPassword.onmousedown=function (){
+                userPassword.type='text';
+            };
+            showPassword.onmouseup=function (){
+                userPassword.type='password';
+            };
+		</script>
+	</body>
+</html>
+

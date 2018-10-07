@@ -1,0 +1,74 @@
+ul, li { list-style-type: none; margin:0px; padding:0px;}
+/*公司账户信息样式*/
+.content{
+    width:100%;
+    min-width: 1000px;
+    overflow: hidden;
+    padding: 20px;
+}
+.content-ca{
+    border-bottom:1px solid #EFF1F4;
+    padding:10px;
+}
+.content-cb{
+    width:100%;
+    height:300px;
+}
+.content-cb-l{
+    width:40%;
+    float: left;
+}
+.content-cb-l h3{
+    border-left: 2px solid #417CF3;
+    padding:0 0 0 10px;
+    margin:40px 0 20px 0;
+}
+.content-cb-l ul{
+    float: left;
+}
+.content-cb-l ul li,.content-cb-l dl dd{
+    width:150px;
+    height:30px;
+    line-height:30px;
+    text-align: right;
+    color: #C1C1C1;
+}
+.content-cb-l dl dd{
+    width:500px;
+    color: #000;
+    text-align: left;
+}
+.system{
+    color: red;
+}
+.content-cb-m{
+    width:40%;
+    float: left;
+    margin: 85px 0 0 0 ;
+}
+.login-img{
+    display: block;
+    width: 179px;
+    height: 114px;
+    background: url("../../../../../../assets/permission-sys/account/1.png");
+}
+.login-img:hover{
+    background: url("../../../../../../assets/permission-sys/account/2.png");
+}
+.zz{
+    margin: 140px 0 0 0;
+}
+.content-cb-r{
+    width:19%;
+    height:300px;
+    float: left;
+    margin-top: 20px;
+}
+.content-cb-r p{
+    background: url("../../../../../../assets/permission-sys/account/before.png") no-repeat;
+    padding: 0 0 0 20px;
+}
+.content-cb-r p:hover{
+    background: url("../../../../../../assets/permission-sys/account/hou.png") no-repeat;
+    color:#417CF3;
+}

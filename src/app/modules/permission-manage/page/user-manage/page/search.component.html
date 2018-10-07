@@ -1,0 +1,28 @@
+<div class="dialog-box" #dialogSearch id="dialog_box_search" [ngStyle]="drag.setPosition(513, 216)">
+    <div class="dialog-box-title blue" id="dialog_title_search">
+        <span class="dialog-left">查找</span>
+        <span class="dialog-right" (click)="dealHide(dialogSearch)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="content-line">
+            <label for="full_name">姓名</label>
+            <input type="text" placeholder="请输入" id="full_name">
+            <label for="work_number">工号</label>
+            <input type="text" placeholder="请输入" id="work_number">
+        </div>
+        <div class="content-line">
+            <label for="work_state">在职状态</label>
+            <select id="work_state">
+                <option>请选择</option>
+            </select>
+            <label for="branch">部门</label>
+            <select id="branch">
+                <option>请选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn">搜索</span>
+        <span class="btn default-btn" (click)="dealHide(dialogSearch)">关闭</span>
+    </div>
+</div>

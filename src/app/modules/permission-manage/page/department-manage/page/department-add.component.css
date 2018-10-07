@@ -1,0 +1,60 @@
+.dialog-box{
+    width: 650px!important;
+}
+.dialog-box>.title-blue{
+    background-color: #417cf3;
+}
+.dialog-box>.dialog-box-title>.dialog-right{
+    color: #fff;
+    opacity: 1;
+}
+.dialog-box>.dialog-box-content{
+    height: auto;
+    border: none;
+    padding: 25px 35px 0 0;
+}
+.content-line{
+    display: flex;
+    margin-bottom: 15px;
+}
+.dialog-box>.dialog-box-content select{
+    padding-left: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+    height: 30px;
+}
+.dialog-box>.dialog-box-content input{
+    border: 1px solid #ccc;
+    height: 30px;
+    width: 200px;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.dialog-box>.dialog-box-content label{
+    flex: 2;
+    text-align: right;
+    margin-right: 15px;
+    line-height: 30px;
+}
+.dialog-box>.dialog-box-content textarea{
+    border: 1px solid #ccc;
+    width: 530px;
+    height: 80px;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    resize: none;
+}
+.dialog-box>.dialog-box-content .longBox{
+    width: 322px;
+}
+.dialog-box>.dialog-box-content span{
+    color: red;
+}
+.dialog-box>.dialog-box-content .box-special1{
+    margin-right: 45px;
+}
+.dialog-box>.dialog-box-content .box-special2{
+    margin-right: 8px;
+}
+.dialog-box .dialog-box-footer{height:30px; text-align: center; padding: 20px;}

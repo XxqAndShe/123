@@ -1,0 +1,35 @@
+<h2>智能匹配规则设置</h2>
+    <div class="line">
+        <div class="right-div">
+            <label><i>*</i>KPI考核项</label>
+            <select name="KPIAssessment" [(ngModel)]="KPIAssessment" (ngModelChange)="changeValue($event)">
+                <option value="">请选择</option>
+                <option value="canOrderProportion">可接单占比</option>
+                <option value="creditTotal">KPI得分</option>
+                <option value="warehouseVolume">仓库容积</option>
+                <option value="margin">保证金</option>
+            </select>
+        </div>
+    </div>
+    <div class="line-content">
+        <div class="line">
+            <span class="start-symbol">*</span>
+            <label class="declare" for="">设置规则</label>
+            <textarea class="declart-textarea" name="tt" [(ngModel)]="setDescription"></textarea>
+        </div>
+        <div class="line">
+            <span class="start-symbol">*</span>
+            <label class="declare" for="">规则说明</label>
+            <textarea class="declart-textarea" name="tt" id="" [(ngModel)]="ruleDescription"></textarea>
+        </div>
+    </div>
+    <div class="add-detail" id="add-detail">
+        <h4>操作说明：</h4>
+        <textarea name="detailFun" [(ngModel)]="detailFun" readonly="readonly"></textarea>
+    </div>
+    <div class="footer">
+        <button class="primary-btn btn" (click)="preservation()">保存</button>
+        <button class="primary-btn btn" type="reset" (click)="returnCredit();">取消</button>
+    </div>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

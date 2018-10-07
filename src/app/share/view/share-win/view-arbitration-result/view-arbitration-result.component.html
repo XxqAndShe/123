@@ -1,0 +1,133 @@
+<div id="dialog_box" class="dialog-box arbitration_tk" [ngStyle]="drag.setPosition(668,620)">
+    <div id="dialog_title" class="dialog-box-title">
+        <ul>
+            <li  [ngClass]="{current: isshowContent[0]}" (click)="changeContent(0)">仲裁处理</li>
+            <li  [ngClass]="{current: isshowContent[1]}" (click)="changeContent(1)">历史跟进信息</li>
+            <li  [ngClass]="{current: isshowContent[2]}" (click)="changeContent(2)">历史仲裁修改</li>
+        </ul>
+        <span style="color: white;font-size: 14px;text-align: center">未知</span>
+        <span class="historical-top-status">未知</span>
+        <span class="dialog-right Close_a" (click)="hideModal()">×</span>
+    </div>
+    <div class="service_class">
+        <div class="class1" [ngClass]="{current: isshowContent[0]}">
+            <div class="dialog-box-content">
+                <div class="top_abn">
+                    <ul>
+                        <li>
+                            <span class="left">异常编码: {{selections.abnormalNum}}</span>
+                            <span class="right">运单号: {{selectLineInfo.waybillId}}</span>
+                        </li>
+                        <li>
+                            <span class="left">登记部门: {{selections.deptName}}</span>
+                            <span class="right">登记时间: {{selections.registerTime}}</span>
+                        </li>
+                        <li>
+                            <span class="left">反馈人: {{selections.feedbackMan}}</span>
+                            <span class="right">联系方式: {{selectLineInfo.feedBackPhone}}</span>
+                        </li>
+                        <li>
+                            <span class="left">异常类型: {{selections.abnormalBigType}}</span>
+                            <span class="right">异常小类: {{selections.abnormalSmallType}}</span>
+                        </li>
+                        <li>
+                            <span class="left">承运商: {{selectLineInfo.carrier}}</span>
+                            <span class="right">安装师傅:</span>
+                        </li>
+                        <li>
+                            <span class="left">异常描述: {{selections.describe}}</span>
+                            <span class="picture"><button type="text" pButton label="查看图片" (click)="op1.toggle($event)"></button></span>
+                            <p-overlayPanel #op1>
+                                <div>
+                                    <img src="../../../../../../assets/touxiang.jpg"/>
+                                    <img src="../../../../../../assets/touxiang.jpg"/>
+                                    <img src="../../../../../../assets/touxiang.jpg"/>
+                                </div>
+                            </p-overlayPanel>
+                        <li>
+                            <span class="left left-spec">责任方: {{selectLineInfo.arbResponsible}}</span>
+                            <span class="middle">处理结果: {{selectLineInfo.arbitrationOpinions}}</span>
+                            <span class="right">承担金额:</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--仲裁处理-->
+                <div class="bottom_abn">
+                    <div class="wrap">
+                        <span class="chuli deep-blue">仲裁处理<i></i></span>
+                    </div>
+                    <div class="wrap wrap2">
+                        <div class="yuandan">
+                            <span>仲裁异常类型</span>
+                            <exception-select [(ngModel)]="arbitrationWinVo.abnoTypecode" [label]="testLabel" style="display: inline-block; position: relative"></exception-select>
+                        </div>
+                    </div>
+
+                    <div class="respon">
+                        <ul>
+                            <li>
+                                <span class="se1">责任方</span>
+                                <span class="se2">责任主体</span>
+                                <!--<span class="se3">承担金额</span>-->
+                            </li>
+                            <li>
+                                <span class="se1">
+                                    <div class="yuandan se1_in">
+                                        <meta-select width="130px"
+                                                      defaultLabel="请选择…"
+                                                      type="abnormalDuty"></meta-select>
+                                    </div>
+                                </span>
+                                <span class="se2">
+                                </span>
+                                <p-dropdown [style]="{'width':'150px'}">
+                                </p-dropdown>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="opinion">
+                        <span class="opinion_bt">仲裁意见</span>
+                        <textarea class="opinion_sr" placeholder="请输入内容，显示相应的内容" maxlength="200"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="class2"  [ngClass]="{current: isshowContent[1]}">
+            <div class="more">
+                <div class="zui_more">
+                    <span class="titl lan">最新跟进</span>
+                    <span class="information" *ngFor="let new of latestFollow">
+                        <span class="left">{{new.followContent}}</span>
+                        <span class="zho">{{new.follower}}</span>
+                        <span class="right">{{new.followTime}}</span>
+                    </span>
+                    <span class="titl">历史跟进</span>
+                    <span class="information" *ngFor="let history of historyFollow">
+                        <span class="left">{{history.followContent}}</span>
+                        <span class="zho">{{history.follower}}</span>
+                        <span class="right">{{history.followTime}}</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="class4"  [ngClass]="{current: isshowContent[2]}">
+            <div class="modify">
+                <ui-grid [columns]="columns"
+                         (load)="load($event)"
+                         [data]="data"
+                         [enableExport]="false"
+                         [showEditColumn]="false"
+                         ></ui-grid>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <ul>
+            <li class="cancel1" (click)="hideModal()">关闭</li>
+        </ul>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

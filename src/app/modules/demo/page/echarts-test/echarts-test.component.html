@@ -1,0 +1,101 @@
+<div class="test-content">
+    <p><a href="/modules/demo/test" class="back">返回demo首页</a></p>
+    <h1>
+        Echarts指令demo
+    </h1>
+    <br>
+    <div class="component">
+        <h3>html一句话搞定，只需要传属性options，如下</h3>
+        <p>&lt;div <strong>echarts</strong> [options]="mapDemoOption" class="demo-chart"&gt;&lt;/div&gt;</p>
+        <p>options属性配置请到Echarts官网看文档：<a href="http://echarts.baidu.com/" target="_blank">http://echarts.baidu.com/</a></p>
+    </div>
+    <hr>
+    <div class="row" style="margin-top: 50px;">
+        <div class="col-md-6">
+            <div id="demo1" class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo 1: 地图统计</h3>
+                </div>
+                <div class="panel-body">
+                    <!--注意：div一定要给定高度或者宽度-->
+                    <div echarts [options]="mapDemoOption" class="demo-chart"></div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div id="demo2" class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo 2: 使用 "dataset" 更容易更新图表</h3>
+                </div>
+                <div class="panel-body">
+                    <button class="btn btn-primary" (click)="chageDataset()">Change dateset</button>
+                    <!--注意：div一定要给定高度或者宽度-->
+                    <div echarts [options]="chartOption2" [dataset]="dataset" class="demo-chart"></div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="demo3" class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo 3: 动态加载数据"loading"效果</h3>
+                </div>
+                <div class="panel-body">
+                    <button class="btn btn-primary" style="margin-left: 100px;" (click)="toggleLoading()">{{this.chartLoading?'取消加载':'点击加载'}}</button>
+                    <!--注意：div一定要给定高度或者宽度-->
+                    <div echarts [options]="chartOption3" [loading]="chartLoading" class="demo-chart"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="demo4" class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo 4: 绑定鼠标 单击 和 双击 事件</h3>
+                </div>
+                <div class="panel-body">
+                    <h4>单击图表查看效果，打开console可以查看输出信息.</h4>
+                    <hr>
+                    <div echarts class="demo-chart"
+                         [options]="chartOption4"
+                         (chartClick)="onChartClick($event)"
+                         (chartDblClick)="onChartDblClick($event)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="demo5" class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo 5: 如何更新 "options" 来改变图表</h3>
+                </div>
+                <div class="panel-body">
+                    <button class="btn btn-primary" (click)="changeOptions()" [disabled]="revert">Change Options
+                    </button>
+                    <button class="btn btn-primary" (click)="revertOptions()" [disabled]="!revert">Revert Options
+                    </button>
+                    <!--注意：div一定要给定高度或者宽度-->
+                    <div echarts [options]="chartOption5" [dataset]="dataset" class="demo-chart"></div>
+                    <!--注意：div一定要给定高度或者宽度-->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="demo6" class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo 6: 堆叠区域图 示例</h3>
+                </div>
+                <div class="panel-body">
+                    <div echarts [options]="lineChartStackOption" class="demo-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

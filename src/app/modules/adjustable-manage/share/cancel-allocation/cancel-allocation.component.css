@@ -1,0 +1,45 @@
+.dialog-box > .dialog-box-content > .dialog-box-com > span {
+    height: 30px;
+    width: 77px;
+    text-align: center;
+    display: inline-block;
+    line-height: 30px;
+    float: left;
+}
+
+.dialog-box > .dialog-box-content > .dialog-box-com > textarea {
+    display: inline-block;
+    height: 90px;
+    width: 272px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgb(221, 221, 221);
+    background: rgb(248, 248, 248);
+    outline: none;
+    margin-left: -5px
+}
+
+.dialog-box-content .start-symbol {
+    color: #ff5454;
+    position: relative;
+    width: 0px;
+    top: 2px;
+}
+
+.dialog-box-content .add-start-symbol {
+    left: 13px;
+}
+
+textarea {
+    outline: none;
+    resize: none;
+}
+
+.dialog-box > .dialog-box-content > .dialog-box-com > .add-start-symbol {
+    height: 30px;
+    width: 0px;
+    margin-left: -5px;
+    display: inline-block;
+    line-height: 30px;
+    float: left;
+}

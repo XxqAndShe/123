@@ -1,0 +1,17 @@
+<div class="test-content">
+  <p><a href="/modules/demo/test" class="back" >返回demo首页</a>  </p>
+  <div>
+    <h3>品名选择</h3>
+    <good-select width="150px" defaultLabel="请选择…" [(ngModel)]="goodValue"></good-select>
+    <span>{{goodValue}}</span>
+    <br>
+    <button (click)="doTest()">测试取Code</button>
+  </div>
+  <div class="component">
+    <h3>通过valueField="goodId"来控制绑定值为goodId</h3>
+    <good-select width="150px" defaultLabel="请选择…" [(ngModel)]="goodValueId" valueField="goodId"></good-select>
+    <span>{{goodValueId}}</span>
+    <br>
+    <button (click)="doTest1()">测试取Code</button>
+  </div>
+</div>

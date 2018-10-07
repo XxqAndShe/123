@@ -1,0 +1,40 @@
+<div id="abnormal_box" style=" position: absolute;top: 50%;left: 50%;margin-left: -298px;margin-top: -220px;">
+    <div id="abnormal_move_area" class="header">
+        <span class="abnormal-text">签收</span>
+        <span class="close-btn" (click)="DeleteSymbol()">×</span>
+    </div>
+    <div class="Signmsg">
+        <span>
+            <span class="start-symbol" style="margin-left: -45px;">*</span>
+            签收人：
+        </span>
+        <input type="text" maxlength="20" [(ngModel)]="Signatory" placeholder="{{itemSignatory}}" #box1 (keyup.enter)="FnSignatory(box1.value)" (blur)="FnSignatory(box1.value)">
+        <span class="SignmsgCord">
+           签收状态：
+        </span>
+        <select name="" id="" [(ngModel)]="whatSign">
+            <option value="normal">正常签收</option>
+            <option value="notNormal">异常签收</option>
+        </select>
+    </div>
+    <div class="Signmsg1" >
+        <textarea name="signText" [(ngModel)]="signText" placeholder="{{itemSignText}}"></textarea>
+    </div>
+    <div  class="abnormal-pic">
+        <span class="abnormal-des-con">
+            签收图片
+        </span>
+        <div class="pic-file">
+            <ui-upload [(ngModel)]="files" fileMaxNum="6"></ui-upload>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="confirm-btn btn" href="javascript:void(0)" (click)="addSign()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            保存
+        </button>
+        <button class="cancel-btn btn" href="javascript:" (click)="cancelSign()">取消</button>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

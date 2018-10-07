@@ -1,0 +1,119 @@
+<div class="outer-container">
+	<div class="inner-container">
+		<form id="form_dsl" #formBox_dsl>
+			<div class="content-header content-header1">
+				<span>服务区域</span>
+				<div class="addr-control">
+					<!--<input type="text" placeholder="省/市/区" (click)="addrSelectHidden=false" value="{{areaText}}" readonly="readonly" [ngClass]="{focus: !addrSelectHidden}">-->
+					<!--<my-addr-select1 [addrSelectHidden]="addrSelectHidden" (changeAddrText)="changeAddrText($event)"></my-addr-select1>-->
+					<ui-select-box name="someName" [(ngModel)]="dataChangeRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+				</div>
+
+				<span style="margin-left: 19px;">常规服务</span>
+				<select name="regular-service" [(ngModel)] ="dataChangeRequestVo.typeOfService">
+					<option value="All">全部</option>
+					<option value="dispatch">配送</option>
+					<option value="install">安装</option>
+					<option value="dispatchNInstall">配送+安装</option>
+				</select>
+
+				<span>增值服务</span>
+				<select name="value-added-service" [(ngModel)] ="dataChangeRequestVo.valueAddService">
+					<option value="All">全部</option>
+					<option value="repairService">维修</option>
+					<option value="returnGoods">返货</option>
+				</select>
+
+				<span>审核状态</span>
+				<select name="audit-status" [(ngModel)] ="dataChangeRequestVo.auditStatus">
+					<option value="All">全部</option>
+					<option value="pendingAudit">待审核</option>
+					<option value="pass">通过</option>
+					<option value="notPass">不通过</option>
+				</select>
+
+				<button class="btn primary-btn" (click) = "doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+				<button class="btn default-btn" (click)="formBox_dsl.reset()">清空</button>
+				<a href="javascript:void(0);" class="export-div">导出</a>
+			</div>
+			<div class="content-header content-header2">
+				<label for="masterName">师傅/手机</label>
+
+				<p-autoComplete id="masterName" name="tt" [(ngModel)]="dataChangeRequestVo.masterName" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)" field="realName"></p-autoComplete>
+				<!--<label class="master-id" for="masterId">师傅账号</label>-->
+
+				<!--&lt;!&ndash;<p-autoComplete id="masterId" name="tt" [(ngModel)]="dataChangeRequestVo.masterAccount" [suggestions]="suggestionResult" (completeMethod)="searchResult2($event)" field="mobile"></p-autoComplete>&ndash;&gt;-->
+				<!--<master-select id="masterId" name="userName2" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="dataChangeRequestVo.masterAccount" valueField="mobile"></master-select>-->
+			</div>
+		</form>
+
+		<div *ngIf='selectNum !== 0' class="table-header">
+			<span class="select-text">已选中<span class="select-num">{{selectNum || 0}}</span>项</span>
+			<span *ngIf="pendingAuditIf">
+				<span class="split-line">|</span>
+			    <a href="javascript:;" class="operation-a operation-audit" (click)="displayModal(0)"><i></i>审核</a>
+			</span>
+			<span class="split-line">|</span>
+			<a href="javascript:;" class="operation-a operation-check" (click)="displayModal(1)"><i></i>查看</a>
+			<span class="close-btn" (click)="DeleteSelectNum()">×</span>
+		</div>
+		<div *ngIf='selectNum === 0' class="table-header table-header1">
+			<h4>任务列表</h4>
+		</div>
+
+		<div class="table-container master_manage_table">
+
+			<ui-grid title="&nbsp;" [columns]="columns" [data]="data"
+					  (load)="load($event)"
+                     (exportCSV)="exportCSV($event)"
+					 [selections]="selections" (rowSelect)="rowSelect($event)"
+					 (cellClick)="cellClick($event,op1)"></ui-grid>
+		</div>
+
+
+	</div>
+
+	<data-change-modal class="modal" [dataChangeModalRequestVo]="dataChangeModalRequestVo" [dataChangeAfterModalResponseVo]="dataChangeAfterModalResponseVo" [dataChangeBeforeModalResponseVo]="dataChangeBeforeModalResponseVo" *ngIf="isModuleDisplayArr[0]" (closeModal)="closeModal($event)" (saveModal)="saveModal(e)" [@modalState]="isModuleDisplayArr1[0] ?'in':'out'" [moduleInfo]="moduleInfo"></data-change-modal>
+</div>
+<!--表格服务区域表格弹窗-->
+
+<!--审核提示框-->
+<span *ngIf="deleteSure">
+  <div class="dialog-box dialog-box-mm" id="dialog-not-through">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+		<span class="dialog-right" (click)="ConfirmDeleteSure()">×</span>
+	</div>
+	<div class="dialog-box-content dialog-box-content-mm">
+		             该任务已审核，不能再进行操作！
+	</div>
+	<div class="dialog-box-footer dialog-box-footer-mm">
+		<span class="btn primary-btn" (click)="ConfirmDeleteSure()">确定</span>
+	</div>
+  </div>
+</span>
+<!--表格服务区域表格弹窗-->
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+	<p-dataTable [value]="serviceAreas" class="table" [style]="{'width':'510px','maxHeight':'300px','overflow-y':'auto'}">
+		<p-headerColumnGroup>
+			<p-row>
+				<p-column header="省" [style]="{'width':'100px'}"></p-column>
+				<p-column header="市" [style]="{'width':'100px'}"></p-column>
+				<p-column header="区/县" [style]="{'width':'300px'}"></p-column>
+			</p-row>
+		</p-headerColumnGroup>
+
+		<p-column  field="sheng"></p-column>
+		<p-column  field="shi"></p-column>
+		<p-column  field="qu"></p-column>
+	</p-dataTable>
+</p-overlayPanel>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>
+<!--加载中-->
+<span class="loading-serve" *ngIf="loadingIf">
+    <img src="./assets/cooperation-company/loading.gif">
+</span>

@@ -1,0 +1,11 @@
+<div id="dialog_box" class="dialog-box">
+    <div id="dialog_title" class="dialog-box-title">
+        <span class="dialogdialog-left">报表数据删除</span>
+        <span class="dialog-right" (click)="hideDialog()">×</span>
+    </div>
+    <div class="dialog-box-content">确定删除 {{formName}}?</div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="saveDel()">确定</span>
+        <span class="btn default-btn"  (click)="hideDialog()">取消</span>
+    </div>
+</div>

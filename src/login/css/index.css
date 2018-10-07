@@ -1,0 +1,41 @@
+/*登录*/
+.content1{ width: 100%; height: 100%; background:url(../images/Sign_bj.jpg) no-repeat center;  position: absolute; top: 0; left: 0; }
+.content1 .content1_in{ position: absolute; width: 1000px; height: 560px; top: 50%; left: 50%; margin-left: -500px; margin-top: -280px; }
+.content1 .content1_in .top_cun{ width: 100%; height: 120px; text-align: center; }
+.content1_in .top_cun .j_currtun{ display: inline-block; width: 220px; height: 80px;  }
+.content1_in .top_cun .j_currtun .logo{ width: 100%; height: 56px; background: url(../images/logo.png) no-repeat center; }
+.content1_in .top_cun .j_currtun .logo>a{ display: block; width: 100%; height: 100%;}
+.content1_in .top_cun .j_currtun>p{  font-size: 18px; color: #858585; letter-spacing: 5px; margin-top:2px; }
+.content1_in .bottom_cun{ float: left; width: 100%; height: 380px;}
+.content1_in .bottom_cun .left_cun{ float: left; width: 602px; height: 380px; background: url(../images/sement_bj.jpg) no-repeat; }
+.content1_in .bottom_cun .right_cun{ float: right; width: 360px; height: 375px; box-shadow: 0 0 10px #ccc; background: #fff; padding: 30px 0 0 20px; box-sizing: border-box; }
+.bottom_cun .right_cun .cun_titl{ font-size: 20px; color: #444444; }
+.bottom_cun .right_cun  .cun_user{ float: left; width: 300px; height: 40px; border: 1px solid #ccc; margin-top: 24px; position: relative; }
+.bottom_cun .right_cun  .cun_user>label{ float: left; width: 40px; height: 40px; }
+.bottom_cun .right_cun  .cun_user>label>i{ display: block; width: 100%; height: 100%; }
+.bottom_cun .right_cun  .cun_user>label .yonhu{ background: url(../images/yonhu.png) no-repeat center; }
+.bottom_cun .right_cun  .cun_user>label .mima{ background: url(../images/mima.png) no-repeat center; }
+.bottom_cun .right_cun  .cun_user>input{font-size: 14px;float: left; width: 255px; height: 40px; line-height: 40px;padding: 2px 26px 2px 2px; box-sizing: border-box; border: none;outline:none; }
+.bottom_cun .right_cun  .cun_user .xi{ width: 20px; height: 20px; position: absolute; right: 10px; top: 10px; cursor: pointer; }
+.bottom_cun .right_cun  .cun_user .guan_bi{ visibility: hidden; background: url(../images/guanbi.png) no-repeat;}
+.bottom_cun .right_cun  .cun_user .cha_kan{ visibility:hidden;background: url(../images/chakan.png) no-repeat;}
+
+.bottom_cun .right_cun  .cun_user.forget{ margin: 15px 0; height: auto; border: none; }
+.bottom_cun .right_cun  .cun_user.forget .left{ float: left; line-height: 14px; }
+.bottom_cun .right_cun  .cun_user.forget .left input{float: left; width: 15px; height: 15px; border: 1px solid #ccc; margin-right: 3px; cursor: pointer; }
+.bottom_cun .right_cun  .cun_user.forget .right{ float: right; }
+.bottom_cun .right_cun  .cun_user.forget .right>a:link,
+.bottom_cun .right_cun  .cun_user.forget .right>a:visited{
+    color: blue;
+}
+.bottom_cun .right_cun  .cun_user.forget .right>a:hover,
+.bottom_cun .right_cun  .cun_user.forget .right>a:active{
+    color: red;
+}
+.bottom_cun .right_cun  .cun_user.Signin{ border: none; margin-top: 0; }
+.bottom_cun .right_cun  .cun_user>.cun_Signin{ display: block;  width: 100%; height: 100%; line-height: 40px; text-align: center; color: #fff; background: #0d85e4; font-size: 18px; }
+
+.content1_in .cun_about{width: 100%; text-align: center;}
+.content1_in .cun_about ul{ display: inline-block; margin-top: 40px; }
+.content1_in .cun_about ul li{ float: left; margin: 0 5px; color: #999999; font-size: 13px; }
+.content1_in .cun_about ul li a{  color: #999999; font-size: 13px;}

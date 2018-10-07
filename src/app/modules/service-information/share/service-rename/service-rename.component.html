@@ -1,0 +1,23 @@
+<div class="dialog-box" style="display:block;width: 450px;margin-left: -300px;margin-top: -300px">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">重命名</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <div class="title">
+                <span><i class="start-symbol add-start-symbol">*</i>文件名称</span>
+                <input name="titleName" [(ngModel)]="selectData.name" maxlength="25"/>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

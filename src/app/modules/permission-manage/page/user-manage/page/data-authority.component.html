@@ -1,0 +1,81 @@
+<div class="dialog-box" #dialogOperate id="dialog_box_operate" [ngStyle]="drag.setPosition(650,510)">
+    <div class="dialog-box-title top-title" id="dialog_title_operate">
+        <span class="dialogdialog-left">数据权限</span>
+        <span class="dialog-right" (click)="dealHide(dialogOperate)">×</span>
+    </div>
+    <div class="dialog-container">
+        <div class="dialog-box-content">
+            <ul class="content-aa">
+                <li *ngFor="let panelTitle of panelTitles;let i=index" [ngClass]="{'content-style':isClicked[i]}" (click)="panelChange(i)">{{panelTitle}}</li>
+            </ul>
+            <div class="content-d">
+                <div class="content-l">
+                    <div class="content-c">
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[0]}">
+                            <p-tree  [value]="files1" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[1]}">
+                            <p-tree  [value]="files2" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[2]}">
+                            <p-tree  [value]="files3" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[3]}">
+                            <p-tree  [value]="files4" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b" [ngClass]="{'content-show':isClicked[4]}">
+                            <p-tree  [value]="files5" selectionMode="checkbox"></p-tree>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-r">
+                    <ul class="content-r-top">
+                        <li *ngFor="let subTitle of subPanelTitles;let i=index">
+                            <label>
+                                <i [ngClass]="{'input-che':!isSubClicked[i],'xu-che':isSubClicked[i]}" (click)="changeSubTitle(i)"></i>
+                                <span class="TMS">{{subTitle}}</span>
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="content-c con-l">
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[0]}">
+                            <p-tree  [value]="files6" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b "[ngClass]="{'content-show':isClicked[1]}">
+                            <p-tree  [value]="files7" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[2]}">
+                            <p-tree  [value]="files8" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[3]}">
+                            <p-tree  [value]="files9" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[4]}">
+                            <p-tree  [value]="files10" selectionMode="checkbox"></p-tree>
+                        </div>
+                    </div>
+                    <div class="content-c con-r">
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[0]}">
+                            <p-tree  [value]="files11" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b "[ngClass]="{'content-show':isClicked[1]}">
+                            <p-tree  [value]="files12" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[2]}">
+                            <p-tree  [value]="files13" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[3]}">
+                            <p-tree  [value]="files14" selectionMode="checkbox"></p-tree>
+                        </div>
+                        <div class="content-b con-b" [ngClass]="{'content-show':isClicked[4]}">
+                            <p-tree  [value]="files15" selectionMode="checkbox"></p-tree>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dialog-box-footer">
+            <span class="default-btn btn" (click)="dealHide(dialogOperate)">关闭</span>
+        </div>
+    </div>
+</div>

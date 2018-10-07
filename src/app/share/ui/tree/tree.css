@@ -1,0 +1,12 @@
+.tree{
+    display: inline;
+}
+.tree:before{
+    display: table;
+    content: " ";
+}
+.tree:after{
+    display: table;
+    content: " ";
+    clear:both;
+}

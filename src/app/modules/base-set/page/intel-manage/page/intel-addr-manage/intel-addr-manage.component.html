@@ -1,0 +1,25 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs" (chanCurIndex) = "changeNav($event)"></my-nav>
+    <ul class="intel-match-button">
+        <li *ngFor="let text of invocationText;let i=index"><i [ngClass]="{circle:!isChange[i],right:isChange[i]}" (click)="changeStyle(i)"></i>{{text}}</li>
+    </ul>
+
+
+    <div class="intel-match-title">
+        <span>智能匹配区域</span>
+        <span *ngIf="startIf" class="btn primary-btn" (click)="openCountry(!startIf)">开启全国</span>
+        <span *ngIf="!startIf" class="btn primary-btn" (click)="openCountry(startIf)">退出全国</span>
+        <span class="btn primary-btn" (click)="save()">保存</span>
+    </div>
+    <!--<div id="adress-ui"><ui-tree [(ngModel)]="selectNodes" (load)="load($event)" (onNodeUnselect)="NodeUnselect($event)"></ui-tree></div>-->
+    <intel-match-area  [selectedAreas]="selectedAreas" (selectChange)="onNodeSelect($event)"></intel-match-area>
+</div>
+
+<!--<div *ngIf="showWin" [@modalState]="showWinAni?'in':'out'" class="operate-tips save-success">-->
+    <!--<i></i>-->
+    <!--<span class="operate-tips-text">保存成功</span>-->
+    <!--<span class="cancel-icon" (click)="hideTip()">×</span>-->
+<!--</div>-->
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+

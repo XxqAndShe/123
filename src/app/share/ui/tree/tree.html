@@ -1,0 +1,12 @@
+<div class="tree">
+
+    <p-tree
+            [value]="innerRoot.children"
+            [selectionMode]="selectionMode"
+            (onNodeExpand)="nodeExpand($event)"
+            (onNodeSelect)="onNodeSelectHandler($event)"
+            (onNodeUnselect)="onNodeUnselectHandler($event)"
+            [(selection)]="innerSelections"
+            [style]="{'overflow':'auto','width':width}">
+    </p-tree>
+</div>

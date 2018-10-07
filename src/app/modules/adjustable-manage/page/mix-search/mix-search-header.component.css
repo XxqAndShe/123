@@ -1,0 +1,252 @@
+#wait_trace {
+    width: 100%;
+}
+
+#wait_trace>.province {
+    min-width: 1100px;
+    height: 50px;
+    line-height: 50px;
+}
+
+#wait_trace input {
+    font-size: 12px;
+    font-family: '微软雅黑';
+    border: 1px solid #ddd;
+    color: #333;
+    height: 28px;
+    display: inline-block;
+    outline: none;
+}
+
+#wait_trace .all_state {
+    font-size: 14px;
+    font-family: '微软雅黑';
+    border: 1px solid #ddd;
+    color: #333;
+    padding-left: 8px;
+    width: 125px;
+    height: 30px;
+    display: inline-block;
+    outline: none;
+    margin-left: 10px;
+}
+
+.province>my-addr-select1 {
+    width: 160px !important;
+    display: inline-block;
+}
+
+.province>.province-input {
+    width: 160px;
+    margin-left: 14px;
+}
+
+.province>.transport-num {
+    margin-left: 12px;
+}
+
+.province>.transport-num-input {
+    width: 96px;
+    margin-right: 12px;
+}
+
+.province>.all_state {
+    position: relative;
+    color: #333;
+    width: 94px;
+    height: 32px;
+    outline: none;
+    border: 1px solid #ddd;
+}
+
+.province>.all_state>option {
+    overflow: hidden;
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    color: #6d6d6d;
+    -webkit-appearance: none;
+    /*去除系统默认的样式*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* 点击去除高亮的颜色*/
+    background-color: #fff;
+    /*当input框禁止输入的时候会有一个灰色的底色 项目需要我设置了 白色*/
+}
+
+.province>.line-state {
+    position: relative;
+    margin-right: -8px;
+    margin-left: 14px;
+}
+
+.province>.btn {
+    margin-left: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    width: 60px;
+    height: 30px;
+}
+
+.search-btn {
+    color: white;
+    margin-left: 20px;
+}
+
+.province>.clear-btn {
+    background-color: #f7f7f7;
+    line-height: 28px;
+    border: 1px solid #ddd;
+}
+
+.province>.province-address {
+    width: 36px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/*发货人*/
+
+#wait_trace>.send-good {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    min-width: 1018px;
+}
+
+#wait_trace>.send-good input {
+    width: 125px;
+}
+
+.send-good>.send-man {
+    width: 142px;
+}
+
+.send-good>.receive-text {
+    margin: 0 0 0 57px;
+}
+
+span.matching-type {
+    margin-right: -4px;
+    margin-left: 10px;
+}
+
+.send-good>select {
+    margin-left: 12px;
+}
+
+.send-good .write-order-input1 {
+    margin-left: 0px;
+    width: 125px;
+    display: inline-block;
+}
+
+#wait_trace .send-good>select.all_state {
+    width: 106px;
+    padding-left: 4px;
+}
+
+.line-end-date {
+    width: 78px;
+    height: 30px;
+    box-sizing: border-box;
+    font-size: 12px;
+    display: inline-block;
+}
+
+#wait_trace .send-good>.line-end-date>input {
+    font-size: 12px;
+}
+
+.order-state-btn>.export {
+    float: right;
+    color: #b6b6b6;
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 32px;
+    line-height: 42px;
+    padding-left: 24px;
+    background: url(/assets/adjustable-manager-img/export_csv.png)no-repeat 0 9px
+}
+
+ui-select-box {
+    line-height: 16px;
+}
+
+
+/*.addr-control {*/
+
+
+/*width: 166px;*/
+
+
+/*}*/
+
+.billIdOrTaskId {
+    margin-top: -18px;
+    margin-left: 10px;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.line-state.billOrTask {
+    margin-left: 10px;
+}
+
+.billIdCloseBtn {
+    margin-left: -5px;
+    height: 50px;
+    width: 16px;
+    font-size: 16px;
+}
+
+
+/*搜索框媒体查询*/
+
+@media screen and (max-width: 1024px) {
+    #wait_trace {
+        width: 1024px;
+    }
+    #wait_trace select.all_state,
+    .order-state-btn .addr-control,
+    .send-good .write-order-input1 {
+        width: 48px;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    #wait_trace {
+        width: 1366px;
+    }
+    #wait_trace select.all_state,
+    .order-state-btn .addr-control,
+    .send-good .write-order-input1 {
+        width: 120px;
+    }
+    span.write-order {
+        margin-left: 38px;
+    }
+    #wait_trace .send-good>select.all_state {
+        margin-left: 6px;
+    }
+}
+
+@media screen and (min-width: 1367px) {
+    #wait_trace {
+        width: 1600px;
+    }
+    .order-state-btn .addr-control,
+    .send-good .write-order-input1 {
+        width: 150px;
+    }
+    span.write-order {
+        margin-left: 11px;
+    }
+    #wait_trace .send-good>select.all_state {
+        margin-left: -12px;
+    }
+}

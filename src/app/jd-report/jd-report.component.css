@@ -1,0 +1,58 @@
+.jd-body{
+    padding: 30px 10px 20px;
+}
+.jd-body h1{
+    background: #F3F3F3;
+    padding: 10px 15px;
+    margin-bottom: 40px;
+}
+.jd-body span{
+    width: 100px;
+    display: inline-block;
+    margin-right: 15px;
+    text-align: right;
+}
+.jd-body input{
+    width: 135px;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 5px;
+    border: 1px solid #c0c0c0;
+}
+.jd-body select{
+    width: 135px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 5px;
+    border: 1px solid #c0c0c0;
+}
+.jd-body .search li{
+    width: 300px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.jd-body .btn-export{
+   margin-left: 20px;
+}
+.last{
+    text-align: center;
+}
+.tips {
+    display: block;
+    position: fixed;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    max-width: 300px;
+    min-height: 50px;
+    height: auto;
+    line-height: 20px;
+    padding: 5px;
+    color: #000;
+}
+.gird-table{
+    margin-top: 15px;
+    min-width: 1300px;
+}
+.line-end-date{
+    display: inline-block;
+}

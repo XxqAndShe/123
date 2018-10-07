@@ -1,0 +1,38 @@
+.import{
+    margin-top: 10px;
+}
+.import input{
+    width: 150px;
+    border: 1px solid #e6e6e6;
+    height: 30px;
+}
+.btnClick {
+    display: inline-block;
+    padding: 0px;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+    background: #0099FF;
+    margin-left: 10px;
+    position: relative;
+    z-index: 100;
+}
+.btnClick-reduce{
+    line-height: 22px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.btnClick-add{
+    line-height: 26px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.tree{
+    width: 400px;
+    height: 150px;
+    overflow: auto;
+}

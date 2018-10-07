@@ -1,0 +1,19 @@
+.dialog-box-footer{
+    padding: 10px 0;
+}
+.radio {
+    padding-top: 15px;
+}
+.ui-upload {
+    margin-right: 15px!important;
+}
+.input-describe > span {
+    text-align: center;
+}
+.special > span {
+    text-align: left;
+}
+.dialog-box-content{
+    max-height: 500px;
+    overflow: auto;
+}

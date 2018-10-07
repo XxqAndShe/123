@@ -1,0 +1,93 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <!--导航栏-->
+        <panel-nav [navs]="navs" [(curIndex)]="curIndex" (chanCurIndex)="changeNav($event)"></panel-nav>
+
+
+        <!--这里是显示订单区域统计图部分-->
+        <div class="content-header" *ngIf="isShowArea">
+            <form>
+                <span>时间段</span>
+                <div class="calendar-div">
+                    <p-calendar name="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [yearRange]="yearRange" [maxDate]="OrderAreaStatistics.endWriteDate" [(ngModel)]="OrderAreaStatistics.startWriteDate" [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="calendar-div">
+                    <p-calendar name="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [yearRange]="yearRange" [minDate]="OrderAreaStatistics.startWriteDate" [(ngModel)]="OrderAreaStatistics.endWriteDate" [readonlyInput]="true"></p-calendar>
+                </div>
+                <span>查询对象</span>
+                <select name="source" [(ngModel)]="OrderAreaStatistics.statisticMode">
+                    <option value="ammount">订单数量</option>
+                    <option value="money">订单金额</option>
+                </select>
+                <span>商家</span>
+                <div class="seller">
+                    <input type="text" name="sellerCode" [(ngModel)]="OrderAreaStatistics.shipper"/>
+                    <!--<meta-select width="150px" defaultLabel="请选择…" [(ngModel)]="orderQryParams.sellerCode" type="service"></meta-select>-->
+                </div>
+                <button class="btn primary-btn" (click)="doSearchArea()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset">清空</button>
+            </form>
+
+        </div>
+        <div class="content-body" *ngIf="isShowArea">
+            <div class="table-header table-header1">
+                <h4>订单区域统计图</h4>
+            </div>
+            <div class="content-img">
+                <div class="order-info">全国订单{{allOrder}}：<span>{{allSum}}</span>，省平均{{proAverageOrder}}：<span>{{provinceAverage}}</span></div>
+                <a href="javascript:;" class="exportExcel">导出EXCEL</a>
+                <div echarts [options]="OrderMapOption" style="height: 500px"></div>
+            </div>
+        </div>
+
+        <!--这里是显示订单趋势统计图部分-->
+        <div class="content-header" *ngIf="isShowTrend">
+            <form>
+                <span>时间段</span>
+                <div class="calendar-div">
+                    <p-calendar name="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [yearRange]="yearRange" [maxDate]="OrderTrendStatistics.endWriteDate" [(ngModel)]="OrderTrendStatistics.startWriteDate" [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="calendar-div">
+                    <p-calendar name="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [yearRange]="yearRange" [minDate]="OrderTrendStatistics.startWriteDate" [(ngModel)]="OrderTrendStatistics.endWriteDate" [readonlyInput]="true"></p-calendar>
+                </div>
+                <span>查询对象</span>
+                <select name="source" [(ngModel)]="OrderTrendStatistics.statisticMode">
+                    <option value="ammount">订单数量</option>
+                    <option value="money">订单金额</option>
+                </select>
+                <span>商家</span>
+                <div class="seller">
+                    <input type="text" name="sellerCode" [(ngModel)]="OrderTrendStatistics.shipper"/>
+                    <!--<meta-select width="150px" defaultLabel="请选择…" [(ngModel)]="orderQryParams.sellerCode" type="service"></meta-select>-->
+                </div>
+                <div>
+                    <span class="area">区域</span>
+                    <div class="addr-control">
+                        <ui-select-box name="addressCode" [data-handler]="dataHandler" [(ngModel)]="OrderTrendStatistics.area_code"></ui-select-box>
+                    </div>
+                </div>
+                <button class="btn primary-btn" (click)="doSearchTrend()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset">清空</button>
+            </form>
+        </div>
+        <div class="content-body" *ngIf="isShowTrend">
+            <div class="table-header table-header1">
+                <h4>订单趋势统计图</h4>
+            </div>
+            <div class="content-img">
+                <div class="order-info">该时间段总{{proAverageOrder}}：<span>{{OrderSum}}</span></div>
+                <a href="javascript:;" class="exportExcel">导出EXCEL</a>
+                <div echarts [options]="OrderTrendOption" style="height: 500px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+

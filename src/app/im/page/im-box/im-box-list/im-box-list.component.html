@@ -1,0 +1,23 @@
+<li *ngFor="let list of Data; let i=index" [ngClass]="sname" (dblclick)="dbOpenChat(i, $event,list.workerPortrait, hasSessionKey, hasMasterEntryKey)">
+  <span class="delete"><a href="javascript:;" *ngIf="hasSessionKey" (click)="delOneList(i)">X</a></span>
+  <div class="oder_type" *ngIf="list.taskType == '图片'">
+    <img [src]="list.workerPortrait?list.workerPortrait:'/assets/touxiang.jpg'" #img>
+  </div>
+  <div class="oder_type xin" *ngIf="list.taskType == 'dispatchTask'" [ngClass]="getClass(list.taskType)">新</div>
+  <div class="oder_type xin" *ngIf="list.taskType == 'repair'" [ngClass]="getClass(list.taskType)">维</div>
+  <div class="oder_type xin" *ngIf="list.taskType == 'fhreturn'" [ngClass]="getClass(list.taskType)">返</div>
+  <div class="oder_title">
+    <div class="oder">
+      <!--双击修改群组名字方法保存-->
+      <!--(dblclick)="edit($event, list.groupId, i)"-->
+      <span #oderTitle class="oder_groupTitle" id="oder_groupTitle">
+        {{list.title}}
+      </span>
+      <i class="icon" *ngIf="list.num">{{list.num}}</i>
+    </div>
+    <em>{{list.msg}}</em>
+  </div>
+  <!--<a  class="btn_jr" href="javascript:;" (click)="sessionJoinIn(i)" *ngIf="hasSessionKey">进入</a>-->
+  <a  class="btn_jr" href="javascript:;" (click)="joinIn(i)" *ngIf="hasEntryKey">接入</a>
+  <!--<a  class="btn_jr" href="javascript:;" (click)="masterJoinIn(i)" *ngIf="hasMasterEntryKey">师傅接</a>-->
+</li>

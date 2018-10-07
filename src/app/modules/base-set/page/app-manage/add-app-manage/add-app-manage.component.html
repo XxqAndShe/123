@@ -1,0 +1,37 @@
+<div class="dialog-box" style="display:block;width: 400px;margin-left: -250px;margin-top: -170px">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left" *ngIf="record.length!==0">编辑信息</span>
+        <span class="dialogdialog-left" *ngIf="record.length===0">新增</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <div class="title">
+                <span><i class="start-symbol add-start-symbol">*</i>标题</span>
+                <input name="titleName" [(ngModel)]="addAppManageVo.titleName"/>
+            </div>
+            <div class="title">
+                <span><i class="start-symbol add-start-symbol">*</i>版本号</span>
+                <input name="versionNumber" style="width: 150px" [(ngModel)]="addAppManageVo.versionNumber"/>
+            </div>
+            <div class="describe">
+                <span><i class="start-symbol add-start-symbol">*</i>内容</span>
+                <textarea maxlength="100" placeholder="请输入" [(ngModel)]="addAppManageVo.describe"></textarea>
+            </div>
+            <div class="title" *ngIf="record.length===0">
+                <span><i class="start-symbol add-start-symbol" >*</i>升级包</span>
+                <ui-upload type="file" [(ngModel)]="fileList"   multiple="single"></ui-upload>
+            </div>
+
+        </div>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

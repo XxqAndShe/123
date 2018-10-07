@@ -1,0 +1,34 @@
+<div class="sale-content">
+  <financial-center-top></financial-center-top>
+  <account-search (findSaleRunningFlow)="findSaleRunningFlow($event)" [loading]="loading" [saleRunning]="saleRunning"></account-search>
+  <div class="table-title"><span class="title-name">营业流水</span></div>
+  <!--<div  *ngIf="!isshowTitle" class="show-flow-chart">-->
+      <!--<ul class="show-flow-list">-->
+        <!--<li><span>已选中<i>1</i>项</span></li>-->
+        <!--<li><i></i><span>提现审批</span></li>-->
+        <!--<li><i></i><span>付款明细</span></li>-->
+        <!--<li><i></i><span>任务明细</span></li>-->
+      <!--</ul>-->
+      <!--<span class="cancel-icon" (click)="showTitle()">×</span>-->
+  <!--</div>-->
+    <div class="table-container">
+        <!--<data-table [tableHeight]="tableHeight" [datum]="datum" *ngIf="isTableShow"></data-table>-->
+        <ui-grid title="&nbsp;" [columns]="columns" [data]="data" (cellClick)="cellClick($event)" (rowSelect)="rowSelect($event)" (exportCSV)="exportCSV($event)" (load)="load($event)"></ui-grid>
+    </div>
+</div>
+<!--维修任务-->
+<repair-detail class="modal" *ngIf="isModuleDisplayArr[0]"
+               (closeModal)="closeModal($event)"
+               [@modalState]="isModuleDisplayArr1[0] ?'in':'out'" [selectedRowData]="selections"></repair-detail>
+<!--返货任务-->
+<supplier-detail class="modal" *ngIf="isModuleDisplayArr[1]"
+                 (closeModal)="closeModal($event)"
+                 [@modalState]="isModuleDisplayArr1[1] ?'in':'out'" [selectedRowData]="selections"></supplier-detail>
+<!--调度任务-->
+<detail-modal class="modal" *ngIf="isModuleDisplayArr[2]"
+                        [@modalState]="isModuleDisplayArr1[2] ?'in':'out'"
+                        (closeModal)="closeModal($event)" [selectLineInfo]="selections"></detail-modal>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+
+

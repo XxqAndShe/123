@@ -1,0 +1,31 @@
+.dialog-box{width:550px;}
+.dialog-box-content{
+    text-align: center;
+}
+.dialog-box>.dialog-box-footer{padding:10px 0;}
+.row{
+    margin-bottom: 20px;
+}
+i{
+    color: red;
+}
+label{
+    display: inline-block;
+    width: 50px;
+    text-align: right;
+    margin-right: 5px;
+}
+.verTop{
+    vertical-align: top;
+}
+textarea{
+    width: 375px;
+    height: 70px;
+    resize: none;
+    padding: 5px;
+}
+ui-upload{
+    display: inline-block;
+    width: 388px;
+    text-align: left;
+}

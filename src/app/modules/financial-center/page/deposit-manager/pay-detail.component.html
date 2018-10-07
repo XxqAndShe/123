@@ -1,0 +1,44 @@
+<div id="pay_detail" class="pay-detail" [ngStyle]="drag.setPosition(513,441)">
+    <div id="pay_detail_title" class="pay-detail-title">
+        <span class="pay-left">付款明细</span>
+        <span class="pay-right" (click)="closeWin()">×</span>
+    </div>
+    <div class="pay-detail-content">
+        <div class="pay-detail-info">
+            <span class="pay-detail-span01">申请人: {{anotherpaidRes.content[0].applyPerson}} </span>
+            <span class="pay-detail-span02">提现申请日期: {{anotherpaidRes.content[0].applyTime}}</span>
+            <span class="pay-detail-span03">提现方式：{{anotherpaidRes.content[0].userAccount}}</span>
+            <!--<span class="pay-detail-span01">提现状态：{{anotherpaidRes.content[0].withdrawStatus}}</span>产品要求删除-->
+            <span class="pay-detail-span01">提现金额：¥{{anotherpaidRes.content[0].withdrawalAmount}}</span>
+            <span class="pay-detail-span02">合计已付金额：<span class="pay">¥{{anotherpaidRes.content[0].totalPaidAmount}}</span></span>
+            <span class="pay-detail-span03">未付金额：<span class="no-pay">¥{{anotherpaidRes.content[0].totalNoPaidAmount}}</span></span>
+        </div>
+        <div class="pay-detail-excel" (click)="showTaskDetail(true)"><a>任务明细</a></div>
+        <!--<table class="pay-detail-table" >
+            <tr>
+                <th>应付单号</th>
+                <th>实付单号</th>
+                <th>提现金额</th>产品要求删除
+                <th>已付金额</th>
+                <th>未付余额</th>
+                <th>付款人</th>
+                <th>付款日期</th>
+            </tr>
+            <tr *ngFor="let paid of paidResponseVo">
+                <td>{{paid.bePayNo}}</td>
+                <td>{{paid.actPayNo}}</td>
+                <td>{{paid.withdrawalAmount}}</td>
+                <td>{{paid.paidAmount}}</td>
+                <td>{{paid.noPaidAmount}}</td>
+                <td>{{paid.paidPerson}}</td>
+                <td>{{paid.paidTime}}</td>
+            </tr>
+        </table>-->
+        <div class="table-container master_manage_table">
+            <ui-grid title="&nbsp;" [columns]="columns" [data]="data" [enableExport]="payDetail" [showEditColumn]=false (load)=load($event) [paginator]="false"></ui-grid>
+        </div>
+    </div>
+    <div class="pay-detail-footer">
+        <span (click)="closeWin()">关闭</span>
+    </div>
+</div>

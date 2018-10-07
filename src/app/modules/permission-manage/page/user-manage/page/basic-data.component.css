@@ -1,0 +1,29 @@
+.dialog-box>.blue{
+    background-color: #417cf3;
+}
+.dialog-box>.dialog-box-title>.dialog-right{
+    color: #fff;
+    opacity: 1;
+}
+.dialog-box>.dialog-box-content{
+    height: auto;
+    border: none;
+    display: flex;
+    padding: 10px 15px 0 35px;
+}
+.dialog-box>.dialog-box-content>.content-left{
+    flex: 3;
+}
+.dialog-box>.dialog-box-content>.content-right{
+    flex: 2;
+}
+.dialog-box>.dialog-box-content .content-line{
+    margin-top: 15px;
+}
+.dialog-box>.dialog-box-content label{
+    opacity: .8;
+}
+.dialog-box>.dialog-box-content a{
+    text-decoration: none;
+    color: #2977f6;
+}

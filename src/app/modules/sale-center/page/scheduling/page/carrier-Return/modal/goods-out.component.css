@@ -1,0 +1,22 @@
+.dialog-box{width:420px;}
+.dialog-box-content{
+    text-align: center;
+}
+.dialog-box>.dialog-box-footer{padding:10px 0;}
+.row{
+    margin-bottom: 20px;
+}
+i{
+    color: red;
+}
+label{
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+}
+input{
+    box-sizing: border-box;
+    width: 175px;
+    height: 30px;
+    margin-left: 5px;
+}

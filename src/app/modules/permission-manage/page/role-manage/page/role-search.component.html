@@ -1,0 +1,23 @@
+<div id="dialog_box04" #win04 class="dialog-box" [ngStyle]="drag.setPosition(313,183)">
+    <div id="dialog_title04" class="dialog-box-title top-title">
+        <span class="dialogdialog-left">查找</span>
+        <span class="dialog-right"  (click)="hideWin(win04)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <ul>
+            <li>
+                <span>角色名称</span>
+                <select>
+                    <option selected="selected" value ="xuanze">请选择</option>
+                    <option value ="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </li>
+        </ul>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="primary-btn btn">搜索</span>
+        <span class="default-btn btn" (click)="hideWin(win04)">关闭</span>
+    </div>
+</div>

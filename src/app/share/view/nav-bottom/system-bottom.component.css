@@ -1,0 +1,133 @@
+/*底部分页*/
+#system_bottom{
+    width: 100%;
+    box-sizing: border-box;
+    height: 32px;
+    background-color: white;
+    margin: 10px 0 0 0;
+    color: #888;
+    min-width: 800px;
+}
+#system_bottom span{
+    display: inline-block;
+    font-size: 14px;
+}
+#system_bottom>.page-tip{
+    display: inline-block;
+    line-height: 32px;
+    width: 300px;
+}
+.page-tip .show-num{
+    margin: 0 4px;
+    width: 26px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border: 2px solid #ddd;
+    outline: none;
+}
+.page-select{
+    display: inline-block;
+    width: auto;
+    float: right;
+    height: 30px;
+}
+.page-select>.page-item{
+    display: inline-block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    margin-left: 8px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+.page-select>.page-item:hover{
+    background-color: #ccc;
+    color: white;
+}
+.page-select>.select_cur.page-item{
+    background-color: #0d85e4;
+    color: white;
+}
+
+.page-select input{
+    display: inline-block;
+    float: left;
+    outline:none;
+    width: 30px;
+    text-align: center;
+    line-height: 26px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+
+#system_bottom{
+    width: 100%;
+    box-sizing: border-box;
+    height: 32px;
+    background-color: white;
+    margin: 10px 0 0 0;
+    color: #888;
+    min-width: 800px;
+}
+#system_bottom span{
+    display: inline-block;
+    font-size: 14px;
+}
+#system_bottom>.mybatisPage-tip{
+    display: inline-block;
+    line-height: 32px;
+    width: 300px;
+}
+.mybatisPage-tip .show-num{
+    margin: 0 4px;
+    width: 26px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border: 2px solid #ddd;
+    outline: none;
+}
+.mybatisPage-select{
+    display: inline-block;
+    width: auto;
+    float: right;
+    height: 30px;
+}
+.mybatisPage-select>.mybatisPage-item{
+    display: inline-block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-color: #eee;
+    margin-left: 8px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+.mybatisPage-select>.mybatisPage-item:hover{
+    background-color: #ccc;
+    color: white;
+}
+.mybatisPage-select>.select_cur.mybatisPage-item{
+    background-color: #0d85e4;
+    color: white;
+}
+
+.mybatisPage-select input{
+    display: inline-block;
+    float: left;
+    outline:none;
+    width: 30px;
+    text-align: center;
+    line-height: 26px;
+    cursor: pointer;
+    border: 2px solid #ddd;
+    background-color: white;
+    box-sizing: border-box;
+}

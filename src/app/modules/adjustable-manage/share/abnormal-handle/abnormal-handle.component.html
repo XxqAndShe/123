@@ -1,0 +1,20 @@
+<div class="dialog-box" style="display:block">
+    <div class="dialog-box-title">
+        <span class="dialog-left">时效异常处理</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <label>处理意见</label>
+        <textarea maxlength="200" cols="60" rows="8" [(ngModel)]="operateInfo"></textarea>
+        <ui-grid [columns]="columns" (load)="load($event)" [data]="data"></ui-grid>
+    </div>
+    <div class="dialog-box-footer" id="btn-box">
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

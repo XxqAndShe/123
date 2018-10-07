@@ -1,0 +1,47 @@
+
+<div class="dialog-box" style="display:block;width:400px;margin-left: -260px;margin-top: -250px">
+
+    <div class="dialog-box-title">
+        <span _ngcontent-c19="" class="dialogdialog-left">干线结束</span>
+        <span class="dialog-right" (click)="DeleteSymbol()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="dialog-box-bott dialog-box-com">
+            <span class="start-symbol add-start-symbol">*</span>
+            <span id="add-margin-left">物流单号：</span>
+            <input type="text" maxlength="30" id="Change-input2" [(ngModel)]="logistics"  placeholder="请填写物流单号" onkeyup="value=value.replace(/[^\a-zA-Z|0-9]/g,'')">
+        </div>
+        <div class="dialog-box-bott dialog-box-com">
+            <span class="start-symbol">*</span>
+            <span>提货验证码：</span>
+            <input type="text" maxlength="11" id="Change-input3" [(ngModel)]="pickUpCode" placeholder="{{itemsVerificationCode}}" onkeyup="value=value.replace(/[^\a-zA-Z|0-9]/g,'')">
+        </div>
+        <div class="dialog-box-top dialog-box-com">
+            <span style="color: red">*</span>
+            <span>提货人电话：</span>
+            <input type="tel" maxlength="30" id="Change-input1" [(ngModel)]="pickUpTel" placeholder="{{itemTelephone}}" onkeyup="value=value.replace(/[^\d{1,}]/g,'')">
+        </div>
+        <div class="dialog-box-top dialog-box-com">
+            <span style="color: red;margin-left: 12px">*</span>
+            <span>提货区域：</span>
+            <div class="ui-address">
+                <ui-select-box name="someName1" [(ngModel)]="areaCode" placeholder="请选择提货区域" [data-handler]="dataHandler" width="284px" border="1px solid rgb(13,133,228)"></ui-select-box>
+            </div>
+        </div>
+        <div class="dialog-box-bott dialog-box-com">
+            <span class="start-symbol add-start-symbol">*</span>
+            <span id="add-margin-left">详细地址：</span>
+            <input type="text" maxlength="50" id="Change-input4" placeholder="请输入详细地址" [(ngModel)]="pickUpAddress">
+        </div>
+
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="changeSure()">
+            确定
+        </button>
+        <span class="btn default-btn" (click)="changeCancle()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<!--border-color: -->

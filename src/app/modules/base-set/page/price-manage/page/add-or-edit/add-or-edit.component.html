@@ -1,0 +1,39 @@
+<div class="dialog-box" id="deposit_apply" [ngStyle]="drag.setPosition(400,250)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialogdialog-left" *ngIf="flag === 'addPrice'">新增支线采购价</span>
+        <span class="dialogdialog-left" *ngIf="flag === 'editPrice'">修改支线采购价</span>
+        <span class="dialogdialog-left" *ngIf="flag === 'addStan'">新增支线标准价</span>
+        <span class="dialogdialog-left" *ngIf="flag === 'editStan'">修改支线标准价</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div>
+            <label style="margin-right: 34px"><em style="color: red">* </em>省市区</label>
+            <span style="position: relative"><area-select name="area" [(ngModel)]="area" (ngModelChange)="getBranchPrice()"></area-select></span>
+        </div>
+        <!--支线采购价-->
+        <div style="margin: 20px 0"  *ngIf="flag === 'addPrice' || flag === 'editPrice'">
+            <label style="margin-right: 34px"><em style="color: red">* </em>协议价</label>
+            <input type="text" style="width: 121px;height: 28px" name="price" [(ngModel)]="price" #box1 (input)="numbranch(box1,'price')">
+            <span>采购标准价：{{standaardbranchPrice}}</span>
+        </div>
+        <!--支线标准采购价-->
+        <div style="margin: 20px 0"  *ngIf="flag === 'addStan' || flag === 'editStan'">
+            <label style="margin-right: 10px"><em style="color: red">* </em>采购标准价</label>
+            <input type="text" style="width: 121px;height: 28px" name="stanPrice" [(ngModel)]="stanPrice" #box2 (input)="numbranch(box2,'stanPrice')">
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+
+<p-confirmDialog  width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

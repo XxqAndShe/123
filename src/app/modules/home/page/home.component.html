@@ -1,0 +1,109 @@
+<script src="home.component.ts"></script>
+<div class="page_content">
+    <div class="content_mo">
+        <div class="search_cm">
+            <input (keyup.enter)="menuclick('modules/adjustable-manage/mix-search','tasksearch')" type="text" placeholder="请输入运单号，多个运单号以“,”号隔开，最多20个，按Enter搜索" [(ngModel)]="inputData"/>
+            <em (click)="menuclick('modules/adjustable-manage/mix-search','tasksearch');"></em>
+        </div>
+
+        <div class="state_task">
+            <div class="task_left">
+                <ul>
+                    <li  (click)="menuclick('modules/adjustable-manage/wait-tracking');">
+                        <img src="../../../../assets/home/Chart1.png"/>
+                        <div class="bottom_m">
+                            <h3>{{homeResponseVo.waitTrack}}</h3>
+                            <P>待跟踪</P>
+                        </div>
+                    </li>
+                    <li (click)="menuclick('modules/adjustable-manage/adjustable-task');">
+                        <img src="../../../../assets/home/Chart2.png"/>
+                        <div class="bottom_m">
+                            <h3>{{homeResponseVo.waitDispatch}}</h3>
+                            <P>待调度任务</P>
+                        </div>
+                    </li>
+                    <li  (click)="menuclick('modules/sale-center/scheduling/0');">
+                        <img src="../../../../assets/home/Chart3.png"/>
+                        <div class="bottom_m">
+                            <h3>{{homeResponseVo.waitFix}}</h3>
+                            <P>待维修任务</P>
+                        </div>
+                    </li>
+                    <li (click)="menuclick('modules/sale-center/scheduling/1');">
+                        <img src="../../../../assets/home/Chart4.png"/>
+                        <div class="bottom_m">
+                            <h3>{{homeResponseVo.waitReturn}}</h3>
+                            <P>待返货</P>
+                        </div>
+                    </li>
+                    <li (click)="menuclick('modules/sale-center/exception-handle/1');">
+                        <img src="../../../../assets/home/Chart6.png"/>
+                        <div class="bottom_m">
+                            <h3>{{homeResponseVo.waitAbnormal}}</h3>
+                            <P>待处理异常</P>
+                        </div>
+                    </li>
+                    <li (click)="menuclick('modules/adjustable-manage/time-abnormal');">
+                        <img src="../../../../assets/home/Chart6.png"/>
+                        <div class="bottom_m">
+                            <h3>{{homeResponseVo.waitAgingAnomaly}}</h3>
+                            <P>时效异常数</P>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="task_right">
+                <ul>
+                    <li>
+                        <div class="top">
+                            <div class="right"><img src="../../../../assets/home/abnormal1.png"/></div>
+                            <div class="left">
+                                <h3>处理异常</h3>
+                                <p>总数/今天</p>
+                            </div>
+                        </div>
+                        <span class="bottom">{{homeDayResponseVo.fix}}/{{homeDayResponseVo.fix2}}</span>
+                    </li>
+                    <li>
+                        <div class="top">
+                            <div class="right"><img src="../../../../assets/home/abnormal2.png"
+                                                    style="margin-top: 10px;"/></div>
+                            <div class="left">
+                                <h3>人工调度</h3>
+                                <p>总数/今天</p>
+                            </div>
+                        </div>
+                        <span class="bottom">{{homeDayResponseVo.manual}}/{{homeDayResponseVo.manual2}}</span>
+                    </li>
+                    <li>
+                        <div class="top">
+                            <div class="right"><img src="../../../../assets/home/abnormal3.png"
+                                                    style="margin-top: 10px;"/></div>
+                            <div class="left">
+                                <h3>智能推荐</h3>
+                                <p>总数/今日</p>
+                            </div>
+                        </div>
+                        <span class="bottom">{{homeDayResponseVo.longelligence}}/{{homeDayResponseVo.longelligence2}}</span>
+                    </li>
+                    <li>
+                        <div class="top">
+                            <div class="right"><img src="../../../../assets/home/abnormal4.png"/></div>
+                            <div class="left">
+                                <h3>安装师傅</h3>
+                                <p>总数/今日注册</p>
+                            </div>
+                        </div>
+                        <span class="bottom">{{homeDayResponseVo.jztUser}}/{{homeDayResponseVo.jztUser2}}</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

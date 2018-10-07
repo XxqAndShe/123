@@ -1,0 +1,83 @@
+<form>
+    <div id="time_abnormal">
+        <div class="province order-state-btn">
+            <span class="province-address">目的地</span>
+            <div class="addr-control add-address-width">
+                <ui-select-box name="area" [(ngModel)]="abnormalTimeReqVo.area" [data-handler]="dataHandler"></ui-select-box>
+            </div>
+
+            <select name="abnormalTimeReqVo.nameTag" class="all_state Consignee ConsigneeFirst" [(ngModel)]="abnormalTimeReqVo.nameTag">
+                <option value="">请选择</option>
+                <option value="masterName">师傅姓名</option>
+                <option value="shipperName">发货人</option>
+            </select>
+            <p-autoComplete class="receive-man" name="masterOrShipperName" [(ngModel)]="abnormalTimeReqVo.masterOrShipperName" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+
+            <select name="abnormalTimeReqVo.tel" class="all_state Consignee ConsigneeSecond" [(ngModel)]="abnormalTimeReqVo.tel">
+                <option value="">请选择</option>
+                <option value="masterTel">师傅电话</option>
+                <option value="shipperTel"> 发货人电话</option>
+            </select>
+            <p-autoComplete class="receive-man" name="telNumber" [(ngModel)]="abnormalTimeReqVo.telNumber" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+
+            <span class="line-state Consignee">签收状态</span>
+            <select name="signState" class="all_state" [(ngModel)]="abnormalTimeReqVo.signSts">
+                <option value="All">全部</option>
+                <option value="normalSign"> 正常签收</option>
+                <option value="abnormalSign"> 异常签收</option>
+            </select>
+            <span class="receive-text Consignee">分配人</span>
+            <p-autoComplete class="receive-man" name="dispatcher" [(ngModel)]="abnormalTimeReqVo.operator" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+            <!--<span class="export">导出</span>-->
+        </div>
+
+        <div class="send-good">
+            <span class="line-state">超时类型</span>
+            <select name="overTimeState" class="all_state" [(ngModel)]="abnormalTimeReqVo.abnormalTimeType">
+                <option value="All">全部</option>
+                <option value="appointmentTimeOut">预约超时</option>
+                <option value="finishInstallationTimeOut">安装完成超时</option>
+            </select>
+
+            <span class="line-state Consignee deal-state">处理状态</span>
+            <select name="handelState" class="all_state" [(ngModel)]="abnormalTimeReqVo.abnormalTimeHandelState">
+                <option value="All">全部</option>
+                <option value="waittingToHandel">待处理</option>
+                <option value="handeled">已处理</option>
+            </select>
+
+            <!--田茂江，2017-5-2调整任务状态，不需要：待分配、待受理、已签收-->
+            <span class="line-state Consignee task-state">任务状态</span>
+            <select name="taskState" class="all_state" [(ngModel)]="abnormalTimeReqVo.taskStatus">
+                <option value="All">全部</option>
+                <!--                <option  value="waitDistribution"> 待分配 </option>
+                                <option  value="distributionWaitAccept"> 待受理 </option>-->
+                <option value="accepted">待提货</option>
+                <option value="waitPickUp">待预约</option>
+                <option value="waitAppointment">待签收</option>
+                <!--                <option  value="doSign">已签收</option>-->
+            </select>
+
+            <span class="receive-text yundanhao1">运单号</span>
+            <p-autoComplete class="receive-man" name="wayBill" [(ngModel)]="abnormalTimeReqVo.wayBillId" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+            <select name="selectState" class="all_state kaidanriqi" [(ngModel)]="abnormalTimeReqVo.dateType">
+                <!--田茂江，2017-5-2调整-->
+                <option value="bill">开单日期</option>
+                <option value="dis">分配日期</option>
+                <option value="accept">接单日期</option>
+                <option value="trunkEnd">干线结束日期</option>
+                <!--                <option  value="sign">签收日期</option>-->
+            </select>
+            <div class="select-time">
+                <p-calendar name="start-time" [(ngModel)]="abnormalTimeReqVo.startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+            <div class="select-time">
+                <p-calendar name="end-time" [(ngModel)]="abnormalTimeReqVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+            <button class="search-btn btn primary-btn" (click)="doSearch()">查询</button>
+            <button type="reset" class="clear-btn btn default-btn">清空</button>
+        </div>
+    </div>
+</form>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

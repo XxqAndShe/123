@@ -1,0 +1,110 @@
+<div class="master-running-frame">
+    <div class="master-frame-title">
+        <span class="pay-detail-span02">师傅姓名: <i>{{withdrawAuditResponseVo[0].realName}}</i></span>
+        <span class="pay-detail-span02">师傅账号: <i>{{withdrawAuditResponseVo[0].mobile}}</i></span>
+        <span class="pay-detail-span03">提现金额: <i>{{withdrawAuditResponseVo[0].withdrawAmount}}</i></span>
+        <span class="pay-detail-span02">提现方式: <i>{{withdrawAuditResponseVo[0].userAccount}}</i></span>
+        <span class="pay-detail-span02">结款方式: <i>{{withdrawAuditResponseVo[0].withdrowType}}</i></span>
+        <span class="pay-detail-span02">银行名称: <i>{{withdrawAuditResponseVo[0].bankName}}</i></span>
+        <span class="pay-detail-span02">支行名称: <i>{{withdrawAuditResponseVo[0].subBranchName}}</i></span>
+        <span class="pay-detail-span03">提现账号: <i>{{withdrawAuditResponseVo[0].bankAccount}}</i></span>
+        <span class="pay-detail-span04">持卡人: <i>{{withdrawAuditResponseVo[0].accountName}}</i></span>
+    </div>
+    <div class="content-body">
+        <div class="table-header table-header1">
+            <h4>任务明细</h4>
+        </div>
+        <div class="table-container" [class.expand]="isSelect">
+            <ui-grid
+                    [columns]="columns"
+                    [data]="data"
+                    [(selections)]="selectionRow"
+                    (load)="load($event)"
+                    (exportCSV)="exportCSV($event)"
+                    (cellOver)="cellOver($event,opt1)"
+                    (cellClick)="cellClick($event)"
+            ></ui-grid>
+        </div>
+    </div>
+    <a class="close-modal-btn" (click)="hideModal()"></a>
+</div>
+
+<!--鼠标移入显示悬浮窗-->
+<!--<p-overlayPanel #opt [showCloseIcon]="true" [dismissable]="false">
+    <p-dataTable [value]="taskAmountDetail" [style]="{'width':'500px'}">
+        <p-headerColumnGroup>
+            <p-row>
+                <p-column header="运单号/任务单号"></p-column>
+                <p-column header="费用类型"></p-column>
+                <p-column header="金额"></p-column>
+                <p-column header="操作人"></p-column>
+            </p-row>
+        </p-headerColumnGroup>
+
+        <p-column field="trackNumber"></p-column>
+        <p-column field="costType"></p-column>
+        <p-column field="amount"></p-column>
+        <p-column field="operator"></p-column>
+    </p-dataTable>
+</p-overlayPanel>-->
+
+<!--货品信息详情-->
+<p-overlayPanel #opt1 [showCloseIcon]="true" [dismissable]="false">
+    <p-dataTable [value]="goodsShow" class="table" [style]="{'width':'700px'}">
+        <p-headerColumnGroup>
+            <p-row>
+                <p-column header="产品"></p-column>
+                <p-column header="包装"></p-column>
+                <p-column header="安装数量"></p-column>
+                <p-column header="包装数量"></p-column>
+                <p-column header="重量"></p-column>
+                <p-column header="体积"></p-column>
+                <p-column header="计费方式"></p-column>
+                <p-column header="单价"></p-column>
+                <p-column header="服务类型"></p-column>
+                <p-column header="安装费"></p-column>
+            </p-row>
+        </p-headerColumnGroup>
+
+        <p-column field="product"></p-column>
+        <p-column field="package"></p-column>
+        <p-column field="installNum"></p-column>
+        <p-column field="packNum"></p-column>
+        <p-column field="weight"></p-column>
+        <p-column field="volume"></p-column>
+        <p-column field="billingMode"></p-column>
+        <p-column field="unitPrice"></p-column>
+        <p-column field="serviceType"></p-column>
+        <p-column field="installationCost"></p-column>
+
+        <p-footerColumnGroup>
+            <p-row>
+                <p-column footer="总"></p-column>
+                <p-column footer=""></p-column>
+                <p-column footer=""></p-column>
+                <p-column footer=""></p-column>
+                <p-column footer=""></p-column>
+                <p-column footer=""></p-column>
+                <p-column footer=""></p-column>
+                <p-column footer=""></p-column>
+                <p-column ></p-column>
+                <p-column ></p-column>
+            </p-row>
+        </p-footerColumnGroup>
+    </p-dataTable>
+</p-overlayPanel>
+
+<!--维修任务-->
+<repair-detail class="modal" *ngIf="isModuleDisplayArr[0]"
+               (closeModal)="closeDetailModal(0)"
+               [@modalState]="isModuleDisplayArr1[0] ?'in':'out'" [selectedRowData]="selections"></repair-detail>
+<!--返货任务-->
+<supplier-detail class="modal" *ngIf="isModuleDisplayArr[1]"
+                 (closeModal)="closeDetailModal(1)"
+                 [@modalState]="isModuleDisplayArr1[1] ?'in':'out'" [selectedRowData]="selections"></supplier-detail>
+<!--调度任务-->
+<detail-modal class="modal" *ngIf="isModuleDisplayArr[2]"
+              [@modalState]="isModuleDisplayArr1[2] ?'in':'out'"
+              (closeModal)="closeDetailModal(2)" [selectLineInfo]="selections"></detail-modal>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

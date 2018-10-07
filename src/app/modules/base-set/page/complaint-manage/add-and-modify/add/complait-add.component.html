@@ -1,0 +1,19 @@
+<div id="deposit_add" class="dialog-box">
+    <div id="deposit_add_title" class="dialog-box-title">
+        <span class="dialogdialog-left">提示</span>
+        <span class="dialog-right" (click)="hideWindow()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <p class="complaintName">责任方：{{complaintName}}</p>
+        <p *ngIf="who == 'add'">投诉大类：<input type="text" maxlength="30" [(ngModel)]="complaintBig"></p>
+        <p *ngIf="who == 'modify'">投诉大类：<input type="text" [(ngModel)]="bigName.catalogName" readonly="readonly" style="background: #EEEEEE"></p>
+        <p *ngIf="who == 'modify'">投诉小类：<input type="text" maxlength="30" [(ngModel)]="complaintSmall"></p>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="affirm()">确认</span>
+        <span class="btn default-btn" (click)="hideWindow()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+

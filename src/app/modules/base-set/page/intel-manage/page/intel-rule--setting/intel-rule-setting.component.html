@@ -1,0 +1,23 @@
+<div [ngClass]="{show:!isAdd,hide:isAdd}"  class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <!--<columnar-pic></columnar-pic>-->
+    <div *ngIf="!isAdd" class="table-title">
+        <span class="title-name">匹配配置列表<i class="triangle-up"></i><i class="triangle-down"></i></span>
+        <span class="right primary-btn btn" (click)="showOthBtn()"><i class="rmb-icon add"></i>新增</span>
+    </div>
+    <div class="table-container">
+        <ui-grid
+                [columns]="columns"
+                [data]="data"
+                (exportCSV)="exportCSV($event)"
+                (rowSelect)="rowSelect($event)"
+                (load)="load($event)">
+        </ui-grid>
+    </div>
+</div>
+<div [ngClass]="{show:isAdd,hide:!isAdd}" class="content" *ngIf="isAdd">
+    <intelligent-matching (isReturnCredit)="isReturnCredit(event)" (notReturnCredit)="notReturnCredit()"></intelligent-matching>
+</div>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>
+

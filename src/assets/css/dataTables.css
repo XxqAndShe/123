@@ -1,0 +1,67 @@
+th, td { 
+	white-space: nowrap; 
+	text-align: left;
+}
+.DTFC_LeftBodyWrapper {
+	border-right: 1px solid #d8e3ef;
+}
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+	border-bottom: none;
+}
+
+table.dataTable thead th {
+	font-weight: normal;
+	border-right: 1px solid #d8e3ef;
+	box-sizing: border-box;
+}
+table.dataTable thead th:first-child {
+	background: #fafdff;
+}  
+table.dataTable.stripe tbody  tr.select, table.dataTable.display tbody tr.select {
+    background-color: #fff6e5;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+	border-bottom: 1px solid #d8e3ef;
+}
+
+table.dataTable th>i, table.dataTable td>i {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    background: url(../img/table/checkbox-null.png) no-repeat center center;
+    background-size: 13px 13px;
+    text-indent: -9999px;
+    cursor: pointer;
+    overflow: hidden;
+}
+table.dataTable th>i.tick, table.dataTable td>i.tick {
+    background: url(../img/table/checkbox-ticked.png) no-repeat center center;
+    background-size: 13px 13px;
+}
+table.dataTable th>i.select {
+    background: url(../img/table/checkbox-selected.png) no-repeat center center;
+    background-size: 13px 13px;
+}
+table.dataTable tbody td {
+	padding: 8px 18px;
+}
+table.dataTable tr th:first-child>i, table.dataTable tr td:first-child>i {
+	vertical-align: middle;
+}
+
+.dataTables_scrollHeadInner table tr th:last-child {
+	border-right: none;
+}
+
+table.dataTable.row-border tbody th, table.dataTable.row-border tbody td, table.dataTable.display tbody th, table.dataTable.display tbody td {
+	border-top: none; 
+}
+
+.DTFC_LeftHeadWrapper thead th {
+	outline: none;
+}
+.DTFC_LeftHeadWrapper, .DTFC_LeftBodyWrapper {
+	pointer-events: none;  
+} 
+

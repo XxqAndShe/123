@@ -1,0 +1,344 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <div id="ips_manage_header">
+            <div class="order-state-btn">
+                <ul id="all_state_list" class="state-list">
+                    <li (click)="clickNav($event, 0)" [class.cur-select]="navCur[0]" class="list-item">全部(<span>{{abnormalCount.allCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 1)" [class.cur-select]="navCur[1]" class="list-item">未处理(<span>{{abnormalCount.untreatedCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 2)" [class.cur-select]="navCur[2]" class="list-item">处理中(<span>{{abnormalCount.processingCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 3)" [class.cur-select]="navCur[3]" class="list-item">已处理(<span>{{abnormalCount.processedCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 4)" [class.cur-select]="navCur[4]" class="list-item">否决(<span>{{abnormalCount.vetoCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 5)" [class.cur-select]="navCur[5]" class="list-item">已结束(<span>{{abnormalCount.finishedCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 6)" [class.cur-select]="navCur[6]" class="list-item">转理赔(<span>{{abnormalCount.claimsCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 7)" [class.cur-select]="navCur[7]" class="list-item">待跟踪(<span>{{abnormalCount.toTrackCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 8)" [class.cur-select]="navCur[8]" class="list-item track">
+                        超时未处理(<span>{{abnormalCount.timeoutCount}}</span>)
+                    </li>
+                    <li (click)="clickNav($event, 9)" [class.cur-select]="navCur[9]" class="list-item track">
+                        提醒未处理(<span>{{abnormalCount.remindCount}}</span>)
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--<form>-->
+        <form>
+            <div class="content-header">
+                <div class="form-div">
+                    <label>开单网点</label>
+                    <department-select name="billDepartId" [(ngModel)]="waybillAbnormalRequestVo.billDepartId"
+                                       style="display: inline-block;"></department-select>
+                </div>
+                <div class="form-div">
+                    <label>发货人</label>
+                    <!--<p-autoComplete class="input" [(ngModel)]="waybillAbnormalRequestVo.shipperName" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+                    <shipper-select name="shipper" [(ngModel)]="waybillAbnormalRequestVo.shipper"></shipper-select>
+                </div>
+
+                <div class="form-div">
+                    <label>任务号</label>
+                    <p-autoComplete name="waybillId" class="input" [(ngModel)]="waybillAbnormalRequestVo.waybillId"
+                                    [suggestions]="suggestionResult"
+                                    (completeMethod)="searchResult($event)"></p-autoComplete>
+                </div>
+
+                <div class="form-div">
+                    <label>异常编号</label>
+                    <p-autoComplete name="abnormalNum" class="input" [(ngModel)]="waybillAbnormalRequestVo.abnormalNum"
+                                    [suggestions]="suggestionResult"
+                                    (completeMethod)="searchResult($event)"></p-autoComplete>
+                </div>
+                <div class="form-div can-handle">
+                    <label>可处理</label>
+                    <select name="client" [(ngModel)]="waybillAbnormalRequestVo.client">
+                        <option value="All">全部</option>
+                        <option value="yes">是</option>
+                        <option value="no">否</option>
+                    </select>
+                </div>
+                <!--原型中已移除-->
+                <!--<div class="form-div">-->
+                <!--<label>异常状态</label>-->
+                <!--<select [(ngModel)]="waybillAbnormalRequestVo.abnoHandleSts">-->
+                <!--<option value="all">全部</option>-->
+                <!--<option value="nohandle">未处理</option>-->
+                <!--<option value="handleing">处理中</option>-->
+                <!--<option value="hashandle">已处理</option>-->
+                <!--<option value="veto">否决</option>-->
+                <!--<option value="hasend">已结束</option>-->
+                <!--<option value="turnclaims">转理赔</option>-->
+                <!--</select>-->
+                <!--</div>-->
+            </div>
+
+            <div [@showSelect]="selectState" class="content-hide">
+                <div class="form-div">
+                    <label>登记时间</label>
+                    <div class="start-time time-control">
+                        <p-calendar name="regStartDate" [(ngModel)]="waybillAbnormalRequestVo.registerTimeBegin"
+                                    [locale]="zh" [inputStyle]="inputStyle" [monthNavigator]="true"
+                                    [yearNavigator]="true" [yearRange]="yearRange" dateFormat="yy-mm-dd"
+                                    [readonlyInput]="true"></p-calendar>
+                    </div>
+                    <div class="end-time time-control">
+                        <p-calendar name="regEndDate" [(ngModel)]="waybillAbnormalRequestVo.registerTimeEnd"
+                                    [locale]="zh" [inputStyle]="inputStyle" [monthNavigator]="true"
+                                    [yearNavigator]="true" [yearRange]="yearRange" dateFormat="yy-mm-dd"
+                                    [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+
+                <div class="form-div">
+                    <label>异常类型</label>
+                    <div class="select-div" style="display: inline-block">
+                        <exception-select name="abnormalTypeId" [(ngModel)]="waybillAbnormalRequestVo.abnormalTypeId"
+                                          style="position: relative"></exception-select>
+                    </div>
+                    <!--<select [(ngModel)]="waybillAbnormalRequestVo.abnormalTypeBId" (change)="getAbnormalSmallType()">-->
+                    <!--<option value="All">全部</option>-->
+                    <!--<option value="{{item.id}}" *ngFor="let item of abnormalBigType;">{{item.name}}</option>-->
+                    <!--</select>-->
+                </div>
+
+                <!--<div class="form-div">-->
+                <!--<label>异常小类</label>-->
+                <!--<select [(ngModel)]="waybillAbnormalRequestVo.abnormalTypeId">-->
+                <!--<option value="All">全部</option>-->
+                <!--<option value="{{item.id}}" *ngFor="let item of abnormalSmallType;">{{item.name}}</option>-->
+                <!--</select>-->
+                <!--</div>-->
+
+                <div class="form-div">
+                    <label>异常来源</label>
+                    <select name="source" [(ngModel)]="waybillAbnormalRequestVo.source">
+                        <option value="All">全部</option>
+                        <option value="tms_service">tms客服</option>
+                        <option value="tms_dispatch">tms调度</option>
+                        <option value="tms_undertake">tms承接</option>
+                        <option value="ips">ips</option>
+                        <option value="website">官网</option>
+                        <option value="cmp">cmp</option>
+                        <option value="app">app</option>
+                    </select>
+                </div>
+
+                <div class="form-div">
+                    <label>责任方</label>
+                    <meta-select width="124px" defaultLabel="请选择…" name="abnormalDutyId"
+                                 [(ngModel)]="waybillAbnormalRequestVo.abnormalDutyId"
+                                 type="abnormalDuty"></meta-select>
+                    <!--<select [(ngModel)]="waybillAbnormalRequestVo.abnormalDutyId">-->
+                    <!--<option value="All">全部</option>-->
+                    <!--<option *ngFor="let item of abnormalDuty" value="{{item.id}}">{{item.name}}</option>-->
+                    <!--</select>-->
+                </div>
+
+                <!--UI上没有这一项-->
+                <!--<div class="form-div">-->
+                <!--<label>开单部门</label>-->
+                <!--<p-dropdown class="" [options]="org" [(ngModel)]="waybillAbnormalRequestVo.organizationName" [filter]="true"></p-dropdown>-->
+                <!--</div>-->
+
+                <div class="form-div">
+                    <label>目的站</label>
+                    <div class="add-control" style="position: relative">
+                        <ui-select-box name="someName" [(ngModel)]="waybillAbnormalRequestVo.endCity"
+                                       [data-handler]="dataHandler"></ui-select-box>
+                    </div>
+                </div>
+
+                <div class="form-div">
+                    <label>跟踪时间</label>
+                    <div class="start-time time-control">
+                        <p-calendar name="traStartDate" [(ngModel)]="waybillAbnormalRequestVo.trackDateStart"
+                                    [locale]="zh" [inputStyle]="inputStyle" [monthNavigator]="true"
+                                    [yearNavigator]="true" [yearRange]="yearRange" dateFormat="yy-mm-dd"
+                                    [readonlyInput]="true"></p-calendar>
+                    </div>
+                    <div class="end-time time-control">
+                        <p-calendar name="traEndDate" [(ngModel)]="waybillAbnormalRequestVo.trackDateEnd" [locale]="zh"
+                                    [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true"
+                                    [yearRange]="yearRange" dateFormat="yy-mm-dd" [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+                <!--原型上无此项-->
+                <!--<div class="form-div">-->
+                <!--<label>登记人</label>-->
+                <!--<p-autoComplete class="input" name="tt" [(ngModel)]="waybillAbnormalRequestVo.registerPerson" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+                <!--</div>-->
+                <!--原型上无此项-->
+                <!--<div class="form-div">-->
+                <!--<label>处理人</label>-->
+                <!--<p-autoComplete class="input" name="tt" [(ngModel)]="waybillAbnormalRequestVo.handlePerson" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+                <!--</div>-->
+
+                <div class="form-div">
+                    <label>是否跟踪</label>
+                    <select name="ifTrack" [(ngModel)]="waybillAbnormalRequestVo.ifTrack">
+                        <option value="All">全部</option>
+                        <option value="track">是</option>
+                        <option value="notTrack">否</option>
+                    </select>
+                </div>
+
+                <div class="form-div is-back">
+                    <label>是否回复</label>
+                    <select name="ifReply" [(ngModel)]="waybillAbnormalRequestVo.ifReply">
+                        <option value="All">全部</option>
+                        <option value="reply">是</option>
+                        <option value="notReply">否</option>
+                    </select>
+                </div>
+
+                <div class="form-div">
+                    <label>是否锁定</label>
+                    <select name="ifLock" [(ngModel)]="waybillAbnormalRequestVo.ifLock">
+                        <option value="All">全部</option>
+                        <option value="lock">是</option>
+                        <option value="unLock">否</option>
+                    </select>
+                </div>
+
+                <div class="form-div">
+                    <label>是否紧急</label>
+                    <select name="ifUrgent" [(ngModel)]="waybillAbnormalRequestVo.ifUrgent">
+                        <option value="All">全部</option>
+                        <option value="urgent">是</option>
+                        <option value="notUrgent">否</option>
+                    </select>
+                </div>
+
+                <div class="form-div">
+                    <label>是否仲裁</label>
+                    <select name="ifArbitrate" [(ngModel)]="waybillAbnormalRequestVo.ifArbitrate">
+                        <option value="All">全部</option>
+                        <option value="arbitrated">是</option>
+                        <option value="notArbitrated">否</option>
+                    </select>
+                </div>
+                <div class="form-div">
+                    <label>处理时间</label>
+                    <div class="start-time time-control">
+                        <p-calendar name="hanStartDate" [(ngModel)]="waybillAbnormalRequestVo.hanTimeBegin"
+                                    [locale]="zh" [inputStyle]="inputStyle" [monthNavigator]="true"
+                                    [yearNavigator]="true" [yearRange]="yearRange" dateFormat="yy-mm-dd"
+                                    [readonlyInput]="true"></p-calendar>
+                    </div>
+                    <div class="end-time time-control">
+                        <p-calendar name="hanEndDate" [(ngModel)]="waybillAbnormalRequestVo.hanTimeEnd" [locale]="zh"
+                                    [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true"
+                                    [yearRange]="yearRange" dateFormat="yy-mm-dd" [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-div">
+                <button class="btn primary-btn" style="margin-left: 20px;" (click)="doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset">清空</button>
+                <a id="select-btn" (click)="changeSelect()">筛选</a>
+            </div>
+        </form>
+        <div style="clear: both"></div>
+        <!--</form>-->
+
+        <div *ngIf='selectLineInfo.length !== 0' class="table-header">
+            <!--已选中的click只是测试显示订单信息，到时候表格有数据后把些事件增加表格选项-->
+            <span data-mark="click" class="select-text">已选中<span
+                class="select-num">{{selectLineInfo?.length || 0}}</span>项</span>
+            <!--<span data-mark="click" (click)="showOrderInfo()" class="select-text">已选中<span class="select-num">{{selections?.length || 0}}</span>项</span>-->
+            <span *ngIf="selections && (selections.abnoHandleStsName == '未处理' || selections.abnoHandleStsName == '处理中')  && selections.client=='是'"
+                  class="split-line">|</span>
+            <a *ngIf="selections && (selections.abnoHandleStsName == '未处理' || selections.abnoHandleStsName == '处理中') && selections.client=='是'"
+               (click)="showDialog('exception-modify')" href="javascript:;" class="operation-a operation-modify"><i></i>异常修改</a>
+            <span *ngIf="selections.client=='是'" class="split-line">|</span>
+            <a *ngIf="selections.client=='是'"  (click)="showDialog('exception-handle')"  href="javascript:;" class="operation-a operation-deal"><i></i>异常处理</a>
+            <span  *ngIf="selections.client=='是'" class="split-line">|</span>
+            <a *ngIf="isLock && selections.client=='是'" (click)="lock(false)" href="javascript:;"
+               class="operation-a operation-unlock"><i></i>解锁</a>
+            <a *ngIf="!isLock && selections.client=='是'" (click)="lock(true)" href="javascript:;" class="operation-a operation-lock"><i></i>锁定</a>
+            <span *ngIf="selections && selections.abnoHandleStsName == '未处理'  && selections.client=='是'" class="split-line">|</span>
+            <a *ngIf="selections && selections.abnoHandleStsName == '未处理'  && selections.client=='是'" (click)="showaWin()" href="javascript:;"
+               class="operation-a operation-accept"><i></i>受理</a>
+            <span class="split-line">|</span>
+            <a (click)="showDialog('trace-win')" href="javascript:;" class="operation-a operation-track"><i></i>跟踪</a>
+            <span class="split-line">|</span>
+            <a (click)="showDialog('exception-record')" href="javascript:;" class="operation-a operation-end"><i></i>异常登记</a>
+            <span class="close-btn" (click)="cancelSelect()">×</span>
+        </div>
+        <div *ngIf='selectLineInfo.length == 0' class="table-header table-header1">
+            <h4>任务列表</h4>
+            <span (click)="showAbnormalBox()" class="abnormal-feedback">异常反馈</span>
+            <!--<a href="javascript:;">添加异常</a>-->
+        </div>
+
+        <div class="table-container" [class.expand]="isSelect">
+            <ui-grid
+                id="exception-deal-grid"
+                title="&nbsp;"
+                [columns]="columns"
+                (load)="load($event)"
+                [data]="data"
+                (exportCSV)="exportCSV($event)"
+                [(selections)]="selectLineInfo"
+                (rowSelect)="onRowSelect($event)"
+                (cellMouseEnter)="cellMouseEnter($event,op1)"
+                (cellMouseLeave)="cellMouseLeave($event,op1)"
+                (cellClick)="cellClick($event)"
+            >
+                <!--(cellClick)="cellClick($event)"-->
+                <!--(cellOver)="cellOver($event,op,op2,op3)"-->
+            </ui-grid>
+        </div>
+    </div>
+</div>
+<!--异常处理弹框-->
+<exception-info-deal [boxState]="controlException" (close)="hideDialog($event)" (save)="confirm()"
+                     [(selectionAbnormal)]="selections" *ngIf="controlException === 'show'"
+                     (showWaybillDetail)="receiveWaybill($event)"></exception-info-deal>
+<!--异常修改弹框-->
+<abnormal-modify [(selectedWaybillAbnormal)]="selections" [boxState]="exceptionModify" (boxClocs)="hideDialog($event)"
+                 *ngIf="exceptionModify === 'show'"></abnormal-modify>
+<!--跟踪信息弹框-->
+<trace-win *ngIf="traceIf" [boxState]="traceWinState" [selectLineInfo]="selectLineInfo" trackFlag="YC"
+           (hideWin)="hideDialog($event)" (save)="oSave()"></trace-win>
+<!--查看详情弹框-->
+<order-info [waybill]="waybill" [selectedAbnormal]="selections"></order-info>
+<!--受理弹框-->
+<accepted *ngIf="isAcept === 'show'" (hideWin)="closeAWin()" [(selectedWaybillAbnormal)]="selections"
+          (confirm)="confirmAccepted()"></accepted>
+<!--点运单号出来的弹框-->
+<detail-modal [selectLineInfo]="selections" class="modal" *ngIf="showWaybillDetail" [@modalState]="modalState"
+              (closeModal)="closeModal()"></detail-modal>
+<supplier-detail [selectedRowData]="selections" class="modal" *ngIf="showReturnDetail"
+                 (closeModal)="closeModal()" [@modalState]="modalState"></supplier-detail>
+<repair-detail [selectedRowData]="selections" [selectLineInfo]="selected" class="modal" *ngIf="showRepairDetail"
+               (closeModal)="closeModal()"
+               [@modalState]="modalState"></repair-detail>
+<!--异常登记-->
+<abnormal-record *ngIf="showExceptionRecord" (abnormal)="hideDialog('exception-record')"
+                 (boxClocs)="saveDialog('exception-record')" [selectLineInfo]="selected"></abnormal-record>
+<!--异常状态为已处理或否决或结束时弹窗-->
+<readonly-exception-info [selectionRow]="selections" *ngIf="exceptionView"
+                         (close)="hideDialog('exception-view')"
+                         (showWaybillDetail)="receiveWaybill($event)"></readonly-exception-info>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+    <p-dataTable [value]="trackInfo" [style]="{'width':'600px'}" class="table" emptyMessage="没有记录">
+        <p-column field="trackedTime" header="上次跟踪时间" [sortable]="true"></p-column>
+        <p-column field="operator" header="跟踪人" [sortable]="true"></p-column>
+        <p-column field="remark" header="跟踪信息" [sortable]="true"></p-column>
+        <p-column field="altTime" header="下次跟踪时间" [sortable]="true"></p-column>
+    </p-dataTable>
+</p-overlayPanel>

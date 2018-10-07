@@ -1,0 +1,17 @@
+<div class="test-content">
+  <p><a href="/modules/demo/test" class="back" >返回demo首页</a>  </p>
+  <div>
+    <h3>收货人选择组件</h3>
+    <cnee-select width="150px" defaultLabel="请选择…" [(ngModel)]="cneeCode"></cnee-select>
+    <span>{{cneeCode}}</span>
+    <br>
+    <button (click)="doTest()">测试取Code</button>
+  </div>
+  <div class="component">
+    <h3>绑定值为对象通过valueField="object"控制</h3>
+    <cnee-select width="150px" defaultLabel="请选择…" [(ngModel)]="cnee" valueField="object"></cnee-select>
+    <span>{{cnee}}</span>
+    <br>
+    <button (click)="doTest2()">测试取Code</button>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+{
+  "project": {
+    "version": "1.0.0",
+    "name": "ips"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "config",
+        "pdf-js",
+        "msg",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "app",
+      "mobile": false,
+      "styles": [
+        "./assets/font-awesome-4.7.0/css/font-awesome.min.css",
+        "./assets/js/fancybox/jquery.fancybox.css",
+        "../node_modules/primeng/resources/primeng.css",
+        "../node_modules/primeng/resources/themes/omega/theme.css",
+        "styles.css",
+        "./assets/css/im.css",
+        "../node_modules/quill/dist/quill.core.css",
+        "../node_modules/quill/dist/quill.snow.css"
+      ],
+      "scripts": [
+        "assets/js/jquery-2.1.3.js",
+        "assets/js/fancybox/jquery.fancybox.js",
+        "assets/js/jquery-qrcode.min.js",
+        "assets/js/moment.js",
+        "assets/js/pdfjs/pdf.js",
+        "../node_modules/echarts/dist/echarts.js",
+        "../node_modules/eventproxy/lib/eventproxy.js",
+        "../node_modules/quill/dist/quill.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "addons": [],
+  "packages": [],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}

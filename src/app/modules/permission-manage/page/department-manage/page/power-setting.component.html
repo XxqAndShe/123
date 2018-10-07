@@ -1,0 +1,723 @@
+<div id="dialog_box02" #win02 class="dialog-box" [ngStyle]="drag.setPosition(513,403)">
+    <div id="dialog_title02" class="dialog-box-title">
+        <span class="dialogdialog-left">设置角色权限</span>
+        <span class="dialog-right" (click)="hideWin(win02)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <ul class="content-a">
+            <li class="content-style">TMS</li>
+            <li>IPS</li>
+            <li>WMS</li>
+            <li>CMP</li>
+            <li>PMS</li>
+        </ul>
+        <div class="content-c">
+            <div class="content-b content-ba">
+                <dl>
+                    <dt>
+                        <label>
+                            <i class="input-che"></i>
+                            <span class="TMS">TMS</span>
+                        </label>
+                    </dt>
+                    <div class="box" style="overflow: auto;display: none">
+                        <dd>
+                            <label class="yun-y" >
+                                <b class="j-che"></b>
+                                <i class="input-che"></i>
+                                <span class="yun-xin">运营中心</span>
+                            </label>
+                            <ul class="yun-xin-b" style="display: none">
+                                <li class="content-b-a">
+                                    <label>
+                                        <b class="add-che"></b>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">收运管理</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li class="yun-dan-xin">
+                                            <label class="g-li" >
+                                                <i class="input-che"></i>
+                                                <span class="yun-li">运单管理</span>
+                                            </label>
+                                            <ul class="yun-dan" style="display: none">
+                                                <li >
+                                                    <label>
+                                                        <i class="input-che"></i>
+                                                        <span>新增</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <i class="input-che"></i>
+                                                        <span>修改</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <i class="input-che"></i>
+                                                        <span>删除</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>路线查询</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>库存管理</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>运单更改</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>运单更改审核</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>领单管理</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>运单查询</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>中转外发成本</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>订单分配</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>安装分拣</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="content-b content-bb">
+                <dl>
+                    <dt>
+                        <label>
+                            <i class="input-che"></i>
+                            <span class="TMS">IPS</span>
+                        </label>
+                    </dt>
+                    <div class="box" style="overflow: auto;display: none">
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >登录</span>
+                            </label>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span class="yun-xin">首页</span>
+                            </label>
+                            <ul class="yun-xin-b" style="display: none">
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">订单查询</span>
+                                    </label>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span class="yun-xin">调度管理</span>
+                            </label>
+                            <ul class="yun-xin-b" style="display: none">
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">调度任务</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>调度任务</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>维修任务</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>返货任务</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">服务商任务</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>查询详情</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>异常登记</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">任务综合查询</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>上传签收图</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>查看详情</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>干线结束</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>提货</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>取消分配</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>预约</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>签收</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>取消签收</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span class="yun-xin">考核管理</span>
+                            </label>
+                            <ul class="yun-xin-b" style="display: none">
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">省份KPI</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>详情</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>导出</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">合作商KPI</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>详情</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>导出</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">发货人KPI</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>详情</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>导出</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">信用管理</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>信用查询</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span class="yun-xin">合作商</span>
+                            </label>
+                            <ul class="yun-xin-b" style="display: none">
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">师傅管理I</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>修改</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>查看</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>删除</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>新增</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">体现账户管理</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>账户变更</span>
+                                            </label>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">师傅实名认证</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>认证不通过</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>认证通过</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">师傅资料审核</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>查看</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>拒绝</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>审核</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span class="yun-xin">客户服务</span>
+                            </label>
+                            <ul class="yun-xin-b" style="display: none">
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">异常管理</span>
+                                    </label>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">仲裁管理</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>全部仲裁任务</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">售后任务</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>维修任务</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>补货任务</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>返货任务</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>其他</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">客户回访</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>回访录入</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>回访跟进</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >财务中心</span>
+                            </label>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >个人中心</span>
+                            </label>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >数据分析</span>
+                            </label>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="content-b content-bc">
+                <dl>
+                    <dt>
+                        <label>
+                            <i class="input-che"></i>
+                            <span class="TMS">WMS</span>
+                        </label>
+                    </dt>
+                    <div class="box" style="overflow: auto;display: none">
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >模块</span>
+                            </label>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >功能</span>
+                            </label>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >按钮</span>
+                            </label>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="content-b content-bd">
+                <dl>
+                    <dt>
+                        <label>
+                            <i class="input-che"></i>
+                            <span class="TMS">CMP</span>
+                        </label>
+                    </dt>
+                    <div class="box" style="overflow: auto;display: none">
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >模块</span>
+                            </label>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >功能</span>
+                            </label>
+                        </dd>
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span >按钮</span>
+                            </label>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="content-b content-be">
+                <dl>
+                    <dt>
+                        <label>
+                            <i class="input-che"></i>
+                            <span class="TMS">PMS</span>
+                        </label>
+
+                    </dt>
+                    <div class="box" style="overflow: auto;display: none">
+                        <dd>
+                            <label class="yun-y" >
+                                <i class="input-che"></i>
+                                <span class="yun-xin">运营中心</span>
+                            </label>
+                            <ul class="yun-xin-b" style="display: none">
+                                <li class="content-b-a">
+                                    <label>
+                                        <i class="input-che"></i>
+                                        <span class="s-yun">收运管理</span>
+                                    </label>
+                                    <ul class="content-b-a-a" style="display: none">
+                                        <li class="yun-dan-xin">
+                                            <label class="g-li" >
+                                                <i class="input-che"></i>
+                                                <span class="yun-li">运单管理</span>
+                                            </label>
+                                            <ul class="yun-dan" style="display: none">
+                                                <li >
+                                                    <label>
+                                                        <i class="input-che"></i>
+                                                        <span>新增</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <i class="input-che"></i>
+                                                        <span>修改</span>
+                                                    </label>
+                                                </li>
+                                                <li>
+                                                    <label>
+                                                        <i class="input-che"></i>
+                                                        <span>删除</span>
+                                                    </label>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>路线查询</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>库存管理</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>运单更改</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>运单更改审核</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>领单管理</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>运单查询</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>中转外发成本</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>订单分配</span>
+                                            </label>
+                                        </li>
+                                        <li >
+                                            <label>
+                                                <i class="x-che"></i>
+                                                <span>安装分拣</span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+    </div>
+    <div class="dialog-box-footer">
+        <span class="primary-btn btn">保存</span>
+        <span class="default-btn btn" (click)="hideWin(win02)">取消</span>
+    </div>
+</div>

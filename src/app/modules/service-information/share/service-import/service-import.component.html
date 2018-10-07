@@ -1,0 +1,19 @@
+<div class="dialog-box" style="display:block;width: 400px;margin-left: -200px;margin-top: -300px">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">提示</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div>
+            <span>选择导入文件：</span>
+            <file-upload (fileData)="getFileData($event)"></file-upload>
+        </div>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>

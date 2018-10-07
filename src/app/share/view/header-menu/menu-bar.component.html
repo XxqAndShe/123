@@ -1,0 +1,15 @@
+<div class="menu-bar" [@menuBarWidthSpread]="widthSpread ?'show':'hide'">
+  <ul  id="menu-bar"  class="menu-bar-content">
+    <li class="chart" *ngFor="let menuText of menuContent;let i=index" [ngClass]="getIcon(menuText.menuIndex)"  [class.menu-click]="isMenuClick[i]" (click)="menuclick(i,menuText.routerLink,menuText.menuIndex);" (mouseover)="showHoverTip(i,hover)" (mouseout)="hideHoverTip(hover)">
+      <a></a>
+      <span>{{menuText.text}}</span>
+    </li>
+  </ul>
+</div>
+<ul #hover>
+  <li  *ngFor="let menuText of menuContent;let i=index" class="hover-tip"><div class="triangle-left"></div><span>{{menuText.text}}</span></li>
+</ul>
+
+
+
+

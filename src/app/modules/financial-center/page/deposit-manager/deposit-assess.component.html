@@ -1,0 +1,71 @@
+<div class="master-running-frame">
+  <div class="master-frame-title">
+    <span class="pay-detail-img"><img src="/assets/touxiang.jpg"></span>
+    <span class="pay-detail-span02"> {{withdrawAuditResponseVo[0].realName}}</span>
+    <span class="pay-detail-span02">师傅账号: <i>{{withdrawAuditResponseVo[0].mobile}}</i></span>
+    <span class="pay-detail-span03">提现金额: <i>{{rowData.withdrawalAmount}}</i></span>
+    <span class="pay-detail-span02">提现方式: <i>{{withdrawAuditResponseVo[0].userAccount}}</i></span>
+    <span class="pay-detail-span02">结款方式: <i>{{withdrawAuditResponseVo[0].withdrowType}}</i></span>
+    <span class="pay-detail-span02">银行名称: <i>{{withdrawAuditResponseVo[0].bankName}}</i></span>
+    <span class="pay-detail-span02">支行名称: <i>{{withdrawAuditResponseVo[0].subBranchName}}</i></span>
+    <span class="pay-detail-span03">提现账号: <i>{{withdrawAuditResponseVo[0].bankAccount}}</i></span>
+    <span class="pay-detail-span04">持卡人: <i>{{withdrawAuditResponseVo[0].accountName}}</i></span>
+  </div>
+  <div class="master-frame-content">
+    <div class="table-wrap">
+      <!--<table class="master-frame-table">
+        <tr>
+          <th>运单号</th>
+          <th>任务类型</th>
+          <th>品名</th>
+          <th>收货人</th>
+          <th>收货地址</th>
+          <th>金额</th>
+          <th>参考成本</th>
+          <th>差价</th>
+        </tr>
+        <tr *ngFor="let withdrawAudit of withdrawAuditResponseVo">
+          <td>{{withdrawAudit.waybillId}}</td>
+          <td>{{withdrawAudit.taskType}}</td>
+          <td>{{withdrawAudit.productNames}}</td>
+          <td>{{withdrawAudit.consignee}}</td>
+          <td>{{withdrawAudit.consigneeAddr}}</td>
+          <td>{{withdrawAudit.taskAmount}}</td>
+          <td>{{withdrawAudit.standardCost}}</td>
+          <td>{{withdrawAudit.standardCost}}</td>
+        </tr>
+      </table>-->
+      <ui-grid [data]="data" (load)="load($event)" (exportCSV)="exportCSV($event)" [columns]="columns" (cellClick)="cellClick($event)"></ui-grid>
+    </div>
+    <!--<system-bottom></system-bottom>-->
+    <div class="footer-button">
+      <button class="pass-btn primary-btn" (click)="auditPass()" [disabled]="loading">
+          <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+          审核通过
+      </button>
+      <button class="no-pass-btn" (click)="depositOppose()">不通过</button>
+      <button class="cancel-btn default-btn" (click)="hideModal()">取消</button>
+    </div>
+  </div>
+  <a class="close-modal-btn" (click)="hideModal()"></a>
+</div>
+<deposit-oppose-win
+        *ngIf="showWin"
+        (closeWin)="closeWin($event)"
+        (closeModal)="hideModal()"
+        (doAudit)="doAudit($event)"
+></deposit-oppose-win>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+<!--维修任务-->
+<repair-detail class="modal" *ngIf="isModuleDisplayArr[0]"
+               (closeModal)="closeDetailModal(0)"
+               [@modalState]="isModuleDisplayArr1[0] ?'in':'out'" [selectedRowData]="selections"></repair-detail>
+<!--返货任务-->
+<supplier-detail class="modal" *ngIf="isModuleDisplayArr[1]"
+                 (closeModal)="closeDetailModal(1)"
+                 [@modalState]="isModuleDisplayArr1[1] ?'in':'out'" [selectedRowData]="selections"></supplier-detail>
+<!--调度任务-->
+<detail-modal class="modal" *ngIf="isModuleDisplayArr[2]"z
+              [@modalState]="isModuleDisplayArr1[2] ?'in':'out'"
+              (closeModal)="closeDetailModal(2)" [selectLineInfo]="selections"></detail-modal>

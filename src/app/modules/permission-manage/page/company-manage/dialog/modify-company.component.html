@@ -1,0 +1,107 @@
+<div id="modify_box" [@boxState]="boxState" class="dialog-box" [ngStyle]="drag.setPosition(680,600)">
+    <div id="modify_move" class="dialog-box-title blue">
+        <span class="dialog-left">公司信息修改</span>
+        <span (click)="close()" class="dialog-right">×</span>
+    </div>
+    <div class="dialog-box-content" [style.height]="boxContentHeight>700?'auto':'500px'" style="padding-left: 0">
+        <div style="display: flex">
+            <div style="flex: 2.2; direction: rtl">
+                <div class="content-text">公司名称<span class="required">*</span></div>
+                <div class="content-text">公司负责人<span class="required">*</span></div>
+                <div class="content-text">申请系统<span class="required">*</span></div>
+            </div>
+            <div style="flex: 4">
+                <input type="text" value="一智通供应链管理有限公司" class="content-input">
+                <input type="text" value="袁老板" class="content-input">
+                <select class="content-input">
+                    <option value="TMS">TMS</option>
+                    <option value="CMP">CMP</option>
+                    <option value="PMS">PMS</option>
+                    <option value="PMS">IPS</option>
+                    <option value="PMS">WMS</option>
+                </select>
+            </div>
+            <div style="flex: 1.8; direction: rtl">
+                <div class="content-text">公司简称</div>
+                <div class="content-text">联系手机<span class="required">*</span></div>
+                <div class="content-text">截止时间<span class="required">*</span></div>
+            </div>
+            <div style="flex: 4">
+                <input type="text" value="1智通" class="content-input">
+                <input type="text" value="1521858208" class="content-input">
+                <select class="content-input">
+                    <option>请选择</option>
+                </select>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div style="flex: 2.2; direction: rtl">
+                <div class="content-text">公司地址<span class="required">*</span></div>
+                <div class="content-text">身份证号</div>
+            </div>
+            <div style="flex: 4">
+                <select class="content-input">
+                    <option>请选择省市区</option>
+                </select>
+                <input type="text" value="4453231976050622" class="content-input">
+            </div>
+            <div style="flex: 5.8">
+                <input type="text" placeholder="请输入详细地址" class="content-input" style="width: 300px">
+            </div>
+        </div>
+        <div style="display: flex">
+            <div style="flex: 2.2; direction: rtl">
+                <div class="content-text">上传身份证图片</div>
+            </div>
+            <div style="flex: 4">
+                <div class="content-text">身份证正面照片 <button>点击上传</button><input class="upload" type="file"></div>
+                <div class="content-image"><img src="IDcard.png"></div>
+            </div>
+            <div style="flex: 5.8">
+                <div class="content-text">身份证背面照片 <button>点击上传</button><input class="upload" type="file"></div>
+                <div class="content-image"><img src="IDcard.png"></div>
+            </div>
+        </div>
+        <div style="display: flex; border-bottom: 1px solid #e5e5e5">
+            <div style="flex: 2.2; direction: rtl">
+                <div class="content-text">上传公司登录照片</div>
+            </div>
+            <div style="flex: 4">
+                <div class="content-image"><img src="login.png"></div>
+            </div>
+            <div style="flex: 5.8">
+                <div class="content-text"><button>+ 添加图片</button><input class="upload" type="file"></div>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div style="flex: 2.2; direction: rtl">
+                <div class="content-text">开户行</div>
+                <div class="content-text">机构代码</div>
+                <div class="content-text">上传公司营业执照</div>
+            </div>
+            <div style="flex: 4">
+                <input type="text" placeholder="请输入" class="content-input">
+                <input type="text" placeholder="请输入" class="content-input">
+                <div class="content-text"><button>+ 添加图片</button><input class="upload" type="file"></div>
+            </div>
+            <div style="flex: 1.8; direction: rtl">
+                <div class="content-text">银行账号</div>
+            </div>
+            <div style="flex: 4">
+                <input type="text" placeholder="请输入" class="content-input">
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div style="flex: 2.2; direction: rtl">
+                <div class="content-text">备注</div>
+            </div>
+            <div style="flex: 9.8">
+                <textarea placeholder="请输入"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn">保存</span>
+        <span (click)="close()" class="btn default-btn">取消</span>
+    </div>
+</div>

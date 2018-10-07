@@ -1,0 +1,92 @@
+<div class="container">
+    <form class="search">
+        <div>
+            <div class="unit">
+                <label>创建日期：</label>
+                <p-calendar name="dataCreatedBeginTime" [(ngModel)]="vComplaintListReqVo.dataCreatedBeginTime" dateFormat="yy-mm-dd" [locale]="zh"
+                    [inputStyle]="{'width':'125px','height':'30px'}" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="'2000:2020'"
+                    [readonlyInput]="true"></p-calendar>
+                &#45;&#45;
+                <p-calendar name="dataCreatedEndTime" [(ngModel)]="vComplaintListReqVo.dataCreatedEndTime" dateFormat="yy-mm-dd" [locale]="zh"
+                    [inputStyle]="{'width':'125px','height':'30px'}" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="'2000:2020'"
+                    [readonlyInput]="true"></p-calendar>
+            </div>
+            <div class="unit">
+                <label>责任人：</label>
+                <input type="text" name="dutyName" [(ngModel)]="vComplaintListReqVo.dutyName" placeholder="请输入手机号/姓名搜索">
+            </div>
+            <div class="unit">
+                <label>是否回访：</label>
+                <select name="visitedStatus" [(ngModel)]="vComplaintListReqVo.visitedStatus">
+                    <option value="all">不限</option>
+                    <option value="alerady">是</option>
+                    <option value="not">否</option>
+                </select>
+            </div>
+            <div class="unit">
+                <label>投诉类型：</label>
+                <div class="complaint-type">
+                    <complaint-select (onChange)="onCatalogChange($event)" name="CatalogId" [(ngModel)]="CatalogId"></complaint-select>
+                </div>
+            </div>
+            <div class="unit">
+                <label>投诉人：</label>
+                <input type="text" name="complainantName" [(ngModel)]="vComplaintListReqVo.complainantName" placeholder="请输入手机号/姓名搜索">
+            </div>
+        </div>
+        <div>
+            <div class="unit">
+                <label>任务单号：</label>
+                <textarea name="taskTitles" [(ngModel)]="vComplaintListReqVo.taskTitles" cols="39" rows="3" placeholder="多单查询请以回车键换行隔开"></textarea>
+                <button class="clear-btn">×</button>
+            </div>
+            <div class="unit">
+                <label>是否成立：</label>
+                <select name="complaintResult" [(ngModel)]="vComplaintListReqVo.complaintResult">
+                    <option value="all">不限</option>
+                    <option value="pass">成立</option>
+                    <option value="nopass">不成立</option>
+                </select>
+            </div>
+            <div class="unit">
+                <label>发货人：</label>
+                <shipper-select name="shipperName" [(ngModel)]="vComplaintListReqVo.shipperName"></shipper-select>
+            </div>
+            <div class="unit">
+                <label>处理状态：</label>
+                <select name="complaintDealStatus" [(ngModel)]="vComplaintListReqVo.complaintDealStatus">
+                    <option value="all">不限</option>
+                    <option value="add">未处理</option>
+                    <option value="doing">处理中</option>
+                    <option value="completed">已处理</option>
+                    <option value="veto">否决</option>
+                </select>
+            </div>
+            <div class="unit" style="padding-left: 20px;">
+                <button class="btn primary-btn" [disabled]="loading" (click)="doSearch()">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询</button>
+                <button type="reset" class="btn default-btn" (click)="resetAll()">清空</button>
+            </div>
+        </div>
+    </form>
+    <div class="table-header">
+        <button class="handle-btn" (click)="showWin('add-complain')">添加投诉</button>
+        <button class="handle-btn" (click)="showWin('handle-complain')">投诉处理</button>
+        <button class="handle-btn" (click)="showWin('appeal')">申诉</button>
+        <button class="handle-btn" (click)="showWin('back-visit')">回访</button>
+        <button class="handle-btn" (click)="showWin('modify-complain')">修改投诉</button>
+    </div>
+    <ui-grid title="&nbsp;" (cellClick)="cellClick($event)" [columns]="columns" [data]="data" [(selections)]="selectionRow" (load)="load($event)" (rowSelect)="rowSelect($event)" (exportCSV)="exportCSV($event)"></ui-grid>
+</div>
+<add-complain *ngIf="showWhichWin === 'add-complain' || showWhichWin === 'modify-complain'" [selection]="selectionRow" [addOrChange]="addOrChange"
+    (closeWin)="closeWin($event)"></add-complain>
+<appeal *ngIf="showWhichWin === 'appeal'" [selection]="selectionRow" (closeWin)="closeWin($event)"></appeal>
+<back-visit *ngIf="showWhichWin === 'back-visit'" [selection]="selectionRow" (closeWin)="closeWin($event)"></back-visit>
+<handle-complain *ngIf="showWhichWin === 'handle-complain'" [selection]="selectionRow" (closeWin)="closeWin($event)"></handle-complain>
+<!-- 查看申诉详情弹窗 -->
+<appeal-detail *ngIf="showWhichWin === 'appeal-detail'" [complaintId]="id" [rowData]="rowData" (closeWin)="closeWin($event)"></appeal-detail> 
+<!-- 投诉详情 -->
+<complaint-detail *ngIf="showWhichWin === 'complaint-detail'" [complaintId]="id" [rowData]="rowData" (closeWin)="closeWin($event)"></complaint-detail> 
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

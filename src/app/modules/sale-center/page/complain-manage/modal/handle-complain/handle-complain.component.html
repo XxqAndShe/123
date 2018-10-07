@@ -1,0 +1,123 @@
+<div class="dialog-box" id="deposit_apply" [ngStyle]="drag.setPosition(700,595)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialogdialog-left">处理投诉</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="up-block">
+            <div class="row">
+                <div>
+                    <span>任务单号 :</span>
+                    <span>{{selection[0].taskTitle}}</span>
+                </div>
+                <div class="shipper">
+                    <span>发货人 :</span>
+                    <span>{{selection[0].shipperName}}</span>
+                </div>
+                <div class="destination">
+                    <span>目的地 :</span>
+                    <span>{{selection[0].shippingAddress}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <span>投诉人 :</span>
+                    <span>{{selection[0].complainantName}}</span>
+                </div>
+                <div>
+                    <span>投诉电话 :</span>
+                    <span>{{selection[0].complainantMobile}}</span>
+                </div>
+            </div>
+            <div class="row row-content">
+                <span class="complain-content">投诉内容 :</span>
+                <span class="info">
+                            {{selection[0].complaintContent}}
+                        </span>
+            </div>
+            <div class="row last">
+                <span class="img">投诉图片 :</span>
+                <ul class="img-wrap" *ngFor="let picInfo of selection[0].picInfos">
+                    <li class="img-item">
+                        <a rel="fancybox" href="{{picInfo.url}}"><img src="{{picInfo.url}}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-form">
+                <span><span class="start-symbol">*</span> 投诉类型</span>
+                <div class="complaint-type">
+                    <complaint-select width="200px" name="masterId" (onChange)="onCatalogChange($event)" [(ngModel)]="vComplaintDealReqVo.masterId" [showTable]="showTable" (clearOthers)="clear()"></complaint-select>
+                </div>
+            </div>
+            <div class="input-form">
+                <span>处理状态</span>
+                <select name="complaintDealStatus" [(ngModel)]="vComplaintDealReqVo.complaintDealStatus">
+                    <option value="add">待处理</option>
+                    <option value="doing">处理中</option>
+                    <option value="completed">已处理</option>
+                    <option value="veto">否决</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-form">
+                <span>责任方</span>
+                <input disabled type="text" name="complaintDuty" [(ngModel)]="complaintDuty">
+            </div>
+            <div class="input-form">
+                <span><span class="start-symbol">*</span> 责任人</span>
+                <select name="dutyName" [(ngModel)]="vComplaintDealReqVo.dutyName">
+                    <option *ngFor="let duty of dutyNames" value="{{duty.subject}}">{{duty.subject}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-form">
+                <span>责任人电话</span>
+                <input type="number" name="dutyMobile" [(ngModel)]="vComplaintDealReqVo.dutyMobile">
+            </div>
+            <div class="input-form">
+                <span>处罚金额</span>
+                <input type="number" name="penaltyFee" [(ngModel)]="vComplaintDealReqVo.penaltyFee">
+            </div>
+        </div>
+        <div class="input-form radio" *ngIf="vComplaintDealReqVo.complaintDealStatus !== 'veto'">
+            <span>投诉结果</span>
+            <span><input #found type="radio" value="pass" name="pass" [(ngModel)]="vComplaintDealReqVo.complaintResult"/> 成立</span>
+            <span><input #nofound type="radio" value="nopass" name="nopass" [(ngModel)]="vComplaintDealReqVo.complaintResult"/> 不成立</span>
+        </div>
+
+        <div class="input-form radio" style="display: block">
+            <span>是否服务补救</span>
+            <span><input type="radio" value="true" name="yes" [(ngModel)]="vServiceRemedyRspVo.isService"/> 是</span>
+            <span><input type="radio" value="false" name="no" [(ngModel)]="vServiceRemedyRspVo.isService"/> 否</span>
+        </div>
+        <div class="input-form" *ngIf="vServiceRemedyRspVo.isService === 'true'">
+            <span style="text-align: right;margin-right: 5px;">补偿金额</span>
+            <input type="number" name="compensateFee" [(ngModel)]="vComplaintDealReqVo.compensateFee">
+        </div>
+        <div class="input-describe" *ngIf="vServiceRemedyRspVo.isService === 'true'">
+            <span>补偿备注</span>
+            <textarea cols="83" rows="4" placeholder="请输入(最多只能输入300字)" maxlength="300"
+                      name="compensateRemark" [(ngModel)]="vComplaintDealReqVo.compensateRemark"></textarea>
+        </div>
+        <div class="input-describe">
+            <span>备注</span>
+            <textarea name="remark" [(ngModel)]="vComplaintDealReqVo.remark" cols="83" rows="5" placeholder="请输入(最多只能输入1000字)" maxlength="1000"></textarea>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<!-- 提示弹窗 -->
+<p-growl [value]="msgs"></p-growl>
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

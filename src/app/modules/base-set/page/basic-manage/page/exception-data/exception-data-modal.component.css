@@ -1,0 +1,210 @@
+.outer-modal-container {
+    /*display: none; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 594px;
+    height: 444px;
+    box-sizing: border-box;
+    margin-top: -242px;
+    margin-left: -390px;
+    background-color: #ffffff;
+    box-shadow: -2px 2px 7px rgb(169, 169, 169);
+    z-index: 1500;
+}
+
+
+.inner-modal-container>.content {
+    padding: 20px 20px 0;
+}
+.content h6 {
+    font-size: 14px;
+    color: #0d85e4;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+a.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 21px;
+    line-height: 15px;
+    height: 15px;
+    color: #cdcdcd;
+}
+
+
+.line {
+    padding-left: 12px;
+}
+.line.title-line {
+    display: inline-block;
+    width: 58px;
+    text-align: left;
+}
+.line span {
+    line-height: 16px;
+    height: 16px;
+}
+
+
+ul.checkbox-list {
+    display: inline-block;
+    width: 362px;
+    vertical-align: top;
+    margin-bottom: 10px;
+}
+ul.checkbox-list>li {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+ul.checkbox-list a {
+    line-height: 16px;
+    vertical-align: top;
+    width: 13px;
+    height: 16px;
+}
+ul.checkbox-list span {
+    width: 70px;
+    line-height: 16px;
+    display: inline-block;
+}
+ul.checkbox-list:nth-of-type(2) span {
+    width: 55px;
+}
+a.ticked {
+    display: inline-block;
+    background: url(/assets/basic-manage/checked.jpg) no-repeat center center;
+    background-size: 13px 13px;
+}
+a.null {
+    display: inline-block;
+    background: url(/assets/basic-manage/checkbox-null.png) no-repeat center center;
+    background-size: 13px 13px;
+}
+
+
+.select-container {
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    width: 214px;
+    margin-left: 5px;
+}
+.select-container>span {
+    width: 58px;
+    display: inline-block;
+}
+.long-line .ready-input{
+    width: 140px;
+    height: 25px;
+}
+
+.line.long-line {
+    margin-bottom: 6px;
+}
+.select-div {
+    display: inline-block;
+    position: relative;
+}
+.select-div>select {
+    border: none;
+    width: 60px;
+    outline: none;
+}
+.select-div>i {
+    position: absolute;
+    top: 4px;
+    right: 3px;
+    background: #ffffff url(/assets/img/bottom.png) no-repeat center center;
+    background-size: 10px;
+    width: 12px;
+    height: 12px;
+}
+
+
+.line.long-line>.select-container {
+    height: 18px;
+    line-height: 18px;
+}
+.line.long-line>.select-container span {
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+}
+.line.long-line.sp>.select-container {
+    height: 32px;
+    line-height: 32px;
+    margin-bottom: 8px;
+}
+.line.long-line.sp>.select-container>span {
+    line-height: 32px;
+    display: inline-block;
+    height: 32px;
+}
+.line.long-line.sp .select-div {
+    line-height: 32px;
+    vertical-align: top;
+}
+.line.long-line.sp select {
+    line-height: 32px;
+}
+.line.long-line.sp i.bottom-icon {
+    top: 11px;
+}
+.select-container>input {
+    padding: 7px 4px;
+    border: none;
+    border-bottom: 1px solid #c3c3c3;
+    box-sizing: border-box;
+    height: 32px;
+    line-height: 32px;
+    width: 150px;
+}
+
+.textarea-div {
+    padding-left: 12px;
+    margin-bottom: 15px;
+}
+.textarea-div>span {
+    vertical-align: top;
+    line-height: 28px;
+    height: 28px;
+    width: 58px;
+    display: inline-block;
+}
+.textarea-div>textarea {
+    resize: none;
+    width: 470px;
+    height: 68px;
+    padding: 6px 8px;
+    box-sizing: border-box;
+    border: 1px solid #dddddd;
+}
+
+
+footer {
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}
+footer>button {
+    margin-top: 9px;
+}
+.textarea-div .add-marleft{
+    width: 5px;
+}
+.responsible-party{
+    margin-left: 4px;
+}
+.exception-remark{
+    margin-left: 4px;
+}
+.textarea-div .div-textarea{
+    margin-left: 5px;
+}
+#All-checkbox{
+    width: 25px;
+}
+.add-redcolor{
+    color: red;
+}

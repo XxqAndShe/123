@@ -1,0 +1,14 @@
+<div [ngClass]="{show:!isAdd,hide:isAdd}" class="content">
+    <div class="table-title">
+        <span class="title-name">KPI考核项目</span>
+        <span class="right primary-btn btn" (click)="showOthBtn()"><i class="rmb-icon add"></i>新增</span>
+    </div>
+    <div class="table-container">
+        <ui-grid [columns]="columns" [data]="data" (load)="load($event)" (exportCSV)="exportCSV($event)"></ui-grid>
+    </div>
+</div>
+<div [ngClass]="{show:isAdd,hide:!isAdd}" class="content" *ngIf="isAddIf">
+    <add-modify-credit (isReturnCredit)="isReturnCredit(event)" (notReturnCredit)="notReturnCredit()"></add-modify-credit>
+</div>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

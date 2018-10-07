@@ -1,0 +1,158 @@
+/*弹框*/
+.arbitration_tk{ width: 675px; border-radius: 2px; overflow: hidden;}
+.arbitration_tk .dialog-box-title>ul{ float: left;  }
+.arbitration_tk .dialog-box-title>ul li{ float: left; line-height: 34px; color: #93d5ff; font-size: 14px; padding:0 15px; cursor: pointer; box-sizing: border-box; }
+.arbitration_tk .dialog-box-title>ul li.current{ border-bottom: 2px solid #0da0fd; color: #fff; }
+.arbitration_tk .dialog-box-content{ width: 100%; float: left; height: auto; padding: 0;}
+.arbitration_tk .dialog-box-content .top_abn{ width: 100%; overflow: hidden; padding: 15px; box-sizing: border-box;  background: #e8f4ff; }
+.arbitration_tk .dialog-box-content .top_abn>span{ color: #444444; font-size: 12px; }
+.arbitration_tk .dialog-box-content .top_abn ul li{ margin:5px 0;overflow: hidden; }
+.arbitration_tk .dialog-box-content .top_abn .left{ display: block; float: left; width: 245px; }
+.arbitration_tk .dialog-box-content .top_abn .left-spec{ width: 205px; }
+.arbitration_tk .dialog-box-content .top_abn .middle{margin-right:100px;}
+.arbitration_tk .dialog-box-content .top_abn .picture>button{ float: right; width: 72px; height: 20px; text-align: center; line-height: 20px; background: #bfe1ff;  border-radius: 2px; color: #258ae6; margin-right: 25px;  cursor: pointer;border: none; }
+
+/*仲裁处理*/
+.arbitration_tk .bottom_abn{ width: 100%; float: left; padding: 15px; padding-top: 0; box-sizing: border-box; }
+.arbitration_tk .bottom_abn .wrap{ margin-bottom: 5px; width: 100%; float: left; }
+.arbitration_tk .bottom_abn .wrap .chuli{ display: inline-block;padding: 0 10px; height: 25px; line-height: 25px; text-align: center; color: #fff; position: relative; }
+.arbitration_tk .bottom_abn .wrap .chuli i{ position: absolute; display: block; width: 13px; height: 25px; top: 0; right: -11px; background: url(/assets/triangle.png) no-repeat; }
+.arbitration_tk .dialog-box-footer ul{ float: right; margin: 10px 0; }
+.arbitration_tk .dialog-box-footer ul li{ float: left; margin-right: 10px; }
+
+.arbitration_tk .bottom_abn .respon{ float: left; width: 600px; border: 1px  solid #f0f0f0; padding: 0 10px; box-sizing: border-box; background: #fafafa; height: 184px;  overflow-y: auto; margin-top: 10px;}
+.respon ul li{ width: 100%; float: left; margin-bottom: 5px; }
+.respon ul li>span{display: block; float: left; margin-right: 10px; line-height: 30px; }
+.respon ul li>span.se1{ width: 140px; }
+.respon ul li>span.se1 .se1_in select{ width: 130px; }
+.respon ul li>span.se2{ width: 170px; }
+.respon ul li>span.se2 .se2_in{ width: 168px; line-height: 26px; border: 1px solid #dddddd; padding: 3px; box-sizing: border-box; }
+.respon ul li>span.se3{ width: 120px; }
+.respon ul li>span.se3 .se3_in{ width: 120px; line-height: 26px; border: 1px solid #dddddd; padding: 3px; box-sizing: border-box; }
+.respon ul li .se4-and-se5 .se4,.respon ul .se4-and-se5 .se5{ float: left;  display: block; width: 20px;height: 20px;line-height: 14px; background: #0da0fd; border-radius: 10px;  font-size: 35px; color: #fff; text-align: center; margin: 5px 3px; cursor: pointer; }
+.respon ul li .se4-and-se5{float: right;margin-right: 180px}
+.respon ul .se4-and-se5 .se5{ background: #25c26f; font-size: 21px; line-height: 17px; }
+.opinion{ float: left; width: 600px; }
+.opinion .opinion_bt{ display: block; width: 100%; line-height: 30px;}
+.opinion .opinion_sr{ width: 100%; height: 52px; padding: 3px; resize: none; box-sizing: border-box; }
+.arbitration_tk .dialog-box-footer{ width: 100%; float: left; }
+
+/*处理结果详情*/
+.result_mingxi{ float: left; width: 100%; padding: 15px;box-sizing: border-box;max-height: 470px;overflow-y:auto; }
+.result_mingxi .top_titl{ float: left; display: block; width: 100%; height: 25px; line-height: 25px; color: #1f8aec; }
+.result_mingxi .bottom_xingxi{ width: 100%; float: left; border: 1px solid #dddddd; padding: 10px; box-sizing: border-box; background: #f0f0f0; }
+.result_mingxi .bottom_xingxi ul li{  width: 100%; float: left; margin: 3px 0; }
+.result_mingxi .bottom_xingxi ul li>span{ display: block; float: left; }
+.result_mingxi .bottom_xingxi ul li>span.left{ width: 215px; }
+.result_mingxi .bottom_xingxi ul li>span.right{ width: 380px; }
+.result_mingxi .bottom_xingxi ul li>span.left.nuo{ width: 500px; }
+.result_mingxi .bottom_xingxi ul li>span.left .left_in{ float: left; }
+.result_mingxi .bottom_xingxi ul li>span.left .right_in{ float: left; width: 370px; }
+.result_mingxi .bottom_xingxi .report_form{ float: left; width: 100%; }
+.result_mingxi .bottom_xingxi .report_form table{ width: 100%; border: 1px solid #86c5ff; }
+.result_mingxi .bottom_xingxi .report_form table tr th{ text-align: center; padding: 5px 0; }
+.result_mingxi .bottom_xingxi .report_form table tr .ying{ color: #59a0f4; }
+.result_mingxi .bottom_xingxi .report_form table tr .gai{ color: #25c26f; }
+.result_mingxi .bottom_xingxi .report_form table tr{ border-bottom: 1px solid #86c5ff; }
+.result_mingxi .bottom_xingxi .report_form table tr td{ text-align: center; padding: 5px 0; background: #fff; }
+.result_mingxi .bottom_xingxi .form_tit{ float: left; display: block; width: 100%; height: 18px; line-height: 18px; border-left:2px solid #0da0fd; padding-left: 10px; margin: 10px 0; }
+.result_mingxi .bottom_xingxi .report_form table.tab1 tr th{ padding-top: 28px;text-align: left; padding-left: 10px; border-right: 1px solid #86c5ff; position: relative; }
+.result_mingxi .bottom_xingxi .report_form table.tab1 tr td{ text-align: left;  padding-left: 10px; border-right: 1px solid #86c5ff;}
+.result_mingxi .bottom_xingxi .report_form table.tab1 tr .h1{ background: #f0f0f0; }
+.result_mingxi .bottom_xingxi .report_form table.tab1 tr .h2{ background: #ffffff; }
+.result_mingxi .bottom_xingxi .report_form table.tab1 tr .h3{ background: #e1f1ff; }
+.result_mingxi .bottom_xingxi .report_form table.tab1 tr .primary,.result_mingxi .bottom_xingxi .report_form table.tab1 tr .change{ width: 20px; height: 20px; color: #fff; position: absolute; top: 0; left:0; background: #59a0f4; text-align: center; line-height: 20px; border-bottom-right-radius: 5px; }
+.result_mingxi .bottom_xingxi .report_form table.tab1 tr .change{ background: #25c26f; }
+.result_mingxi .bottom_xingxi .report_form .left_for{ float: left;width: 50%; }
+.result_mingxi .bottom_xingxi .report_form .right_for{ float: left;width: 50%; }
+.result_mingxi .bottom_xingxi .report_form table.tab2 tr th{ padding-top: 25px; position: relative; }
+.result_mingxi .bottom_xingxi .report_form table.tab2 tr .primary,.result_mingxi .bottom_xingxi .report_form table.tab2 tr .change{ width: 20px; height: 20px; color: #fff; position: absolute; top: 0; left:0; background: #59a0f4; text-align: center; line-height: 20px; border-bottom-right-radius: 5px; }
+.result_mingxi .bottom_xingxi .report_form table.tab2 tr .change{ background: #25c26f; }
+.yuandan {  float: left; margin: 0 5px;}
+.yuandan span { float: left;  height: 30px; line-height: 30px; font-family: "微软雅黑"; color: #343d47; margin: 0 5px;}
+.yuandan input{ float: left; width: 130px; height: 28px; line-height: 28px; padding-left: 3px; border: 1px solid #cccccc; margin: 0 5px;}
+.yuandan .sele{background: transparent; border: none; padding-left: 10px; width: 120px; height: 33px; line-height: 33px; border: 1px solid #ccc;}
+/*补件*/
+.result_mingxi .bottom_xingxi .report_form table.tab3 tr{ border-bottom: none; }
+
+/*否决*/
+.result_mingxi .bottom_xingxi .reject{ display: block; float: left; width: 100%; }
+
+/*维修*/
+.result_mingxi .bottom_xingxi ul li>span.right .ho{ color: #FF0000;}
+.result_mingxi .bottom_xingxi ul li>span.right{ position: relative; }
+.result_mingxi .bottom_xingxi ul li>span.right .chakan{ width: 65px; height: 20px; line-height: 20px; text-align: center;  color: #FFFFFF;background: #2794fb; position: absolute; top: 0; right: 10px; cursor: pointer; }
+
+/*返货*/
+.responsible{ float: left; width: 100%; padding: 15px;box-sizing: border-box; }
+.responsible ul li{ float: left; width: 100%; margin: 3px 0; }
+.responsible ul li>span {display: block;float: left;}
+.responsible ul li>span.left{ width: 215px; }
+.responsible ul li>span.right{ width: 315px; }
+.responsible ul li>span.right .ho { color: #FF0000;}
+.responsible ul li>span.right .pinzhen{ display: inline-block; width: 65px; height: 20px; line-height: 20px; text-align: center; color: #FFFFFF; background: #2794fb; cursor: pointer; margin-left: 10px; }
+.responsible ul li>span.left.nuo {width: 500px;}
+.arbitration_tk .service_class>div{ display: none; }
+.arbitration_tk .service_class>div.current{ display: block; }
+
+.arbitration_tk .more{ min-height: 300px; padding: 20px; box-sizing: border-box; }
+.arbitration_tk .more .zui_more{ width: 600px; float: left; }
+.arbitration_tk .more .zui_more .titl{ display: block; line-height: 30px; }
+.arbitration_tk .more .zui_more .titl.lan{ color: #1f8aec; }
+.arbitration_tk .more .zui_more .information{ display: block; width: 100%; border: 1px solid #d7efff; padding: 10px; overflow: hidden; background: #f7f8fa; margin-bottom: 10px; }
+.arbitration_tk .more .zui_more .information>span{ display: block; float: left; margin-right: 10px; }
+.arbitration_tk .more .zui_more .information .left{ width: 310px; }
+.arbitration_tk .more .zui_more .information .zho{ width: 130px; text-align: center; }
+.arbitration_tk .more .zui_more .information .right{ width: 115px; }
+.arbitration_tk .modify{ padding: 15px; min-height: 300px; box-sizing: border-box; }
+.arbitration_tk .modify table{ width: 100% ; }
+.arbitration_tk .modify table th{ padding: 10px 0; text-align: center; background: #dcebfa; }
+.arbitration_tk .modify table td{ text-align: center;  padding: 10px 0; }
+
+.imgarr{
+    display: inline-block;
+}
+.imgarr>li{
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    width: 58px;
+    height: 58px;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+    position: relative;
+}
+.imgarr>li>img{
+    width: 56px;
+    height: 56px;
+    cursor: pointer;
+}
+.service_class{
+    max-height: 500px;
+    overflow: auto;
+}
+.dialog-box-title>span:nth-of-type(1){
+    display: inline-block;
+    width: 30px;
+    height: 34px;
+    background: url("/assets/sale-after/exception-handle/tms-icon.png");
+    position: absolute;
+    top: 0px;
+    left: 500px;
+}
+.dialog-box-title>span:nth-of-type(2){
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #ffffff;
+    text-align: center;
+    line-height: 24px;
+    background-color: #15C182;
+    position: absolute;
+    top: 0px;
+    left: 540px;
+}
+em{
+    color: red;
+}

@@ -1,0 +1,244 @@
+/*顶部样式 start*/
+.dialog-box .top-title{
+    background:#4C8DF7 ;
+}
+/*顶部样式 end*/
+.dialog-box .dialog-box-content{
+    height: auto;
+}
+
+.dialog-box-content{
+    border-bottom: none;
+    padding: 25px 20px 15px;
+}
+
+/*
+ 设置数据权限
+*/
+.content-l{
+    width:200px;
+    float: left;
+}
+.content-r{
+    width:380px;
+    float: left;
+    margin-left: 20px ;
+    margin-top: 20px;
+    border: 1px solid #DDDDDD;
+}
+.content-r .con-l{
+    width:185px;
+    float: left;
+    height: 280px;
+}
+.content-r .con-r{
+    width:185px;
+    float: right;
+    height: 280px;
+
+}
+.content-r-top{
+    width: 98%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 10px;
+    background: #ECF1FA;
+}
+.content-r-top li{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+}
+.content-aa{
+    width: 100%;
+    height:25px;
+    border-bottom: 1px solid #4C8DF7;
+}
+.content-aa li{
+    width: 69px;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    margin-right:10px;
+    text-align: center;
+    border:1px solid #4C8DF7;
+    background:#F5F9FF;
+}
+.content-aa .content-style {
+    border-bottom: 1px solid #ffffff;
+    background:#FFF;
+}
+.box{
+    height:280px;
+}
+.box-x{
+    height: 240px;
+}
+.content-b .box .yun-y{
+    padding: 0 0 0 20px ;
+}
+.content-c{
+    height: 300px;
+    position: relative;
+    /*padding: 0 0 20px 0;*/
+}
+.content-b{
+    width: 100%;
+    border:1px solid #DDDDDD;
+    height: auto;
+    margin: 20px 0 0 0;
+    position: absolute;
+    overflow: visible;
+    display: none;
+}
+.con-b{
+    width: 186px;
+    margin: 2px 0 0 0;
+    border: none;
+}
+.content-ba{
+    z-index: 5;
+}
+.content-bb{
+    z-index: 4;
+    display: none;
+}
+.content-bc{
+    z-index: 3;
+    display: none;
+}
+.content-bd{
+    z-index: 2;
+    display: none;
+}
+.content-be{
+    z-index: 1;
+    display: none;
+}
+
+.content-b dt{
+    height: 30px;
+    line-height: 30px;
+    padding:0 0 0 10px ;
+    background: #ECF1FA;
+}
+
+.content-b dd label{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 40px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+.content-b .content-b-a span{
+    /*display: block;*/
+    height: 29px;
+    line-height: 29px;
+}
+
+.content-b-a-a li label{
+    line-height: 29px;
+    padding: 0px;
+}
+.content-b-a-a li{
+    height: 29px;
+    line-height: 29px;
+    padding: 0 0 0 70px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+body .content-b-a-a .yun-dan li {
+    padding:0 0 0 85px;
+
+}
+.content-b-a-a  .yun-dan-xin{
+    height: auto;
+    padding-left: 0px;
+}
+#dialog-container-3 .content-b-a-a  .yun-dan-xin .g-li{
+    padding: 0 0 0 70px;
+}
+
+.content-show{
+    display: block;
+}
+/*
+    背景图
+*/
+/*未选择时复选框样式*/
+.input-che{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-top:1px;
+    background: url("../../../../../../assets/permission-sys/user/checkbox-null.png");
+    vertical-align:text-bottom;
+    margin-bottom:2px;
+}
+/*已选择时复选框样式*/
+.xu-che{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-top:1px;
+    background: url("../../../../../../assets/permission-sys/user/checkbox-tick.png");
+    vertical-align:text-bottom;
+    margin-bottom:2px;
+}
+/*减号样式*/
+.j-che{
+    display: inline-block;
+    width: 9px;
+    height: 1px;
+    background: url(../../../../../../assets/permission-sys/role/role-iocn.png) -20px 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:7px;
+    margin-right: 2px;
+}
+/*
+    加号样式
+*/
+.add-che{
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: url(../../../../../../assets/permission-sys/role/role-iocn.png) 0 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:4px;
+    margin-right: 2px;
+}
+
+
+/*
+    滚动条样式
+*/
+::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,.3);
+    border-radius: 6px;
+}
+::-webkit-scrollbar-track{
+    background-color: #ddd;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-corner{
+    background-color: #666;
+    border-radius: 50%;
+}
+
+
+.content-d {
+    height: 332px;
+}
+.box {
+    overflow-y: auto;
+    /*display: none;*/
+}
+
+.dialog-box {
+    width: 650px;
+}
+.dialog-box .dialog-box-footer{height:30px; text-align: center; padding: 20px;}

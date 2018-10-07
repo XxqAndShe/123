@@ -1,0 +1,56 @@
+<div class="outer-container">
+	<div class="inner-container">
+		<my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+
+		<header>
+			<h4>处理时效与提醒设置</h4>
+		</header>
+
+	<table id="remind-setting-table">
+		<tr class="remind-setting-header">
+			<th>异常处理登记</th>
+			<th>处理超时时效（分钟）</th>
+			<th>提醒时间（分钟)</th>
+			<th>修改人</th>
+			<th>修改时间</th>
+		</tr>
+		<tr class="P1">
+			<td>P1</td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box1 (blur)="aging(box1.value)" [(ngModel)]="exceedP1" (keyup)="select('P1')"></td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box2 (blur)="remindeTime(box2.value)" [(ngModel)]="remindP1" (keyup)="select('P1')"></td>
+			<td>{{modifierP1}}</td>
+			<td>{{modiTimeP1}}</td>
+		</tr>
+		<tr class="P2">
+			<td>P2</td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box3 (blur)="aging(box3.value)" [(ngModel)]="exceedP2" (keyup)="select('P2')"></td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box4 (blur)="remindeTime(box4.value)" [(ngModel)]="remindP2" (keyup)="select('P2')"></td>
+			<td>{{modifierP2}}</td>
+			<td>{{modiTimeP2}}</td>
+		</tr>
+		<tr class="P3">
+			<td>P3</td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box5 (blur)="aging(box5.value)" [(ngModel)]="exceedP3" (keyup)="select('P3')"></td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box6 (blur)="remindeTime(box6.value)" [(ngModel)]="remindP3" (keyup)="select('P3')"></td>
+			<td>{{modifierP3}}</td>
+			<td>{{modiTimeP3}}</td>
+		</tr>
+		<tr class="P4">
+			<td>P4</td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box7 (blur)="aging(box7.value)" [(ngModel)]="exceedP4" (keyup)="select('P4')"></td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box8 (blur)="remindeTime(box8.value)" [(ngModel)]="remindP4" (keyup)="select('P4')"></td>
+			<td>{{modifierP4}}</td>
+			<td>{{modiTimeP4}}</td>
+		</tr>
+		<tr class="P5">
+			<td>P5</td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box9 (blur)="aging(box9.value)" [(ngModel)]="exceedP5" (keyup)="select('P5')"></td>
+			<td><input type="text" maxlength="4" oninput="value=value.replace(/[^\d{1,}]/g,'')" #box10 (blur)="remindeTime(box10.value)" [(ngModel)]="remindP5" (keyup)="select('P5')"></td>
+			<td>{{modifierP5}}</td>
+			<td>{{modiTimeP5}}</td>
+		</tr>
+	</table>
+	<button class="btn primary-btn remind-setting-btn" (click)="preservation()">保存</button>
+</div>
+	<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,50 @@
+<div class="outer-modal-container">
+	<div class="modal-header">
+		<div class="first-line">
+			<span class="masterName">{{selectionRow?.realName}}</span>
+			<!--<a class="star-level" href="javascript:;"></a>-->
+		</div>
+		<div class="second-line">
+			<span class="credit-level">信用等级 : <p-rating [(ngModel)]="master.creditLevel" readonly="true" [cancel]="false"></p-rating></span>
+			<span class="credit-score">信用分数 : {{master.creditScore}}</span>
+			<a href="javascript:;" (click)="creditStan()">信用标准</a>
+		</div>
+	</div>
+
+	<div class="modal-content">
+		<ul class="table-list">
+			<li class="table-div" *ngFor="let table of master.tableData">
+				<h5>{{table.name}}</h5>
+				<table>
+					<tr>
+						<th></th>
+						<th>{{table.data[0]}}</th>
+						<th>{{table.data[1]}}</th>
+						<th>{{table.data[2]}}</th>
+					</tr>
+					<tr>
+						<td>{{table.data[3]}}</td>
+						<td>{{table.data[4]}}</td>
+						<td>{{table.data[5]}}</td>
+						<td>{{table.data[6]}}</td>
+					</tr>
+					<tr>
+						<td>{{table.data[7]}}</td>
+						<td>{{table.data[8]}}</td>
+						<td>{{table.data[9]}}</td>
+						<td>{{table.data[10]}}</td>
+					</tr>
+					<tr>
+						<td>{{table.data[11]}}</td>
+						<td>{{table.data[12]}}</td>
+						<td>{{table.data[13]}}</td>
+						<td>{{table.data[14]}}</td>
+					</tr>
+				</table>
+			</li>
+		</ul>
+	</div>
+
+	<a href="javascript:; " class="close-modal-btn" (click)="close()"></a>	
+</div>
+<credit-standard *ngIf="showCreditStandard" (closePop)="closePop()"></credit-standard>

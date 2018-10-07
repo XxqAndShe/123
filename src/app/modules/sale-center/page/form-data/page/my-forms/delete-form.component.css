@@ -1,0 +1,3 @@
+.dialog-box{width:300px; top: 0; left: 0; position: absolute; margin-top: -100px; margin-left: -230px;}
+.dialog-box>.dialog-box-footer{padding:10px; text-align: center;height:auto;}
+.dialog-box>.dialog-box-content{padding:15px;text-align: center;height:auto;}

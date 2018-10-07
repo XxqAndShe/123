@@ -1,0 +1,286 @@
+.gray-text{
+    color: #666;
+    margin-right: 5px;
+}
+.red-text{
+    color: red;
+}
+.left-border{
+    margin-bottom: 15px;
+    border-left: 2px solid #0D85E4;
+    padding-left: 5px;
+    line-height: 14px;
+}
+.img-wrap{
+    display: inline-block;
+    margin-top: 15px;
+}
+.img-wrap>.img-item{
+    float: left;
+}
+.img-wrap>.img-item>a>img{
+    width: 90px;
+    height: 65px;
+    margin-right: 5px;
+}
+
+.details-basicinfo-people{
+    width: 100%;
+    height: 160px;
+    box-sizing: border-box;
+    border-top: 1px solid #E7EAEF;
+    box-shadow: 0px 3px 8px #E7EAEF;
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+.details-basicinfo-people1,.details-basicinfo-people2{
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    float: left;
+    padding: 0 16px;
+    position: relative;
+}
+.details-basicinfo-people1:after{
+    content: "";
+    display: inline-block;
+    height: 125px;
+    border-left: 1px solid #F0F0F0;
+    margin-top: 19px;
+    position: absolute;
+    right: 0px;
+}
+.details-basicinfo-people1-send,.details-basicinfo-people1-get{
+    overflow: hidden;
+    width: 190px;
+    height:70%;
+    float: left;
+}
+.details-basicinfo-people1-get{
+    float: right;
+}
+.details-basicinfo-people1-send span,.details-basicinfo-people1-get span{
+    display: block;
+    width: 100%;
+    height: 36px;
+    margin-top: 16px;
+    position: relative;
+}
+.details-basicinfo-people1-send span b,.details-basicinfo-people1-get span b{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #0DA0FD;
+    color: #fff;
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    text-align: center;
+    line-height: 36px;
+}
+.details-basicinfo-people1-get span b{
+    background-color: #1FC695;
+}
+.details-basicinfo-people1-send span p,.details-basicinfo-people1-get span p{
+    display: inline-block;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+
+}
+.details-basicinfo-people1-send span p:nth-of-type(1),
+.details-basicinfo-people1-get span p:nth-of-type(1){
+    font-weight: bold;
+    top: 2px;
+    left: 45px;
+    width: 136px;
+    height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.details-basicinfo-people1-send span p:nth-of-type(2),
+.details-basicinfo-people1-get span p:nth-of-type(2){
+    top: 18px;
+    left: 45px;
+}
+.details-basicinfo-people1-send span:after{
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url("/assets/adjustable-manager-img/arrow.png");
+    position: absolute;
+    top: 10px;
+    right: 0px;
+}
+.details-basicinfo-people1-send>p , .details-basicinfo-people1-get>p{
+    margin-top: 5px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.details-basicinfo-people1-money{
+    float: left;
+}
+.details-basicinfo-people1-upstair{
+    margin-left: 65px;
+}
+.details-basicinfo-people1-upstair label:nth-child(2){
+    margin-left: 15px;
+}
+.details-basicinfo-people1-money p{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+}
+.details-basicinfo-people1-money p b{
+    color: #7A8A99;
+    font-weight: 400;
+}
+.details-basicinfo-people2-shifu{
+    width: 100%;
+    height: 28%;
+    box-sizing: border-box;
+    margin-top: 16px;
+    padding: 0 40px;
+    position: relative;
+}
+.details-basicinfo-people2-shifu span{
+    display: inline-block;
+    width: 160px;
+    height: 36px;
+    float: left;
+    position: relative;
+}
+.details-basicinfo-people2-shifu span:nth-of-type(2){
+    float: right;
+}
+.details-basicinfo-people2-shifu span b{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #0DA0FD;
+    color: #fff;
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    text-align: center;
+    line-height: 36px;
+}
+.details-basicinfo-people2-shifu span p{
+    display: inline-block;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+}
+.details-basicinfo-people2-shifu span p:nth-of-type(1){
+    font-weight: bold;
+    top: 2px;
+    left: 45px;
+}
+.details-basicinfo-people2-shifu span p:nth-of-type(2){
+    top: 18px;
+    left: 45px;
+}
+.details-basicinfo-people2-shifu:after{
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url("/assets/adjustable-manager-img/arrow.png");
+    position: absolute;
+    top: 10px;
+    right: 245px;
+}
+.details-basicinfo-people2-money{
+    width: 100%;
+    height: 22%;
+    margin-top: 15px;
+    box-sizing: border-box;
+    padding: 0 40px;
+}
+.details-basicinfo-people2-money p{
+    display: inline-block;
+    width: 100px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: red;
+}
+.details-basicinfo-people2-money p b{
+    color: #8F9BA8;
+    font-weight: 400;
+}
+.details-basicinfo-people2-time{
+    padding: 0 40px;
+}
+.details-basicinfo-people2-time p{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+}
+.details-basicinfo-people2-time p b{
+    color: #7A8A99;
+    font-weight: 400;
+}
+.details-basicinfo-pickup{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 15px 0;
+    padding: 0 8px;
+}
+.details-basicinfo-pickup .sign-pic{
+    display: inline-block;
+    float: left;
+}
+.details-basicinfo-pickup h3{
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: relative;
+    margin-bottom: 5px;
+}
+.details-basicinfo-pickup h3:before{
+    content: "";
+    display: inline-block;
+    height: 14px;
+    border-left: 2px solid #0D85E4;
+    position: absolute;
+    top: 3px;
+    left: -8px;
+}
+.details-basicinfo-pickup p{
+    display: inline-block;
+    width: 100%;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    line-height: 28px;
+}
+.details-basicinfo-pickup span{
+    display: block;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    line-height: 28px;
+}
+.overflow-box{
+    display: inline-block!important;
+    width: 100px;
+    height: 28px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+.overflow-box1{
+    display: inline-block!important;
+    width: 750px;
+    height: 28px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: bottom;
+}
+.limit-length{
+    display: inline-block;
+    width: 135px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}

@@ -1,0 +1,9 @@
+<div class="content">
+    <div class="table-title">
+        <a href="javacript:;" class="import-div">导入</a>
+        <a href="javacript:;" class="export-div">导出</a>
+    </div>
+    <div class="table-container">
+        <ui-grid (rowSelect)="rowSelect($event)" [columns]="columns" [data]="data" (load)="load($event)" (exportCSV)="exportCSV($event)" ></ui-grid>
+    </div>
+</div>

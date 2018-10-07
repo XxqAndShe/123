@@ -1,0 +1,302 @@
+.outer-modal-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fbfafa;
+    overflow: hidden;
+    box-shadow: -3px 0px 10px #e4e4e4;
+}
+.modal-header {
+    padding: 15px 22px;
+    box-shadow: -3px 0px 10px #e4e4e4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.modal-header .first-line{
+    margin-bottom: 10px;
+}
+.modal-header>.second-line>span{
+    float: left;
+    margin-top: 10px;
+}
+.modal-content {
+    padding: 22px;
+    height: 67%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.nav-bar{
+    margin: 15px 0 0 22px;
+}
+div>button{
+    color: #82888e;
+    background-color: #eee;
+    width: 71px;
+    height: 26px;
+    border: none;
+    outline: none;
+}
+div>button:hover, div>button.active{
+    color: #fff;
+    background-color: #0D85E4;
+}
+
+a.close-modal-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: 78px;
+    background: url(/assets/close-modal.png);
+    margin-top: -39px;
+}
+.modal-header .first-line .new-tap{
+    border-radius: 3px;
+    background-color: #0DA0FD;
+    color: #fff;
+    font-size: 15px;
+    padding: 3px 5px;
+    margin-right: 8px;
+}
+.modal-header .first-line .service-type{
+    background-color: #1FC695;
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-size: 15px;
+    color: #fff;
+    margin-left: 20px;
+    margin-right: 35px;
+}
+.gray-text{
+    color: #666;
+    margin-right: 5px;
+}
+.blue-text{
+    color: #0b7dd8;
+    margin-right: 40px;
+}
+.modal-header p-steps{
+    margin-left: 20px;
+}
+.modal-content p-steps{
+    margin-left: 10px;
+}
+.modal-content span.steps-tap{
+    margin-top: 6px;
+    margin-left: 24px;
+}
+.handle-time{
+    margin-left: 73px;
+}
+.handle-time>span{
+    display: inline-block;
+    width: 93px;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.gray-text{
+    color: #666;
+    margin-right: 5px;
+}
+.red-text{
+    color: red;
+}
+.left-border{
+    margin: 25px 0 15px 0;
+    border-left: 2px solid #0D85E4;
+    padding-left: 5px;
+    line-height: 14px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.img-wrap{
+    display: inline-block;
+    margin-top: 15px;
+}
+.img-wrap>.img-item{
+    float: left;
+}
+.img-wrap>.img-item>a>img{
+    width: 90px;
+    height: 65px;
+    margin-right: 5px;
+}
+
+.details-basicinfo-people{
+    width: 100%;
+    height: 160px;
+    box-sizing: border-box;
+    border-top: 1px solid #E7EAEF;
+    box-shadow: 0px 3px 8px #E7EAEF;
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+.details-basicinfo-people1,.details-basicinfo-people2{
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    float: left;
+    padding: 0 0 0 60px;
+    position: relative;
+}
+.details-basicinfo-people1{
+    border-right: 1px solid #f0f0f0;
+}
+.details-basicinfo-people1-send,.details-basicinfo-people1-get{
+    height:40%;
+    float: left;
+}
+.details-basicinfo-people1-get{
+    float: right;
+}
+.details-basicinfo-people1-send span,.details-basicinfo-people1-get span{
+    display: block;
+    width: 100%;
+    height: 36px;
+    margin-top: 16px;
+    position: relative;
+}
+.details-basicinfo-people1-send span b,.details-basicinfo-people1-get span b{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #0DA0FD;
+    color: #fff;
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    text-align: center;
+    line-height: 36px;
+}
+.details-basicinfo-people1-get span b{
+    background-color: #1FC695;
+}
+.details-basicinfo-people1-send span p,.details-basicinfo-people1-get span p{
+    display: inline-block;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+}
+.details-basicinfo-people1-send span p:nth-of-type(1),
+.details-basicinfo-people1-get span p:nth-of-type(1){
+    font-weight: bold;
+    top: 2px;
+    left: 45px;
+}
+.details-basicinfo-people1-send span p:nth-of-type(2),
+.details-basicinfo-people1-get span p:nth-of-type(2){
+    top: 18px;
+    left: 45px;
+}
+.details-basicinfo-people1-send>p , .details-basicinfo-people1-get>p{
+    margin-top: 15px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+}
+.details-basicinfo-people1-money{
+    float: left;
+    width: 400px;
+}
+.details-basicinfo-people1-upstair{
+    margin-left: 65px;
+}
+.details-basicinfo-people1-upstair label:nth-child(2){
+    margin-left: 15px;
+}
+.details-basicinfo-people1-money p{
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+}
+.details-basicinfo-people1-money p b{
+    color: #7A8A99;
+    font-weight: 400;
+}
+.details-basicinfo-people2-shifu{
+    width: 100%;
+    height: 28%;
+    box-sizing: border-box;
+    margin-top: 16px;
+    position: relative;
+}
+.details-basicinfo-people2-shifu span{
+    display: inline-block;
+    width: 160px;
+    height: 36px;
+    float: left;
+    position: relative;
+}
+.details-basicinfo-people2-shifu span:nth-of-type(2){
+    float: right;
+}
+.details-basicinfo-people2-shifu span b{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #0DA0FD;
+    color: #fff;
+    font:normal 400 14px "microsoft yahei", "sans-serif";
+    text-align: center;
+    line-height: 36px;
+}
+.details-basicinfo-people2-shifu span p{
+    display: inline-block;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: #333;
+    position: absolute;
+}
+.details-basicinfo-people2-shifu span p:nth-of-type(1){
+    font-weight: bold;
+    top: 2px;
+    left: 45px;
+}
+.details-basicinfo-people2-shifu span p:nth-of-type(2){
+    top: 18px;
+    left: 45px;
+}
+.details-basicinfo-people2-money{
+    width: 100%;
+    height: 22%;
+    box-sizing: border-box;
+}
+.details-basicinfo-people2-money p{
+    display: inline-block;
+    width: 100px;
+    font:normal 400 12px "microsoft yahei", "sans-serif";
+    color: red;
+}
+.details-basicinfo-people2-money p b{
+    color: #8F9BA8;
+    font-weight: 400;
+}
+.logistics-msg>div{
+    margin-top: 12px;
+}
+.logistics-msg>div>span{
+    margin-right: 30px;
+}
+.person-name{
+    width: 400px;
+}
+.mask{
+    height: 100%;
+    width: 700px;
+    background-color: rgba(0,0,0,0);
+    position: absolute;
+    left: -700px;
+}
+.shadow-div1 {
+    width: 97px;
+    height: 36px;
+    position: absolute;
+    top: 44px;
+    left: 613px;
+    cursor: pointer;
+}
+.shadow-div2 {
+    width: 100px;
+    height: 36px;
+    position: absolute;
+    top: 44px;
+    left: 713px;
+    cursor: pointer;
+}

@@ -1,0 +1,60 @@
+<form>
+    <ul class="account-search">
+        <li *ngIf="saleRunning">
+            <span>签收时间</span>
+            <span class="time">
+      <p-calendar name="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [(ngModel)]="flowRequestVo.signTime"  [readonlyInput]="true"></p-calendar>
+    </span>
+        </li>
+        <li *ngIf="saleRunning">
+            <span>截止时间</span>
+            <span class="time">
+      <p-calendar name="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [(ngModel)]="flowRequestVo.endTime" [readonlyInput]="true"></p-calendar>
+    </span>
+        </li>
+        <li>
+            <span>网点</span>
+            <div style="width:125px;display: inline-block;margin-right:30px;">
+                <span>
+                    <department-select name="netDotSearch" width="150px" defaultLabel="请选择…" [(ngModel)]="flowRequestVo.companyDepartmentOrPhone" valueField="mobile"></department-select>
+                </span>
+            </div>
+        </li>
+
+        <li>
+            <span>师傅</span>
+            <span>
+              <master-select name="masterSearch" width="150px" defaultLabel="请选择…" [(ngModel)]="flowRequestVo.workNameOrMobile" valueField="mobile"></master-select>
+            </span>
+        </li>
+        <!--<li>-->
+        <!--<span>师傅姓名</span>-->
+        <!--<span>-->
+        <!--<master-select name="masterName" width="150px" defaultLabel="请选择…" [(ngModel)]="flowRequestVo.masterName" type="name"></master-select>-->
+        <!--</span>-->
+        <!--</li>-->
+        <li *ngIf="saleRunning">
+            <span>任务号</span>
+            <span><input #count type="text" name="waybillId" [(ngModel)]="flowRequestVo.waybillId"></span>
+        </li>
+        <li class="with-draw-status" *ngIf="saleRunning">
+            <span>提现状态</span>
+            <span>
+                <select name="withdrawStatus" [(ngModel)]="flowRequestVo.status">
+                    <option value="All">全部</option>
+                    <option value="cannotWithdraw">未出账单</option>
+                    <option value="canWithdraw">可提现</option>
+                    <option value="inWithdraw">提现中</option>
+                    <option value="alreadyWithdrawed">已提现</option>
+                </select>
+            </span>
+        </li>
+        <li>
+            <button class="primary-btn btn" (click)="doQuery()" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <button class="default-btn btn" type="reset">清空</button>
+        </li>
+    </ul>
+</form>

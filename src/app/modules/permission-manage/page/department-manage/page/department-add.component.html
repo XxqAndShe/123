@@ -1,0 +1,40 @@
+<div id="dialog_box" #win class="dialog-box" [ngStyle]="drag.setPosition(650,368)">
+    <div id="dialog_title" class="dialog-box-title title-blue">
+        <span class="dialog-left">新增部门</span>
+        <span class="dialog-right" (click)="hideWin(win)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="content-line">
+            <label><span>* </span>部门名称</label>
+            <input type="text" placeholder="请输入" class="box-special1">
+            <label><span>* </span>部门负责人</label>
+            <input type="text" placeholder="请输入">
+        </div>
+        <div class="content-line">
+            <label><span>* </span>隶属部门</label>
+            <select class="box-special1">
+                <option>请选择</option>
+                <option>一智通总部</option>
+                <option>枢纽营业部</option>
+            </select>
+            <label><span>* </span>手机号</label>
+            <input type="text" placeholder="请输入">
+        </div>
+        <div class="content-line">
+            <label><span>* </span>地址</label>
+            <select class="box-special2">
+                <option>请选择省市区</option>
+            </select>
+            <input type="text" placeholder="请输入详细地址" class="longBox">
+        </div>
+        <div class="content-line">
+            <label>备注</label>
+            <textarea placeholder="请输入"></textarea>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn">保存</span>
+        <span class="default-btn btn"  (click)="hideWin(win)">取消</span>
+    </div>
+</div>
+<power-setting *ngIf="isPowWin" (isshow)="isshowWin($event)"></power-setting>

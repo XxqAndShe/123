@@ -1,0 +1,154 @@
+<div class="content">
+    <div class="content-left" (click)="btnClick('')">
+        <ul class="navigation">
+            <li *ngFor="let data of menuData;let j = index" [ngClass]='{current: curArr[j],currentClick:curClick[j]}'
+                (click)="changeNav(j)">
+                <span id="span{{j}}">
+                    {{data.name}}
+                    <i class="btnClick btnClick-reduce" (click)="showWin('addFolder',$event)">+</i>
+                </span>
+            </li>
+        </ul>
+        <ul class="navigation" id="navigation">
+            <li *ngFor="let item of categories;let i = index">
+                <span #one id="span{{i}}" class="one-file" [ngClass]="{'current':item.id===selectedCateId}"
+                      (click)="cateClick($event,item,one)">
+                    <img style="margin-right: 10px" src="/assets/arrow-b.png"
+                         *ngIf="item?.expanded && item.children.length">
+                    <img style="margin-right: 10px" src="/assets/arrow-r.png"
+                         *ngIf="!item?.expanded && item.children.length">
+                    {{item.label}}
+                    <i class="btnClick btnClick-reduce" (click)="showWin('addFolder',$event,item)">+</i>
+                    <i class="btnClick btnClick-add" (click)="showWin('service-del',$event)"
+                           *ngIf="!item.children.length">×</i>
+
+                </span>
+                <!--二级-->
+                <ul class="children-nav" [ngClass]="{'no':!item.expanded}">
+                    <li *ngFor="let item1 of item.children;let i1 = index">
+                        <span #two id="span{{i1}}" class="two-file" [ngClass]="{'current':item1.id===selectedCateId}"
+                              (click)="cateClick($event,item1,two)">
+                                <img style="margin-right: 10px" src="/assets/arrow-b.png"
+                                     *ngIf="item1?.expanded && item1.children.length">
+                                <img style="margin-right: 10px" src="/assets/arrow-r.png"
+                                     *ngIf="!item1?.expanded && item1.children.length">
+                                {{item1.label}}
+                                <i class="btnClick btnClick-reduce" (click)="showWin('addFolder',$event,item1)">+</i>
+                                <i class="btnClick btnClick-add" (click)="showWin('service-del',$event)"
+                                   *ngIf="!item1.children.length">×</i>
+                        </span>
+                        <!--三级-->
+                        <ul class="children-nav" [ngClass]="{'no':!item1.expanded}">
+                            <li *ngFor="let item2 of item1.children;let i2 = index">
+                                <span #three id="span{{i2}}" [ngClass]="{'current':item2.id===selectedCateId}"
+                                      (click)="cateClick($event,item2,three)">
+                                        <img style="margin-right: 10px" src="/assets/arrow-b.png"
+                                             *ngIf="item2?.expanded && item2.children.length">
+                                        <img style="margin-right: 10px" src="/assets/arrow-r.png"
+                                             *ngIf="!item2?.expanded && item2.children.length">
+                                        {{item2.label}}
+                                        <i class="btnClick btnClick-reduce" (click)="showWin('addFolder',$event,item2)">+</i>
+                                        <i class="btnClick btnClick-add" (click)="showWin('service-del',$event)"
+                                           *ngIf="!item2.children.length">×</i>
+                                </span>
+                                <!--四级-->
+                                <ul class="children-nav four-nav" [ngClass]="{'no':!item2.expanded}">
+                                    <li *ngFor="let item3 of item2.children;let i3 = index">
+                                        <span #four id="span{{i3}}" [ngClass]="{'current':item3.id===selectedCateId}"
+                                              (click)="cateClick($event,item3,four)">
+                                                {{item3.label}}
+                                            <i class="btnClick btnClick-add"
+                                               (click)="showWin('service-del',$event)">×</i>
+                                        </span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content-right">
+        <div class="right-top">
+            <div class="btn-left">
+                <!--<ul class="btn-add" *ngIf="all">-->
+                <!--<li>-->
+                <!--<button class="btn primary-btn btn-click" (click)="btnClick('add')">新增</button>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<ul class="menu" *ngIf="btnTypeName==='add'">-->
+                <!--<li (click)="showWin('addHTML5')">添加html5文件</li>-->
+                <!--<li (click)="showWin('addPDF')">添加pdf文件</li>-->
+                <!--</ul>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <!--<ul class="btn-add">-->
+                <!--<li>-->
+                <!--<button class="btn default-btn" (click)="btnClick('edit')">编辑</button>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<ul class="menu" *ngIf="btnTypeName==='edit'">-->
+                <!--<li (click)="showWin('editHTML5')">编辑html5文件</li>-->
+                <!--<li (click)="showWin('editPDF')">编辑pdf文件</li>-->
+                <!--</ul>-->
+                <!--</li>-->
+                <!--</ul>-->
+                <button class="btn primary-btn btn-click" (click)="showWin('service-add')" *ngIf="all"><i class="btn-icon add"></i>新增</button>
+                <button class="btn default-btn" (click)="showWin('edit')"><i class="btn-icon edit"></i>编辑</button>
+                <button class="btn default-btn" (click)="addStar()" *ngIf="star"><i class="btn-icon add-star"></i>加星</button>
+                <button class="btn default-btn" (click)="moveStar()" *ngIf="!star"> <i class="btn-icon add-star"></i>移除加星</button>
+                <button class="btn default-btn" (click)="showWin('shareService')"> <i class="btn-icon add-share"></i>分享</button>
+                <button class="btn default-btn" (click)="copy()"><i class="btn-icon add-copy"></i>复制</button>
+                <button class="btn default-btn" (click)="showWin('move-file')"><i class="btn-icon add-move"></i>移动</button>
+                <button class="btn default-btn" (click)="showWin('service-rename')"><i class="btn-icon add-remove"></i>重命名</button>
+                <button class="btn default-btn" (click)="showWin('document-del')"><i class="btn-icon add-del"></i>删除</button>
+                <button class="btn default-btn" (click)="showWin('service-import')">导入</button>
+            </div>
+            <div class="btn-right">
+                <select name="file" [(ngModel)]="serviceInformationVo.pdf">
+                    <!--<option value="all">不限</option>-->
+                    <option value="name">文件标题</option>
+                    <!--<option value="text">文件内容</option>-->
+                </select>
+                <input placeholder="请输入关键字搜索" name="search" [(ngModel)]="serviceInformationVo.name"/>
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i *ngIf="loading" class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+                    搜索
+                </button>
+            </div>
+
+        </div>
+        <div class="table-container" (click)="btnClick('')">
+            <ui-grid [columns]="columns" (load)="load($event)" [data]="data" [(selections)]="selectionRow"
+                     (rowSelect)="rowSelect($event)" (cellClick)="cellClick($event)"
+                     [showEditColumn]="false" [enableExport]="false"></ui-grid>
+        </div>
+    </div>
+    <!--提示弹窗-->
+    <p-growl [value]="msgs"></p-growl>
+    <!--新增-->
+    <service-add *ngIf="winName==='service-add'" (success)="success()" (closeWin)="closeWin()" [fileType]="fileType"
+                 [addOrChange]="addOrChange" [categories]="selectedCateId" [selectionRow]="selectionRow"></service-add>
+    <!--添加文件夹-->
+    <add-folder *ngIf="winName==='addFolder'" (success)="success()" (closeWin)="closeWin()"
+                [selectedData]="selectedData" [selectedCategory]="selectedCategory"></add-folder>
+    <!--分享-->
+    <share-service *ngIf="winName==='shareService'" (success)="success()" (closeWin)="closeWin()"
+                   [selectionRow]="selectionRow"></share-service>
+
+    <!--删除文件夹-->
+    <service-del *ngIf="winName==='service-del'" (success)="removeFile()" (closeWin)="closeWin()"></service-del>
+
+    <!--删除文档-->
+    <service-del *ngIf="winName==='document-del'" (success)="removeDocument()" (closeWin)="closeWin()"></service-del>
+    <!--重名名-->
+    <service-rename *ngIf="winName==='service-rename'" (success)="success()" (closeWin)="closeWin()"
+                    [selectionRow]="selectionRow"></service-rename>
+    <!--移动-->
+    <move-file *ngIf="winName==='move-file'" (success)="success()" (closeWin)="closeWin()"
+               [selectionRow]="selectionRow"></move-file>
+    <!--导入-->
+    <service-import *ngIf="winName==='service-import'" (success)="successImport()" (closeWin)="closeWin()"></service-import>
+</div>

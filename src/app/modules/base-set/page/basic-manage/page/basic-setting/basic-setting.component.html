@@ -1,0 +1,255 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+
+        <ul class="nav-list">
+            <li *ngFor="let navItem of navList; let i=index" [ngClass]="{active: navListArr[i]}">
+                <a href="javascript:;" (click)="changeBlock(i)">{{navItem}}</a>
+            </li>
+        </ul>
+
+        <div class="content content1" [ngClass]="{show: navListArr[0]}">
+            <h6>制定出险原因</h6>
+            <div class="list-container">
+                <div class="list-content">
+                    <header>
+                        <span>出险原因</span>
+                        <div class="input-header">
+                            <input type="text" [(ngModel)]="vRiskReasonFindRequest.label" (keyup)="riskReasonFind()"
+                                   (change)="riskReasonFind()">
+                            <a href="javascript:;" class="search-btn" (click)="riskReasonFind()"></a>
+                        </div>
+                    </header>
+                    <ul class="content-list">
+                        <li *ngFor="let item of riskReason; let i=index" [ngClass]="setLiClass(i)"
+                            (click)="selectLi(i)">
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;" class="delete-btn" *ngIf="item.hasDel"
+                               (click)="delLi(0, i, item.id)"></a>
+                        </li>
+                    </ul>
+                    <footer>
+                        <a href="javascript:;" class="add-btn" (click)="changeFooterStatus1()"></a>
+                        <div class="input-footer" [ngClass]="{show: isFooterInputShow1}">
+                            <input type="text" [(ngModel)]="footerInputArr[0]">
+                            <a href="javascript:;" class="tick-btn" (click)="addItem(0)"></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <div class="content content1" [ngClass]="{show: navListArr[1]}">
+            <h6>制定责任方</h6>
+            <div class="list-container">
+                <div class="list-content">
+                    <header>
+                        <span>责任方</span>
+                        <div class="input-header">
+                            <input type="text" [(ngModel)]="abnormalDutyFindVo.label" (change)="getAbnormalDuty()">
+                            <a href="javascript:;" class="search-btn" (click)="getAbnormalDuty()"></a>
+                        </div>
+                    </header>
+                    <ul class="content-list">
+                        <li *ngFor="let item of abnormalDuty; let i=index" [ngClass]="setLiClass(i)"
+                            (click)="selectLi(i)">
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;" class="delete-btn" *ngIf="item.hasDel"
+                               (click)="delLi(1, i, item.id)"></a>
+                        </li>
+                    </ul>
+                    <footer>
+                        <a href="javascript:;" class="add-btn" (click)="changeFooterStatus1()"></a>
+                        <div class="input-footer" [ngClass]="{show: isFooterInputShow1}">
+                            <input type="text" [(ngModel)]="footerInputArr[1]">
+                            <a href="javascript:;" class="tick-btn" (click)="addItem(1)"></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <div class="content content1" [ngClass]="{show: navListArr[2]}">
+            <h6>制定维修任务</h6>
+            <div class="list-container">
+                <div class="list-content">
+                    <header>
+                        <span>维修类型</span>
+                        <div class="input-header">
+                            <input type="text" [(ngModel)]="repairTypeFindRequestVo.label"
+                                   (change)="getRepairType()">
+                            <a href="javascript:;" class="search-btn" (click)="getRepairType()"></a>
+                        </div>
+                    </header>
+                    <ul class="content-list">
+                        <li *ngFor="let item of repairType; let i=index" [ngClass]="setLiClass(i)"
+                            (click)="selectLi(i)">
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;" class="delete-btn" *ngIf="item.hasDel"
+                               (click)="delLi(2, i, item.id)"></a>
+                        </li>
+                    </ul>
+                    <footer>
+                        <a href="javascript:;" class="add-btn" (click)="changeFooterStatus1()"></a>
+                        <div class="input-footer" [ngClass]="{show: isFooterInputShow1}">
+                            <input type="text" #footerInput3 [(ngModel)]="footerInputArr[2]">
+                            <!--<input type="text" #footerInput3 [(ngModel)]="repairTypeAddVo.name">-->
+                            <a href="javascript:;" class="tick-btn" (click)="addItem(2)"></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <div class="content content1" [ngClass]="{show: navListArr[3]}">
+            <h6>制定补件任务</h6>
+            <div class="list-container">
+                <div class="list-content">
+                    <header>
+                        <span>补件任务</span>
+                        <div class="input-header">
+                            <input type="text" [(ngModel)]="vMetaComplementFind.label" (keyup)="getPartType()"
+                                   (change)="getPartType()">
+                            <a href="javascript:;" class="search-btn" (click)="getPartType()"></a>
+                        </div>
+                    </header>
+                    <ul class="content-list">
+                        <li *ngFor="let item of partType; let i=index" [ngClass]="setLiClass(i)"
+                            (click)="selectLi(i)">
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;" class="delete-btn" *ngIf="item.hasDel"
+                               (click)="delLi(3, i, item.id)"></a>
+                        </li>
+                    </ul>
+                    <footer>
+                        <a href="javascript:;" class="add-btn" (click)="changeFooterStatus1()"></a>
+                        <div class="input-footer" [ngClass]="{show: isFooterInputShow1}">
+                            <input type="text" #footerInput4 [(ngModel)]="footerInputArr[3]">
+                            <a href="javascript:;" class="tick-btn" (click)="addItem(3)"></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <div class="content content1" [ngClass]="{show: navListArr[4]}">
+            <h6>指定物流</h6>
+            <div class="list-container">
+                <div class="list-content">
+                    <header>
+                        <span>指定物流</span>
+                        <div class="input-header">
+                            <input type="text" [(ngModel)]="vSpecifyLogisticsRequest.label"
+                                   (keyup)="getSpecifyLogistics()"
+                                   (change)="getSpecifyLogistics()">
+                            <a href="javascript:;" class="search-btn" (click)="getSpecifyLogistics()"></a>
+                        </div>
+                    </header>
+                    <ul class="content-list">
+                        <li *ngFor="let item of specifyLogistics; let i=index" [ngClass]="setLiClass(i)"
+                            (click)="selectLi(i)">
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;" class="delete-btn" *ngIf="item.hasDel"
+                               (click)="delLi(4, i, item.id)"></a>
+                        </li>
+                    </ul>
+                    <footer>
+                        <a href="javascript:;" class="add-btn" (click)="changeFooterStatus1()"></a>
+                        <div class="input-footer" [ngClass]="{show: isFooterInputShow1}">
+                            <input type="text" #footerInput5 [(ngModel)]="footerInputArr[4]">
+                            <a href="javascript:;" class="tick-btn" (click)="addItem(4)"></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        <div class="content content2" [ngClass]="{show: navListArr[5]}">
+            <h6>制定异常类型</h6>
+            <div class="list-container">
+                <div class="list-content">
+                    <header>
+                        <span>异常大类</span>
+                        <div class="input-header">
+                            <input type="text" [(ngModel)]="vAbnormalTypeAddOrUpdate.name"
+                                   (keyup)="getAbnormalBigType()"
+                                   (change)="getAbnormalBigType()">
+                            <a href="javascript:;" class="search-btn" (click)="getAbnormalBigType()"></a>
+                        </div>
+                    </header>
+                    <ul class="content-list">
+                        <li *ngFor="let item of abnormalBigType; let i=index" [ngClass]="setLiClass(i)"
+                            (click)="selectLi1(i, item.id)">
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;" class="delete-btn" *ngIf="item.hasDel"
+                               (click)="delLi(5, i, item.id)"></a>
+                        </li>
+                    </ul>
+                    <footer>
+                        <!--<a href="javascript:;" class="add-btn" (click)="changeFooterStatus1()"></a>-->
+                        <div class="input-footer" [ngClass]="{show: isFooterInputShow1}">
+                            <input type="text" #footerInput6 [(ngModel)]="footerInputArr[5]">
+                            <a href="javascript:;" class="tick-btn" (click)="addItem(5)"></a>
+                        </div>
+                    </footer>
+                </div>
+                <div class="list-content">
+                    <header>
+                        <span>异常小类</span>
+                        <div class="input-header">
+                            <input type="text" [(ngModel)]="vAbnormalTypeFind.name"
+                                   (keyup)="getAbnormalSmallType(parentId)"
+                                   (change)="getAbnormalSmallType(parentId)">
+                            <a href="javascript:;" class="search-btn" (click)="getAbnormalSmallType(parentId)"></a>
+                        </div>
+                    </header>
+                    <ul class="content-list">
+                        <li *ngFor="let item of abnormalSmallType; let i=index" [ngClass]="setLiClass2(i)"
+                            (click)="selectLi2(i,item.id, item.oldId)">
+                            <span>{{item.name}}</span>
+                            <a href="javascript:;"  class="checkbox-a" [ngClass]="updateCheckbox(item.ifArbitrate)"
+                               (click)="updateArbitrate(i,item.id,item.oldId)"></a>
+                            <span class="checkbox-text checkbox-text-right">仲裁</span>
+                            <select name="{{item.grade}}{{i}}" id="" class="checkbox-select" [(ngModel)]="item.grade"
+                                    #box (ngModelChange)="send(item.grade,box.value,item.id)">
+                                <option value="">请选择</option>
+                                <option value="P1">P1</option>
+                                <option value="P2">P2</option>
+                                <option value="P3">P3</option>
+                                <option value="P4">P4</option>
+                                <option value="P5">P5</option>
+                            </select>
+                            <!--<input  type="text " [(ngModel)]="item.grade" class="checkbox-select"
+                                   (ngModelChange)="send(item.grade,box.value,item.id)">-->
+                            <a href="javascript:;" class="delete-btn" *ngIf="item.hasDel"
+                               (click)="delLi(6, i, item.id)"></a>
+
+                        </li>
+                    </ul>
+                    <footer class="footer-sp">
+                        <!--<a href="javascript:;" class="add-btn" (click)="changeFooterStatus2()"></a>-->
+                        <div class="input-footer" [ngClass]="{show: isFooterInputShow2}">
+                            <input type="text" #footerInput7 [(ngModel)]="footerInputArr[6]">
+                            <div class="select-div">
+                                <a href="javascript:;" class="checkbox-a" [ngClass]="updateCheckbox(ifArbitrate)"
+                                   (click)="setArbitrate()"></a>
+                                <span class="checkbox-text">仲裁</span>
+                            </div>
+                            <a href="javascript:;" class="tick-btn" (click)="addItem(6)"></a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<!--公用弹窗-->
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

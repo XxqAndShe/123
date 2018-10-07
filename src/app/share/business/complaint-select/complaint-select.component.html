@@ -1,0 +1,45 @@
+<div class="ui-select-div" (mouseleave)="onMouseout($event)">
+    <input class="select-input ui-inputtext" [ngStyle]="{'width': width,'height':height,'border':border,'placeholder':placeholder}"
+        type="text" (mouseover)="onMouseover($event)" pInputText [(ngModel)]="label" readonly (click)="inputClick($event)" (focus)="onInputFocus($event)"
+        (blur)="onInputBlur($event)">
+    <span *ngIf="label && overFlag" (click)="clear()" type="button" class="reset-btn"></span>
+    <div class="select-box" [ngClass]="{hide:showBox!=true}" (blur)="blur()" (click)="panelClick($event)">
+        <ul class="header">
+            <li *ngFor="let selectBox of selectBoxs;let i = index" [ngClass]="{active:i==activeIndex}" (click)="activeIndex=i">
+                {{selectBox.title}}
+            </li>
+        </ul>
+        <button class="close" (click)="showBox=false">&times;</button>
+        <ul class="body" *ngFor="let selectBox of selectBoxs;let i = index" [ngClass]="{hide:i!=activeIndex}" (mouseenter)="onMouseEnterHandler($event)">
+            <div *ngIf="!showTable || i == 0 || i == 1">
+                <li *ngFor="let select of selectBox.data">
+                    <a href="javascript:void(0)" (click)="choose(select,i)" [ngClass]="{'selected':select.checked}">{{select.label}}</a>
+                </li>
+            </div>
+            <div *ngIf="showTable && i!==0 && i!==1" class="scroll">
+                <table class="table">
+                    <thead>
+                        <tr class="header">
+                            <th class="width1">投诉小类</th>
+                            <th class="width2">符合投诉条件描述</th>
+                            <th class="width3">罚金</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        <tr *ngFor="let select of selectBox.data" class="body">
+                            <td class="width1">
+                                <a href="javascript:void(0)" (click)="choose(select,i)" [ngClass]="{'selected':select.checked}">{{select.label}}</a>
+                            </td>
+                            <td class="width2">
+                                <a href="javascript:void(0)" (click)="choose(select,i)" [ngClass]="{'selected':select.checked}">{{select.desc}}</a>
+                            </td>
+                            <td class="width3">
+                                <a href="javascript:void(0)" (click)="choose(select,i)" [ngClass]="{'selected':select.checked}">{{select.fee}}</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ul>
+    </div>
+</div>

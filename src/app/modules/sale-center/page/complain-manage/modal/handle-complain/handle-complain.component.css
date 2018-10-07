@@ -1,0 +1,90 @@
+.dialog-box {
+    width: 700px;
+}
+.dialog-box-content {
+    padding-top: 10px;
+    max-height: 500px;
+    overflow: auto;
+}
+.dialog-box-footer{
+    padding: 10px 0;
+}
+.input-form > input,select{
+    width: 200px!important;
+    box-sizing: border-box;
+}
+.up-block{
+    background-color: #FEF1E4;
+    padding: 15px 15px 12px;
+    margin-bottom: 15px;
+}
+.up-block > .row > div{
+    display: inline-block;
+    margin-right: 10px;
+    width: 200px;
+}
+.up-block > .row > div > span:nth-of-type(1) {
+    width: 62px;
+    text-align: right;
+    display: inline-block;
+}
+.up-block > .row > div.shipper {
+    width: 150px;
+}
+.up-block > .row > div.destination {
+    width: 230px;
+}
+.up-block > .last {
+    margin-bottom: 0!important;
+}
+.row-content {
+    position: relative;
+}
+.row-content .complain-content {
+    position: absolute;
+    top: 0;
+    left: 6px;
+}
+.row-content .info {
+    margin-left: 66px;
+    display: inline-block;
+}
+.dialog-box-content .input-form {
+    display: inline-block;
+    width: 49%;
+    margin-right: 0;
+}
+.dialog-box-content > .row {
+    margin-bottom: 0;
+}
+.dialog-box-content > .row > .input-form > span {
+    text-align: right;
+    margin-right: 5px;
+}
+.radio > span:nth-of-type(1) {
+    text-align: right;
+}
+.radio > span:nth-of-type(2) ,.radio > span:nth-of-type(3){
+    text-align: center;
+}
+.input-describe > span {
+    text-align: center;
+}
+/* 图片 */
+.row >span.img {
+    vertical-align: top;
+    width: 62px;
+    display: inline-block;
+    text-align: right;
+}
+.img-wrap{
+    display: inline-block;
+}
+.img-wrap>.img-item{
+    float: left;
+}
+.img-wrap>.img-item>a>img{
+    width: 90px;
+    height: 65px;
+    margin-right: 5px;
+}

@@ -1,0 +1,17 @@
+<div class="test-content">
+    <p><a href="/modules/demo/test" class="back" >返回demo首页</a>  </p>
+    <div>
+        <h3>发货人选择组件</h3>
+        <shipper-select width="150px" defaultLabel="请选择…" [(ngModel)]="shipperCode"></shipper-select>
+        <span>{{shipperCode}}</span>
+        <br>
+        <button (click)="doTest()">测试取Code</button>
+    </div>
+    <div class="component">
+        <h3>绑定值为对象通过valueField="object"控制</h3>
+        <shipper-select width="150px" defaultLabel="请选择…" [(ngModel)]="shipper" valueField="object"></shipper-select>
+        <span>{{shipper}}</span>
+        <br>
+        <button (click)="doTest2()">测试取Code</button>
+    </div>
+</div>

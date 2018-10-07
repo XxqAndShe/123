@@ -1,0 +1,120 @@
+
+#table-top .circle{
+    display: inline-block;
+    margin-right: 4px;
+    line-height: 10px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 16px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    color: white;
+    border: 2px solid white;
+}
+#table-top>.abnormal-feedback{
+    float: right;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: #0d85e4;
+}
+#table-top>.task-list{
+    line-height: 30px;
+    text-align: center;
+    padding-left: 4px;
+    border-left: 3px solid #0d85e4;
+}
+
+/*按扭*/
+
+a.operation-a.operation-add>i {
+    background: url(/assets/operation.png) no-repeat -103px -98px;
+    background-size: 122px;
+}
+a.operation-start>i {
+    background: url(/assets/operation.png) no-repeat -51px -98px;
+    background-size: 122px;
+}
+a.operation-stop>i {
+    background: url(/assets/operation.png) no-repeat -25px -73px;
+    background-size: 122px;
+}
+a.operation-modify>i {
+    background: url(/assets/operation.png) no-repeat 0 -74px;
+    background-size: 122px;
+}
+a.operation-delete>i {
+    background: url(/assets/operation.png) no-repeat 0 -74px;
+    background-size: 122px;
+}
+a.operation-a.operation-check>i {
+    background: url(/assets/operation.png) no-repeat -25px -51px;
+    background-size: 122px;
+}
+a.operation-a.operation-end>i {
+    background: url(/assets/operation.png) no-repeat -77px -51px;
+    background-size: 122px;
+}
+
+
+
+a.operation-cancel-dis>i {
+    background: url(/assets/operation.png) no-repeat -77px 0px;
+    background-size: 122px;
+}
+a.operation-a.operation-order>i {
+    background: url(/assets/operation.png) no-repeat -26px -120px;
+    background-size: 122px;
+}
+a.operation-pick-goods>i {
+    background: url(/assets/operation.png) no-repeat -50px -120px;
+    background-size: 122px;
+}
+a.operation-2-order>i {
+    background: url(/assets/operation.png) no-repeat -26px -120px;
+    background-size: 122px;
+}
+a.operation-assign>i {
+    background: url(/assets/icon/sign.png);
+    /*background-size: 122px;*/
+}
+a.operation-cancel-assign>i {
+    background: url(/assets/icon/cancelSign.png) no-repeat;
+}
+a.operation-stop-order>i {
+    background: url(/assets/icon/end.png) no-repeat;
+}
+
+/*未匹配*/
+a.operation-accept>i {
+    background: url(/assets/icon/accept.png) no-repeat;
+}
+ a.operation-acceptance>i {
+     background: url(/assets/operation.png) no-repeat -103px -74px;
+     background-size: 122px;
+ }
+ a.operation-begin-track>i {
+     background: url(/assets/operation.png) no-repeat -78px -98px;
+     background-size: 122px;
+ }
+
+a.operation-stop-track>i {
+    background: url(/assets/operation.png) no-repeat -25px -73px;
+    background-size: 122px;
+}
+
+a.operation-repair>i {
+    background: url(/assets/operation.png) no-repeat -50px -50px;
+    background-size: 122px;
+}
+a.operation-delivery-ok>i {
+    background: url(/assets/icon/pickFinish.png) no-repeat;
+}
+
+p-overlayPanel {
+    text-align: center;
+}

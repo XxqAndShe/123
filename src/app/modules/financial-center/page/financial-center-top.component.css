@@ -1,0 +1,43 @@
+/*账户详情*/
+.account-detail{
+  -webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;color:#333;padding:15px;background-color: #f2ffea;border:1px solid #c7ddb9;width:92.5%;display: inline-block;}
+.account-detail>li{display: inline-block;width:19%;float:left;position:relative;}
+.account-detail>li:last-child{margin-right:0;}
+.account-detail>li>i{font-style:normal;width:16px; height:16px; display: inline-block; background-color: #abce95;color:#fff; border-radius: 16px; text-align: center;cursor:pointer;}
+.account-detail>li>.detail-first-span{display: inline-block;width:48px; text-align: right;}
+.account-detail>li>.detail-second-span{font-size:16px; font-weight:bold;margin-left:5px;}
+.export-span{width:7%;display: inline-block;}
+a.export-div{
+
+  display: block;
+
+  width: 46px;
+  text-align: right;
+  height: 40px;
+  line-height: 40px;
+  background: url(/assets/export_csv.png) no-repeat left center;
+  background-size: 17px 20px;
+  color: #b6b6b6;
+}
+
+@media screen and (max-width:1066px) {
+  .financial-top{width:750px;}
+}
+@media screen and (min-width:1066px){
+  .financial-top{width:100%;}
+}
+/*鼠标移入问号提示
+*/
+.mouse-hover-info{display: inline-block;position:absolute;left:-12px; top:-31px;width:154px;}
+.triangle-down{
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #53606f;
+  margin-left:42%;
+
+}
+#add-width-momay{width: 19%;}
+#add-width-momay .detail-first-span{width: 72px;}
+.mouse-hover-tip{background-color: #53606f;padding:5px 28px;box-sizing:border-box;color:#fff;border-radius: 3px; display: inline-block;}

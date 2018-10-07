@@ -1,0 +1,18 @@
+<!--合作商-->
+<div class="module-content cooperative-trade" [@submenushow]="subMenuState">
+    <div class="module-content-title cooperative-trade-title"><span>{{selectMenuContent.title}}</span></div>
+    <ul id="sub-menu-bar" class="module-content-detail cooperative-trade-content">
+        <li class="chart-first" *ngFor="let menu of selectMenuContent.content;let i=index;"
+            [class.module-content-click]="isMenuClick[i]" (click)="menuclick(i);"><a>{{menu}}</a></li>
+    </ul>
+
+</div>
+<i class="indent-icon" [@showIndentIcon]="subMenuState" (click)="hideSubMenu(spreadIcon);"></i>
+<i id="show_sub"
+   [style.display]="(selectMenuContent.router==='/modules/home'||(selectMenuContent.router!=='/modules/home'&&subMenuState=='show') ||selectMenuContent.router==='/modules/service-information' || (selectMenuContent.router!=='/modules/service-information'&&subMenuState=='show'))?'none':'inline-block'"
+   #spreadIcon class="spread-icon" (click)="showSubMenu($event, null);"></i>
+
+<span style="font-size: 12px;position:absolute;left:75px;top:98px;z-index:10;"
+      *ngIf='selectMenuContent.content[1]=="待  跟  踪"'>
+      ({{overtimeTask || 0}})
+  </span>

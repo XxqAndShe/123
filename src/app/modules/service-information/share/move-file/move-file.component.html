@@ -1,0 +1,32 @@
+<div class="dialog-box" style="display:block;width: 400px;margin-left: -200px;margin-top: -300px">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">移动到</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="tree">
+            <p-tree [value]="categories" selectionMode="single" [(selection)]="selectedFile"
+                    (onNodeSelect)="nodeSelect($event)" [style]="{'width':'370px'}"
+                    (onNodeUnselect)="nodeUnselect($event)"></p-tree>
+        </div>
+        <ul class="import" *ngIf="addFile">
+            <li>
+                <input name="fileName" [(ngModel)]="fileName"/>
+                <i class="btnClick btnClick-add" (click)="saveFile()">√</i>
+                <i class="btnClick btnClick-reduce" (click)="closeFile()">×</i>
+            </li>
+        </ul>
+
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" style="padding: 0px 10px;width: 100px" (click)="addNewFile()">新建文件夹</button>
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+

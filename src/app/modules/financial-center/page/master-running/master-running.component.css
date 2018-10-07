@@ -1,0 +1,10 @@
+.master-content{padding:20px;    height: 100%;box-sizing: border-box;}
+.show-flow-list>li:nth-child(2)>i{background:url('/assets/financial-center/finan-icon.png') no-repeat -30px 0;  }
+.table-container {
+    width: 100%;
+    margin: 0;
+    border: 1px solid #d8e3ef;
+    border-top: none;
+    position: relative;
+    box-sizing:border-box;
+}

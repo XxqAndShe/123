@@ -1,0 +1,327 @@
+.color-panel.show {
+	display: block;
+}
+
+.outer-container {
+	width: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+	position: relative;
+}
+.inner-container {
+    width: 100%;
+}
+
+header {
+    margin-top: 25px;
+    margin-bottom: 18px;
+}
+header>h4 {
+    font-size: 14px;
+    font-weight: normal;
+    padding-left: 10px;
+    border-left: 2px solid #0d85e4;
+    height: 18px;
+    line-height: 18px;
+}
+
+
+.content {
+    padding-left: 12px;
+    padding-right: 16px;
+}
+.content-top>.line {
+    height: 30px;
+    line-height: 30px;
+    clear: both;
+    margin-bottom: 25px;
+}
+.line>span, .line>div {
+    float: left;
+}
+.line>span:first-child {
+    display: inline-block;
+    width: 135px;
+    text-align: left;
+}
+.time-input {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    box-sizing: border-box;
+}
+input.input {
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #dddddd;
+    box-sizing: border-box;
+    text-align: right;
+    padding-right: 9px;
+    outline: none;
+}
+.time-input>ul {
+	display: none;
+    position: absolute;
+    top: 33px;
+    left: 0;
+    width: 60px;
+    background-color: #ffffff;
+    border: 1px solid #0d85e4;
+    box-sizing: border-box;
+    height: 168px;
+    overflow: auto;
+    box-shadow: -1px 1px 6px #888888;
+    z-index: 1;
+}
+.time-input>ul.show {
+	display: block;
+}
+.time-input>ul li {
+    height: 20px;
+    line-height: 20px;
+    padding-right: 12px;
+    text-align: right;
+    cursor: pointer;
+}
+.time-input>ul li:hover {
+	background-color: #0d85e4;
+	color: #ffffff;
+}
+span.short-line {
+    padding: 0 2px;
+}
+
+
+div.color-input {
+    position: relative;
+}
+input.input.color-input {
+    width: 98px;
+    cursor: pointer;
+    outline: none;
+}
+.input.cur {
+	border: 1px solid #0d85e4 !important;
+}
+.triangle {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 96px;
+    background: url(/assets/basic-manage/triangle-grey.png) no-repeat 73px center;
+    background-size: 13px;
+    height: 28px;
+    background-color: #ffffff;
+    pointer-events: none;
+}
+.color-div {
+    width: 60px;
+    height: 24px;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    background-color: #d8d9db;
+    cursor: pointer;
+    pointer-events: none;
+}
+.color-panel {
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid #0d85e4;
+    width: 178px;
+    height: 136px;
+    box-sizing: border-box;
+    display: none;
+    z-index: 1;
+    box-shadow: -1px 1px 6px #888888;
+    padding: 10px;
+    top: 33px;
+    left: 0;
+}
+.color-panel>h6 {
+    font-size: 12px;
+    font-weight: normal;
+    height: 15px;
+    line-height: 15px;
+    margin-bottom: 1px;
+}
+ul.color-list>li {
+    width: 30px;
+    margin-right: 12px;
+    float: left;
+    margin-top: 8px;
+    text-align: center;
+    position: relative;
+    height: 42px;
+    cursor: pointer;
+}
+ul.color-list>li>div {
+    height: 22px;
+    pointer-events: none;
+}
+ul.color-list span {
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    text-align: center;
+    height: 15px;
+    line-height: 15px;
+}
+ul.color-list>li:nth-child(4), ul.color-list>li:nth-child(8) {
+	margin-right: 0px;
+}
+
+ul.color-list>li:nth-child(1)>div {
+	background-color: #0d85e4;
+}
+ul.color-list>li:nth-child(1)>span {
+	color: #0d85e4;
+}
+ul.color-list>li:nth-child(2)>div {
+	background-color: #32bb83;
+}
+ul.color-list>li:nth-child(2)>span {
+	color: #32bb83;
+}
+ul.color-list>li:nth-child(3)>div {
+	background-color: #3f61cf;
+}
+ul.color-list>li:nth-child(3)>span {
+	color: #3f61cf;
+}
+ul.color-list>li:nth-child(4)>div {
+	background-color: #7943bd;
+}
+ul.color-list>li:nth-child(4)>span {
+	color: #7943bd;
+}
+ul.color-list>li:nth-child(5)>div {
+	background-color: #f13b3b;
+}
+ul.color-list>li:nth-child(5)>span {
+	color: #f13b3b;
+}
+ul.color-list>li:nth-child(6)>div {
+	background-color: #f25e36;
+}
+ul.color-list>li:nth-child(6)>span {
+	color: #f25e36;
+}
+ul.color-list>li:nth-child(7)>div {
+	background-color: #e4a62e;
+}
+ul.color-list>li:nth-child(7)>span {
+	color: #e4a62e;
+}
+ul.color-list>li:nth-child(8)>div {
+	background-color: #91cd28;
+}
+ul.color-list>li:nth-child(8)>span {
+	color: #91cd28;
+}
+
+
+button.btn.primary-btn {
+    width: 120px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+}
+.content-top .line:nth-child(2) {
+	margin-bottom: 40px;
+}
+.content-top .line:nth-child(4) {
+	margin-bottom: 30px;
+}
+
+.content-top {
+    border-bottom: 1px solid #e3e3e3;
+    margin-bottom: 30px;
+}
+
+.content-bottom>h5 {
+    height: 13px;
+    line-height: 13px;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+table {
+    width: 786px;
+}
+tr {
+    background-color: #fafafa;
+    height: 30px;
+    line-height: 30px;
+}
+tr {
+    border-bottom: 1px solid #ffffff;
+}
+tr:first-child {
+    background-color: #eff0f2;
+    border-bottom: none;
+}
+th {
+    font-weight: normal;
+}
+th, td {
+    text-align: left;
+    padding-left: 20px;
+}
+tr>th:nth-child(1), tr>td:nth-child(1) {
+    width: 232px;
+}
+tr>th:nth-child(2), tr>td:nth-child(2) {
+    width: 236px;
+}
+tr>th:nth-child(3), tr>td:nth-child(1) {
+    width: 126px;
+}
+tr>th:nth-child(4), tr>td:nth-child(2) {
+    width: 192px;
+}
+
+span.color-text {
+    color: #f13b3b;
+}
+span.color-span {
+    display: inline-block;
+    margin-left: 5px;
+    width: 24px;
+    height: 13px;
+    line-height: 30px;
+    vertical-align: middle;
+    background-color: #f13b3b;
+}
+
+/*表格*/
+#remind-setting-table{
+    width: 1010px;
+}
+#remind-setting-table .remind-setting-header{
+    background: #0696f7;
+    color: #FFFFFF;
+
+}
+#remind-setting-table .remind-setting-header th{
+    width: 100px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+#remind-setting-table td{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+
+}
+#remind-setting-table input{
+    width: 80px;
+    height: 20px;
+}
+.remind-setting-btn{
+    margin-top: 60px;
+    margin-left: 60px;
+}

@@ -1,0 +1,29 @@
+.dialog-box{
+    width: 580px;
+    margin-top: -210px;
+    margin-left: -250px;
+}
+.dialog-box .dialog-box-content label{
+    margin-right: 10px;
+}
+
+#data-box{
+    height: 385px;
+    text-align: center;
+}
+#data-box>.data-box{
+    margin-top: 20px;
+}
+#btn-box{
+    height: 55px;
+    text-align: center;
+    line-height: 55px;
+}
+#tianmao{
+    display: none;
+}#showId{
+     display: inline-block;
+     height: 30px;
+     float: left;
+     margin-left: 20px;
+ }

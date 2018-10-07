@@ -1,0 +1,44 @@
+<div class="master-running-frame">
+    <div class="master-frame-title form-group">
+        <div class="form-control">
+            <label class="transport-num">师傅名称</label>
+            <master-select name="masterName" width="150px" defaultLabel="请选择…" [(ngModel)]="withdrawalAuditRequestVo.realName"  type="name" ></master-select>
+            <!--<p-autoComplete class="control-input" name="waybillId" [(ngModel)]="withdrawalAuditRequestVo.masterName"-->
+                            <!--[suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+        </div>
+        <div class="form-control">
+            <label class="transport-num">师傅账号</label>
+            <master-select name="masterMobile" width="150px" defaultLabel="请选择…" [(ngModel)]="withdrawalAuditRequestVo.mobile" type="mobile"></master-select>
+            <!--<p-autoComplete class="control-input" name="waybillId" [(ngModel)]="withdrawalAuditRequestVo.mobile"-->
+                            <!--[suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+        </div>
+        <div class="form-control margin-left-30">
+            <button class="primary-btn btn" (click)="doSearch()">查询</button>
+            <button class="default-btn btn" (click)="clear()">清空</button>
+        </div>
+    </div>
+    <!--<a href="javascript:;" class="getCash" (click)="depositConfirm($event)">提现</a>-->
+    <div class="master-frame-content">
+        <div *ngIf="!isshowTitle" class="show-flow-chart">
+            <ul class="show-flow-list">
+                <li><span>已选中<i>{{selectRows.length}}</i>项</span></li>
+                <li class="operate" (click)="depositHandler($event)"><i></i><span>提现</span></li>
+            </ul>
+            <span class="cancel-icon" (click)="cancelSelect($event)">×</span>
+        </div>
+        <div class="table-wrap">
+            <ui-grid [enableExport]="enable"  [data]="data" [columns]="columns" [(selections)]="selections" [selectionMode]="selectionMode" (rowSelect)="rowSelect($event)" (load)="load($event)" ></ui-grid>
+            <p style="padding: 5px 0 0 5px;"><i style="color: red;">注: </i>可提现金额为0不可被选中</p>
+        </div>
+    </div>
+    <a class="close-modal-btn" (click)="hideModal()"></a>
+</div>
+
+<p-confirmDialog  width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

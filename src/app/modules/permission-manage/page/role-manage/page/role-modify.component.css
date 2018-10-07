@@ -1,0 +1,40 @@
+.dialog-box>.fukuan-title{
+    background:#4C8DF7 ;
+}
+.dialog-box>.dialog-box-content{
+    height: 200px;
+    border:0px;
+}
+.dialog-box-content ul{
+    float: left;
+    margin: 6px;
+    margin-right: 20px;
+}
+.dialog-box-content li{
+    width: 90px;
+    height: 30px;
+    line-height: 19px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+.dialog-box-content dd input,.dialog-box-content dd select{
+    width: 200px;
+    height: 30px;
+    margin-bottom: 10px;
+    box-sizing:border-box;
+}
+.dialog-box-content li span{
+    color:red;
+}
+.dialog-box-content dd input,.dialog-box-content dt textarea{resize:none;}
+
+.power-setting{
+    width:25px;
+    height:25px;
+    display: inline-block;
+    background:url('../../../../../../assets/permission-sys/role/setting.png') no-repeat;
+    position: relative;
+    top: 10px;
+    right: 31px;
+}
+.dialog-box .dialog-box-footer{height:30px; text-align: center; padding: 20px;}

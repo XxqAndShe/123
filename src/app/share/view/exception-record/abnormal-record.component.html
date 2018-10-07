@@ -1,0 +1,76 @@
+<div [@boxState]="boxState" id="abnormal_box" [ngStyle]="setPos()">
+    <div id="abnormal_move_area" class="header">
+        <span class="abnormal-text">异常登记</span>
+        <span (click)="closeBox()" class="close-btn">×</span>
+    </div>
+    <div class="content">
+        <div class="transport">
+        <span style="margin-right: 12px;">
+            <span class="start-symbol">*</span>
+            任务号
+        </span>
+            <input type="text" name = "waybillId" [(ngModel)]="vWaybillQuery.waybillId" (change)="getAddAbnormalWaybill()"/>
+        </div>
+        <div class="transport-detail">
+            <table>
+                <tr style="background-color: #e5e5e5">
+                    <th>收货人</th>
+                    <th>承运商</th>
+                    <th>发货人</th>
+                    <th>目的地</th>
+                    <th>开单网点</th>
+                    <th>品名/件数</th>
+                </tr>
+                <tr style="background-color: #efefef">
+                    <td>{{vWaybillQuery.consigneeName||""}}</td>
+                    <td>{{vWaybillQuery.carrier||""}}</td>
+                    <td>{{vWaybillQuery.shipperName||""}}</td>
+                    <td>{{vWaybillQuery.endCityFullName||""}}</td>
+                    <td>{{vWaybillQuery.billDepartName||""}}</td>
+                    <td>{{vWaybillQuery.goods||""}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="abnormal-type">
+        <span style="margin-right: 5px;">
+            <span class="start-symbol">*</span>
+            异常类型
+        </span>
+            <span style="position: relative">
+                <exception-select [(ngModel)]="waybillAbnormalEditVo.abnormalTypeID" [label]="abnormalTypeLabel" (onChange)="onChange($event)"></exception-select>
+            </span>
+        </div>
+        <div class="abnormal-des">
+        <span class="abnormal-des-con" style="margin-right: 5px;">
+            <span class="start-symbol">*</span>
+            异常描述
+        </span>
+            <textarea maxlength="200" name="" id="" cols="66" rows="5" placeholder="请输入"
+                      [(ngModel)]="waybillAbnormalEditVo.describe"></textarea>
+        </div>
+        <div class="abnormal-pic add-positon">
+        <span class="abnormal-des-con add-abpic" style="float: left;margin-right: 17px;">
+            异常图片
+        </span>
+            <div class="ui-upload">
+                <ui-upload [(ngModel)]="waybillAbnormalEditVo.fileInfos" [fileMaxNum]="6"></ui-upload>
+                <p id="max_num">最多可上传6张图片</p>
+            </div>
+        </div>
+        <div class="feedback-person">
+        <span class="abnormal-des-con">
+            <span class="start-symbol">*</span>
+            反馈人
+        </span>
+            <input type="text" placeholder="请输入姓名" [(ngModel)]="waybillAbnormalEditVo.feedbackMan" maxlength="20"/>
+            <span>反馈人联系方式</span>
+            <input maxlength="11" oninput="value=value.replace(/[^\d{1,}]/g,'')" type="text" placeholder="请输入联系方式" [(ngModel)]="waybillAbnormalEditVo.feedBackPhone"/>
+        </div>
+    </div>
+    <div class="btn-group">
+        <a class="confirm-btn btn" href="javascript:void(0)" (click)="addAbnormal()">确定</a>
+        <a (click)="closeBox()" class="cancel-btn btn" href="javascript:">取消</a>
+    </div>
+</div>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

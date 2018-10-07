@@ -1,0 +1,32 @@
+<div class="outer-modal-container">
+    <div class="modal-header">
+        <div class="first-line">
+            <form>
+                <label>起止时间</label>
+                <div>
+                    <p-calendar name="startDate" [(ngModel)]="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <div>
+                    <p-calendar name="endDate" [(ngModel)]="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <button type="submit" class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button type="reset" class="btn default-btn">清空</button>
+            </form>
+            <a href="javascript:;" class="export-div">导出</a>
+        </div>
+    </div>
+
+    <div class="modal-content">
+        <div>
+            <h4>详情列表</h4>
+        </div>
+        <div>
+            <ui-grid title="&nbsp;" [data]="data" [columns]="columns" (load)="load($event)"></ui-grid>
+        </div>
+    </div>
+
+    <a href="javascript:; " class="close-modal-btn" (click)="close()"></a>
+</div>

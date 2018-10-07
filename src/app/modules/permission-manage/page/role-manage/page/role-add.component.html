@@ -1,0 +1,41 @@
+<div id="dialog_box" #win class="dialog-box" [ngStyle]="drag.setPosition(513,286)">
+    <div id="dialog_title" class="dialog-box-title fukuan-title">
+        <span class="dialogdialog-left">新增角色</span>
+        <span class="dialog-right" (click)="hideWin(win)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <ul>
+            <li><span>*</span>角色名称</li>
+            <li><span>*</span>隶属角色</li>
+            <li><span>*</span>角色权限设置</li>
+            <li>备注</li>
+        </ul>
+        <dl>
+            <dd>
+                <input placeholder="请输入" />
+            </dd>
+            <dd>
+                <select>
+                    <option selected="selected" value ="xuanze">请选择</option>
+                    <option value ="saab">Saab</option>
+                    <option value="opel">Opel</option>
+                    <option value="audi">Audi</option>
+                </select>
+            </dd>
+            <dd>
+                <input placeholder="请设置" />
+                <i class="power-setting" (click)="showPowSet()"></i>
+            </dd>
+            <dt>
+                <textarea rows="3" cols="38"></textarea>
+            </dt>
+
+        </dl>
+    </div>
+    <div class="clear"></div>
+    <div class="dialog-box-footer">
+        <span class="primary-btn btn">保存</span>
+        <span class="default-btn btn"  (click)="hideWin(win)">取消</span>
+    </div>
+</div>
+<power-setting *ngIf="isPowWin" (isshow)="isshowWin($event)"></power-setting>

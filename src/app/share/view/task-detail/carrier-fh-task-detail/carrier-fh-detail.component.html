@@ -1,0 +1,105 @@
+<div class="outer-modal-container">
+    <div class="modal-header">
+        <div class="first-line">
+            <span class="new-tap">承运商</span>
+            <span class="gray-text">运单号</span>
+            <span class="blue-text">{{carrierDetailRespVo.waybillId}}</span>
+            <span class="gray-text">任务单号</span>
+            <span class="blue-text">{{carrierDetailRespVo.title}}</span>
+            <span class="gray-text">异常编号</span>
+            <span class="blue-text">{{carrierDetailRespVo.abnormalNum}}</span>
+            <span class="gray-text">返货运营商</span>
+            <span class="blue-text">{{carrierDetailRespVo.taskReturnType}}</span>
+        </div>
+        <div class="second-line">
+            <span class="gray-text">任务状态</span>
+            <p-steps [(activeIndex)]="carrierDetailRespVo.stepActive" [model]="carrierItems"></p-steps>
+            <div class="handle-time">
+                <span *ngFor="let time of carrierDetailRespVo.stepTimes">{{time}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <button ngClass="{{infoTypeActive==='rwxx'?'active':''}}" (click)="selectInfoPanel('rwxx')">任务信息</button>
+        <button ngClass="{{infoTypeActive==='gjxx'?'active':''}}" (click)="selectInfoPanel('gjxx')">轨迹信息</button>
+        <button ngClass="{{infoTypeActive==='gzxx'?'active':''}}" (click)="selectInfoPanel('gzxx')">跟踪信息</button>
+    </div>
+
+    <div class="modal-content">
+        <!--任务信息-->
+        <div [hidden]="infoTypeActive!=='rwxx'">
+            <div class="jbxx-container">
+                <div class="details-basicinfo-people">
+                    <div class="details-basicinfo-people1">
+                        <div class="details-basicinfo-people1-send">
+                            <span>
+                                <b>收货</b>
+                                <p class="person-name">{{carrierDetailRespVo.consigneeName}}</p>
+                                <p>{{carrierDetailRespVo.consigneeMobile}}</p>
+                            </span>
+                            <div style="clear: both"></div>
+                            <p style="margin-top: 15px">{{carrierDetailRespVo.consigneeAddr}}</p>
+                        </div>
+                    </div>
+                    <div class="details-basicinfo-people2">
+                        <div class="details-basicinfo-people2-shifu">
+                            <span>
+                                <b>承运商</b>
+                                <p class="person-name">{{carrierDetailRespVo.carrier}}</p>
+                                <p>{{carrierDetailRespVo.cysMobile}}</p>
+                            </span>
+                            <div style="clear: both"></div>
+                            <p style="margin-top: 15px">返货费：{{carrierDetailRespVo.returnMoney}}</p>
+                        </div>
+                    </div>
+                </div>
+                <p-dataTable [value]="carrierDetailRespVo.taskReturnDetails" emptyMessage="暂无数据">
+                    <p-column field="productName" header="返货名称"></p-column>
+                    <p-column field="pieces" header="返货数量"></p-column>
+                    <p-column field="volume" header="返货体积"></p-column>
+                </p-dataTable>
+                <div style="margin: 10px 0 20px 0">备注：{{carrierDetailRespVo.remark}}</div>
+                <div>
+                    <p class="left-border">货物到达</p>
+                    <ul class="img-wrap">
+                        <li class="img-item" *ngFor="let img of carrierDetailRespVo.arriveImgs" >
+                            <a rel="fancybox" href="{{img}}">
+                                <img src="{{img}}">
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <label>备注：</label>
+                        <span>{{carrierDetailRespVo.arriveRemark}}</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="left-border">返回客户</p>
+                    <ul class="img-wrap">
+                        <li class="img-item" *ngFor="let img of carrierDetailRespVo.returnCtmerImgs" >
+                            <a rel="fancybox" href="{{img}}">
+                                <img src="{{img}}">
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <label>备注：</label>
+                        <span>{{carrierDetailRespVo.returnCtmerRemark}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <task-path-msg [selectLineInfo]="selectedRowData" *ngIf="infoTypeActive === 'gjxx'"></task-path-msg>
+
+        <task-track-msg [selectLineInfo]="selectedRowData" *ngIf="infoTypeActive === 'gzxx'"></task-track-msg>
+    </div>
+
+    <a href="javascript:; " class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<!--货物到达-->
+<arrival-goods *ngIf="arrivalIf" [selectedRowData]="selectedRowData" (onArrivalCancle)="arrivalCancle()" (onArrivalSure)="arrivalSure()"></arrival-goods>
+<!--返回客户-->
+<return-customer *ngIf="returnIf" [selectedRowData]="selectedRowData" (onReturnCancle)="returnCancle()" (onReturnSure)="returnSure()"></return-customer>
+

@@ -1,0 +1,56 @@
+<div class="content">
+    <div class="title">用户管理</div>
+    <div class="left-content">
+        <div class="content-title">部门</div>
+        <div class="table-wrap">
+            <div class="wrap-title">广州一智通供应链管理有限公司</div>
+            <ul class="wrap-ul">
+                <li *ngFor="let menu of menuList;let i=index"><i [ngClass]="{'add':!isShow[i], 'low':isShow[i]}" (click)="showUl(i)"></i>{{menu.name}}
+                    <ul [ngClass]="{show:isShow[i]}">
+                        <li *ngFor="let menuItem of menu.list"><span class="text">{{menuItem}}</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="content-title">
+            员工
+            <span (click)="showOperateDialog(true)"><i class="add"></i>新增</span>
+            <span (click)="showOperateDialog(false)"><i class="modify"></i>修改</span>
+            <span (click)="showComplexDialog(false)"><i class="reset"></i>重置密码</span>
+            <span (click)="showSimpleDialog(true)"><i class="setDimission"></i>设置离职</span>
+            <span (click)="showSimpleDialog(false)"><i class="setStart"></i>设置启用</span>
+            <span (click)="showComplexDialog(true)"><i class="delete"></i>删除</span>
+            <span><i class="export"></i>导出</span>
+            <span (click)="showDialog(4)"><i class="search"></i>查找</span>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <tr>
+                    <th><i [ngClass]="setTotalSelect()" (click)="changeTotalSelect()"></i></th>
+                    <th *ngFor="let title of tableTitle">{{title}}</th>
+                </tr>
+                <tr *ngFor="let data of tableData;let i=index">
+                    <td><i [ngClass]="setSelect(i)" (click)="changeSelect(i)"></i></td>
+                    <td>{{data.id}}</td>
+                    <td (click)="showDialog(1)">{{data.name}}</td>
+                    <td>{{data.sex}}</td>
+                    <td>{{data.phone}}</td>
+                    <td>{{data.department}}</td>
+                    <td>{{data.role}}</td>
+                    <td>{{data.status}}</td>
+                    <td>{{data.updatePeople}}</td>
+                    <td>{{data.updateTime}}</td>
+                    <td>{{data.copyRight}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<add-member *ngIf="isShowArr[0]" (hideModal)="hideModal($event)" [dialogTitle]="dialogTitle"></add-member>
+<basic-data *ngIf="isShowArr[1]" (hideModal)="hideModal($event)" (showDataAuthority)="showDataAuthority($event)"></basic-data>
+<delete-tip *ngIf="isShowArr[2]" (hideModal)="hideModal($event)" [complexDialogText]="complexDialogText"></delete-tip>data-authority
+<data-authority *ngIf="isShowArr[3]" (hideModal)="hideModal($event)"></data-authority>
+<search *ngIf="isShowArr[4]" (hideModal)="hideModal($event)"></search>
+<set-dimission *ngIf="isShowArr[5]" (hideModal)="hideModal($event)" [simpleDialogText]="simpleDialogText"></set-dimission>

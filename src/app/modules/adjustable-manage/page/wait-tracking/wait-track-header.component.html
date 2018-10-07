@@ -1,0 +1,109 @@
+<form>
+    <div id="wait_trace">
+        <div class="province order-state-btn">
+            <span class="province-address">目的地</span>
+            <div class="addr-control">
+                <ui-select-box name="someName" [(ngModel)]="toTraceTaskVo.area" [data-handler]="dataHandler"></ui-select-box>
+            </div>
+
+            <span class="line-state">任务类型</span>
+            <select name="selectTaskTypes" [(ngModel)]="toTraceTaskVo.taskType" class="all_state" (ngModelChange)="taskTypeChanged($event)">
+                <option value="All">全部</option>
+                <option value="dispatchTask"> 调度任务</option>
+                <option value="repair"> 维修任务</option>
+                <option value="fhreturn"> 返货任务</option>
+                <option value="pickUP"> 自提任务</option>
+            </select>
+
+            <!--      田茂江，2017-5-3调整，这里请勿随意变更，很重要
+            //待分配（调度、维修、返货）：waitDistribution
+            //待受理（调度、维修、返货）：distributionWaitAccept
+            //待预约（调度+维修：待预约、返货：待提货）：waitAppointment
+            //待签收（调度、维修：维修中、返货：待返货）：waitPickUp
+            //已签收（调度、维修、返货）：doSign
+            //已作废/终止订单（调度、维修、返货）：invalid
+            -->
+            <span class="line-state taskzt">任务状态</span>
+            <select name="selectTaskStatus" [(ngModel)]="toTraceTaskVo.taskStatus" class="all_state" (ngModelChange)="taskStatusChanged($event)">
+                <option value="All">全部</option>
+
+                <option value="waitDistribution"
+                        *ngIf="toTraceTaskVo.taskType=='dispatchTask'
+                || toTraceTaskVo.taskType=='repair'
+                || toTraceTaskVo.taskType=='fhreturn'"> 待分配
+                </option>
+
+                <option value="distributionWaitAccept"
+                        *ngIf="toTraceTaskVo.taskType=='dispatchTask'
+                         || toTraceTaskVo.taskType=='repair'
+                         || toTraceTaskVo.taskType=='fhreturn'"> 待受理
+                </option>
+
+                <option value="waitAppointment"
+                        *ngIf="toTraceTaskVo.taskType=='dispatchTask'
+                         || toTraceTaskVo.taskType=='repair'"> 待预约
+                </option>
+
+                <option value="waitPickUp" *ngIf="toTraceTaskVo.taskType=='repair'"> 待签收</option>
+                <option value="doSign" *ngIf="toTraceTaskVo.taskType=='repair'"> 已签收</option>
+
+                <option value="waitAppointment" *ngIf="toTraceTaskVo.taskType=='fhreturn'"> 待提货</option>
+                <option value="waitPickUp" *ngIf="toTraceTaskVo.taskType=='fhreturn'"> 待签收</option>
+                <option value="doSign" *ngIf="toTraceTaskVo.taskType=='fhreturn'"> 已签收</option>
+                <option value="GoodsArrive" *ngIf="toTraceTaskVo.taskType=='fhreturn'"> 货物到达</option>
+                <option value="ReturnCustomer" *ngIf="toTraceTaskVo.taskType=='fhreturn'"> 返回客户</option>
+
+                <option value="waitPickUp" *ngIf="toTraceTaskVo.taskType=='dispatchTask'"> 待签收</option>
+                <option value="doSign" *ngIf="toTraceTaskVo.taskType=='dispatchTask'"> 已签收</option>
+
+                <option value="invalid"
+                        *ngIf="toTraceTaskVo.taskType=='repair' || toTraceTaskVo.taskType=='fhreturn' || toTraceTaskVo.taskType=='dispatchTask'">
+                    已作废
+                </option>
+
+                <option value="TMS_TRUNK_START" *ngIf="toTraceTaskVo.taskType=='pickUP'">干线开始</option>
+                <option value="TMS_TRUNK_END" *ngIf="toTraceTaskVo.taskType=='pickUP'">干线结束</option>
+                <option value="doSign" *ngIf="toTraceTaskVo.taskType=='pickUP'">已提货</option>
+            </select>
+
+            <select name="selectState" [(ngModel)]="toTraceTaskVo.queryDateType" class="all_state allDate">
+                <option value="All">全部日期</option>
+                <option value="bill"> 开单日期</option>
+                <option value="nextTrackDate">下次跟进日期</option>
+                <option value="trunkEnd">干线结束日期</option>
+                <option value="dis"> 分配日期</option>
+                <option value="sign"> 签收日期</option>
+            </select>
+
+            <div class="line-end-date">
+                <p-calendar name="start-time" [(ngModel)]="toTraceTaskVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true" [maxDate]="toTraceTaskVo.endDate"></p-calendar>
+            </div>
+            <div class="line-end-date">
+                <p-calendar name="end-time" [(ngModel)]="toTraceTaskVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true" [minDate]="toTraceTaskVo.beginDate"></p-calendar>
+            </div>
+
+
+            <span class="transport-num">运单号</span>
+            <p-autoComplete class="transport-num-input" name="tt" [(ngModel)]="toTraceTaskVo.wayBillId" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+            <!--<span class="export">导出</span>-->
+        </div>
+        <div class="send-good">
+            <span>发货人</span>
+            <shipper-select class="write-order-input" name="shipper" width="125px" [(ngModel)]="toTraceTaskVo.shipper" defaultLabel="请选择…"></shipper-select>
+            <span class="receive-text shouhuoren">收货人</span>
+            <cnee-select class="write-order-input" name="consignee" width="125px" [(ngModel)]="toTraceTaskVo.consignee" defaultLabel="请选择…"></cnee-select>
+            <span class="receive-text master-count">师傅/网点</span>
+            <master-select name="tt" width="150px" defaultLabel="请选择…" class="receive-man" [(ngModel)]="toTraceTaskVo.masterAccount" valueField="mobile"></master-select>
+
+            <!--<p-autoComplete class="receive-man" name="tt" [(ngModel)]="toTraceTaskVo.masterAccount"
+                            [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+            <span class="receive-text fenpeiren">分配人</span>
+            <p-autoComplete class="receive-man" name="tt" [(ngModel)]="toTraceTaskVo.operator" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+            <button class="search-btn btn primary-btn" (click)="doSearch()">查询</button>
+            <button type="reset" class="clear-btn btn default-btn">清空</button>
+
+        </div>
+    </div>
+</form>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,161 @@
+<div class="outer-modal-container">
+    <div class="modal-header">
+        <div class="first-line">
+            <span class="new-tap">服务商</span>
+            <span class="gray-text">运单号</span>
+            <span class="blue-text">{{detailsVo.waybillId}}</span>
+            <span class="gray-text">任务单号</span>
+            <span class="blue-text">{{detailsVo.title}}</span>
+            <span class="gray-text">分配人</span>
+            <span class="blue-text">{{detailsVo.operator}}</span>
+            <span class="gray-text">返货运营商</span>
+            <span class="blue-text">{{detailsVo.taskReturnType}}</span>
+            <span class="gray-text">异常编号</span>
+            <span class="blue-text">{{detailsVo.abnormalNum}}</span>
+
+        </div>
+        <div class="second-line">
+            <span class="gray-text">任务状态</span>
+            <p-steps [(activeIndex)]="detailsVo.stepActive" [model]="servicerItems" *ngIf="detailsVo.taskReturnType==='服务商'"></p-steps>
+            <!-- TODO 对接时放开注释-->
+            <!--返回货物-->
+            <!--<div class="shadow-div1" *ngIf="detailsVo.taskReturnType==='服务商'" (click)="showArrival()"></div>-->
+            <!--&lt;!&ndash;返回客户&ndash;&gt;-->
+            <!--<div class="shadow-div2" *ngIf="detailsVo.taskReturnType==='服务商'" (click)="showReturn()"></div>-->
+            <div class="handle-time">
+                <span *ngFor="let handleTime of detailsVo.stepTimes">{{handleTime}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <button ngClass="{{infoTypeActive==='rwxx'?'active':''}}" (click)="selectInfoPanel('rwxx')">任务信息</button>
+        <button ngClass="{{infoTypeActive==='gjxx'?'active':''}}" (click)="selectInfoPanel('gjxx')">轨迹信息</button>
+        <button ngClass="{{infoTypeActive==='gzxx'?'active':''}}" (click)="selectInfoPanel('gzxx')">跟踪信息</button>
+    </div>
+
+    <div class="modal-content">
+        <!--任务信息-->
+        <div [hidden]="infoTypeActive!=='rwxx'">
+            <div class="jbxx-container">
+                <div class="details-basicinfo-people">
+                    <div class="details-basicinfo-people1">
+                        <div class="details-basicinfo-people1-send">
+                            <span>
+                                <b>提货</b>
+                                <p class="person-name">{{detailsVo.picUpMan}}</p>
+                                <p>{{detailsVo.picUpManMobile}}</p>
+                            </span>
+                            <div style="clear: both"></div>
+                            <p style="margin-top: 15px">{{detailsVo.picAddr}}</p>
+                        </div>
+                    </div>
+                    <div class="details-basicinfo-people2">
+                        <div class="details-basicinfo-people2-shifu">
+                            <span>
+                                <b>收货</b>
+                                <p class="person-name">{{detailsVo.consigneeName}}</p>
+                                <p>{{detailsVo.consigneeMobile}}</p>
+                            </span>
+                            <div style="clear: both"></div>
+                            <p style="margin-top: 15px">{{detailsVo.consigneeAddr}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="details-basicinfo-people">
+                    <div class="details-basicinfo-people1" *ngIf="detailsVo.department">
+                        <div class="details-basicinfo-people1-send">
+                            <span>
+                                <b>网点</b>
+                                <p class="person-name">{{detailsVo.department}}</p>
+                                <p>{{detailsVo.departmentTel}}</p>
+                            </span>
+                        </div>
+                        <div style="clear: both">
+                            <div *ngIf="detailsVo.taskStatus != 'waitDistribution'">
+                                <label>提货费：</label>
+                                <span>{{detailsVo.totalCost}}</span>
+                            </div>
+                            <div>
+                                <span>商家承担金额：{{detailsVo.assumefee}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details-basicinfo-people2">
+                        <div class="details-basicinfo-people2-shifu">
+                            <span>
+                                <b>师傅</b>
+                                 <p class="person-name" *ngIf="detailsVo.taskStatus != 'waitDistribution'">{{detailsVo.masterUserName}}</p>
+                                <p *ngIf="detailsVo.taskStatus != 'waitDistribution'">{{detailsVo.masterUserMobile}}</p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <p class="left-border">返货明细</p>
+                <ui-grid title="&nbsp;" [data]="taskReturnDetails" (load)="load($event)" [columns]="columns"></ui-grid>
+                <div style="margin: 10px 0 20px 0">备注：{{detailsVo.remark}}</div>
+                <p class="left-border">物流信息</p>
+                <div class="logistics-msg">
+                    <div>
+                        <span>指定物流公司：{{detailsVo.logisticsName}}</span>
+                        <span>物流电话：{{detailsVo.logisticsMobile}}</span>
+                    </div>
+                    <div>
+                        <span>实发物流公司：{{detailsVo.logisticsRealName}} </span>
+                        <span>物流单号：{{detailsVo.logisticsBill}}</span>
+                        <span>物流公司电话：{{detailsVo.logisticsTel}}</span>
+                        <span>到付金额：{{detailsVo.arrivePayMoney}}</span>
+                    </div>
+                    <div class="sign-pic">签收图片：</div>
+                    <ul class="img-wrap">
+                        <!--<li class="img-item"><img src="/assets/adjustable-manager-img/touxiang.jpg" alt=""></li>-->
+                        <li class="img-item" *ngFor="let singImg of detailsVo.signImgsPath" >
+                            <a rel="fancybox" href="{{singImg}}">
+                                <img src="{{singImg}}" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <p class="left-border">货物到达</p>
+                    <ul class="img-wrap">
+                        <li class="img-item" *ngFor="let singImg of goodsArriveRespVo?.operatePics" >
+                            <a rel="fancybox" href="{{singImg}}">
+                                <img src="{{singImg}}" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <label>备注：</label>
+                        <span>{{goodsArriveRespVo.operateInfo}}</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="left-border">返回客户</p>
+                    <ul class="img-wrap">
+                        <li class="img-item" *ngFor="let singImg of returnClientRespVo?.operatePics" >
+                            <a rel="fancybox" href="{{singImg}}">
+                                <img src="{{singImg}}" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <label>备注：</label>
+                        <span>{{returnClientRespVo.operateInfo}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <task-path-msg [selectLineInfo]="selectedRowData" *ngIf="infoTypeActive === 'gjxx'"></task-path-msg>
+
+        <task-track-msg [selectLineInfo]="selectedRowData" *ngIf="infoTypeActive === 'gzxx'"></task-track-msg>
+    </div>
+
+    <a href="javascript:; " class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<!--货物到达-->
+<arrival-goods *ngIf="arrivalIf" [selectedRowData]="selectedRowData" (onArrivalCancle)="arrivalCancle()" (onArrivalSure)="arrivalSure()"></arrival-goods>
+<!--返回客户-->
+<return-customer *ngIf="returnIf" [selectedRowData]="selectedRowData" (onReturnCancle)="returnCancle()" (onReturnSure)="returnSure()"></return-customer>
+

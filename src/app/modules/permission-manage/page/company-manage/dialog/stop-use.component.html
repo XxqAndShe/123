@@ -1,0 +1,13 @@
+<div [@boxState]="boxState" id="stop_box" class="dialog-box" [ngStyle]="drag.setPosition(260,250)">
+    <div id="stop_move" class="dialog-box-title blue">
+        <span class="dialog-left">提示</span>
+        <span (click)="close()" class="dialog-right">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="content-text">确认停用该公司？</div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn">确认</span>
+        <span (click)="close()" class="btn default-btn">取消</span>
+    </div>
+</div>

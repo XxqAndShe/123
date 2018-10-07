@@ -1,0 +1,7 @@
+.meta-select{
+    display: inline-block;
+}
+
+.ui-dropdown .ui-dropdown-label{
+    line-height: 23px;
+}

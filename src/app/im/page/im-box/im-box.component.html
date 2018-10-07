@@ -1,0 +1,47 @@
+<!--------右边列表，IM图标显示--->
+<div class="content">
+  <div class="im_ico" id="im_ico"><i class="icon" *ngIf="sum || InDataSum">{{+sum+InDataSum}} </i></div>
+
+  <div class="im_lift_box">
+    <div id="im_new_window" class="im_nav"><a href="javascript:;" (click)="skipIm()">聊天中心</a><i class="ico_stop" (click)="closeChatList()"></i></div>
+    <div class="im_list" id="im_box_list">
+      <ul>
+        <li><a class="chat on l1 " href="javascript:;" title="会话" (click)="listType='huihua';displayModal($event, 0);"> </a><i class="icon" *ngIf="sum">{{sum}}</i></li>
+        <li><a class="chat l2" href="javascript:;" title="接入" (click)="listType='jieru';displayModal($event, 1);"> </a><i class="icon" *ngIf="InDataSum">{{InDataSum}}</i></li>
+        <!--<li><a class="chat l3" href="javascript:;" title="任务组" (click)="displayModal($event, 2)"> </a></li>-->
+        <!--<li><a class="chat l4" href="javascript:;" title="同事" (click)="displayModal($event, 3)"> </a></li>-->
+        <li><a class="chat l5" href="javascript:;" title="师傅" (click)="listType='shifu';displayModal($event, 2);refreshMaster()"> </a></li>
+      </ul>
+    </div>
+
+    <div class="im_box_cont">
+      <div class="search_txt"><input
+              type="text"
+              placeholder="请输入姓名/手机号"
+              [(ngModel)]="updateList"
+              (keyup.enter)="loadListData()"
+      ></div>
+      <div class="conve_list_wrap">
+        <ul class="conve_list">
+          <im-box-list [hasSessionKey]="true" [Data]="OrderData" (imgsrc)="getImgSrc($event)"  (isSessionJoinIn)="receiveSessionJoinIn($event)" (saveTitle)="getGrowl($event)" (clrtimer)="clrTimer($event)"></im-box-list>
+        </ul>
+        <ul class="conve_list on">
+          <im-box-list [hasEntryKey]="true" [Data]="InData"  (isJoinIn)="receiveJoinIn($event)" (imgsrc)="getImgSrc($event)" (failIn)="getFailInMsg($event)"></im-box-list>
+        </ul>
+        <!--<ul class="conve_list on">-->
+          <!--<im-box-list [Data]="OtherData"  (isJoinIn)="receiveJoinIn($event)"></im-box-list>-->
+        <!--</ul>-->
+        <!--<ul class="conve_list on">-->
+          <!--<im-box-list [Data]="OtherData"  (isJoinIn)="receiveJoinIn($event)"></im-box-list>-->
+        <!--</ul>-->
+        <ul class="conve_list on">
+          <im-box-list  [hasMasterEntryKey]="true"  [Data]="MasterData" (isMasterJoinIn)="receiveMasterJoinIn($event)"></im-box-list>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

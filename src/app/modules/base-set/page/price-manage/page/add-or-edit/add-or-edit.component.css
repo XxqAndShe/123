@@ -1,0 +1,8 @@
+.dialog-box{width:400px;}
+.dialog-box-content>label>i{color:#ff3127;}
+.dialog-box-content>label{display: inline-block;width:63px;float:left;}
+.dialog-box-content>textarea{width:350px; height: 90px;resize:none;}
+.dialog-box-content>div{padding-top:10px;height:15px;line-height:15px;}
+.dialog-box>.dialog-box-footer{padding:10px 0;}
+input[type="checkbox"]{position: relative; top: 2px;}
+

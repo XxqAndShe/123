@@ -1,0 +1,22 @@
+.dialog-box {
+    width: 260px;
+}
+.dialog-box>.blue{
+    background-color: #417cf3;
+}
+.dialog-box>.dialog-box-title>.dialog-right{
+    color: #fff;
+    opacity: 1;
+}
+.dialog-box>.dialog-box-content{
+    height: auto;
+    border: none;
+}
+.dialog-box>.dialog-box-content .content-text{
+    margin-top: 5px;
+    text-align: center;
+}
+.grey-text{
+    opacity: .8;
+}
+.dialog-box .dialog-box-footer{height:30px; text-align: center; padding: 20px;}

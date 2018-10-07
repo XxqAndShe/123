@@ -1,0 +1,4 @@
+<div class="intel-match-area">
+  <ui-tree [(ngModel)]="selectedAreas" (onNodeChange)="onNodeChange($event)"  cache="area-tree" selectionMode="checkbox" (load)="load($event)"></ui-tree>
+  <!--<div style="width: 49%;float: left;">Selected Nodes: <span *ngFor="let node of selectedAreas">{{node.label+':'+node.data}} </span></div>-->
+</div>

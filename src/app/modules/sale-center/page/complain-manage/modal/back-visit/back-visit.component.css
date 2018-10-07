@@ -1,0 +1,12 @@
+.dialog-box-footer{
+    padding: 10px 0;
+}
+.input-form > span, .input-describe > span {
+    width: 94px!important;
+    text-align: right;
+    margin-right: 5px;
+}
+.dialog-box-content{
+    max-height: 500px;
+    overflow: auto;
+}

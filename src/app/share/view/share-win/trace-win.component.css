@@ -1,0 +1,205 @@
+
+/*时间选择*/
+#select_period{
+    width: 50px;
+    padding: 0 8px;
+    border: none;
+    color: #666666;
+    font-size: 13px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+.time-table{
+    background-color: white;
+    border: 1px solid #ccc;
+    position: absolute;
+    outline: none;
+    top: 94px;
+    z-index: 10000;
+    left: 238px;
+    overflow: hidden;
+    height: 0;
+    display:block;
+}
+.time-table .hours{
+    margin-left: 76px;
+}
+.time-table .minute{
+    margin-left: 5px;
+}
+.time-table .minute-stage{
+    padding-left: 16px;
+}
+.time-table .hours-stage,
+.time-table .minute-stage
+{
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-family: '微软雅黑';
+    user-select:none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+}
+.time-table .ui-timepicker-hour-cell,
+.time-table .ui-state-default,
+.time-table .ui-state-default-min{
+    color: rgb(40,152,224);
+    cursor: pointer;
+    margin-left: 2px;
+    font-size: 12px;
+}
+.time-table .ui-timepicker-hour-cell:hover,
+.time-table .ui-state-default:hover,
+.time-table .ui-state-default-min:hover
+{
+    background-color: #ccc;
+}
+.time-table .ui-state-default.active,
+.time-table .ui-state-default-min.active
+{
+    background-color: rgb(51,143,255);
+    color: white;
+}
+.time-table .periods{
+    font-size: 12px;
+    color: #555;
+}
+
+#markInfo_box{
+    width: 510px;
+    height: 380px;
+    background-color: white;
+    position: absolute;
+    top: 229px;
+    left: 222px;
+    box-shadow: 0 5px 10px #6F6F6F ;
+}
+#markInfo_box>header{
+    height: 40px;
+    background-color: #2d3244;
+    line-height: 40px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+header>.title{
+    margin-left: 16px;
+    color: white;
+    font-weight: 500;
+}
+header>.close-btn{
+    float: right;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+    line-height: 16px;
+    color: #cdcdcd;
+    font-size: 28px;
+    z-index: 1000000;
+}
+.info-content{
+    padding: 0 20px;
+    height: 276px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.info-content>p{
+    padding: 14px 0 14px 0;
+    position: relative;
+}
+.info-content>p:nth-of-type(2){
+    padding: 0 0 14px 0;
+}
+.info-content>p:nth-of-type(1)>span:nth-of-type(2),.info-content>p:nth-of-type(1)>span:nth-of-type(3){
+    margin-left: 10px;
+}
+.info-content>p>span{
+    color: #a8aab1;
+    font-size: 14px;
+}
+.info-content>p>.time{
+    font-size: 13px;
+    width: 80px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    color: #666666;
+    padding-right: 22px;
+    margin-left: 2px;
+    background: url("/assets/tip-box-img/down-arrow.png")no-repeat 100% 0;
+    cursor: pointer;
+}
+.info-content my-date-picker{
+    display: block;
+    position: absolute;
+}
+.info-content select{
+    appearance:none;
+    -moz-appearance: none;
+    -webkit-appearance:none;
+    padding: 0 4px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    color: #666666;
+    margin-left: -4px;
+    max-height: 100px !important;
+    overflow: auto !important;
+    text-align: center;
+}
+#markInfo_box .mark.hide{
+    visibility: hidden;
+}
+.info-content select option{
+    text-align: center;
+    display: inline-block !important;
+    width: 30px !important;
+    border: none !important;
+    outline: none;
+}
+.info-content>textarea{
+    resize: none;
+    outline: none;
+    padding: 12px;
+    font-size: 14px;
+    border: 2px solid #ddd;
+    background-color: #f8f8f8;
+}
+.info-content .select-btn{
+    color: #a9a9a9;
+    padding: 6px 10px;
+    border:2px solid #ddd;
+    position: absolute;
+    font-size: 14px;
+    right: 0;
+    top: 20px;
+}
+.info-content .select-btn.mark-bc{
+    background-color: #0d85e4!important;
+    color: white;
+}
+.btn-group>.btn{
+    width: 60px;
+    height: 30px;
+    float: right;
+    text-align: center;
+    margin-top: 18px;
+    margin-right: 14px;
+}
+.btn-group>.save-btn{
+    background-color: #0d85e4;
+    color: white;
+    line-height: 30px;
+}
+.btn-group>.cancel-btn{
+    background-color: #f8f8f8;
+    line-height: 26px;
+    border:2px solid #ddd;
+    margin-right: 38px;
+    color: #919191;
+}
+/*添加跟踪备注*/

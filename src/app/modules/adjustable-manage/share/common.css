@@ -1,0 +1,92 @@
+
+/*模块公共样式*/
+#table-top{
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+/*表头操作单号按扭*/
+.order-btn-wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 0px);
+    height: 100%;
+    background-color: #f7f8fa;
+    box-sizing: border-box;
+    padding: 0 6px;
+}
+.table-header>span,
+.table-header>i
+{
+    line-height: 30px;
+    height: 30px;
+}
+span.select-num {
+    color: #0d85e4;
+    padding: 0 7px;
+}
+span.split-line {
+    margin: 0 12px 0 15px;
+    color: #c9c9c9;
+}
+a.operation-a {
+    display: inline-block;
+    text-align: left;
+    color: #728597;
+}
+a.operation-a>i {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+a.operation-move>i{
+    background: url(/assets/icon/move.png) no-repeat center center;
+}
+a.operation-end>i{
+    background: url(/assets/icon/stop.png) no-repeat center center;
+}
+a.operation-abnormal>i{
+    background: url(/assets/icon/abnormal.png) no-repeat center center;
+}
+a.operation-order>i{
+    background: url(/assets/icon/order.png) no-repeat center center;
+}
+a.operation-check>i{
+    background: url(/assets/icon/recive.png) no-repeat center center;
+}
+a.operation-detail>i {
+    background: url(/assets/operation.png) no-repeat -25px -25px;
+    background-size: 122px;
+}
+a.operation-add>i {
+    background: url(/assets/operation.png) no-repeat 0 -74px;
+    background-size: 122px;
+}
+
+.table-header>span.close-btn {
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+    color: #d6d6d6;
+    font-size: 22px;
+}
+
+/*右侧弹框*/
+.modal {
+    width: 1020px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -1040px;
+    z-index: 50;
+}

@@ -1,0 +1,56 @@
+.big-image {
+    width: 800px;
+    height: 600px;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: absolute;
+}
+.fname{
+    font-size: 12px;
+}
+.pic-file-template {
+    float: left;
+}
+
+.uploaded-content > li.item,
+.pic-file-template .item {
+    display: inline-block;
+    box-sizing: border-box;
+    float: left;
+    margin-left: 10px;
+    position: relative;
+}
+.uploaded-content .item > span,
+.pic-file-template .item > span {
+    position: absolute;
+    display: none;
+    top: 0px;
+    right: 0px;
+    width: 13px;
+    height: 13px;
+    font: normal 400 12px "microsoft yahei", "sans-serif";
+    background-color: red;
+    color: #ffffff;
+    line-height: 13px;
+    text-align: center;
+    cursor: pointer;
+}
+.uploaded-content .item > span:hover,
+.uploaded-content .item > a:hover + span,
+.pic-file-template .item:hover > span {
+    display: inline-block;
+}
+
+.uploaded-content:after {
+    display:table;
+    clear: both;
+    content: " ";
+    height: 0;
+}
+.uploaded-content{
+    background-color: #f6f7f9;
+    padding: 3px 0;
+}
+.uploaded-content > li {
+}
+

@@ -1,0 +1,23 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <div class="inner-container">
+        <div class="query_sj">
+            <span class="title">查询时间</span>
+            <span class="time">
+                <p-calendar name="startDate" [(ngModel)]="datePickerService.date8" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </span>
+            <span class="time">
+                <p-calendar name="endDate" [(ngModel)]="datePickerService.date3" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </span>
+        </div>
+        <div class="clearfix"></div>
+        <div>
+            <h4>数据列表预览</h4>
+        </div>
+
+        <div class="table-container" [ngClass]="{expand: isSelect}">
+            <ui-grid [columns]="columns"></ui-grid>
+        </div>
+
+    </div>
+</div>

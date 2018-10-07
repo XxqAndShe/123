@@ -1,0 +1,17 @@
+.dialog-box{width:300px;}
+.dialog-box>.dialog-box-footer{padding:10px 0;}
+.dialog-box-content .master{
+    color:red;
+}
+.dialog-box-content p{
+    height: 36px;
+}
+.dialog-box-content p input{
+    height: 27px;
+}
+.del-center{
+    height: 80px;
+    line-height: 52px;
+    text-align: center;
+    font-weight: 600;
+}

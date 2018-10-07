@@ -1,0 +1,53 @@
+<p-fileUpload *ngIf="type!=='file' && type!=='basic'" #upload name="file" [url]="url" multiple="{{multiple}}" uploadLabel="上传"
+              chooseLabel="选择"
+              cancelLabel="取消" maxFileSize="16000000" [auto]="true" invalidFileSizeMessageSummary="{0}: 文件过大,"
+              invalidFileSizeMessageDetail="大小不能超过 {0}."
+              (onBeforeSend)="onBeforeSend($event)" (onSelect)="onSelect($event)" (onUpload)="onUpload($event)"
+              [disabled]="files.length >= fileMaxNum">
+    <ng-template let-file pTemplate="toolbar">
+        <div style="float: right;" *ngIf="files.length">已上传<strong> {{files.length}} </strong>个文件</div>
+    </ng-template>
+    <ng-template pTemplate="file" let-file>
+        <div class="ui-fileupload-row" class="pic-file-template">
+            <div class="item">
+                <img *ngIf="isImage(file)" [src]="file.objectURL" title="{{file.name}}" [width]="previewWidth"
+                     [height]="previewWidth"/>
+                <span style="" icon="fa-close" (click)="upload.remove(file)" title="点击移除">x</span>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="content">
+        <p *ngIf="files.length">已上传：</p>
+        <ul class="uploaded-content" *ngIf="files.length">
+            <li *ngFor="let file of files" class="item">
+                <a rel="fancybox" href="{{file.url}}">
+                    <img *ngIf="isPicture(file)" src="{{file.url + '@w_' + previewWidth+',h_'+previewWidth}}"
+                         title="{{file.name}}" [width]="previewWidth"
+                         [height]="previewWidth"/>
+                </a>
+                <span icon="fa-close" (click)="deleteFile(file)" title="点击移除">x</span>
+            </li>
+        </ul>
+    </ng-template>
+</p-fileUpload>
+<div *ngIf="type==='file'" style="display: inline-block">
+    <p-fileUpload [uploadType]="type" #upload name="file" [url]="url" multiple="{{multiple}}" uploadLabel="上传"
+                  chooseLabel="选择"
+                  cancelLabel="取消" maxFileSize="16000000" [auto]="true" invalidFileSizeMessageSummary="{0}: 文件过大,"
+                  invalidFileSizeMessageDetail="大小不能超过 {0}."
+                  (onBeforeSend)="onBeforeSend($event)" (onSelect)="onSelect($event)" (onUpload)="onUpload($event)"
+                  [disabled]="files.length >= fileMaxNum">
+    </p-fileUpload>
+    <!--<span class="fname" *ngFor="let f of uploadedFiles">{{f.name}}</span>-->
+</div>
+<div *ngIf="type==='basic'">
+    <p-fileUpload mode="basic"
+                  chooseLabel="选择"
+                  cancelLabel="取消"
+                  name="demo[]"
+                  [url]="url"
+                  accept="image/*" maxFileSize="16000000"
+                  invalidFileSizeMessageSummary="{0}: 文件过大,"
+                  invalidFileSizeMessageDetail="大小不能超过 {0}."
+                  (onUpload)="onUpload($event)" auto="true"></p-fileUpload>
+</div>

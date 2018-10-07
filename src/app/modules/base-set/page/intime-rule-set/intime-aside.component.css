@@ -1,0 +1,33 @@
+.frame{width:1020px; height:100%;background-color: #fff;box-shadow: 1px 2px 10px #717171;position:relative;}
+.frame>.title{width:100%;background-color: #fff;padding:15px;box-sizing:border-box;font-size:15px;}
+.frame>.frame-select>.frame-select-content{margin-top:10px;}
+.frame>.frame-select>.frame-select-content>label{width:120px;text-align: right;display: inline-block;font-size:13px;margin-right:10px;}
+.frame>.frame-select>.frame-select-content>.primary-btn{width:70px;margin-left:20px;}
+.frame>.frame-select>.frame-select-content>select{width:170px;height:30px;}
+.frame>.frame-select>.frame-select-content>textarea{width:800px;height:230px;resize: none;}
+.frame>.frame-select>.frame-select-content>.label-text{vertical-align: top;}
+
+
+.footer-button{padding:30px 0 0 135px;}
+a.close-modal-btn{  position: absolute;  top: 50%;  width: 12px;  height: 78px;  background: url(/assets/close-modal.png);  margin-top: -39px;  }
+
+
+/*原型修改前样式*/
+/*.frame>.condition-content{max-height:500px;overflow: auto;margin: 15px;}*/
+/*.frame>.condition-content>.condition{    margin: 16px;background-color: #f5f5f5;padding: 10px;position:relative;}*/
+/*.frame>.condition-content>.condition>.condition-title{color:#0d85e4;}*/
+/*.frame>.condition-content>.condition>div{margin-top:10px;}*/
+/*.frame>.condition-content>.condition>div.condition-title{margin-top:0;}*/
+/*.frame>.condition-content>.condition>span{width:20px; height: 20px;display: inline-block;position: absolute;top:5px;right:10px;}*/
+/*.frame>.condition-content>.condition>span.deleted{background: url(/assets/deleted.png);}*/
+/*.frame>.condition-content>.condition>span.deleted:hover{background: url(/assets/deleted-blue.png);}*/
+/*.frame>.condition-content>.condition>div>label{width:135px;text-align: right;display: inline-block;font-size:13px;margin-right:10px;}*/
+/*.frame>.condition-content>.condition>div>select{width:170px;height:30px;margin-right:5px;}*/
+/*.frame>.condition-content>.condition>div>span{display: inline-block;width:15px; height: 15px; border-radius: 15px;*/
+/*text-align: center;}*/
+/*.frame>.condition-content>.condition>div>.circle{ border:2px solid #0d85e4;margin-left:15px;}*/
+/*.frame>.condition-content>.condition>div>.circle-f5{border:2px solid #acacac;margin-left:15px;position: relative;top: 4px;}*/
+/*.frame>.condition-content>.condition>div>.circle>span{display: inline-block;width:11px; height: 11px; border-radius:11px;}*/
+/*.frame>.condition-content>.condition>div>.circle>.circle-padding{background-color: #0d85e4;}*/
+/*.frame>.condition-content>.condition>div>.circle>.circle-null{background-color: #f5f5f5;}*/
+/*.frame>.condition-content>.condition>div>select.spec-select{width:106px;}*/

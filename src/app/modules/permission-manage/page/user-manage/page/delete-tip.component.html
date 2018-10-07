@@ -1,0 +1,14 @@
+<div class="dialog-box" #dialogDelete id="dialog_box_delete" [ngStyle]="drag.setPosition(260, 177)">
+    <div class="dialog-box-title blue" id="dialog_title_delete">
+        <span class="dialog-left">提示</span>
+        <span class="dialog-right" (click)="dealHide(dialogDelete)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="content-text">{{complexDialogText.firstLine}}</div>
+        <div class="content-text grey-text">{{complexDialogText.secondLine}}</div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="dealHide(dialogDelete)">确认</span>
+        <span class="btn default-btn" (click)="dealHide(dialogDelete)">取消</span>
+    </div>
+</div>

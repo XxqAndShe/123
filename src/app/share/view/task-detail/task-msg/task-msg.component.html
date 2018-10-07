@@ -1,0 +1,79 @@
+<div>
+    <div class="jbxx-container">
+        <div class="details-basicinfo-people">
+            <div class="details-basicinfo-people1">
+                <div class="details-basicinfo-people1-send">
+                            <span>
+                                <b>发货</b>
+                                <p class="name-hidden" title="{{detailsInfo.shipperName}}">{{detailsInfo.shipperName}}</p>
+                                <p>{{detailsInfo.shipperMobile}}</p>
+                            </span>
+                    <p style="margin-bottom: 10px">{{detailsInfo.shipperAdr}}</p>
+                </div>
+                <div class="details-basicinfo-people1-get">
+                            <span>
+                                <b>收货</b>
+                                <p class="name-hidden" title="{{detailsInfo.consigneeName}}">{{detailsInfo.consigneeName}}</p>
+                                <p>{{detailsInfo.consigneeMobile}}</p>
+                            </span>
+                    <!--<p>{{detailsInfo.consigneeAddr}}</p>-->
+                    <!--收货详细地址-->
+                    <p>{{detailsInfo.shippingAddress}}</p>
+                </div>
+                <div class="details-basicinfo-people1-money">
+                    <!--<p><b>付款方式：</b>{{detailsInfo.payTypeName}}</p>产品要求去掉-->
+                    <!--<p><b>合计金额：</b>{{detailsInfo.totalCost}}</p>产品要求去掉-->
+                </div>
+            </div>
+            <div class="details-basicinfo-people2">
+                <div class="details-basicinfo-people1-send" *ngIf="detailsInfo.department || detailsInfo.departmentTel">
+                            <span>
+                                <b>网点</b>
+                                <p class="name-hidden" title="{{detailsInfo.department}}">{{detailsInfo.department}}</p>
+                                <p>{{detailsInfo.departmentTel}}</p>
+                            </span>
+                </div>
+                <div class="details-basicinfo-people1-get">
+                            <span>
+                                <b>师傅</b>
+                                <p *ngIf="detailsInfo.taskStatus != 'waitDistribution'" class="name-hidden" title="{{detailsInfo.masterUserName}}">{{detailsInfo.masterUserName}}</p>
+                                <p *ngIf="detailsInfo.taskStatus != 'waitDistribution'">{{detailsInfo.masterUserMobile}}</p>
+                            </span>
+                </div>
+                <div class="details-basicinfo-people2-money">
+                    <p><b>服务费：</b></p> <p *ngIf="detailsInfo.taskStatus != 'waitDistribution'">{{detailsInfo.masterFee}}</p>
+                </div>
+                <div class="details-basicinfo-people2-time">
+                    <p><b>预约上门时间：</b><span *ngIf="detailsInfo.taskStatus != 'waitDistribution'">{{detailsInfo.yuYueTime}}</span></p>
+                    <p><b>商家承担金额：</b>{{detailsInfo.assumefee}}</p>
+                </div>
+            </div>
+        </div>
+        <p class="left-border">商品信息</p>
+        <div class="details-basicinfo-pickup">
+            <p>维修品名: {{detailsInfo.goodsNames}}</p>
+            <span>备注：{{detailsInfo.remark}}</span>
+            <span class="sign-pic">异常图片：</span>
+            <ul class="img-wrap">
+                <li class="img-item" *ngFor="let aimgs of detailsInfo.abnormalImgs">
+                    <a rel="fancybox" href="{{aimgs}}">
+                        <img src="{{aimgs}}" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p class="left-border">维修完成</p>
+        <div class="details-basicinfo-pickup">
+            <p>维修师傅: {{detailsInfo.masterUserName}}</p>
+            <span>任务完成描述：{{detailsInfo.describe}}</span>
+            <span class="sign-pic">维修凭证：</span>
+            <ul class="img-wrap">
+                <li class="img-item" *ngFor="let simgs of detailsInfo.signImgsPath">
+                    <a rel="fancybox" href="{{simgs}}">
+                        <img src="{{simgs}}" alt="">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div [@boxState]="boxState" id="restart_box" class="dialog-box" [ngStyle]="drag.setPosition(360,250)">
+    <div id="restart_move" class="dialog-box-title blue">
+        <span class="dialog-left">启用</span>
+        <span (click)="close()" class="dialog-right">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <form>
+            <div>
+                <label>使用系统</label>
+                <span class="dialog-box-content-right sys-yellow">TMS</span>
+            </div>
+            <div>
+                <label for="deadline">截止时间</label>
+                <select id="deadline" class="dialog-box-content-right">
+                    <option>选择该公司的系统使用时间</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn">确认</span>
+        <span (click)="close()" class="btn default-btn">关闭</span>
+    </div>
+</div>

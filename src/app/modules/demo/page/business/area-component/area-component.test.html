@@ -1,0 +1,94 @@
+<div class="test-content">
+    <div class="left-content">
+        <div class="component">
+            <h3>区域选择组件</h3>
+            <p>level属性可选值为0,1,2；分别代表省市县级别</p>
+            <div style="width: 200px;">
+                <area-select [(ngModel)]="areaCode" [label]="defaultLabel"></area-select>
+            </div>
+            <hr/>
+            <p>只选省级别level="0"</p>
+            <div style="width: 200px;">
+                <area-select [(ngModel)]="areaCode" [label]="defaultLabel" level="0"></area-select>
+            </div>
+            <span>{{areaCode}}</span>
+            <button (click)="doTest()">测试取区域Code</button>
+        </div>
+        <div class="component">
+            <h3>区域选择组件2-下拉级联</h3>
+            <div>
+                <city-dropdown  [(province)]="provinceCode" [(city)]="cityCode" [(district)]="districtCode"></city-dropdown>
+            </div>
+            <hr/>
+            <span>省：{{provinceCode}}</span>
+            <span>市：{{cityCode}}</span>
+            <span>县：{{districtCode}}</span>
+            <br>
+        </div>
+        <div class="component">
+            <h3>字典组件可以通过filterOptions数组来过滤不想要的选项</h3>
+            <h3>字典组件--多选</h3>
+            <p>multiSelect="true" 属性控制多选</p>
+            <meta-select width="150px" multiSelect="true" defaultLabel="请选择…" [(ngModel)]="metaCode1"
+                         type="riskReason"  [filterOptions]="filterOptions"></meta-select>
+            <span>{{metaCode1}}</span>
+            <br>
+            <button (click)="doTest2()">测试取字典Code</button>
+        </div>
+        <br>
+        <div>
+            <h3>字典组件--单选</h3>
+            <meta-select width="150px" defaultLabel="请选择…" [(ngModel)]="metaCode2" type="abnormalDuty"></meta-select>
+            <span>{{metaCode2}}</span>
+            <br>
+            <button (click)="doTest22()">测试取字典Code</button>
+        </div>
+        <br>
+        <div>
+            <h3>字典组件-带onChange等事件</h3><br>
+            <meta-select width="150px" defaultLabel="请选择…"
+                         [(ngModel)]="metaCode2"
+                         (onChange)="onChangeHandler($event)"
+                         (onFocus)="onFocusHandler($event)"
+                         (onBlur)="onBlurHandler($event)"
+                         type="repair"></meta-select>
+            <span>{{metaCode2}}</span>
+            <br>
+            <button (click)="doTest22()">测试取字典Code</button>
+        </div>
+
+    </div>
+
+    <div class="content-right">
+        <h3>字典类型type</h3>
+        <ul>
+            <li>service-服务类型</li>
+            <li> repair-维修类型</li>
+            <li>
+                fhreturn-返货类型
+            </li>
+            <li>
+                riskReason-出险原因
+            </li>
+            <li>
+                specifyLogistics-指定物流
+            </li>
+            <li>
+                abnormalDuty-异常责任方
+            </li>
+            <li>
+                complement-补件-任务类型
+            </li>
+            <li>
+                transportCompany-物流公司
+            </li>
+            <li>
+                goodsunit-商品单位
+            </li>
+            <li>
+                abnormalHandleWay-异常处理方式
+            </li>
+        </ul>
+    </div>
+</div>
+<p-growl [value]="msgs"></p-growl>

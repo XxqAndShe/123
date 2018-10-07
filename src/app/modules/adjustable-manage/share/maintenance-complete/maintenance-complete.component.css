@@ -1,0 +1,23 @@
+.dialog-box>.dialog-box-content>.dialog-box-com>span{height: 30px;width: 77px;text-align: center;display: inline-block;line-height: 30px;float: left;}
+.dialog-box>.dialog-box-content>.dialog-box-com>textarea{display:inline-block;height: 90px;width: 272px;padding: 10px;box-sizing: border-box;border:1px solid rgb(221,221,221);background:rgb(248,248,248);outline: none;margin-left:80px;}
+.dialog-box-top.dialog-box-com label{
+    position: absolute;
+    margin-top: 45px;
+}
+label {
+    display: block;
+    margin:5px;
+}
+.mustFill {
+    color: red;
+}
+
+.maintenanceComplete {
+    margin-left: -10px;
+}
+
+#uploadImg {
+    overflow: scroll;
+    height:200px;
+}
+

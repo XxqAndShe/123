@@ -1,0 +1,14 @@
+.inner-container{
+    padding: 10px;
+}
+.inner-container h4{
+    border-left: 3px solid #0d85e4;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 16px;
+    padding-left: 5px;
+    margin: 20px 0;
+}
+.clearfix{
+    clear: both;
+}

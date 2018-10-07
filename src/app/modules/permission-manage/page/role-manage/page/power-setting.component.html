@@ -1,0 +1,32 @@
+<div id="dialog_box02" #win02 class="dialog-box" [ngStyle]="drag.setPosition(513,403)">
+    <div id="dialog_title02" class="dialog-box-title">
+        <span class="dialogdialog-left">设置角色权限</span>
+        <span class="dialog-right" (click)="hideWin(win02)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <ul class="content-a">
+            <li *ngFor="let panelTitle of panelTitles;let i=index" [ngClass]="{'content-style':isClicked[i]}" (click)="panelChange(i)">{{panelTitle}}</li>
+        </ul>
+        <div class="content-c">
+            <div [ngClass]="{'content-show':isClicked[0]}" class="content-b">
+                <p-tree  [value]="files1" selectionMode="checkbox"></p-tree>
+            </div>
+            <div [ngClass]="{'content-show':isClicked[1]}" class="content-b">
+                <p-tree  [value]="files2" selectionMode="checkbox"></p-tree>
+            </div>
+            <div [ngClass]="{'content-show':isClicked[2]}" class="content-b">
+                <p-tree  [value]="files3" selectionMode="checkbox"></p-tree>
+            </div>
+            <div [ngClass]="{'content-show':isClicked[3]}" class="content-b">
+                <p-tree  [value]="files4" selectionMode="checkbox"></p-tree>
+            </div>
+            <div [ngClass]="{'content-show':isClicked[4]}"class="content-b">
+                <p-tree  [value]="files5" selectionMode="checkbox"></p-tree>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="primary-btn btn">保存</span>
+        <span class="default-btn btn" (click)="hideWin(win02)">取消</span>
+    </div>
+</div>

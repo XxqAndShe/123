@@ -1,0 +1,27 @@
+.task-type{
+    margin-bottom: 15px;
+}
+.task-type>select{
+    margin-left: 8px;
+    width: 100px;
+    height: 30px;
+}
+readonly-exception-info{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 9999;
+}
+
+/*右侧弹框*/
+.modal {
+    width: 1020px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -1040px;
+    z-index: 50;
+}

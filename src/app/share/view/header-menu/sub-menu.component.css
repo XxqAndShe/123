@@ -1,0 +1,36 @@
+.module-content{float:left;background-color:#eaedf1; width: 140px; height:100%;position: relative;z-index:10}
+.module-content>.module-content-title{display:inline-block;width:100%; height:50px;line-height: 50px; }
+.module-content>.module-content-title>span{font-weight:bolder; display: inline;  height: 16px;  padding:0 10px;  border-left: 3px solid #0d85e4;    width: 50%;
+  margin-left: 16px;}
+.module-content>ul{text-align:left;}
+.module-content>ul>li{width: 100%; height:38px; display: inline-block;line-height:38px;padding-left: 30px;box-sizing: border-box;}
+.module-content>ul>li:hover{background-color:#dddddd;cursor: pointer}
+.module-content>ul>li.module-content-click{background-color: #fff;}
+i{display: inline-block;width:14px; height:52px;top:50%}
+i.spread-icon{
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 41%;
+  margin-top: -26px;
+  background:url(/assets/spirticon.png) no-repeat 0 -119px;z-index:11}
+i.indent-icon{
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 41%;
+  margin-top: -26px;
+  background:url(/assets/spirticon.png) no-repeat -15px -119px;z-index:11}
+#sub-menu{
+  height: 100%;
+  /*background-color:#eaedf1;*/
+}
+#sub-menu:before{
+  clear: both;
+}
+#sub-menu:after{
+  display: table;
+  content: " ";
+  height: 0;
+  overflow: hidden;
+}

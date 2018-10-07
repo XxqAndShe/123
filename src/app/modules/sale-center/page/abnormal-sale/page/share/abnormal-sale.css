@@ -1,0 +1,35 @@
+.content{padding:20px;width:100%;height:100%;padding: 20px;  box-sizing: border-box;  position: relative;}
+.search-top{display: block;}
+.table-container {
+    width: 100%;
+    margin: 0;
+    border: 1px solid #d8e3ef;
+    border-top: none;
+    position: relative;
+    box-sizing:border-box;
+}
+div.explane{
+
+    height:calc(100% - 250px)
+}
+.sys-bottom{
+    display: block;
+}
+/*右侧弹框*/
+.modal {
+    width: 1020px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -1040px;
+    z-index: 50;
+}
+/*异常信息窗口*/
+readonly-exception-info{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -330px;
+    margin-left: -400px;
+    z-index: 9999;
+}

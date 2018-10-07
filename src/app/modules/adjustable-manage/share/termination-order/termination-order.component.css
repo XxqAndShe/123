@@ -1,0 +1,7 @@
+.dialog-box>.dialog-box-content>.dialog-box-com>span{height: 30px;width: 77px;text-align: center;display: inline-block;line-height: 30px;float: left;}
+.dialog-box>.dialog-box-content>.dialog-box-com>textarea{display:inline-block;height: 90px;width: 272px;padding: 10px;box-sizing: border-box;border:1px solid rgb(221,221,221);background:rgb(248,248,248);outline: none;}
+
+.mustFill {
+    margin-right: 5px;
+    color: red;
+}

@@ -1,0 +1,146 @@
+<div class="outer-assignMaster">
+    <!--任务管理中调度任务接口-->
+    <div class="assignmaster-table">
+        <table>
+            <thead>
+                <tr>
+                    <td>任务号</td>
+                    <td>配送类型</td>
+                    <td>品名</td>
+                    <td>支线费</td>
+                    <td>安装费</td>
+                    <td>调解费用</td>
+                    <td>总费用</td>
+                    <td>最低费用</td>
+                    <td>地址</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let obj of data1 let i = index">
+                    <td><span class="only-oht" title="{{obj.waybill}}">{{obj.waybill}}</span></td>
+                    <td><span class="only-color">{{obj.serviceType}}</span></td>
+                    <td><span class="only-oht" (mouseover)="allGoods($event,obj,op2)" (mouseleave)="cancalAll($event,op2)">{{obj.waybillGoodsCopy}}</span></td>
+                    <td><input type="text"  [(ngModel)]="obj .branchFee" #box1
+                               (input)="numbranch(box1,i,'branchFee')"></td>
+                    <td><input type="text" [(ngModel)]="obj.installFee" #box2
+                               (input)="numinstall(box2,i,'installFee')"></td>
+                    <td><input type="text" [(ngModel)]="obj.mediateFee" #mediateFee
+                               (input)="nummediate(mediateFee,i,'mediateFee')"></td>
+                    <td> <span class="only-fee" title="￥{{obj.totleFee || 0}}">￥{{obj.totleFee || 0}}</span></td>
+                    <td><span class="only-fee" title="￥{{obj.minInstallFee || 0}}">￥{{obj.minInstallFee || 0}}</span></td>
+                    <td><span class="master-adress" title="{{obj.receiveAddress}}">{{obj.receiveAddress}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="assignmaster-map">
+        <!--高德地图-->
+        <form id="form_dyy" #formBox_dyy>
+            <div class="assign-address-cx">
+                <div class="addr-control add-address">
+                    <area-select name="someName" [(ngModel)]="area" [width]="width"></area-select>
+                </div>
+                <button type="button" (click)="formBox_dyy.reset()" (mouseup)="empty()"
+                        class="clear-btn btn btn-delete">清空
+                </button>
+            </div>
+        </form>
+        <div class="assign-box">
+            <div class="assign-cover"></div>
+            <div class="assign-address-text">
+                <input type="text" name="tt" class="assign-address-input" placeholder="请输入要查询的师傅账号或姓名"
+                       [(ngModel)]="nearbyMaster">
+                <button class="btn primary-btn btn-adress" (click)="query()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+            </div>
+
+            <div class="assing-adress-list" *ngIf="listIf">
+                <ul *ngFor="let master of listMaster,let i of listMaster.length">
+                    <li (click)="assign(master)">{{master.realName}}</li>
+                </ul>
+            </div>
+            <div class="assign-master">
+                <ul *ngFor="let master of seveList,let i of
+                            seveList.length">
+                    <li>
+                        <ul class="add-ngif">
+                            <li><span class="fp-btn" (click)="distribution(master)">分配</span></li>
+                            <li class="first-li">
+                                <div title="{{master.realName}}（{{master.mobile}}）" id="total-fee">
+                                    {{master.realName}}（{{master.mobile}}）
+                                </div>
+                            </li>
+                            <li>配送：{{master.peisong}}</li>
+                            <li>安装：{{master.install}}</li>
+                            <li>
+                                <span>
+                                    接单：
+                                    <span>
+                                        <span
+                                            class="add-red-assign">{{master.order}}</span>/<span>{{master.maxOrder}}</span>
+                                    </span>
+                                </span>
+                                &nbsp;
+                                <span>
+                                    经营范围：
+                                    <span>{{master.businessScope}}</span>
+                                </span>
+                                &nbsp;
+                                <span>
+                                    优先级：
+                                    <span class="add-red-assign">{{master.priority}}</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="items-assign" *ngIf="itemsIf">此区/县没有合作师傅，请更换区域查找其他师傅</div>
+            </div>
+            <div class="master-page" *ngIf="assignMasterIf">
+                <table class="page-show">
+                    <tfoot>
+                    <tr>
+                        <td colspan="11">
+                            <span class="water-table-listbtn"></span>
+                            <span class="water-table-page">
+                             <span id="pagemsg" class="water-table-pagemsg">当前<span
+                                 style="color: red">{{page/5+1 || 0}}</span>/{{totalPages || 0}}页</span>
+                             <input type="button" id="rpbtn" (click)="rpbtn()" value="上页"/>
+                             <input type="button" id="npbtn" (click)="npbtn()" value="下页"/>
+                             <span id="pagemsg" class="water-table-pagemsg">跳转
+                             <input type="text" id="gpinput" [(ngModel)]="pageNumber" size="3" value="0"
+                                    (keyup)="showPages($event)" oninput="value=value.replace(/[^\d{1,}]/g,'')"/>页
+                             </span>
+                            </span>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <!--历史分配师傅-->
+        <div class="historical-record" *ngIf="hostory">
+            <header>历史分配师傅</header>
+            <div class="record-body">
+                <div class="record-master" *ngFor="let master of hostoryMaster">
+                    <div>{{master.realName}}({{master.mobile}})</div>
+                    <span (click)="distribution(master)">分配</span>
+                </div>
+            </div>
+        </div>
+        <!--todo 如果需再用到高德地图，请将amap放开删掉amap下面的amap-->
+        <!--<amap [pointAdress]="pointAdress"></amap>-->
+        <div style="width: 100%;height: 800px;"></div>
+    </div>
+    <a href="javascript:;" class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+
+<!--货品信息详情-->
+
+<p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false" (mouseover)="pOver(false)" (mouseleave)="pLeave(true,op2)">
+    <goods-details [goodsShow]="goodsOver" [goodsDetailsCount]="goodsDetailsCount"></goods-details>
+</p-overlayPanel>

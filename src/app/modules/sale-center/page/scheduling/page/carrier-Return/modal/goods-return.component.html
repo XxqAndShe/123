@@ -1,0 +1,16 @@
+<div class="dialog-box" id="container" [ngStyle]="drag.setPosition(300,222)">
+    <div id="header" class="dialog-box-title">
+        <span class="dialog-left">货物返回</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="row">
+            是否确定货物返回，或者已经发车？
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<p-growl [value]="msgs"></p-growl>

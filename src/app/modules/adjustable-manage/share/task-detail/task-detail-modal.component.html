@@ -1,0 +1,39 @@
+<div class="outer-modal-container">
+    <div class="modal-header">
+        <div class="first-line">
+            <span class="new-tap">售后</span>
+            <span class="gray-text">运单号</span>
+            <span class="blue-text">{{wayBill}}</span>
+            <!--<span class="service-type">配送+安装</span>-->
+            <span class="gray-text">任务单号</span>
+            <span class="blue-text">64534425</span>
+            <span class="gray-text">异常编号</span>
+            <span class="blue-text">1452545</span>
+            <span class="gray-text">分配人</span>
+            <span class="blue-text">某某</span>
+        </div>
+        <div class="second-line">
+            <span class="gray-text">任务状态</span>
+            <p-steps [(activeIndex)]="totalActiveIndex" [model]="items"></p-steps>
+            <div class="handle-time">
+                <span *ngFor="let handleTime of timeArr">{{handleTime}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-content">
+        <div class="nav-bar">
+            <button ngClass="{{infoTypeActive==='rwxx'?'active':''}}" (click)="selectInfoPanel('rwxx')">详情信息</button>
+            <button ngClass="{{infoTypeActive==='gjxx'?'active':''}}" (click)="selectInfoPanel('gjxx')">轨迹信息</button>
+            <button ngClass="{{infoTypeActive==='gzxx'?'active':''}}" (click)="selectInfoPanel('gzxx')">跟踪信息</button>
+        </div>
+
+        <task-msg *ngIf="infoTypeActive === 'rwxx'"></task-msg>
+
+        <task-path-msg *ngIf="infoTypeActive === 'gjxx'"></task-path-msg>
+
+        <task-track-msg *ngIf="infoTypeActive === 'gzxx'"></task-track-msg>
+    </div>
+
+    <a href="javascript:; " class="close-modal-btn" (click)="close()"></a>
+</div>

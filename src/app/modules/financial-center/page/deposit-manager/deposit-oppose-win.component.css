@@ -1,0 +1,19 @@
+.dialog-box-footer{
+    padding: 10px 0;
+}
+label{
+    float: left;
+    margin-right: 10px;
+}
+label>i{
+    color: red;
+}
+.dialog-box{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 240px;
+}

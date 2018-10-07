@@ -1,0 +1,365 @@
+<div class="view-con">
+    <wait-track-header (onCollect)="collectInfo($event)" #searchBox (noSelect)="doSelect()"></wait-track-header>
+    <div id="table-top">
+        <span class="task-list">任务列表</span><span (click)="showNotData()" class="abnormal-feedback" *ngIf="selectionRow?.length == 0">
+        <span class="circle">+</span>异常反馈</span>
+        <div [@btnState]="btnState" class="order-btn-wrap table-header" *ngIf="selectionRow?.length != 0">
+            <span class="select-text">已选中<span class="select-num">{{selectionRow?.length||0}}</span>项</span>
+
+            <!--调度任务-->
+            <!--待分配-->
+            <span *ngIf="tasksType=='调度任务'&&tasksStatus=='待分配' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+            <span *ngIf="selectionRow[0].realName !=''">
+                  <span class="split-line">|</span>
+                  <a href="javascript:;" class="operation-a operation-start" (click)="cAssignment()"><i></i>确认分配</a>
+            </span>
+
+            <span *ngIf="selectionRow[0].trunkEndDate">
+                 <span class="split-line">|</span>
+                 <a href="javascript:;" class="operation-a operation-stop" (click)="displayAssignMaster()"><i></i>分配师傅</a>
+            </span>
+
+             <span *ngIf="!selectionRow[0].trunkEndDate">
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-check" (click)="trunkEnd()"><i></i>干线结束</a>
+            </span>
+
+            <span *ngIf="selectionRow[0].trunkEndDate">
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-delete" (click)="changeTake()"><i></i>更改提货信息</a>
+            </span>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待受理-->
+            <span *ngIf="tasksType=='调度任务'&&tasksStatus=='已分配' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+             <span *ngIf="!selectionRow[0].trunkEndDate">
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-check" (click)="trunkEnd()"><i></i>干线结束</a>
+            </span>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-accept" (click)="acceptBill()"><i></i>接单</a>
+
+            <span *ngIf="selectionRow[0].trunkEndDate">
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-delete" (click)="changeTake()"><i></i>更改提货信息</a>
+            </span>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待预约-->
+            <span *ngIf="tasksType=='调度任务'&&tasksStatus=='已受理' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-order" (click)="reservation()"><i></i>预约</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-pick-goods" (click)="picUpGoods()"><i></i>提货</a>
+            <span *ngIf="selectionRow[0].trunkEndDate">
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-delete" (click)="changeTake()"><i></i>更改提货信息</a>
+            </span>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待签收-->
+            <span *ngIf="tasksType=='调度任务'&&tasksStatus=='已提货' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-2-order" (click)="reservation()"><i></i>二次预约</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-assign" (click)="Sign()"><i></i>签收</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--已签收-->
+            <span *ngIf="tasksType=='调度任务'&&tasksStatus=='已签收' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-assign" (click)="CancelSign()"><i></i>取消签收</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--已作废-->
+            <span *ngIf="tasksType=='调度任务'&&tasksStatus=='无效' || tasksType=='调度任务'&&tasksStatus=='已作废' || false">
+                     <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+
+            <!--维修任务-->
+            <!--待分配-->
+            <span *ngIf="tasksType=='维修任务'&&tasksStatus=='待分配' || false">
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-start" (click)="cAssignment()"><i></i>确认分配</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-stop" (click)="displayAssignMaster()"><i></i>分配师傅</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待受理-->
+            <span *ngIf="tasksType=='维修任务'&&tasksStatus=='已分配' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+
+            <!--<span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-acceptance" (click)="acceptBill()"><i></i>受理</a>
+
+            <span class="split-line">|</span>-->
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待预约-->
+            <span *ngIf="tasksType=='维修任务'&&tasksStatus=='已受理' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-order" (click)="reservation()"><i></i>预约</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--维修中-->
+            <span *ngIf="tasksType=='维修任务'&&tasksStatus=='已预约' || false">
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-2-order" (click)="reservation()"><i></i>二次预约</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-repair" (click)="openMaintenanceComplete()"><i></i>签收</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--维修完成-->
+            <span *ngIf="tasksType=='维修任务'&&tasksStatus=='已签收' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--已作废-->
+            <span *ngIf="tasksType=='维修任务'&&tasksStatus=='无效' || tasksType=='维修任务'&&tasksStatus=='已作废' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+
+            <!--返货任务-->
+            <!--待分配-->
+            <span *ngIf="tasksType=='返货任务'&&tasksStatus=='待分配' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-start" (click)="cAssignment()"><i></i>确认分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-stop" (click)="displayAssignMaster()"><i></i>分配师傅</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待受理-->
+            <span *ngIf="tasksType=='返货任务'&&tasksStatus=='已分配' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+            <!--<span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-acceptance" (click)="acceptBill()"><i></i>受理</a>
+
+            <span class="split-line">|</span>-->
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待提货-->
+            <span *ngIf="tasksType=='返货任务'&&tasksStatus=='已受理' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-pick-goods" (click)="picUpGoods()"><i></i>提货</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待返货-->
+            <span *ngIf="tasksType=='返货任务'&&tasksStatus=='已提货' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-delivery-ok" (click)="openPickGoodsFinish()"><i></i>签收</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-stop-order" (click)="openTerminataion()"><i></i>终止订单</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--返货完成-->
+            <span *ngIf="tasksType=='返货任务'&&tasksStatus=='已签收' || false">
+                <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--已作废-->
+            <span *ngIf="tasksType=='返货任务'&&tasksStatus=='无效' ||tasksType=='返货任务'&&tasksStatus=='已作废' || false">
+              <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-begin-track" (click)="showDialog('trace-win')"><i></i>跟踪</a>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+
+            <span *ngIf="tasksType=='自提'">
+                <span class="split-line">|</span>
+                <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+            </span>
+            <span (click)="closeBtn()" class="close-btn">×</span>
+        </div>
+    </div>
+
+    <div class="view-table" [ngStyle]="set.setTable('164px')">
+        <ui-grid id="page-wait-track-grid" title="&nbsp;" [data]="searchBox.data" (load)="searchBox.load($event)" (exportCSV)="searchBox.exportCSV($event)" (rowSelect)="rowSelect($event)" [(selections)]="selectionRow" [columns]="columns" (cellClick)="cellClick($event)" (cellMouseEnter)="cellMouseEnter($event,op1,op2)" (cellMouseLeave)="cellMouseLeave($event,op1,op2)">
+        </ui-grid>
+    </div>
+</div>
+<abnormal-record *ngIf="abnormalIf" [selectLineInfo]="selectLineInfo" (abnormal)="record()" (boxClocs)="hideAbnormalBox()" [boxState]="controlAbnormalBox"></abnormal-record>
+<!--预约及二次预约-->
+<order-win *ngIf="orderWin" (hideWin)="hideWin()" (onHideWin)="changeWin()" [selectLineInfo]="selectLineInfo" [taskId]="selectLineInfo[0].id"></order-win>
+
+<!--更改提货信息弹窗-->
+<manage-ChangeInformation *ngIf="ChangeIf" [taskId]="taskId" (onChangeSure)="onChangeInformationSure()" (onChangeCancle)="onChangeInformation()" [selectLineInfo]="selectLineInfo" [taskId]="taskId"></manage-ChangeInformation>
+<!--干线结束弹窗-->
+<manage-EndOfLine *ngIf="TrunkEndIf" (TrunkEndSure)="TrunkEndOver()" (TrunkEndCancl)="TrunkEndCancel()" [selectLineInfo]="selectLineInfo" [taskId]="taskId"></manage-EndOfLine>
+<!--取消签收-->
+<manage-cancelSign [selectLineInfo]="selectLineInfo" [taskId]="taskId" *ngIf="CancelSignIf" (onCancelSignOk)="changeAssignment()" (onCancelSign)="cancelCancelSign()"></manage-cancelSign>
+<!--签收-->
+<adjustable-manage-sign [selectLineInfo]="selectLineInfo" [taskId]="taskId" *ngIf="SignIf" (SignOrder)="onSign()" (onSignOrder)="changeSearch()"></adjustable-manage-sign>
+<!--取消分配-->
+<manage-cancelAllocation [selectLineInfo]="selectLineInfo" [taskId]="taskId" *ngIf="cancelAllocationIf" (onAllocation)="sureAllocation()" (onCancelAllocation)="NoAllocation()"></manage-cancelAllocation>
+<!--添加跟踪信息-->
+<trace-win trackFlag="DGZ" *ngIf="traceIf" [boxState]="traceWinState" [selectLineInfo]="selectLineInfo" (hideWin)="hideDialog($event)" (save)="oSave()"></trace-win>
+<!--终止订单-->
+<termination-order *ngIf="terminationOrderIf" [selectLineInfo]="selectLineInfo" (onTerminationOrder)="terminationOrder()" (cancelOrder)="cancelTerminationOrder()"></termination-order>
+<!--维修完成-->
+-
+<maintenance-complete *ngIf="maintenanceCompleteIf" (onMaintenanceCompleteCancel)='maintenanceCompleteCancel()' [selectLineInfo]="selectLineInfo" (onMaintenanceComplete)="maintenanceComplete()"></maintenance-complete>
+
+<!--提货完成-->
+<pick-goods-finish *ngIf="pickGoodsFinishIf" [selectLineInfo]="selectLineInfo" (onPickGoodsFinish)="pickGoodsFinish()"></pick-goods-finish>
+<!--&lt;!&ndash;调度任务分配师傅&ndash;&gt;-->
+<!--<adjust-assign class="modal" *ngIf="assignIf" [@modalState]="modelAssignMaster" (closeAssignMaster)="closeAssignMaster()" [selectLineInfo]="selectLineInfo"></adjust-assign>-->
+<!--调度任务分配师傅-->
+<adjust-assign class="modal" *ngIf="assignIf" [selectLineInfo]="selectLineInfo" [@modalState]="modelAssignMaster" [taskId]="taskId" (closeAssignMaster)="closeAssignMaster()" (onAssignment)="changeAssign()"></adjust-assign>
+<!--维修、返货任务分配师傅-->
+<repair-assign [isRepair]="isRepair" [selectedRowData]="selectLineInfo" class="modal" *ngIf="repairAssignIf" [@modalState]="repairAssignMaster ?'in':'out'" (closeAssignMaster)="closeAssign($event)" (onSaveMaster)="doSaveMaster()"></repair-assign>
+
+<!--查看详情-->
+<detail-modal class="modal" [selectLineInfo]="selectLineInfo" *ngIf="showDetailModal" [@modalState]="modalState" (closeModal)="closeModal()"></detail-modal>
+
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+    <trace-information-details [trackInfo]='trackInfo'></trace-information-details>
+</p-overlayPanel>
+
+<p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false">
+    <goods-details [goodsShow]="goodsShow" [goodsDetailsCount]="goodsDetailsCount"></goods-details>
+</p-overlayPanel>
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+    </p-footer>
+</p-confirmDialog>
+
+<p-growl [value]="msgs"></p-growl>
+<!--维修任务-->
+<repair-detail class="modal" *ngIf="isModuleDisplayArr[0]" (closeModal)="closeTaskDetailModal(0)" [@modalState]="isModuleDisplayArr1[0] ?'in':'out'" [selectedRowData]="selectLineInfo"></repair-detail>
+<!--返货任务-->
+<supplier-detail class="modal" *ngIf="isModuleDisplayArr[1]" (closeModal)="closeTaskDetailModal(1)" [@modalState]="isModuleDisplayArr1[1] ?'in':'out'" [selectedRowData]="selectLineInfo"></supplier-detail>

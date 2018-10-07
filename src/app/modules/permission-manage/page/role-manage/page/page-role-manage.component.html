@@ -1,0 +1,46 @@
+<div class="content">
+    <div class="title">角色管理</div>
+    <div class="left-content">
+        <div class="content-title">角色层级</div>
+        <div class="table-wrap">
+            <div class="wrap-title">超级管理员</div>
+            <ul class="wrap-ul">
+                <li *ngFor="let manager of managerList;let i=index"><i [ngClass]="{'add':!isshow[i],'low':isshow[i]}" (click)="showUl(i)"></i>{{manager.name}}
+                    <ul [ngClass]="{show:isshow[i]}">
+                        <li *ngFor="let member of managerList[i].list"><span class="text">{{member}}</span><span class="view-btn">查看权限</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="content-title">
+            角色列表
+            <span (click)="showAdd()"><i class="add"></i>新增</span>
+            <span (click)="showModify()"><i class="modify"></i>修改</span>
+            <span (click)="showDel()"><i class="delete"></i>删除</span>
+            <span><i class="export"></i>导出</span>
+            <span (click)="showSearch()"><i class="search"></i>查找</span>
+        </div>
+        <div class="table-wrap">
+           <table>
+               <tr>
+                   <th><i [ngClass]="{null:titSelectNull,tick:titSelectSome,select:titSelectAll}" (click)="changeTitleMode()"></i></th>
+                   <th *ngFor="let title of tableTitle">{{title}}</th>
+               </tr>
+               <tr *ngFor="let trData of tableData;let i=index">
+                   <td><i [ngClass]="{null:selectNull[i],select:!selectNull[i]}" (click)="changeMode(i)"></i></td>
+                   <td>{{trData.roleName}}</td>
+                   <td>{{trData.updateObj}}</td>
+                   <td>{{trData.updateTime}}</td>
+                   <td>{{trData.updateBef}}</td>
+                   <td>{{trData.updateAft}}</td>
+               </tr>
+           </table>
+        </div>
+    </div>
+</div>
+<role-add *ngIf="isAddWin" (isshow)="isshowWin($event)"></role-add>
+<role-modify *ngIf="isModifyWin" (isshow)="isshowWin($event)"></role-modify>
+<role-search *ngIf="isSearchWin" (isshow)="isshowWin($event)"></role-search>
+<role-del *ngIf="isDelWin" (isshow)="isshowWin($event)"></role-del>

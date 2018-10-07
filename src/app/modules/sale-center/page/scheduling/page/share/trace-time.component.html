@@ -1,0 +1,28 @@
+<div id="deposit_apply01" class="dialog-box" #dialog [ngStyle]="drag.setPosition(300,170)">
+    <div id="deposit_apply_title01" class="dialog-box-title">
+        <span class="dialogdialog-left">请选择上门时间</span>
+        <span class="dialog-right" (click)="hideWindow(dialog)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <p-calendar name="startDate" [locale]="zh" [(ngModel)]="reservationTime" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [yearRange]="yearRange" showTime="showTime"
+                    hourFormat="24"  inline="true" [readonlyInput]="true" [minDate]="minDateValue"></p-calendar>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="showSuccess(success,dialog)">保存</span>
+        <span class="btn default-btn" (click)="hideWindow(dialog)">取消</span>
+    </div>
+</div>
+<div #success id="deposit_apply" class="dialog-box" [ngStyle]="drag.setPosition(300,170)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialogdialog-left">提示</span>
+        <span class="dialog-right" (click)="hideSuccess(success,dialog)">×</span>
+    </div>
+    <div class="dialog-box-content">
+       预约{{msgHint}}
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="hideSuccess(success,dialog)">确认</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

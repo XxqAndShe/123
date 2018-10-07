@@ -1,0 +1,71 @@
+.icon {
+    background: #e45050;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 18px;
+    line-height: 18px;
+    min-width: 8px;
+    border-radius: 9px;
+    display: inline-block;
+    font-size: 12px;
+    font-style: normal;
+}
+li:hover > a.btn_jr {
+    display: block;
+}
+li{ padding-top:5px; padding-bottom:5px; padding-left:3px; float: left;  position: relative;  }
+li:hover{ background:#eeeeee;}
+.oder{ color:#333;}
+.oder .icon{ float:right; color:#fff;}
+.oder_title{ width:178px;}
+.btn_jr{ text-align:center;}
+
+.delete{ width:20px; text-align:center; line-height:20px; height:20px; margin-top:7px; float:left; }
+
+li:hover .delete a { display: block;}
+.delete a{ display:none;}
+
+
+
+.on .delete a{display:block;}
+.on .delete a:hover{color: #f40; width:20px; height:20px; border-radius:10px; background:#ccc;}
+
+.oder_type{ width:34px; height:34px; overflow:hidden; text-align:center; border-radius:17px; font-size:14px; color:#fff; line-height:34px;  float:left;}
+.oder_type:hover { cursor: default;}
+.oder_type img{ width:34px; height:34px;}
+.oder_type.xin{background:#ffbc3b;}
+.oder_type.wei{background:#3197ff;}
+.oder_type.fan{background:#8fc31f;}
+
+.oder_title{float:left;}
+.oder_title strong {
+    font-weight: normal;
+}
+.oder_title em{font-style: normal; font-size:12px;text-align:left; display:block; padding-left:5px; color:#6e7d88;}
+
+.oder{font-size:16px; color:#000; padding-left:5px; text-align:left;}
+.oder .icon{ float:right;}
+
+.oder .oder_groupTitle { border: none;}
+.oder_groupTitle input { text-align: left; color: red;}
+
+li.see .icon{ display:none;}
+li .btn_jr{background:#017dfb; width:40px; height:28px; position:absolute; top:7px; right:10px; line-height:28px; border-radius:3px; color:#fff; display:none;}
+/*li.on .btn_jr{ display:block;}*/
+/*.h_on{ background:#252c34;}*/
+
+/*IM列表样式*/
+.IMstyle:hover {background-color: rgba(0, 0, 0, .3);}
+.IMstyle .oder{font-size:16px; color:#fff; padding-left:5px; text-align:left;}
+.IMstyle .oder .icon{ float:right;}
+.IMstyle {
+    width: 270px;}
+.IMstyle.oder em{font-style: normal; font-size:12px;text-align:left; display:block; padding-left:5px; color:#ccc;}
+.IMstyle .delete a {
+    color: #fff;
+    font-weight: bold;
+    width: 17px;
+}
+.IMstyle .btn_jr {
+    right:25px;
+}

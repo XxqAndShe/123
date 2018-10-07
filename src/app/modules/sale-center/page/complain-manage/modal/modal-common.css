@@ -1,0 +1,70 @@
+i{
+    color: red;
+}
+.input-form > input,select{
+    width: 152px;
+    height: 30px;
+    box-sizing: border-box;
+}
+.complaint-type {
+    position: relative;
+    display: inline-block;
+}
+.row{
+    margin-bottom: 10px;
+}
+.normal-label{
+    display: inline-block;
+    width: 69px;
+    text-align: right;
+}
+.fl{
+    float: left;
+}
+.box-lg{
+    width: 307px;
+}
+textarea{
+    margin-left: 4px;
+}
+
+/* 必填项的红星 */
+.dialog-box-content .start-symbol {
+    color: #ff5454;
+    position: relative;
+    top: 2px;
+}
+.dialog-box-content .input-form,.dialog-box-content .input-describe {
+    padding-bottom: 15px;
+}
+.dialog-box-content .input-form > span, .dialog-box-content .input-describe > span , .dialog-box-content .add-pic > span {
+    display: inline-block;
+    width: 80px;
+}
+
+.dialog-box-content > .input-describe > textarea {
+    outline: none;
+    padding: 10px;
+    margin-left: 0;
+    vertical-align: top
+}
+
+.dialog-box-content .add-pic {
+    position: relative;
+}
+.dialog-box-content .add-pic > span.add {
+    position: absolute;
+    top: 6px;
+    padding-left: 10px;
+}
+.dialog-box-content .add-pic .ui-upload {
+    margin-left: 75px;
+    margin-right: 18px;
+}
+
+.dialog-box-content .add-pic .max_num {
+    color: #b6b6b6;
+    position: relative;
+    left: 75px;
+    width: 120px;
+}

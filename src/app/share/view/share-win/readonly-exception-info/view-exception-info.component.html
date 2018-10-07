@@ -1,0 +1,260 @@
+<div id="exception_box" class="historical-container" [ngStyle]="drag.setPosition(620,640)">
+    <div id="exception_move" class="historical-top">
+        <ul>
+            <li (click)="selectExceptionOption(0)" [class.historical-top-selected]="exceptionOption[0]">异常信息</li>
+            <li (click)="selectExceptionOption(1)" [class.historical-top-selected]="exceptionOption[1]">历史跟进信息</li>
+            <!--<li (click)="selectExceptionOption(2)" [class.historical-top-selected]="exceptionOption[2]">处理结果详情</li>-->
+        </ul>
+        <div>
+            <span style="color: white;font-size: 14px;text-align: center">{{abnormal.sourceLabel || abnormal.source || vAbnormalObj.strSource || '未知'}}</span>
+            <span class="historical-top-status">{{abnormal.abnoHandleStsName || abnormal.abnoHandleSts || abnormalSource || '未知'}}</span>
+            <span (click)="closeBox()" class="close-btn">×</span>
+        </div>
+    </div>
+    <!--异常信息页 begin-->
+    <div class="historical-abnormalinfo" [style.display]="exceptionOption[0]?'block':'none'">
+        <section>
+            <div class="row">
+                <span>
+                    <label class="blue-border" style="position: relative">异常编号</label>
+                    <span>{{abnormal.abnormalNum || vAbnormalObj.abnormalNum}}</span>
+                </span>
+            </div>
+            <div class="row">
+                <span>
+                    <label>异常类型：</label>
+                    <span>{{abnormal.abnormalTypeName || abnormal.abnormalType || abnormal.wayAbnoBigType}}</span>
+                </span>
+            </div>
+            <div class="row">
+                <span style="display: inline-block;width: 100%">
+                    <label>异常描述：</label>
+                    <span>{{abnormal.describe || vAbnormalObj.strDescribe}}</span>
+                </span>
+            </div>
+            <div class="row">
+                <div class="imgWrap">
+                    <p *ngIf="abnormalPics.length==0">无图片</p>
+                    <a *ngFor="let abnormalPic of abnormalPics" rel="fancybox" href="{{abnormalPic.picUrlPath}}">
+                        <img class="img-item" [src]="abnormalPic.picUrlPath"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <span>
+                    <label>反馈人：</label>
+                    <span>{{abnormal.feedbackMan || vAbnormalObj.feedbackMan}}</span>
+                </span>
+                <span>
+                    <label>联系电话：</label>
+                    <span>{{abnormal.feedBackPhone || vAbnormalObj.feedBackPhone}}</span>
+                </span>
+            </div>
+        </section>
+        <section>
+            <div class="row">
+                <span>
+                    <label class="blue-border" style="position: relative">任务号</label>
+                    <span>{{abnormal.waybillId}}</span>
+                </span>
+                <s (mouseout)="showInfo('cus')" (mouseover)="showInfo('cus')" class="custom-info">客户资料</s>
+            </div>
+            <div class="row">
+                <span>
+                    <label>开单网点：</label>
+                    <span>{{abnormal.billDepart || abnormal.deptName}}</span>
+                </span>
+                <span>
+                    <label>发货人：</label>
+                    <span>{{abnormal.shipper || abnormal.clientName}}</span>
+                </span>
+            </div>
+            <div class="row">
+                <span>
+                    <label>承运商：</label>
+                    <span>{{abnormal.outName || abnormal.carrier}}</span>
+                </span>
+                <span>
+                    <label>安装师傅：</label>
+                    <span>{{abnormal.worker}}</span>
+                </span>
+            </div>
+            <!--客户资料小弹框!-->
+            <div [style.display]="customerInfoState?'block':'none'" class="historical-customer">
+                <span class="short-item">客户姓名：{{customerName}}</span>
+                <span class="short-item">客户电话：{{customerMobile}}</span>
+                <p class="long-item">网点名称：{{netSetCompanyName}}</p>
+                <span class="short-item">客户类型：{{clientType}}</span>
+                <span class="short-item">折扣：{{discount}}</span>
+                <span class="short-item">结算模式：{{settlementMode}}</span>
+                <span class="short-item">所属区域：{{address}}</span>
+                <span class="short-item">业务员：{{businesser}}</span>
+                <span class="short-item">个性化服务：{{service}}</span>
+                <p class="long-item">返货收货地址：{{address}}</p>
+                <p class="long-item">备注：{{remark}}</p>
+                <ul class="clearfix">
+                    <li>联系人</li>
+                    <li>联系人电话</li>
+                    <li>责任范围</li>
+                </ul>
+                <ul class=clearfix>
+                    <li>{{customerName}}</li>
+                    <li>{{telphoto}}</li>
+                    <li>{{responArea}}</li>
+                </ul>
+            </div>
+        </section>
+        <div>
+            <textarea name="genjin" [(ngModel)]="followMsg" maxlength="300" style="width: 100%;height: 70px;resize: none"></textarea>
+        </div>
+        <!--<div class="historical-info">
+            <div class="historical-info1">
+                <p title="">异常编号：{{abnormal.abnormalNum || vAbnormalObj.abnormalNum}}</p>
+                <p title="{{abnormal.waybillId}}">运单号：<em (click)="waybillIdClick()">{{abnormal.waybillId}}</em></p>
+                <p title="">目的地：{{abnormal.endCity}}</p>
+                <p title="">承运商：{{abnormal.outName || abnormal.carrier}}</p>
+                <p title="">开单网点：{{abnormal.billDepart || abnormal.deptName}}</p>
+                <p title="">发货人：{{abnormal.shipper || abnormal.clientName}} <s (mouseout)="showInfo('cus')" (mouseover)="showInfo('cus')" class="customer-info">客户资料</s></p>
+                <p title="{{abnormal.worker}}">安装师傅：{{abnormal.worker}}</p>
+
+                &lt;!&ndash;客户资料小弹框!&ndash;&gt;
+                <div [style.display]="customerInfoState?'block':'none'" class="historical-customer">
+                    <span class="short-item">客户姓名：{{customerName}}</span>
+                    <span class="short-item">客户电话：{{customerMobile}}</span>
+                    <p class="long-item">网点名称：{{netSetCompanyName}}</p>
+                    <span class="short-item">客户类型：{{clientType}}</span>
+                    <span class="short-item">折扣：{{discount}}</span>
+                    <span class="short-item">结算模式：{{settlementMode}}</span>
+                    <span class="short-item">所属区域：{{address}}</span>
+                    <span class="short-item">业务员：{{businesser}}</span>
+                    <span class="short-item">个性化服务：{{service}}</span>
+                    <p class="long-item">返货收货地址：{{address}}</p>
+                    <p class="long-item">备注：{{remark}}</p>
+                    <ul class="clearfix">
+                        <li>联系人</li>
+                        <li>联系人电话</li>
+                        <li>责任范围</li>
+                    </ul>
+                    <ul class=clearfix>
+                        <li>{{customerName}}</li>
+                        <li>{{telphoto}}</li>
+                        <li>{{responArea}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="historical-info2">
+                <p title="">异常类型：{{abnormal.abnormalTypeName || abnormal.abnormalType || abnormal.wayAbnoBigType}}</p>
+                <p title="">异常小类：{{abnormal.abnormalTypeChildren || abnormal.abnormalChildType || abnormal.wayAbnoSmallType}}</p>
+                <p title="">反馈人：{{abnormal.feedbackMan || vAbnormalObj.feedbackMan}} 联系方式：{{abnormal.feedBackPhone || vAbnormalObj.feedBackPhone}}</p>
+                <p title="">异常描述：{{abnormal.describe || vAbnormalObj.strDescribe}}</p>
+                <p title="">处理方式：{{abnormal.handleWay || vAbnormalObj.strHandleWay}}</p>
+                &lt;!&ndash;<p title="">责任方：{{abnormal.abnormalDutyName || abnormal.abnormalDutys || abnormal.arbResponsible}}</p>&ndash;&gt;
+                <p title="">责任方：{{responsibers}}</p>
+                <p title="">商家承担金额：{{assumeFeeSum}}<button type="text" pButton label="查看图片" (click)="seeImg()"></button></p>
+                <div class="imgWrap" *ngIf="isSeeImg">
+                    <i  class="fa fa-close imgWrapClose" (click)="closeImgWrap()"></i>
+                    <p *ngIf="abnormalPics.length==0">无图片</p>
+                    <a *ngFor="let abnormalPic of abnormalPics" rel="fancybox" href="{{abnormalPic.picUrlPath}}">
+                        <img  [src]="abnormalPic.picUrlPath" width="120px"/>
+                    </a>
+                </div>
+            </div>
+
+        </div>-->
+
+        <div class="historical-form">
+            <!--<div>
+                <span>异常处理</span>
+                <span (mouseout)="showInfo()" (mouseover)="showInfo()"></span>
+            </div>-->
+            <form action="">
+                <!--1-->
+                <!--<div>
+                    <span>异常移交</span>
+                    &lt;!&ndash;<abnormalMover-select width="150px" name="exceptionMove" defaultLabel="请选择接收人" [(ngModel)]="exceptionMove"&ndash;&gt;
+                                          &lt;!&ndash;(onChange)="onChangeHandler($event)"></abnormalMover-select>&ndash;&gt;
+                    <input name="exceptionMove" [(ngModel)]="exceptionMove" readonly/>
+                </div>
+                &lt;!&ndash;2&ndash;&gt;
+                <div>
+                    <span>跟进信息</span><br/>
+                    <textarea name="genjin" id="genjin" cols="80" rows="5" [(ngModel)]="followMsg"></textarea>
+                </div>
+                &lt;!&ndash;3&ndash;&gt;
+                <div>
+                    <span>跟进图片</span>
+                    <ui-upload name="trackPic" [(ngModel)]="trackResult.fileInfos" [files]="trackResult.trackPicPath"></ui-upload>
+                </div>
+                &lt;!&ndash;4&ndash;&gt;
+                <div>
+                </div>-->
+                <!--6-->
+                <div class="form-result">
+                    <div>
+                        <span>处理结果</span>
+                        <ul id="navs">
+                            <!--  class="form-result-selected"  -->
+                            <li (click)="showDialog('repair')" [class.form-result-selected]="repaired">维修</li>
+                            <li (click)="showDialog('supply')" [class.form-result-selected]="supplied">补件</li>
+                            <li (click)="showDialog('return')" [class.form-result-selected]="returned">返货</li>
+                            <li (click)="showDialog('other')" [class.form-result-selected]="othered">其它</li>
+                            <li (click)="showDialog('veto')" [class.form-result-selected]="vetoed">否决</li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+            <!--步骤小弹框-->
+            <div [style.display]="stepState?'block':'none'" class="historical-step">
+                <p>1.操作步骤:<br>{{aBnormalGuide.text}}</p>
+                <p>2.处理方式：{{aBnormalGuide.handleWay}}</p>
+                <p>3.责任方：{{aBnormalGuide.abnormalDuty}}</p>
+                <p>4.费用标准：{{aBnormalGuide.feeStandard}}</p>
+            </div>
+        </div>
+    </div>
+    <!--历史跟进信息页 begin-->
+    <div [style.display]="exceptionOption[1]?'block':'none'">
+        <div class="historical-followup">
+            <div class="historical-followup-current">
+                <p>最新跟进</p>
+                <div class="historical-followup-item" *ngFor="let new of latestFollow">
+                    <div>
+                        <p>{{new.followContent}}</p>
+                    </div>
+                    <span>{{new.follower}}</span>
+                    <span>{{new.followTime}}</span>
+                </div>
+
+            </div>
+            <div class="historical-followup-previous">
+                <div><span>历史跟进</span><button pButton type="button" label="跟进图片" (click)="op2.toggle($event)" style="float:right"></button></div>
+                <p-overlayPanel #op2>
+                    <p *ngIf="GZImgs.length==0">无跟进图片</p>
+                    <ul>
+                        <li *ngFor="let GZImg of GZImgs" style="float:left;padding-left: 10px;">
+                            <img width="200px" src={{GZImg.picUrlPath}}/><br>
+                            <p>跟进时间：{{GZImg.picDate}}</p>
+                        </li>
+                    </ul>
+                </p-overlayPanel>
+                <div class="historical-followup-item" *ngFor="let history of historyFollow">
+                    <div>
+                        <p>{{history.followContent}}</p>
+                    </div>
+                    <span>{{history.follower}}</span>
+                    <span>{{history.followTime}}</span>
+                </div>
+            </div>
+        </div>
+        <!--历史跟进信息页 end-->
+    </div>
+    <div class="historical-btn2">
+        <button class="btn default-btn" (click)="closeBox()">关闭</button>
+    </div>
+</div>
+<ro-handle-way-other *ngIf="showOtherWin" (closeWin)="closeDialog('other')" [selectionRow]="abnormal"
+                     [subAbnormalSaleFlag]="abnormalSaleFlag" [installMaster]="otherMaster" [ycID]="ycID" [selectRow]="selectionRow"></ro-handle-way-other>
+<ro-handle-way-repair *ngIf="showRepairWin"  (closeWin)="closeDialog('repair')" [selectionRow]="abnormal" [subAbnormalSaleFlag]="abnormalSaleFlag"></ro-handle-way-repair>
+<ro-handle-way-supply *ngIf="showSupplyWin" (closeWin)="closeDialog('supply')" [selectionRow]="abnormal" [subAbnormalSaleFlag]="abnormalSaleFlag"></ro-handle-way-supply>
+<ro-handle-way-return *ngIf="showReturnWin" (closeWin)="closeDialog('return')" [selectionRow]="abnormal" [subAbnormalSaleFlag]="abnormalSaleFlag"></ro-handle-way-return>
+<ro-handle-way-veto *ngIf="showVetoWin" (closeWin)="closeDialog('veto')" [selectionRow]="abnormal" [subAbnormalSaleFlag]="abnormalSaleFlag"></ro-handle-way-veto>

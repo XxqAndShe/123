@@ -1,0 +1,114 @@
+<div class="personal-center-content">
+    <p class="personal-center-title">个人中心</p>
+    <div class="personal-center-content">
+        <div class="touxiang-change">
+            <label>头像</label><img #img [src]="portraitUrl">
+            <button (click)="triggerFile(file,img)">更改头像</button>
+            <input #file type="file" (change)="showImg($event,img)" style="display:none;">
+        </div>
+        <div>
+            <label>工号</label>
+            <input disabled type="text" [(ngModel)]="userInfo.code"><i></i></div>
+        <div>
+            <label>姓名</label>
+            <input disabled type="text" [(ngModel)]="userInfo.realName"><i></i></div>
+        <div>
+            <label>昵称</label>
+            <input type="text" maxlength="20" [(ngModel)]="userInfo.nickName">
+        </div>
+        <div>
+            <label>手机</label>
+            <input disabled type="text" [value]="userMobile"><i></i><a (click)="showChangeBox(telBox)">修改手机号</a></div>
+        <div>
+            <label>邮箱</label>
+            <input type="text" [(ngModel)]="userInfo.email" (blur)="changeEmail()">
+            <span class="email-info" [innerHTML]="emailInfo"></span>
+        </div>
+        <div>
+            <label>密码</label><a (click)="showChangeBox(passwordBox)">修改密码</a>
+        </div>
+        <div><span class="btn primary-btn" (click)="saveUserInfo()">保存</span></div>
+    </div>
+</div>
+<!--password-->
+<div [@boxState]="passwordState" #passwordBox id="change_password" class="dialog-box" [ngStyle]="drag.setPosition(413,352)">
+    <div id="password_move_area" class="dialog-box-title">
+        <span class="dialog-left">修改密码</span>
+        <span [hidden]="!invalidPw" class="error-info">{{passmodify_valid_text}}</span>
+        <span class="dialog-right" (click)="hideChangeBox(passwordBox)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div>
+            <label>当前密码</label>
+            <input [(ngModel)]="oldPwd" type="password" placeholder="当前密码" (focus)="inputFocus($event)">
+        </div>
+        <div>
+            <label>新密码</label>
+            <input [(ngModel)]="newPwd" type="password" placeholder="请输入新密码（6-20位数字，字母）" (focus)="inputFocus($event)">
+            <span [hidden]="!invalidFormatNewPw" class="error-info">密码由6-20位数字或字母组成</span>
+        </div>
+        <div>
+            <label>确认密码</label>
+            <input [(ngModel)]="angPwd" type="password" placeholder="请再次输入新密码" (focus)="inputFocus($event)">
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="savePwd()">保存</span>
+        <span class="btn default-btn" (click)="hideChangeBox(passwordBox)">取消</span>
+    </div>
+</div>
+<!-- 修改手机号弹框   -->
+<div [@boxState]="telState" #telBox id="change_mobile" class="dialog-box" [ngStyle]="drag.setPosition(412,362)">
+    <div id="tel_move_area" class="dialog-box-title">
+        <span class="dialog-left">修改手机</span>
+        <span class="dialog-right" (click)="hideChangeBox(telBox)">×</span>
+    </div>
+    <div class="dialog-content">
+        <div>
+            <label>原手机号</label><span>{{userMobile}}</span>
+        </div>
+        <div>
+            <label>新手机号</label>
+            <input [(ngModel)]="newMobile" class="new-mobile" type="text" placeholder="请输入新绑定的手机号码">
+        </div>
+        <div>
+            <label>输入验证码</label>
+            <input [(ngModel)]="verCode" class="identify-code" type="text" placeholder="请输6位数字验证码">
+            <input type="button" #getCode class="get-code" (click)="getValidateCode($event)" value="获取验证码">
+        </div>
+
+        <div class="mobile-tip">
+            <p>提示</p>
+            <p>1.如果手机未收到验证码，可能是网络延迟，请耐心等待一下。</p>
+            <p>2.您绑定的手机号仅用于接受一智通各类消息提醒，及密码找回。</p>
+            <p>3.我们不会用于其他任何非授权的用途</p>
+        </div>
+    </div>
+    <div class="dialog-footer">
+        <span class="primary-btn btn" (click)="saveMobile()">确定</span>
+        <span class="default-btn btn" (click)="hideChangeBox(telBox)">取消</span>
+    </div>
+</div>
+<!--修改邮箱-->
+<div [@boxState]="emailState" #emailBox id="change_email" class="dialog-box" [ngStyle]="drag.setPosition(413,226)">
+    <div id="email_move_area" class="dialog-box-title">
+        <span class="dialog-left">修改邮箱</span>
+        <span class="dialog-right" (click)="hideChangeBox(emailBox)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div>
+            <label>当前邮箱</label>
+            <input [(ngModel)]="thisEmail" type="email" placeholder="当前邮箱" id="thisEmail">
+        </div>
+        <div>
+            <label>新邮箱</label>
+            <input [(ngModel)]="newEmail" type="email" placeholder="新邮箱">
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="saveEmail()">保存</span>
+        <span class="btn default-btn" (click)="hideChangeBox(emailBox)">取消</span>
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

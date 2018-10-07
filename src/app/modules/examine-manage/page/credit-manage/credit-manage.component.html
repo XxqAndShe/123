@@ -1,0 +1,43 @@
+<div class="outer-container">
+	<div class="inner-container">
+		<div class="content-header">
+			<form>
+				<label>安装师傅</label>
+				<master-select name="masterName" [(ngModel)]="componentVo.realName" type="name"></master-select>
+				<label>师傅账号</label>
+				<master-select name="masterId" [(ngModel)]="componentVo.mobile" type="mobile"></master-select>
+				<button class="btn primary-btn" (click)="findComponent({'first':0, 'rows':10})" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+				<button class="btn default-btn" type="reset">清空</button>
+			</form>
+
+			<a href="javascript:;" class="export-div">导出</a>
+		</div>
+
+
+		<div *ngIf='selectNum !== 0' class="table-header">
+			<!--<span class="select-text">已选中<span class="select-num">{{selectNum}}</span>项</span>-->
+			<!--<span class="split-line">|</span>-->
+			<a href="javascript:;" class="operation-a operation-check" (click)="displayModal(0)"><i></i>查看详情</a>
+			<span class="close-btn">×</span>
+		</div>
+		<div *ngIf='selectNum === 0' class="table-header table-header1">
+			<h4>任务列表</h4>
+		</div>
+
+		<div class="table-container">
+			<ui-grid (rowSelect)="rowSelect($event)"
+					 [(selections)]="selectionRow"
+					 (load)="load($event)"
+					 [data]="data"
+
+					 [columns]="columns"></ui-grid>
+		</div>
+	</div>
+
+	<credit-manage-modal [selectionRow]="selectionRow" [master]="master" class="modal" (closeModal)="closeModal()" [@modalState]="modalState"></credit-manage-modal>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

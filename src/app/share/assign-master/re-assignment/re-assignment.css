@@ -1,0 +1,391 @@
+.outer-assignMaster {
+    width: 1020px;
+    min-height: 900px;
+    background-color: #fbfafa;
+    overflow: hidden;
+    box-shadow: -3px 0px 10px #e4e4e4;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 20;
+}
+
+a.close-modal-btn {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 78px;
+    background: url(/assets/close-modal.png);
+    z-index: 999;
+}
+.assignmaster-table{
+    width: 100%;
+    height: 200px;
+    background: #FFFFFF;
+    overflow-y: auto;
+}
+
+.assignmaster-table table thead tr{
+    width:100%;
+    height: 30px;
+    line-height: 30px;
+    background: #EEEEEE;
+}
+.assignmaster-table table thead tr td{
+    border: 1px solid #cccccc;
+    text-align: center;
+    color: #8C9095;
+}
+.assignmaster-table table tbody tr td{
+    height: 30px;
+    text-align: center;
+    color: #6ba9eb;
+}
+.assignmaster-table table tbody tr td input{
+    width: 60px;
+}
+.assignmaster-table table tbody tr td:nth-child(5), .assignmaster-table table tbody tr td:nth-child(6){
+    width: 295px;
+}
+.assignmaster-table table tbody tr td:nth-child(1),.assignmaster-table table tbody tr td:nth-child(4){
+    width: 133px;
+}
+.assignmaster-table table tbody tr td:nth-child(2),.assignmaster-table table tbody tr td:nth-child(3){
+    width: 80px;
+}
+.assignmaster-table table tbody tr td{
+    border: 1px solid #cccccc;
+}
+.assignmaster-table .return-goods tbody tr td:nth-child(2){
+    width: 65px;
+}
+.assignmaster-table .return-goods tbody tr td:nth-child(4){
+    width: 60px;
+}
+.assignmaster-table .return-goods tbody tr td:nth-child(5){
+    width: 120px;
+}
+.assignmaster-table .return-goods tbody tr td:nth-child(6),.assignmaster-table .return-goods tbody tr td:nth-child(7),
+.assignmaster-table .return-goods tbody tr td:nth-child(8){
+    width: 200px;
+}
+.assignmaster-table .return-goods tbody tr td:nth-child(2) span{
+    width: 40px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    background: #0b7dd8;
+    color: #FFFFFF;
+    border-radius: 2px;
+}
+.assignmaster-table table tbody tr td .only-oht{
+    width: 120px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.assignmaster-table table tbody tr td .only-color{
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    background: #0b7dd8;
+    color: #FFFFFF;
+    border-radius: 2px;
+}
+.assignmaster-table table tbody tr td .only-fee{
+    width: 70px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.assignmaster-table table tbody tr td .master-adress{
+    width: 300px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.assignmaster-table table tbody tr td .address-area{
+    width: 250px;
+}
+.assignmaster-table table tbody tr td .return-area{
+    width: 190px;
+}
+.assignmaster-table table tbody tr td .return-six{
+    width: 60px;
+}
+.assignmaster-table table tbody tr td .return-own{
+    width: 170px;
+}
+.amap{
+    width: 100%;
+    height: 100%;
+}
+.goodsDetails>table{
+    position: absolute;
+    top: 30px;
+    left: 600px;
+    color: #000000;
+}
+.goodsDetails>th{
+    position: absolute;
+    top: 30px;
+    left: 600px;
+    background: #aaaaaa;
+    color:#FFFFFF;
+}
+.goodsDetails>td{
+    text-align: center;
+    background: #FFFFFF;
+    color: #0c0c0c;
+    line-height: 25px;
+}
+.assignmaster-map{
+    position: relative;
+}
+.amap{
+    width: 100%;
+    height: 100%;
+}
+.assignmaster-map>.assign-box{
+    width: 385px;
+    height: 70%;
+    background: #FFFFFF;
+    position: absolute;
+    top:20px;
+    left: 20px;
+    z-index: 100;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+}
+.addr-control{
+    width: 400px;
+}
+.add-address{
+    width: 260px;
+}
+.btn-delete{
+    margin-left: 20px;
+}
+.assign-address-cx{
+    position: absolute;
+    width: 350px;
+    margin: 30px 35px;
+    z-index: 999;
+}
+.assign-address-text{
+    position: absolute;
+    width: 370px;
+    margin: 50px 15px;
+    z-index: 999;
+}
+.assign-cover{
+    width: 350px;
+    position: absolute;
+    height: 80px;
+    z-index: 888;
+    background: #FFFFFF;
+}
+.assign-address-input{
+    width: 226px;
+    height: 25px;
+    font-size: 10px;
+}
+.assign-box .assing-adress-list{
+    width: 203px;
+    height: 100px;
+    overflow: auto;
+    background: #EEEEEE;
+    position: fixed;
+    margin: 40px 16px;
+    z-index: 2000;
+    cursor: pointer;
+}
+.assing-adress-list li{
+    width:100%;
+    height: 20px;
+}
+.assing-adress-list li span{
+    display: inline-block;
+    line-height: 20px;
+    margin: 20px 10px;
+}
+.assign-box .assign-name{
+    margin-left: 10px;
+}
+.assign-box .assign-master{
+    width: 90%;
+    height:80%;
+    overflow-y: auto;
+    margin: 80px auto;
+    position: relative;
+
+}
+.assign-box .btn-adress{
+    margin-left: 55px;
+}
+.add-ngif{
+    width: 100%;
+    height: 85px;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 1px solid #c3c3c3;
+}
+.assign-master .add-ngif li{
+    margin: 0px auto;
+    display: block;
+    width: 100%;
+}
+.assign-master .add-ngif .first-li{
+    color: #0b7dd8;
+    font-size: 14px;
+    padding-top: 10px;
+}
+.assign-master .add-ngif .add-red-assign{
+    color: red;
+}
+.olist span input{
+    width: 40px;
+}
+.add-ngif>li>.fp-btn{
+    display: inline-block;
+    width: 40px;
+    height: 25px;
+    color: #EEEEEE;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 2px;
+    background: #0d85e4;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    cursor:pointer
+}
+.outer-assignMaster .assignmaster-table .remarks{
+    width: 300px;
+    text-align: left;
+}
+.remarks span{
+    width: 250px;
+    display: inline-block;
+    overflow: hidden;
+    height: 26px;
+    line-height: 43px;
+}
+#totalVolume{
+    width: 100px;
+    display: inline-block;
+    overflow: hidden;
+    height: 26px;
+    line-height: 40px;
+}
+#add-goods{
+    width: 235px;
+    text-align: inherit;
+}
+#is-repair-goods{
+    width: 198px;
+}
+.btn-delete{
+    margin-left: 75px;
+}
+.assign-address-text{
+    position: absolute;
+    width: 370px;
+    margin: 50px 15px;
+    z-index: 999;
+}
+.add-address{
+    width: 205px;
+}
+.assign-master>.items-assign{
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: -10px;
+    color: red;
+    display: inline-block;
+    text-align: center;
+    line-height: 26px;
+    border-bottom: 1px solid #ccc;
+}
+#total-fee{
+    width: 240px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+}
+.master-page{
+    position:absolute;
+    bottom: 15px;
+    left: 60px;
+}
+.master-page{
+    position:absolute;
+    bottom: 15px;
+    left: 60px;
+}
+.assignmaster-map .historical-record{
+    width: 400px;
+    height: 70%;
+    position: absolute;
+    background: #FFFFFF;
+    top:20px;
+    right: 50px;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.1);
+}
+.assignmaster-map .historical-record header{
+    font-size: 16px;
+    padding-left: 30px;
+    height: 45px;
+    line-height: 45px;
+    font-weight: 600;
+    background: #EEEEEE;
+    text-shadow:1px 0px 1px #EEEEEE;
+    color:  #0b7dd8;
+}
+.assignmaster-map .historical-record .record-body{
+    width: 100%;
+    height: 100%;
+}
+.assignmaster-map .historical-record .record-body .record-master{
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    display: inline-block;
+    border-bottom: 1px solid #c3c3c3;
+}
+.record-body .record-master div{
+    color: #0b7dd8;
+    float: left;
+    font-size: 16px;
+    padding-left: 10px;
+}
+.record-body .record-master span{
+    width: 40px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 2px;
+    text-align: center;
+    background: #0d85e4;
+    color: #FFFFFF;
+    float: right;
+    margin: 13px 20px 0 0;
+    cursor: pointer;
+}
+/*@media screen and (max-height: 768px){*/
+
+    /*.assign-box .assign-master{*/
+        /*height: 60%;*/
+    /*}*/
+    /*.master-page{*/
+        /*bottom: 100px;*/
+    /*}*/
+/*}*/

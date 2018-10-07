@@ -1,0 +1,58 @@
+<div class="content" [ngClass]="{show:!isAdd,hide:isAdd}">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <div class="left-content">
+        <!-- <ul class="top-search-content">
+             <li>
+                 <span>地区</span>
+                 <div class="addr-control">
+                     <ui-select-box name="someName" [(ngModel)]="vLateralAreaRequestVo.code"
+                                    [data-handler]="dataHandler"></ui-select-box>
+                 </div>
+             </li>
+             <li class="sub-select-list">
+                 <span>乡镇</span>
+                 <span>
+                     <p-autoComplete name="tt" [(ngModel)]="vLateralAreaRequestVo.name" [suggestions]="suggestionResult"
+                                     (completeMethod)="searchResult($event)"></p-autoComplete>
+                 </span>
+             </li>
+             <li>
+                 <button class="primary-btn btn" (click)="search($event)">查询</button>
+                 <button class="default-btn btn" type="reset">清空</button>
+             </li>
+         </ul>-->
+        <!--<area-tree
+                (onNodeSelect)="nodeSelect($event)"
+               (onNodeUnselect)="nodeUnselect($event)"
+               [(selections)]="selectedAreas" width="350px"
+                selectionMode="single">
+        </area-tree>-->
+        <div class="intel-match-area">
+            <ui-tree (onNodeSelect)="nodeSelect($event)" cache="area-tree" selectionMode="single" (load)="load($event)"></ui-tree>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="table-title">
+            <span class="title-name">列表展示</span>
+            <a href="javascript:void(0);" class="import-div" (click)="exportData()">导入</a>
+            <span class="right btn primary-btn delete-btn" (click)="delete($event)">删除</span>
+            <span class="right btn primary-btn" (click)="showPopForm('edit')">修改</span>
+            <span class="right btn primary-btn" (click)="showPopForm('add')">新增</span>
+        </div>
+        <div class="table-container">
+            <ui-grid [columns]="columns" [data]="data"  [selections]="selections" (rowSelect)="rowSelect($event)" (loadLaterPrice)="loadLaterPrice($event)"></ui-grid>
+        </div>
+    </div>
+</div>
+<div [ngClass]="{show:isAdd,hide:!isAdd}" class="content">
+    <lateral-form (boxClocs)="hidePopForm($event)" *ngIf="lateralIf"  [vLateralPriceResponseVo]="vLateralPriceResponseVo" [selectedRows]="this.selectedRows"></lateral-form>
+</div>
+
+<p-confirmDialog  width="360" #cd>
+    <p-footer>
+        <button type="button" *ngIf="isDel" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

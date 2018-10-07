@@ -1,0 +1,39 @@
+<div class="dialog-box" id="order-box" style="display:block">
+	<div class="dialog-box-title">
+		<span class="dialog-left">预约</span>
+		<span class="dialog-right" (click)="close()">×</span>
+	</div>
+	<div class="dialog-box-content" id="data-box">
+		<div class="data-box">
+			<label id="showId">选择上门时间:</label>
+			<p-calendar [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [yearRange]="yearRange" [showTime]="true" inline="true"  [(ngModel)]="Date" [readonlyInput]="true"></p-calendar>
+		</div>
+	</div>
+	<div class="dialog-box-footer" id="btn-box">
+		<button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            保存
+        </button>
+		<button class="btn default-btn" (click)="close()">取消</button>
+	</div>
+  </div>
+<div class="dialog-box" id="tianmao">
+    <div class="dialog-box-title">
+        <span class="dialog-left">提示</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content" id="data-box">
+        <div class="data-box">
+            任务单号:{{selectLineInfo[0].waybillId}}天猫预约服务失败，是否强制预约
+        </div>
+    </div>
+    <div class="dialog-box-footer" id="btn-box">
+        <button class="btn primary-btn" (click)="saveShow()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确认
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,607 @@
+<!-- 异常处理大div -->
+<div id="order_info_box" #box (blur)="infoBox.infoBoxBlur(box)" tabindex="1" [@orderInfoState]="infoBox.controlInfoBox"
+     class="exception-container">
+    <!-- 异常处理头 begin-->
+    <div class="exception-head">
+        <div class="exception-head-info">
+            <span><b>新</b>1ZT0005566</span>
+            <span>配送+安装</span>
+            <span><b>客户单号 </b>15012345678</span>
+            <span><b>开单网点 </b>一智通营业部</span>
+            <span><b>目的地 </b>广东省广州市天河区</span>
+        </div>
+        <div class="exception-head-status">
+            <span>任务状态</span>
+            <ul>
+                <!--添加/删除相应类名，就可以切换状态-->
+                <li class="exception-head-status-finished">干线开始</li>
+                <li class="exception-head-status-finished">干线结束</li>
+                <li class="exception-head-status-finished">待分配</li>
+                <li class="exception-head-status-running">待受理</li>
+                <li class="">待预约</li>
+                <li class="">待提货</li>
+                <li class="">待签收</li>
+                <li class="">已签收</li>
+            </ul>
+        </div>
+    </div>
+    <!--异常处理头 end-->
+
+    <!--异常处理导航 begin-->
+    <div class="exception-nav">
+        <ul>
+            <!--添加/删除相应类名，切换内容页-->
+            <li [class.exception-nav-selected]="navInfo[0]"><a (click)="selectNavInfo(0)">运单基本信息</a></li>
+            <li [class.exception-nav-selected]="navInfo[1]"><a (click)="selectNavInfo(1)">售后任务信息</a></li>
+            <li [class.exception-nav-selected]="navInfo[2]"><a (click)="selectNavInfo(2)">运单日志信息</a></li>
+        </ul>
+    </div>
+    <!--异常处理导航 end-->
+
+
+    <!--异常处理-运单基本信息 begin-->
+
+    <!--异常处理-运单基本信息 end-->
+
+
+    <!--异常处理-售后任务信息 begin-->
+
+    <!--异常处理-售后任务信息 end-->
+
+
+    <!--异常处理-运单基本信息 begin-->
+    <div class="exception-basicinfo" [style.display]="navInfo[0]?'block':'none'">
+        <div class="exception-basicinfo-waybill">
+            <div class="exception-basicinfo-waybill1">
+                <div>
+                    <p>运 单 号：{{waybill.oldWayBillID}}</p>
+                    <p>订 单 号：{{waybill.orderId}}</p>
+                    <p>制 单 人：{{waybill?.operator?.realName}}</p>
+                    <p>制单时间：{{waybill.operatDate}}</p>
+                </div>
+                <div>
+                    <p>客户单号：{{waybill.customerId}}</p>
+                    <p>客户卡号：{{waybill.customerId}}</p>
+                    <p>货 号：-</p>
+                    <p>目 的 地：{{waybill.endCity?.fullName}}</p>
+                    <p>交易编码：{{waybill.orderSourceCode}}</p>
+                    <p>服务类型：{{waybill?.serviceType?.label}}</p>
+                    <p>到 站：{{waybill.arriveId?.fullName}}</p>
+                    <p>业 务 员：{{waybill.salesName}}</p>
+                </div>
+            </div>
+            <div class="exception-basicinfo-waybill2">
+                <div class="clearfix">
+                    <div class="waybill2-people">
+                        <span>发</span>
+                        <p>{{waybill?.shipper?.name}}</p>
+                        <p>{{waybill?.shipper?.mobile}}</p>
+                        <p>{{waybill?.shipper?.address}}</p>
+                    </div>
+                    <div class="waybill2-people">
+                        <span>收</span>
+                        <p>{{waybill?.consignee?.name}}</p>
+                        <p>{{waybill?.consignee?.mobile}}</p>
+                        <p>{{waybill?.consignee?.address}}</p>
+                    </div>
+                </div>
+                <div>
+                    <p>运输类型：{{waybill?.transportType}}</p>
+                    <p>经由城市：{{waybill?.tranCity?.fullName}}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="exception-basicinfo-productinfo">
+            <h3> 产品信息</h3>
+            <div class="productinfo-log clearfix">
+                <div class="productinfo-log-details">
+                    <ul class="clearfix">
+                        <li>产品</li>
+                        <li>代垫贷款</li>
+                        <li>代收贷款</li>
+                        <li>代收手续费</li>
+                        <li>回扣</li>
+                        <li>税费</li>
+                        <li>提货费</li>
+                        <li>装卸费</li>
+                        <li>报关费</li>
+                        <li>中转费</li>
+                        <li>叉车费</li>
+                        <li>其他费</li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li title="">餐桌（玻璃、板式、大理石）</li>
+                        <li title="">0.0</li>
+                        <li title="">0.00</li>
+                        <li title="">0.00</li>
+                        <li title="">0.60</li>
+                        <li title="">0.60</li>
+                        <li title="">0.00</li>
+                        <li title="">166.0</li>
+                        <li title="">0.0</li>
+                        <li title="">12.0</li>
+                        <li title="">0.0</li>
+                        <li title="">0.0</li>
+                    </ul>
+                    <ul class="clearfix">
+                        <li title="">汽车</li>
+                        <li title="">0.0</li>
+                        <li title="">0.00</li>
+                        <li title="">0.00</li>
+                        <li title="">0.60</li>
+                        <li title="">0.60</li>
+                        <li title="">0.00</li>
+                        <li title="">166.0</li>
+                        <li title="">0.0</li>
+                        <li title="">12.0</li>
+                        <li title="">0.0</li>
+                        <li title="">0.0</li>
+                    </ul>
+
+                </div>
+
+                <ul class="productinfo-log-title clearfix">
+                    <li>产品 （<s>详细</s>）</li>
+                    <li>包装件数</li>
+                    <li>安装件数</li>
+                    <li>包装</li>
+                    <li>重量</li>
+                    <li>体积</li>
+                    <li>计费方式</li>
+                    <li>服务类型</li>
+                    <li>运费</li>
+                    <li>送货费</li>
+                    <li>上楼费</li>
+                    <li>安装费</li>
+                    <li>声明价值</li>
+                    <li>保价费</li>
+                </ul>
+                <!--添加productinfo-log-style类和clearfix类完成样式渲染-->
+                <!--<div  *ngFor="let good of waybill.waybillGoods">-->
+                <ul class="productinfo-log-style clearfix"  *ngFor="let good of waybill.waybillGoods">
+                    <li title="">{{good.vGoods?.name}}</li>
+                    <li title="">{{good.packingItems}}</li>
+                    <li title="">{{good.installItems}}</li>
+                    <li title="">{{good.packingItems}}</li>
+                    <li title="">{{good.weight}}</li>
+                    <li title="">{{good.volumes}}</li>
+                    <li title="">{{good.chargeType}}</li>
+                    <li title="">{{good.goodsServiceType?.label}}</li>
+                    <li title="">{{good.tranSportCharge}}</li>
+                    <li title="">{{good.deliveryCharge}}</li>
+                    <li title="">{{good.upstairsCharge}}</li>
+                    <li title="">{{good.installCharge}}</li>
+                    <li title="">{{good.valueCharge}}</li>
+                    <li title="">{{good.protectioncharge}}</li>
+                </ul>
+                <!--</div>-->
+            </div>
+
+            <div class="productinfo-remarks clearfix">
+                <ul>
+                    <li>现付：0.00</li>
+                    <li>到付：0.00</li>
+                    <li>回单付：<s>481.00</s></li>
+                    <li>月结：0.00</li>
+                    <li>其他费用：0.00</li>
+                    <li>合计金额：481.00</li>
+                    <li>回单类型：原件签单</li>
+                    <li>回单分数：<s>2</s></li>
+                    <li>回单备注：-</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exception-basicinfo-abnormalinfo">
+            <h3> 异常信息</h3>
+            <div class="abnormalinfo-log clearfix">
+                <ul class="abnormalinfo-log-title clearfix">
+                    <li>异常编号</li>
+                    <li>异常类型</li>
+                    <li>异常小类</li>
+                    <li>异常描述</li>
+                    <li>异常状态</li>
+                    <li>处理方式</li>
+                    <li>异常反馈人</li>
+                    <li>反馈人联系方式</li>
+                    <li>仲裁结果查看</li>
+                </ul>
+                <!--添加abnormalinfo-log-style类和clearfix类完成样式渲染-->
+                <ul class="abnormalinfo-log-style clearfix">
+                    <li title="">{{selectedAbnormal?.id}}</li>
+                    <li title="">{{selectedAbnormal?.abnormalTypeName}}</li>
+                    <li title="">{{selectedAbnormal?.abnormalTypeChildren}}</li>
+                    <li title="">{{selectedAbnormal?.describe}} <s></s></li>
+                    <li title="">{{selectedAbnormal?.abnoHandleStsName}}</li>
+                    <li title="">{{selectedAbnormal?.handleWay}}</li>
+                    <li title="">{{selectedAbnormal?.feedbackMan}}</li>
+                    <li title="">{{selectedAbnormal?.feedBackPhone}}</li>
+                    <li class="look-check" title="">
+                        <span>查看</span>
+                        <div class="abnormalinfo-arbitration">
+                            <p>仲裁异常类型：类型</p>
+                            <p>仲裁异常小类：类型</p>
+                            <ul class="clearfix">
+                                <li title="">责任方</li>
+                                <li title="">责任主体</li>
+                                <li title="">承担金额</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li title="">责任方</li>
+                                <li title="">主体</li>
+                                <li title="">200123</li>
+                            </ul>
+                            <p>仲裁意见：意见</p>
+                            <p>仲裁人/时间：李丽/2016-12-12 12:12:12</p>
+                            <s></s>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="abnormalinfo-log-style clearfix">
+                    <li title="">YC52565846</li>
+                    <li title="">开单错误</li>
+                    <li title="">天猫单号错误</li>
+                    <li title="天猫订单有误，帮忙改下天猫订单有误，帮忙改下天猫订单有误，帮忙改下">天猫订单有误，帮忙改下天猫订单有误，帮忙改下天猫订单有误，帮忙改下 <s></s></li>
+                    <li title="">已完成</li>
+                    <li title="">更改开单信息</li>
+                    <li title="">李先森</li>
+                    <li title="">15626270808</li>
+                    <li class="look-check" title="">
+                        <span>
+                            查看
+                        </span>
+                        <div class="abnormalinfo-arbitration">
+                            <p>仲裁异常类型：类型</p>
+                            <p>仲裁异常小类：类型</p>
+                            <ul class="clearfix">
+                                <li title="">责任方</li>
+                                <li title="">责任主体</li>
+                                <li title="">承担金额</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li title="">责任方</li>
+                                <li title="">主体</li>
+                                <li title="">200123</li>
+                            </ul>
+                            <p>仲裁意见：意见</p>
+                            <p>仲裁人/时间：李丽/2016-12-12 12:12:12</p>
+                            <s></s>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <!--异常处理-运单基本信息 end-->
+
+
+    <!--异常处理-售后任务信息 begin-->
+    <div class="exception-aftersaleinfo" [style.display]="navInfo[1]?'block':'none'">
+        <div class="details-aftersaleinfo-nav">
+            <ul>
+                <li class="details-aftersaleinfo-nav-selected">维修任务(<s>8</s>)</li>
+                <li class="">返货任务(<s>1</s>)</li>
+                <li class="">补件任务(<s>2</s>)</li>
+                <li class="">其他任务(<s>3</s>)</li>
+            </ul>
+        </div>
+        <div class="details-aftersaleinfo-container">
+            <!--维修任务页-->
+            <div class="details-aftersaleinfo-maintenance">
+                <!--每个无类名的div就是一票任务-->
+                <div>
+                    <!--进度条div-->
+                    <div class="aftersaleinfo-maintenance-status">
+                        <span>进度</span>
+                        <ul>
+                            <!--添加/删除相应类名，就可以切换状态-->
+                            <li class="aftersaleinfo-maintenance-status-finished">订单生成</li>
+                            <li class="aftersaleinfo-maintenance-status-finished">订单分配</li>
+                            <li class="">订单受理</li>
+                            <li class="">预约上门时间</li>
+                            <li class="">维修完成</li>
+                        </ul>
+                        <span>&lt;<s></s><span>
+                            <p>查看日志</p>
+                            <p>反馈图片</p>
+                            <p>签收图片</p>
+                        </span></span>
+                    </div>
+                    <!--操作时间div-->
+                    <div class="aftersaleinfo-maintenance-times">
+                        <span>操作时间</span>
+                        <span><p>2016-10-19</p><p>16:20:49</p></span>
+                        <span><p>2016-10-19</p><p>16:20:49</p></span>
+                        <span><p></p><p></p></span>
+                        <span><p></p><p></p></span>
+                        <span><p></p><p></p></span>
+                    </div>
+                    <!--备注信息div-->
+                    <div class="aftersaleinfo-maintenance-remarks">
+                        <p>维修单号：1zt13285219632-wx1</p>
+                        <p>安装师傅：陈小华</p>
+                        <p>维修费用：<s>140.00</s></p><br/>
+                        <p>异常单号：YC005556</p>
+                        <!--鼠标指向异常单号时，显示remarks-details这个div!!-->
+                        <p>备注：破损安排维修</p>
+                    </div>
+
+                    <div class="remarks-details">
+                        <p>异常类型：客户原因</p>
+                        <p>异常小类：客户原因</p>
+                        <p>异常描述：客户原因</p>
+                        <p>反馈人：小燕子</p>
+                        <p>联系方式：15236201321</p>
+                        <p>处理方式：维修</p>
+                        <p>责任方：一智通</p>
+                        <p>商家承担金额：<s>¥100</s></p>
+                        <p>处理结果描述：效率好高</p>
+                    </div>
+                    <!--查看日志弹框-->
+                    <div class="aftersaleinfo-showlog">
+                        <div class="aftersaleinfo-showlog-title">
+                            <h3>日志信息</h3>
+                            <s></s>
+                        </div>
+                        <div class="aftersaleinfo-showlog-content">
+                            <ul class="clearfix">
+                                <li>操作时间</li>
+                                <li>操作人</li>
+                                <li>操作类型</li>
+                                <li>操作信息</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li>2016-05-05 12:12:12</li>
+                                <li title="">操作人</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li>2016-05-05 12:12:12</li>
+                                <li title="">操作人</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <!--进度条div-->
+                    <div class="aftersaleinfo-maintenance-status">
+                        <span>进度</span>
+                        <ul>
+                            <!--添加/删除相应类名，就可以切换状态-->
+                            <li class="aftersaleinfo-maintenance-status-finished">订单生成</li>
+                            <li class="aftersaleinfo-maintenance-status-finished">订单分配</li>
+                            <li class="">订单受理</li>
+                            <li class="">预约上门时间</li>
+                            <li class="">维修完成</li>
+                        </ul>
+                        <span>&lt;<s></s><span>
+                            <p>查看日志</p>
+                            <p>反馈图片</p>
+                            <p>签收图片</p>
+                        </span></span>
+                    </div>
+                    <!--操作时间div-->
+                    <div class="aftersaleinfo-maintenance-times">
+                        <span>操作时间</span>
+                        <span><p>2016-10-19</p><p>16:20:49</p></span>
+                        <span><p>2016-10-19</p><p>16:20:49</p></span>
+                        <span><p></p><p></p></span>
+                        <span><p></p><p></p></span>
+                        <span><p></p><p></p></span>
+                    </div>
+                    <!--备注信息div-->
+                    <div class="aftersaleinfo-maintenance-remarks">
+                        <p>维修单号：1zt13285219632-wx1</p>
+                        <p>安装师傅：陈小华</p>
+                        <p>维修费用：<s>140.00</s></p><br/>
+                        <p>异常单号：YC005556</p>
+                        <!--鼠标指向异常单号时，显示remarks-details这个div!!-->
+                        <p>备注：破损安排维修</p>
+                    </div>
+
+                    <div class="remarks-details">
+                        <p>异常类型：客户原因</p>
+                        <p>异常小类：客户原因</p>
+                        <p>异常描述：客户原因</p>
+                        <p>反馈人：小燕子</p>
+                        <p>联系方式：15236201321</p>
+                        <p>处理方式：维修</p>
+                        <p>责任方：一智通</p>
+                        <p>商家承担金额：<s>¥100</s></p>
+                        <p>处理结果描述：效率好高</p>
+                    </div>
+                    <!--查看日志弹框-->
+                    <div class="aftersaleinfo-showlog">
+                        <div class="aftersaleinfo-showlog-title">
+                            <h3>日志信息</h3>
+                            <s></s>
+                        </div>
+                        <div class="aftersaleinfo-showlog-content">
+                            <ul class="clearfix">
+                                <li>操作时间</li>
+                                <li>操作人</li>
+                                <li>操作类型</li>
+                                <li>操作信息</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li>2016-05-05 12:12:12</li>
+                                <li title="">操作人</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li>2016-05-05 12:12:12</li>
+                                <li title="">操作人</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <!--进度条div-->
+                    <div class="aftersaleinfo-maintenance-status">
+                        <span>进度</span>
+                        <ul>
+                            <!--添加/删除相应类名，就可以切换状态-->
+                            <li class="aftersaleinfo-maintenance-status-finished">订单生成</li>
+                            <li class="aftersaleinfo-maintenance-status-finished">订单分配</li>
+                            <li class="">订单受理</li>
+                            <li class="">预约上门时间</li>
+                            <li class="">维修完成</li>
+                        </ul>
+                        <span>&lt;<s></s><span>
+                            <p>查看日志</p>
+                            <p>反馈图片</p>
+                            <p>签收图片</p>
+                        </span></span>
+                    </div>
+                    <!--操作时间div-->
+                    <div class="aftersaleinfo-maintenance-times">
+                        <span>操作时间</span>
+                        <span><p>2016-10-19</p><p>16:20:49</p></span>
+                        <span><p>2016-10-19</p><p>16:20:49</p></span>
+                        <span><p></p><p></p></span>
+                        <span><p></p><p></p></span>
+                        <span><p></p><p></p></span>
+                    </div>
+                    <!--备注信息div-->
+                    <div class="aftersaleinfo-maintenance-remarks">
+                        <p>维修单号：1zt13285219632-wx1</p>
+                        <p>安装师傅：陈小华</p>
+                        <p>维修费用：<s>140.00</s></p><br/>
+                        <p>异常单号：YC005556</p>
+                        <!--鼠标指向异常单号时，显示remarks-details这个div!!-->
+                        <p>备注：破损安排维修</p>
+                    </div>
+
+                    <div class="remarks-details">
+                        <p>异常类型：客户原因</p>
+                        <p>异常小类：客户原因</p>
+                        <p>异常描述：客户原因</p>
+                        <p>反馈人：小燕子</p>
+                        <p>联系方式：15236201321</p>
+                        <p>处理方式：维修</p>
+                        <p>责任方：一智通</p>
+                        <p>商家承担金额：<s>¥100</s></p>
+                        <p>处理结果描述：效率好高</p>
+                    </div>
+                    <!--查看日志弹框-->
+                    <div class="aftersaleinfo-showlog">
+                        <div class="aftersaleinfo-showlog-title">
+                            <h3>日志信息</h3>
+                            <s></s>
+                        </div>
+                        <div class="aftersaleinfo-showlog-content">
+                            <ul class="clearfix">
+                                <li>操作时间</li>
+                                <li>操作人</li>
+                                <li>操作类型</li>
+                                <li>操作信息</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li>2016-05-05 12:12:12</li>
+                                <li title="">操作人</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                            </ul>
+                            <ul class="clearfix">
+                                <li>2016-05-05 12:12:12</li>
+                                <li title="">操作人</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                                <li title="">分配安装师傅（范冰冰）</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--异常处理-售后任务信息 end-->
+
+    <!--异常处理-运单日志信息 begin-->
+    <div class="exception-loginfo" [style.display]="navInfo[2]?'block':'none'">
+        <h3> 日志信息</h3>
+        <div class="details-loginfo-log clearfix">
+            <ul class="details-loginfo-log-title clearfix">
+                <li>操作时间</li>
+                <li>日志类型</li>
+                <li>操作信息</li>
+                <li>操作人</li>
+                <li>网点名称</li>
+                <li>操作系统</li>
+            </ul>
+            <!--添加details-loginfo-log-style类和clearfix类完成样式渲染-->
+            <ul class="details-loginfo-log-style clearfix">
+                <li>2016-12-12 15:17:11</li>
+                <li>制单</li>
+                <li title="新开单">新开单</li>
+                <li>夏春花-支装事业部</li>
+                <li>一智通支装业务事业部</li>
+                <li>TMS</li>
+            </ul>
+            <ul class="details-loginfo-log-style clearfix">
+                <li>2016-12-12 15:17:11</li>
+                <li>短途交接</li>
+                <li title="制作短途交接单，交接单号：JD56453">制作短途交接单，交接单号：JD56453</li>
+                <li>夏春花-支装事业部</li>
+                <li>一智通支装业务事业部</li>
+                <li>TMS</li>
+            </ul>
+            <ul class="details-loginfo-log-style clearfix">
+                <li>2016-12-12 15:17:11</li>
+                <li>短途交接</li>
+                <li title="制作短途交接单，交接单号：JD56453 制作短途交接单，交接单号：JD56453">制作短途交接单，交接单号：JD56453 制作短途交接单，交接单号：JD56453</li>
+                <li>夏春花-支装事业部</li>
+                <li>一智通支装业务事业部</li>
+                <li>TMS</li>
+            </ul>
+            <ul class="details-loginfo-log-style clearfix">
+                <li>2016-12-12 15:17:11</li>
+                <li>短途交接</li>
+                <li title="制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453">制作短途交接单，交接单号JD56453
+                    制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453
+                </li>
+                <li>夏春花-支装事业部</li>
+                <li>一智通支装业务事业部</li>
+                <li>TMS</li>
+            </ul>
+            <ul class="details-loginfo-log-style clearfix">
+                <li>2016-12-12 15:17:11</li>
+                <li>短途交接</li>
+                <li title="制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453">制作短途交接单，交接单号JD56453
+                    制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453
+                </li>
+                <li>夏春花-支装事业部</li>
+                <li>一智通支装业务事业部</li>
+                <li>TMS</li>
+            </ul>
+            <ul class="details-loginfo-log-style clearfix">
+                <li>2016-12-12 15:17:11</li>
+                <li>短途交接</li>
+                <li title="制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453">制作短途交接单，交接单号JD56453
+                    制作短途交接单，交接单号JD56453 制作短途交接单，交接单号JD56453
+                </li>
+                <li>夏春花-支装事业部</li>
+                <li>-</li>
+                <li>APP</li>
+            </ul>
+        </div>
+    </div>
+    <!--异常处理-运单日志信息 end-->
+
+</div>
+<!--异常处理大div end-->

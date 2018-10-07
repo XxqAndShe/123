@@ -1,0 +1,65 @@
+<div class="app-container">
+    <div class="app-container">
+        <div class="content-header">
+            <form>
+                <div class="complaint-input">
+                    <label>创建日期：</label>
+                    <div>
+                        <p-calendar name="startDate" [(ngModel)]="dataCreatedBeginTime" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                    </div>
+                    <div>
+                        <p-calendar name="endDate" [(ngModel)]="dataCreatedEndTime" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                    </div>
+                </div>
+                <div class="complaint-input">
+                    <label>投诉类型</label>
+                    <div class="complaint-select">
+                        <complaint-select  (onChange)="onCatalogChange($event)" width="170px" name="complaint" [(ngModel)]="CatalogId"></complaint-select>
+                    </div>
+                </div>
+                <div class="complaint-input">
+                    <label>创建人</label>
+                    <div>
+                        <input type="text" name="penaltySmallCatelogId" [(ngModel)]="complaitManageVo.createUserName">
+                    </div>
+                </div>
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset" (click)="resetAll()">清空</button>
+            </form>
+        </div>
+        <div class="table-header" *ngIf="selections.length !== 0">
+            <span class="select-text">已选中<span class="select-num">{{selections?.length || 0}}</span>项</span>
+            <span class="split-line" *ngIf='cooperationState'>|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="shareType('add')"><i></i>添加投诉类型</a>
+			<span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-modify" (click)="shareType('modify')"><i></i>修改投诉类型</a>
+            <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-delete" (click)="shareType('del')"><i></i>删除投诉类型</a>
+            <span class="close-btn" (click)="DeleteSelectNum()">×</span>
+        </div>
+        <div class="table-header table-header1" style="padding: 0px 15px" *ngIf="selections.length == 0">
+            <h4>详情列表</h4>
+            <span class="split-line" *ngIf='cooperationState'>|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="shareType('add')"><i></i>添加投诉类型</a>
+        </div>
+        <div class="table-container">
+            <ui-grid (rowSelect)="rowSelect($event)"
+                     (load)="load($event)"
+                     [data]="data"
+                     [(selections)]="selections"
+                     [columns]="columns" [showEditColumn]="false" [enableExport] = "false"></ui-grid>
+        </div>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<!--新增-->
+<add-and-modify *ngIf="share == 'add'" (close)="close($event)" [whatType]="share"></add-and-modify>
+<!--修改-->
+<add-and-modify *ngIf="share == 'modify'" (close)="close($event)"  [whatType]="share" [selections]="selections"></add-and-modify>
+<!--删除-->
+<complait-del *ngIf="share == 'del'" (close)="close($event)" [selections]="selections"></complait-del>
+

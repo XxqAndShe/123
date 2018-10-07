@@ -1,0 +1,100 @@
+@media screen and (max-width:321px){  .m-navlist{font-size:15px}  }
+
+@media screen and (min-width:321px) and (max-width:400px){.m-navlist{font-size:16px}  }
+
+@media screen and (min-width:400px){  .m-navlist{font-size:18px}  }
+
+body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,a,code,em,img,q,small,strong,dd,dl,dt,li,ol,ul,fieldset,form,label,table,tbody,tr,th,td,input{margin:0;padding:0;border:0; font-size: 12px;}
+/*body{font-size:32px;font-size:.32rem;max-width:1080px;margin:0 auto;background:#f6f6f6;font-family:'STHeiti','Microsoft YaHei',Helvetica,Arial,sans-serif;-webkit-tap-highlight-color:rgba(0,0,0,0)}*/
+a,a:active,a:hover,a:focus,a:visited{text-decoration:none}
+a,img{-webkit-touch-callout:none}
+ol,ul,li{list-style:none}
+.clear{ clear: both;}
+.copyright{ text-align: center; font-size: .24rem; color: #666666; padding-bottom: .4rem; padding-top: .2rem;}
+
+html{background:#f2f2f2;}
+body{width:7.5rem; margin:0 auto;}
+
+/*头部样式*/
+#nav{ position: fixed; width: 7.5rem; z-index: 9999;top:0px;}
+#connt{}
+#connt h3{ font-size: .30rem; padding-top: 0.1rem;}
+#connt p{ font-size: 0.3rem; padding-top: 0.15rem; line-height: .44rem; padding-left: .3rem;}
+#flash{width:7.1rem;height:4.20rem;}
+.cont_wap{ padding-top: .88rem;}
+.nav{ height:0.88rem; background: #4da4fe; font-size: 0.36rem; text-align: center; line-height: 0.88rem; color: #FFFFFF;  background: -webkit-linear-gradient(left,#7a69ff,#45bcff);  background: -o-linear-gradient(left,#7a69ff,#45bcff);  background: -moz-linear-gradient(left,#7a69ff,#45bcff);  background: -mos-linear-gradient(left,#7a69ff,#45bcff);  background: linear-gradient(left,#7a69ff,#45bcff);}
+.fanhui{ float: left;position: absolute; left: 0.2rem; top: 0.22rem; height: 0.44rem; line-height: 0.44rem; font-size: .32rem;}
+.fanhui img{ height: 0.44rem; float: left; margin-right: 0.1rem;}
+
+.btn_box{ height: 1.5rem; background: #ffffff; }
+.btn_a{ height:0.98rem; width: 2.23rem; background: white; float: left; margin-left: 0.2rem; margin-top: 0.23rem; border-radius: 10px; font-size: 0.24rem; line-height: 0.6rem; color: black; }
+.btn_a img{ width: 0.60rem; height: 0.60rem; margin-top: 0.20rem; margin-left: 0.15rem; margin-right: 0.1rem; float: left;}
+
+
+.connt{background: #ffffff;  margin-top: 0.2rem; padding-top: 0.2rem; margin-bottom: 0.2rem;}
+
+.cont_nav{ border-left: 8px  solid #4da4fe; height: 0.35rem; font-size: 0.32rem; line-height: 0.32rem; color: #333333; text-indent: 0.2rem;}
+
+.big_pic{ width: 7.1rem; height: 4rem; padding: 0.2rem; }
+.big_pic .pic{ width: 7.1rem;  height:3rem;overflow: hidden;}
+.big_pic .pic img { width: 7.1rem; /* height:3rem;*/}
+
+.title{ margin-top: 0.15rem;}
+.title h3{ font-size: 0.3rem; color:#333333;}
+.title p{ font-size: 0.28rem; color: #999999;}
+
+.sime_pic{ width: 7.1rem; height: 1.6rem; padding: 0.2rem; border-bottom: 1px solid #e5e5e5;background: #FFFFFF;}
+.sime_pic .pic{ float: left; margin-right: 0.2rem; position: relative}
+.sime_pic .pic .ico_shiping{ position: absolute; left:0rem; top:0rem; width: .44rem;  height:0.44rem ; text-align: center; line-height: 0.44rem; background:rgba(77,164,254,0.7); color: #ffffff;}
+.sime_pic .pic .ico_wenzhang{ position: absolute; left:0rem; top:0rem; width: .44rem;  height:0.44rem ; text-align: center; line-height: 0.44rem; background:rgba(255,153,0,0.7); color: #ffffff;}
+
+.sime_pic .pic img { width: 2.5rem; height:1.5rem;}
+.sime_pic .title { margin-top: 0.05rem;}
+.sime_pic .title p{ font-size: 0.28rem; color: #999999; margin-top: 0.2rem;}
+
+.list_pic{ width: 3.45rem;  height:3.10rem; margin-left: 0.2rem; margin-top: 0.2rem; float: left;}
+.list_pic .pic img{ width: 3.45rem; height: 2.2rem;}
+
+.list_pic .title{ margin: 0rem;}
+
+
+.author{ height: 0.8rem; border-bottom: 1px solid #e5e5e5; background: #FFFFFF; padding: 0.2rem;}
+.author .name_pic{ width: 0.8rem; height:0.8rem; border-radius: 0.4rem; background: #eeeeee; overflow: hidden; float: left;}
+.author .name_pic img{ width: 0.8rem; height:0.8rem; }
+
+.author .title{ margin: 0rem; float: left; margin-left: 0.1rem; width: 6.15rem;}
+
+.author .title h3{ }
+.author .title span{ float: right; color: #48b7ff; font-weight: normal;}
+
+.cont_wap .cont{ height:100%; background: #FFFFFF; padding: 0.2rem; font-size: 0.30rem; color: #333333;}
+.cont_wap .cont img { width: 7.1rem; margin-top: 0.1rem; margin-bottom: 0.1rem;}
+
+
+.wenti_list{  height:0.4rem; border-bottom: 1px solid #e5e5e5; padding-top: 0.3rem; padding-bottom: 0.3rem;padding-left: 0.2rem; padding-right: 0.2rem; background: #FFFFFF;}
+
+.wenti_list .ico{ width: 0.44rem; height: 0.44rem; background: #4da4fe; color: #FFFFFF; font-size: 0.28rem;  text-align: center; float: left; margin-right: 0.1rem; line-height: 0.44rem;border-radius: 2px;}
+
+.wenti_list h3{ float: left; font-size: .32rem; color: #07355d;}
+
+
+.wenti_cont{  border-bottom: 1px solid #e5e5e5; padding-top: 0.3rem; padding-bottom: 0.3rem;padding-left: 0.2rem; padding-right: 0.2rem; background: #FFFFFF; margin-top: 0.2rem; margin-bottom: 0.2rem;}
+
+.wenti_cont .ico{ width: 0.44rem; height: 0.44rem; background: #ff9900; color: #FFFFFF; font-size: 0.28rem;  text-align: center; float: left; margin-right: 0.1rem; line-height: 0.44rem;border-radius: 2px;}
+
+.wenti_cont p{ font-size: .30rem; color: #333333; width: 6.5rem; float:left;}
+
+.table{ padding-top: 0.2rem;}
+.table h3{ font-size: 0.30rem; padding-bottom: .1rem;}
+.table p{ font-size: 0.28rem; color: #666666;}
+
+
+#no_data_img{
+    display:none;
+    text-align: center;
+    margin-top: 30%;
+}
+
+#no_data_img p{
+    color: #696565;
+}

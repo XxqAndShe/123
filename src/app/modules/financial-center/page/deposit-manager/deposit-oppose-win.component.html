@@ -1,0 +1,14 @@
+<div class="dialog-box" style="display:block">
+    <div class="dialog-box-title">
+        <span class="dialog-left">审核不通过</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <label><i>* </i>不通过原因</label>
+        <textarea cols="50" rows="7" placeholder="{{placeTxt}}" [(ngModel)]="opposeReason" maxlength="200"></textarea>
+    </div>
+    <div class="dialog-box-footer">
+        <button class="btn primary-btn" (click)="save()">确认</button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>

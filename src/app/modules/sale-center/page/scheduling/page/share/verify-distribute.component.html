@@ -1,0 +1,15 @@
+<div id="deposit_apply" class="dialog-box" #dialog [ngStyle]="drag.setPosition(300,170)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialogdialog-left">提示</span>
+        <span class="dialog-right" (click)="hideWindow(dialog)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        请确认所选择的任务 <span class="master">{{content.maintno}}</span> 等任务，是否指派给师傅 <span class="master">{{content.vRepairTaskName}}</span>，确认费用 <span class="master">￥{{fee}} </span>元/(人民币)是否合理，是否确认分配
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="affirm()">确认</span>
+        <span class="btn default-btn" (click)="hideWindow(dialog)">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

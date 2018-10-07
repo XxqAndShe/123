@@ -1,0 +1,68 @@
+.outer-modal-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fbfafa;
+    overflow: hidden;
+    box-shadow: -3px 0px 10px #e4e4e4;
+}
+.modal-header {
+    padding: 22px;
+    height: 90px;
+    box-shadow: -3px 0px 10px #e4e4e4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+.modal-content {
+    padding: 22px;
+}
+.modal-content>div>h4{
+    border-left: 3px solid #0d85e4;
+    height: 16px;
+    line-height: 16px;
+    padding: 0 5px;
+    font-size: 16px;
+    font-weight: normal;
+}
+.modal-content>div:nth-child(2){
+    width: 100%;
+    overflow: auto;
+    max-height: 45%;
+    border-left: 1px solid #d8e3ef;
+    margin-top: 15px;
+}
+.modal-content>div>table>thead>tr>th{
+    background-color: #0d85e4;
+    color: #fff;
+    text-align: left;
+    padding: 12px 10px;
+}
+.modal-content table{
+    border-collapse: collapse;
+    border: 1px solid #d8e3ef;
+    width: 2000px;
+    margin-left: -1px;
+}
+.modal-content table th, .modal-content table td{
+    padding: 10px 10px;
+}
+.modal-content table thead tr{
+    background-color: #f7f8fa;
+}
+.modal-content table tbody tr:nth-child(2n) {
+    background-color: #f7f8fa;
+}
+.modal-content table tbody tr:nth-child(2n+1) {
+    background-color: #ffffff;
+}
+a.close-modal-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: 78px;
+    background: url(/assets/close-modal.png);
+    margin-top: -39px;
+}
+.modal-header p-autoComplete{
+    margin-right: 20px;
+}

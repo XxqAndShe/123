@@ -1,0 +1,48 @@
+<div class="content1">
+    <div class="content1_in">
+        <div class="top_cun">
+            <div class="j_currtun">
+                <h1 class="logo">
+                    <a href="javascript:void(0)"></a>
+                </h1>
+                <p>只做品质家装服务</p>
+            </div>
+        </div>
+
+        <div class="bottom_cun">
+            <div class="left_cun"></div>
+            <div class="right_cun">
+                <span class="cun_titl">欢迎登录</span>
+                <span [hidden]="!errorFlag" class="error-text">{{errorInfo}}</span>
+                <span class="cun_user">
+							<label><i class="iconfont yonhu" title="会员名"></i></label>
+							<input id="user_name" [(ngModel)]="loginUser.mobile" class="User_name" type="text"  maxlength="11" placeholder="输入手机号" (focus)="inputFocus($event)"/>
+							<span id="clear_name" class="xi guan_bi"></span>
+                </span>
+                <span class="cun_user">
+							<label><i class="iconfont mima" title="密码"></i></label>
+							<input class="User_name" [(ngModel)]="loginUser.password" type="password" maxlength="16" placeholder="密码" (focus)="inputFocus($event)" (keyup.enter)="doLogin()"/>
+							<span id="show_password" class="xi cha_kan"></span>
+                </span>
+                <span class="cun_user forget">
+							<span class="left"><label><input type="checkbox" name="check" checked="checked">14天内自动登录</label></span>
+                <span class="right"><a
+                                    href="security/forgotpwd">忘记密码？</a></span>
+                </span>
+                <span class="cun_user Signin">
+							<a href="javascript:void(0)" class="cun_Signin" (click)="doLogin()">登录</a>
+						</span>
+            </div>
+        </div>
+        <div class="cun_about" style="display: none">
+            <ul>
+                <li>Copyright©{{copyrightYear}}</li>
+                <li>|</li>
+                <li><a href="#">关于我们 </a></li>
+                <li>|</li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<p-growl [value]="msgs" sticky="sticky"></p-growl>

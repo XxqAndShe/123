@@ -1,0 +1,49 @@
+.select_state{ width: 1600px; margin-top: 10px;}
+.select_state .register{ line-height: 30px; }
+.select_state .register .title{ line-height: 28px; color: #333333; }
+.select_state .register .time{  position:relative; margin-left: 8px;}
+/*.register 有line-height使得日期组件显示错误，这里重设*/
+.select_state .register .time p-calendar{line-height: 16px;}
+/*.select_state .register .time>input{ width: 84px; height: 30px; line-height: 30px; border:1px solid #dddddd; padding: 2px; margin-left:10px; box-sizing: border-box; }*/
+.yuandan {  display: inline; margin: 0 5px;}
+.yuandan.hide{display: none}
+.yuandan-spec{margin:0 5px 0 0;}
+.yuandan span { height: 30px; line-height: 30px; color: #343d47;display: inline-block;width: 56px;}
+.yuandan span.yundanhao {
+    width: 50px;
+    margin-left: 6px;
+}
+.Other{
+    margin: 0;
+}
+.traceTime {
+    margin-left: 20px;
+}
+.yuandan input{width: 125px; height: 28px; line-height: 28px; padding-left: 3px; border: 1px solid #cccccc; margin: 0 5px;}
+.yuandan .sele{  padding-left: 10px; width: 125px; height: 33px; line-height: 33px; border: 1px solid #ccc;}
+.primary-btn{margin-left:10px;}
+.select_state .shaixuan {display: inline-block; margin-left: 10px; padding-left: 28px; font-size: 13px;background:url(/assets/icon/select.png) left center no-repeat;line-height: 30px;color: #3091f2; cursor: pointer;}
+/*my-date-picker{z-index:10;position:absolute;left:9px;top: 24px;}*/
+
+/*表格头*/
+.show-flow-list>li>i{width:17px;height:17px;}
+.show-flow-list>li:nth-child(3)>i{background:url('/assets/operation.png') no-repeat 0 -89px;  }
+.show-flow-list>li:nth-child(2)>i{background:url('/assets/operation.png') no-repeat -92px -30px; }
+.show-flow-list>li:nth-child(4)>i{background:url('/assets/operation.png') no-repeat -94px -117px; }
+
+/*搜索框媒体查询*/
+@media screen and (max-width: 1024px) {
+    .select_state{width:1024px;}
+    .yuandan .sele{width:60px;}
+    .yuandan span{width:50px}
+}
+/*搜索框*/
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .select_state{width:1366px;}
+    .yuandan .sele{width:95px;}
+}
+.typeCode{
+    display: inline-block;
+    height: 30px;
+    box-sizing: border-box;
+}

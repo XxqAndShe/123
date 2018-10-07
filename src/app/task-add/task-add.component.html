@@ -1,0 +1,81 @@
+<div class="content1">
+    <div class="msf">
+        <div class="msf_in">
+					<span class="left" style="margin-top: 10px;width: 200px;">
+						<h1 style="color:#fff;width: 200px;">TMS任务同步</h1>
+					</span>
+            <span class="right">
+						<ul>
+							<li><a href="/">进入IPS系统</a></li>
+                            <!--<li>|</li>
+                            <li><a href="#">官网首页</a></li>-->
+						</ul>
+					</span>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="left-con">
+
+            <div class="ui-datatable ui-widget">
+                <div class="ui-datatable-tablewrapper">
+                    <table class="table-con">
+                        <thead class="ui-datatable-thead">
+                        <tr class="ui-state-default">
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell;">
+                                <!----><span class="ui-column-title">运单号</span>
+
+                            </th>
+
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell;">
+                                <!----><span class="ui-column-title">同步时间</span>
+
+                            </th>
+
+
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell;">
+                                <!----><span class="ui-column-title">同步状态</span>
+                            </th>
+
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell;">
+                                <!----><span class="ui-column-title">备注信息</span>
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <!---->
+                        <tbody class="ui-datatable-data ui-widget-content" style=" text-align: center; ">
+                        <!---->
+                        <tr class="ui-widget-content" *ngFor="let row of data;let i=index;">
+                            <td style="display: table-cell;">
+                                <span class="ui-cell-data">{{row['waybillID']}}</span>
+                            </td>
+                            <td style="display: table-cell;">
+                                <span class="ui-cell-data">{{row['current_datetime']}}</span>
+                            </td>
+                            <td style="display: table-cell;">
+                                <span class="ui-cell-data">{{row['status']}}</span>
+                            </td>
+                            <td style="display: table-cell;">
+                                <span class="ui-cell-data">{{row['remarks']}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="right-con">
+            <textarea pInputTextarea placeholder="请输入运单号，多单号用“,”间隔，或者使用回车换行" [(ngModel)]="orderIds"></textarea>
+            <button pButton type="button" (click)="query()" icon="fa-search" [disabled]="!orderIds" label="同步"></button>
+            <button pButton type="button" (click)="orderIds=''" icon="fa-trash" [disabled]="!orderIds"
+                    label="清空"></button>
+        </div>
+
+
+    </div>
+    <p-growl [value]="msgs"></p-growl>
+
+</div>
+

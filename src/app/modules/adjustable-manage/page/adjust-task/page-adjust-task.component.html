@@ -1,0 +1,763 @@
+<div class="view-con">
+    <div id="ips_manage_header">
+        <div class="order-state-btn">
+            <ul id="all_state_list" class="state-list" (click)="selectOrderType($event)">
+                <li id="dai_fen" (click)="changeNodeType('waitDistribution',false)" class="list-item cur-select">待分配(<span>{{taskNodeType.waitDistribution || 0}}</span>)
+                </li>
+                <li id="dai_jie" (click)="changeNodeType('distributionWaitAccept',false)" class="list-item">待受理(<span>{{taskNodeType.distributionWaitAccept || 0}}</span>)
+                </li>
+                <li id="dai_yue" (click)="changeNodeType('accepted',false)" class="list-item">待预约(<span>{{taskNodeType.waitAppointment || 0}}</span>)
+                </li>
+                <li id="dai_shou" (click)="changeNodeType('waitPickUp',false)" class="list-item">待签收(<span>{{taskNodeType.waitSign || 0}}</span>)
+                </li>
+                <li id="already_shou" (click)="changeNodeType('doSign',false)" class="list-item">已签收(<span>{{taskNodeType.doSign || 0}}</span>)
+                </li>
+                <li id="already_fei" (click)="changeNodeType('invalid',false)" class="list-item">已作废(<span>{{taskNodeType.invalid || 0}}</span>)
+                </li>
+                <li id="all_type" (click)="changeNodeType('All',false)" class="list-item">
+                    全部(<span>{{taskNodeType.all || 0}}</span>)
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <form id="form_dfp" #formBox_dfp>
+        <div class="type dai-fen spec-type">
+            <div class="province">
+                <span class="province-address">目的地</span>
+                <div class="addr-control">
+                    <ui-select-box name="someName1" [(ngModel)]="adjustableRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <span class="line-state">干线状态</span>
+                <select name="trunkSts1" [(ngModel)]="adjustableRequestVo.trunkSts" class="all_state">
+                    <option value="All">全部</option>
+                    <option value="waitEnded"> 未结束</option>
+                    <option value="Ended"> 已结束</option>
+                </select>
+
+                <select name="selectState1" [(ngModel)]="adjustableRequestVo.dateType" class="all_state_distribution">
+                    <option value="All"> 全部日期</option>
+                    <option value="createDate"> 创建日期</option>
+                    <option value="cancelDis"> 取消分配日期</option>
+                    <option value="trunkEnd">干线结束日期</option>
+                </select>
+
+                <div class="line-end-date">
+                    <p-calendar name="startDate1" [(ngModel)]="adjustableRequestVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="adjustableRequestVo.endDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <div class="line-end-date">
+                    <p-calendar name="endDate1" [(ngModel)]="adjustableRequestVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="adjustableRequestVo.beginDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+
+                <span class="transport-num">运单号</span>
+
+                <input type="text" class="transport-num-input" name="waybillId1" id="waybillId1" [(ngModel)]="adjustableRequestVo.waybillId">
+
+                <button class="primary-btn btn" (click)=doSearch($event) [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button type="reset" class="clear-btn btn" (click)="reset(formBox_dfp)">清空</button>
+            </div>
+
+            <div class="send-good">
+                <span>发货人</span>
+
+                <shipper-select class="send-man" name="shipper1" width="150px" [(ngModel)]="adjustableRequestVo.shipper" defaultLabel="请选择…"></shipper-select>
+
+                <span class="receive-text Consignee" id="receive1">收货人</span>
+
+                <cnee-select class="receive-man" name="consignee1" width="166px" [(ngModel)]="adjustableRequestVo.consignee" defaultLabel="请选择…"></cnee-select>
+
+                <span class="write-order write-order" id="write-order1">师傅/网点</span>
+
+                <master-select name="masterAccount" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="adjustableRequestVo.jztUserName"></master-select>
+
+                <span class="billingDotDF" id="kaidanwangdian1">开单网点</span>
+
+                <div style="width:125px;display: inline-block;">
+                    <department-select [(ngModel)]="adjustableRequestVo.billingOrg" name="billingOrg1" class="write-order-input"></department-select>
+                </div>
+
+                <span class="Consignee-adress" id="recAddr1">收货地址</span>
+
+                <input type="text" class="transport-num-input" name="consigneeAdr" id="consigneeAdr" [(ngModel)]="adjustableRequestVo.consigneeAdr">
+
+            </div>
+
+        </div>
+    </form>
+
+    <form id="form_dsl" #formBox_dsl>
+        <div style="display: none" class="type dai-jie spec-type">
+            <div class="province">
+                <span class="province-address">目的地</span>
+                <div class="addr-control">
+                    <ui-select-box name="someName2" [(ngModel)]="adjustableRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <span class="line-state">干线状态</span>
+                <select name="trunkSts2" [(ngModel)]="adjustableRequestVo.trunkSts" class="all_state">
+                    <option value="All">全部</option>
+                    <option value="waitEnded"> 未结束</option>
+                    <option value="Ended"> 已结束</option>
+                </select>
+
+                <select name="selectState2" [(ngModel)]="adjustableRequestVo.dateType" class="all_state_distribution">
+                    <option value="All">全部日期</option>
+                    <option value="accept">受理日期</option>
+                    <option value="BRANCH_START"> 提货时间</option>
+                    <option value="appointment">预约时间</option>
+                </select>
+
+
+                <div class="line-end-date">
+                    <p-calendar name="startDate2" [(ngModel)]="adjustableRequestVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="adjustableRequestVo.endDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <div class="line-end-date">
+                    <p-calendar name="endDate2" [(ngModel)]="adjustableRequestVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="adjustableRequestVo.beginDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <span class="transport-num">运单号</span>
+
+                <input type="text" class="transport-num-input" name="waybillId2" id="waybillId2" [(ngModel)]="adjustableRequestVo.waybillId"
+                />
+
+                <button class="primary-btn btn" (click)="doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button type="button" (click)="reset(formBox_dsl)" class="clear-btn btn">清空</button>
+
+            </div>
+
+            <div class="send-good">
+                <span>发货人</span>
+
+                <shipper-select class="send-man" name="shipper2" width="150px" [(ngModel)]="adjustableRequestVo.shipper" defaultLabel="请选择…"></shipper-select>
+
+
+                <span class="receive-text" id="receive2">收货人</span>
+
+                <cnee-select class="receive-man" name="consignee2" width="166px" [(ngModel)]="adjustableRequestVo.consignee" defaultLabel="请选择…"></cnee-select>
+
+
+                <span class="worker-text write-order" id="write-order2">师傅/网点</span>
+                <master-select name="userName2" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="adjustableRequestVo.jztUserName"
+                    valueField="mobile"></master-select>
+
+                <!--<input type="text" class="write-order-input" name="userName2" [(ngModel)]="adjustableRequestVo.jztUserName">-->
+
+                <span class="kaidanwangdian" id="kaidanwangdian2">开单网点</span>
+
+                <div style="width:125px;display: inline-block;">
+                    <department-select [(ngModel)]="adjustableRequestVo.billingOrg" name="billingOrg2" class="write-order-input"></department-select>
+                </div>
+
+                <span class="Consignee-adress" id="recAddr2">收货地址</span>
+
+                <input type="text" class="transport-num-input" name="consigneeAdr" id="consigneeAdr" [(ngModel)]="adjustableRequestVo.consigneeAdr">
+
+                <!--<span class="assigner-text">分配人</span>-->
+                <!--<input type="text" class="write-order-input" name="distributionName2" [(ngModel)]="adjustableRequestVo.disUser">-->
+            </div>
+        </div>
+    </form>
+
+    <form id="form_dyy" #formBox_dyy>
+        <div style="display: none" class="type dai-yue spec-type">
+            <div class="province">
+                <span class="province-address">目的地</span>
+                <div class="addr-control">
+
+                    <ui-select-box name="someName3" [(ngModel)]="adjustableRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <span class="line-state">干线状态</span>
+                <select name="trunkSts3" [(ngModel)]="adjustableRequestVo.trunkSts" class="all_state">
+                    <option value="All">全部</option>
+                    <option value="waitEnded"> 未结束</option>
+                    <option value="Ended"> 已结束</option>
+                </select>
+
+                <select name="selectState3" [(ngModel)]="adjustableRequestVo.dateType" class="all_state_distribution">
+                    <option value="All">全部日期</option>
+                    <option value="accept">受理日期</option>
+                    <option value="BRANCH_START"> 提货时间</option>
+                    <option value="appointment"> 预约时间</option>
+                </select>
+
+                <div class="line-end-date">
+                    <p-calendar name="startDate3" [(ngModel)]="adjustableRequestVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="adjustableRequestVo.endDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="line-end-date">
+                    <p-calendar name="endDate3" [(ngModel)]="adjustableRequestVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="adjustableRequestVo.beginDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <span class="transport-num">运单号</span>
+
+                <input type="text" class="transport-num-input" name="waybillId3" id="waybillId3" [(ngModel)]="adjustableRequestVo.waybillId">
+
+
+                <button class="primary-btn btn" (click)="doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button type="button" (click)="reset(formBox_dyy)" class="clear-btn btn">清空</button>
+
+            </div>
+
+            <div class="send-good">
+                <span>发货人</span>
+                <shipper-select class="send-man" name="shipper3" width="125px" [(ngModel)]="adjustableRequestVo.shipper" defaultLabel="请选择…"></shipper-select>
+
+                <span class="receive-text" id="receive3">收货人</span>
+                <cnee-select class="receive-man" name="consignee3" width="125px" [(ngModel)]="adjustableRequestVo.consignee" defaultLabel="请选择…"></cnee-select>
+
+                <span class="worker-text write-order" id="write-order3">师傅/网点</span>
+                <master-select name="userName3" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="adjustableRequestVo.jztUserName"
+                    valueField="mobile"></master-select>
+
+
+                <!--<input type="text" class="write-order-input" name="userName3" [(ngModel)]="adjustableRequestVo.jztUserName">-->
+
+                <!--<span class="assigner-text">分配人</span>-->
+                <!--<input type="text" class="write-order-input" name="distributionName3" [(ngModel)]="adjustableRequestVo.disUser">-->
+
+                <span class="kaidanwangdian" id="kaidanwangdian3">开单网点</span>
+
+                <div style="width:125px;display: inline-block;">
+                    <department-select [(ngModel)]="adjustableRequestVo.billingOrg" name="billingOrg3" class="write-order-input"></department-select>
+                </div>
+                <span class="Consignee-adress" id="recAddr3">收货地址</span>
+
+                <input type="text" class="transport-num-input" name="consigneeAdr" id="consigneeAdr" [(ngModel)]="adjustableRequestVo.consigneeAdr">
+            </div>
+        </div>
+    </form>
+
+    <form id="form_dqs" #formBox_dqs>
+        <div style="display: none" class="type dai-shou spec-type">
+            <div class="province">
+                <span class="province-address">目的地</span>
+                <div class="addr-control">
+
+                    <ui-select-box name="someName4" [(ngModel)]="adjustableRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <span class="line-state">干线状态</span>
+                <select name="trunkSts3" [(ngModel)]="adjustableRequestVo.trunkSts" class="all_state">
+                    <option value="All">全部</option>
+                    <option value="waitEnded"> 未结束</option>
+                    <option value="Ended"> 已结束</option>
+                </select>
+
+                <select name="selectState4" [(ngModel)]="adjustableRequestVo.dateType" class="all_state_distribution">
+                    <option value="All">全部日期</option>
+                    <option value="appointment">预约日期</option>
+                    <option value="cancelSign"> 取消签收日期</option>
+                </select>
+
+                <div class="line-end-date">
+                    <p-calendar name="startDate4" [(ngModel)]="adjustableRequestVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="adjustableRequestVo.endDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="line-end-date">
+                    <p-calendar name="endDate4" [(ngModel)]="adjustableRequestVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="adjustableRequestVo.beginDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <span class="transport-num">运单号</span>
+
+                <input type="text" class="transport-num-input" name="waybillId4" id="waybillId4" [(ngModel)]="adjustableRequestVo.waybillId">
+
+                <button class="primary-btn btn" (click)="doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button type="button" (click)="reset(formBox_dqs)" class="clear-btn btn">清空</button>
+
+            </div>
+
+            <div class="send-good">
+                <span>发货人</span>
+                <shipper-select class="send-man" name="shipper4" width="150px" [(ngModel)]="adjustableRequestVo.shipper" defaultLabel="请选择…"></shipper-select>
+
+                <span class="receive-text" id="receive4">收货人</span>
+                <cnee-select class="receive-man" name="consignee4" width="100px" [(ngModel)]="adjustableRequestVo.consignee" defaultLabel="请选择…"></cnee-select>
+
+                <span class="worker-text write-order" id="write-order4">师傅/网点</span>
+                <master-select name="userName4" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="adjustableRequestVo.jztUserName"
+                    valueField="mobile"></master-select>
+
+
+                <!--<input type="text" class="write-order-input" name="userName4" [(ngModel)]="adjustableRequestVo.jztUserName">-->
+
+                <!--<span class="assigner-text">分配人</span>-->
+                <!--<input type="text" class="write-order-input" name="distributionName4" [(ngModel)]="adjustableRequestVo.disUser">-->
+                <span class="kaidanwangdian" id="kaidanwangdian4">开单网点</span>
+
+                <div style="width:125px;display: inline-block;">
+                    <department-select [(ngModel)]="adjustableRequestVo.billingOrg" name="billingOrg4" class="write-order-input"></department-select>
+                </div>
+                <span class="Consignee-adress" id="recAddr4">收货地址</span>
+
+                <input type="text" class="transport-num-input" name="consigneeAdr" id="consigneeAdr" [(ngModel)]="adjustableRequestVo.consigneeAdr">
+            </div>
+        </div>
+    </form>
+
+    <form id="form_yqs" #formBox_yqs>
+        <div style="display: none" class="type already-shou spec-type">
+            <div class="province">
+                <span class="province-address">目的地</span>
+                <div class="addr-control">
+
+                    <ui-select-box name="someName5" [(ngModel)]="adjustableRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <span class="sign-state">签收状态</span>
+                <select name="signState5" [(ngModel)]="adjustableRequestVo.isNormalSign" class="all_state">
+                    <option value="All">全部</option>
+                    <option value="normal"> 正常签收</option>
+                    <option value="notNormal"> 异常签收</option>
+                </select>
+
+                <!--<select name="selectState5" [(ngModel)]="adjustableRequestVo.dateType" class="all_state">-->
+                <!--<option value="sign">签收日期</option>-->
+                <!--<option value="trunkEnd"> 干线结束日期</option>-->
+                <!--</select>-->
+                <span class="signDate">签收日期</span>
+                <div class="line-end-date">
+                    <p-calendar name="startDate5" [(ngModel)]="adjustableRequestVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="adjustableRequestVo.endDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="line-end-date">
+                    <p-calendar name="endDate5" [(ngModel)]="adjustableRequestVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="adjustableRequestVo.beginDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <span class="transport-num">运单号</span>
+
+                <input type="text" class="transport-num-input" name="waybillId5" id="waybillId5" [(ngModel)]="adjustableRequestVo.waybillId"
+                    maxlength="20">
+
+
+                <button class="primary-btn btn" (click)="doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button type="button" (click)="reset(formBox_yqs)" class="clear-btn btn">清空</button>
+            </div>
+            <div class="send-good">
+                <span>发货人</span>
+                <shipper-select class="send-man" name="shipper5" width="125px" [(ngModel)]="adjustableRequestVo.shipper" defaultLabel="请选择…"></shipper-select>
+
+                <span class="receive-text" id="receive5">收货人</span>
+                <cnee-select class="receive-man" name="consignee5" width="125px" [(ngModel)]="adjustableRequestVo.consignee" defaultLabel="请选择…"></cnee-select>
+
+                <span class="worker-text sign-del write-order" id="write-order5">师傅/网点</span>
+                <master-select name="userName5" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="adjustableRequestVo.jztUserName"
+                    valueField="mobile"></master-select>
+
+
+                <!--<input type="text" class="write-order-input" name="userName5" [(ngModel)]="adjustableRequestVo.jztUserName">-->
+
+                <!--<span class="assigner-text">分配人</span>-->
+                <!--<input type="text" class="write-order-input" name="distributionName5" [(ngModel)]="adjustableRequestVo.disUser">-->
+
+                <span class="kaidanwangdian" id="kaidanwangdian5">开单网点</span>
+
+                <div style="width:125px;display: inline-block;">
+                    <department-select [(ngModel)]="adjustableRequestVo.billingOrg" name="billingOrg5" class="write-order-input"></department-select>
+                </div>
+                <span class="Consignee-adress" id="recAddr5">收货地址</span>
+
+                <input type="text" class="transport-num-input" name="consigneeAdr" id="consigneeAdr" [(ngModel)]="adjustableRequestVo.consigneeAdr">
+            </div>
+        </div>
+    </form>
+
+    <form id="form_yzf" #formBox_yzf>
+        <div style="display: none" class="type already-fei spec-type">
+            <div class="province">
+                <span class="province-address">目的地</span>
+                <div class="addr-control">
+
+                    <ui-select-box name="someName6" [(ngModel)]="adjustableRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <!--<select name="selectState6" [(ngModel)]="adjustableRequestVo.dateType" class="all_state">-->
+                <!--<option value="invalid">作废日期</option>-->
+
+                <!--<option value="trunkEnd"> 干线结束 </option>-->
+                <!--</select>-->
+                <span class="nullifyDate">作废日期</span>
+
+                <div class="line-end-date">
+                    <p-calendar name="startDate6" [(ngModel)]="adjustableRequestVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="adjustableRequestVo.endDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="line-end-date">
+                    <p-calendar name="endDate6" [(ngModel)]="adjustableRequestVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="adjustableRequestVo.beginDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <span class="assigner-text">分配人</span>
+                <input type="text" class="write-order-input" name="distributionName6" [(ngModel)]="adjustableRequestVo.disUser">
+
+                <span class="transport-num transport-num1">运单号</span>
+
+                <input type="text" class="transport-num-input" name="waybillId6" id="waybillId6" [(ngModel)]="adjustableRequestVo.waybillId"
+                    maxlength="20">
+
+                <span class="Consignee-adress" id="recAddr6">收货地址</span>
+
+                <input type="text" class="transport-num-input" name="consigneeAdr" id="consigneeAdr" [(ngModel)]="adjustableRequestVo.consigneeAdr">
+
+
+            </div>
+
+            <div class="send-good">
+                <span>发货人</span>
+                <shipper-select class="send-man" name="shipper6" width="125px" [(ngModel)]="adjustableRequestVo.shipper" defaultLabel="请选择…"></shipper-select>
+
+                <span class="receive-text" id="receive6">收货人</span>
+                <cnee-select class="receive-man" name="consignee6" width="125px" [(ngModel)]="adjustableRequestVo.consignee" defaultLabel="请选择…"></cnee-select>
+
+                <span class="worker-text scrap write-order" id="write-order6">师傅/网点</span>
+                <master-select name="userName6" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="adjustableRequestVo.jztUserName"
+                    valueField="mobile"></master-select>
+
+                <!--<input type="text" class="write-order-input" name="userName6" [(ngModel)]="adjustableRequestVo.jztUserName">-->
+
+                <span class="kaidanwangdian" id="kaidanwangdian6">开单网点</span>
+
+                <div style="width:125px;display: inline-block;">
+                    <department-select [(ngModel)]="adjustableRequestVo.billingOrg" name="billingOrg6" class="write-order-input"></department-select>
+                </div>
+
+                <button class="primary-btn btn" (click)="doSearch($event)" [disabled]="loading" style="margin-left: 80px;">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+
+                <button type="button" (click)="reset(formBox_yzf)" class="clear-btn btn">清空</button>
+
+            </div>
+        </div>
+    </form>
+
+    <form id="form_all" #formBox_all>
+        <div style="display: none" class="type all-type spec-type">
+            <div class="province">
+                <span class="province-address">目的地</span>
+                <div class="addr-control">
+                    <!--<input type="text" placeholder="省/市/区" (click)="addrSelectHidden=false" value="{{areaText}}" readonly="readonly" [ngClass]="{focus: !addrSelectHidden}">-->
+                    <!--<my-addr-select1 [addrSelectHidden]="addrSelectHidden" (changeAddrText)="changeAddrText($event)"></my-addr-select1>-->
+                    <ui-select-box name="someName7" [(ngModel)]="adjustableRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+                <!-- <span class="line-end">干线结束</span> -->
+                <select name="selectState7" [(ngModel)]="adjustableRequestVo.dateType" class="all_state all-date-list">
+                    <option value="All">全部日期</option>
+                    <option value="createDate">创建日期</option>
+                    <option value="dis"> 分配日期</option>
+                    <option value="sign"> 签收日期</option>
+                    <option value="cancelSign"> 取消签收日期</option>
+                    <option value="cancelDis"> 取消分配日期</option>
+                    <option value="trunkEnd"> 干线结束日期</option>
+                </select>
+                <div class="line-end-date">
+                    <p-calendar name="startDate7" [(ngModel)]="adjustableRequestVo.beginDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [maxDate]="adjustableRequestVo.endDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <div class="line-end-date">
+                    <p-calendar name="endDate7" [(ngModel)]="adjustableRequestVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle"
+                        [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [minDate]="adjustableRequestVo.beginDate"
+                        [readonlyInput]="true"></p-calendar>
+                </div>
+
+                <span class="assigner-text">分配人</span>
+                <input type="text" class="write-order-input" name="distributionName7" [(ngModel)]="adjustableRequestVo.disUser">
+
+                <span class="transport-num transport-num-last">运单号</span>
+                <!--<p-autoComplete class="receive-man" name="waybillId" [(ngModel)]="adjustareceive-textbleRequestVo.waybillId" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+                <input type="text" class="transport-num-input" name="waybillId7" id="waybillId7" [(ngModel)]="adjustableRequestVo.waybillId"
+                    maxlength="20">
+
+                <span class="Consignee-adress" id="recAddr7">收货地址</span>
+
+                <input type="text" class="transport-num-input" name="consigneeAdr" id="consigneeAdr" [(ngModel)]="adjustableRequestVo.consigneeAdr">
+
+
+            </div>
+            <div class="send-good" id="send-good">
+                <span>发货人</span>
+                <shipper-select class="send-man" name="shipper7" width="125px" [(ngModel)]="adjustableRequestVo.shipper" defaultLabel="请选择…"></shipper-select>
+
+                <span class="receive-text receive-text-last" id="receive7">收货人</span>
+                <cnee-select class="receive-man" name="consignee7" width="125px" [(ngModel)]="adjustableRequestVo.consignee" defaultLabel="请选择…"></cnee-select>
+
+                <span class="worker-text write-order" id="write-order7">师傅/网点</span>
+                <master-select name="userName7" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="adjustableRequestVo.jztUserName"
+                    valueField="mobile"></master-select>
+
+                <!--<input type="text" class="write-order-input" name="userName7" [(ngModel)]="adjustableRequestVo.jztUserName">-->
+
+                <span class="kaidanwangdian kaidanwangdian-last" id="kaidanwangdian7">开单网点</span>
+                <!--<p-autoComplete class="receive-man" name="billingOrg" [(ngModel)]="adjustableRequestVo.billingOrg" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+                <div style="width:125px;display: inline-block;">
+                    <department-select [(ngModel)]="adjustableRequestVo.billingOrg" name="billingOrg7" class="write-order-input"></department-select>
+                </div>
+
+                <button class="primary-btn btn" (click)="doSearch($event)" [disabled]="loading" style="margin-left: 80px;">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button type="button" (click)="reset(formBox_all)" class="clear-btn btn">清空</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div id="table-top">
+        <!--任务列表的click只是测试显示订单信息，到时候表格有数据后把些事件增加表格选项-->
+        <span class="task-list">任务列表</span><span (click)="showNotData()" class="abnormal-feedback" *ngIf="selectionRow.length == 0">
+        <span class="circle">+</span>异常反馈</span>
+
+        <div [@btnState]="btnState" class="order-btn-wrap table-header" *ngIf="selectionRow.length != 0">
+            <span class="select-text">已选中<span class="select-num">{{selectionRow?.length || 0}}</span>项</span>
+            <!--待分配-->
+            <span *ngIf="tasksStatus=='待分配'">
+                <span class="split-line">|</span>
+                <span *ngIf="selectionRow.length && !selectionRow[0]['completionRate48']">
+                    <a href="javascript:;" class="operation-a operation-48" (click)="batcompletionRate48()"><i></i>标记48小时单</a>
+                    <span class="split-line">|</span>
+                </span>
+                 <span *ngIf="selectionRow.length && selectionRow[0]['completionRate48']">
+                    <a href="javascript:;" class="operation-a operation-48" (click)="batcompletionRate48 ('cancel')"><i></i>取消标记48小时单</a>
+                    <span class="split-line">|</span>
+                </span>
+                <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+                <span *ngIf="selectionRow[0].worker != ''">
+                        <span class="split-line">|</span>
+                    <a href="javascript:;" class="operation-a operation-start" (click)="cAssignment()"><i></i>确认分配</a>
+                </span>
+                <span *ngIf="selectionRow[0].trunkEndDate != ''">
+                        <span class="split-line">|</span>
+                    <a href="javascript:;" class="operation-a operation-stop" (click)="displayAssignMaster()"><i></i>分配师傅</a>
+                </span>
+                <span *ngIf="selectionRow[0].trunkEndDate == ''">
+                        <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-check" (click)="trunkEnd()"><i></i>干线结束</a>
+                </span>
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-delete" (click)="changeTake()"><i></i>更改提货信息</a>
+
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+                <span class="split-line">|</span>
+                <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待受理-->
+            <span *ngIf="tasksStatus=='已分配'">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+            <span *ngIf="selectionRow[0].trunkEndDate == ''">
+                  <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-check" (click)="trunkEnd()"><i></i>干线结束</a>
+            </span>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-accept" (click)="accept()"><i></i>接单</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-delete" (click)="changeTake()"><i></i>更改提货信息</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--待预约-->
+            <span *ngIf="tasksStatus=='已受理'">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-order" (click)="doOrder()"><i></i>预约</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-pick-goods" (click)="openTakeGoods()"><i></i>提货</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-delete" (click)="changeTake()"><i></i>更改提货信息</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+
+            </span>
+            <!--待签收-->
+            <span *ngIf="tasksStatus=='已提货'">
+            <!--<span>-->
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-2-order" (click)="doOrder()"><i></i>二次预约</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-assign" (click)="Sign()"><i></i>签收</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-dis" (click)="cancelAllocation()"><i></i>取消分配</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+
+            </span>
+            <!--已签收-->
+            <span *ngIf="tasksStatus=='已签收'">
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-cancel-assign" (click)="CancelSign()"><i></i>取消签收</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-end" (click)="showAbnormalBox()"><i></i>异常登记</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--已作废-->
+            <span *ngIf='tasksStatus=="无效" || tasksStatus=="已作废"'>
+                <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="showDialog('trace-win')"><i></i>添加跟踪信息</a>
+
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a operation-detail" (click)="displayModal()"><i></i>查看详情</a>
+            </span>
+            <!--全部-->
+            <span *ngIf="tabType==''"><!--不加任务状态条件-->
+
+            </span>
+
+            <span (click)="closeBtn()" class="close-btn">×</span>
+        </div>
+    </div>
+    <div class="view-table" [ngStyle]="set.setTable('215px')">
+        <ui-grid id="page-adjust-task-grid" title="&nbsp;" [columns]="columns" [data]="data" (load)="load($event)" (exportCSV)="exportCSV($event)"
+            (rowSelect)="rowSelect($event)" [(selections)]="selectionRow" (cellMouseEnter)="cellMouseEnter($event,op1,op2,op3)"
+            (cellMouseLeave)="cellMouseLeave($event,op1,op2,op3)" (cellClick)="cellClick($event)">
+        </ui-grid>
+    </div>
+</div>
+<!--异常登记-->
+<abnormal-record *ngIf="abnormalIf" (boxClocs)="hideAbnormalBox()" (abnormal)="record()" [boxState]="controlAbnormalBox"
+    [selectLineInfo]="selectLineInfo"></abnormal-record>
+
+<!--</order-detail>-->
+<!--用于显示货品信息-->
+<p-overlayPanel #op>
+    <div style="width: 300px;height: 300px;">{{cellOverEvent}}</div>
+</p-overlayPanel>
+
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+    </p-footer>
+</p-confirmDialog>
+
+
+<!--更改提货信息弹窗-->
+<manage-ChangeInformation *ngIf="ChangeIf" (onChangeSure)="onChangeInformationSure()" (onChangeCancle)="onChangeInformation()"
+    (onSearch)="changeSearch()" [taskId]="selectLineInfo[0].id"></manage-ChangeInformation>
+<!--干线结束弹窗-->
+<manage-EndOfLine *ngIf="TrunkEndIf" (TrunkEndSure)="trunkEndOver()" (TrunkEndCancl)="trunkEndCancel()" [taskId]="selectLineInfo[0].id"></manage-EndOfLine>
+<!--取消签收-->
+<manage-cancelSign *ngIf="CancelSignIf" (onCancelSignOk)="changeAssignment()" (onCancelSign)="cancelCancelSign()" [selectLineInfo]="selectLineInfo"
+    [taskId]="selectLineInfo[0].id"></manage-cancelSign>
+<!--签收-->
+<adjustable-manage-sign *ngIf="SignIf" (onSignOrder)="changeSearch()" (SignOrder)="onSign()" [selectLineInfo]="selectLineInfo"
+    [taskId]="transfer.id"></adjustable-manage-sign>
+<!--预约-->
+<order-win id="taskOrderWin" *ngIf="orderWin" (hideWin)="hideWin()" (onHideWin)="changeWin()" [selectLineInfo]="selectLineInfo"
+    [taskId]="selectLineInfo[0].id"></order-win>
+<!--取消分配-->
+<manage-cancelAllocation *ngIf="cancelAllocationIf" (onAllocation)="changeAllocation()" [selectLineInfo]="selectLineInfo"
+    [taskId]="selectLineInfo[0].id" (onCancelAllocation)="NoAllocation()"></manage-cancelAllocation>
+<!--添加跟踪信息-->
+<trace-win trackFlag="DDRW" *ngIf="traceIf" [boxState]="traceWinState" [selectLineInfo]="selectLineInfo" (hideWin)="hideDialog($event)"
+    (save)="oSave()"></trace-win>
+
+<!--查看详情-->
+<detail-modal class="modal" [selectLineInfo]="selectLineInfo" *ngIf="showDetailModal" [@modalState]="modalState" (closeModal)="closeModal()"></detail-modal>
+
+<!--分配师傅-->
+<adjust-assign (onAssignment)="changeAssign()" *ngIf="assignIf" [@modalState]="modelAssignMaster" (closeAssignMaster)="closeAssignMaster()"
+    [selectLineInfo]="selectLineInfo" [taskId]="selectLineInfo[0].id"></adjust-assign>
+
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+
+<!--跟踪信息详情   -->
+
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+    <trace-information-details [trackInfo]='trackInfo'></trace-information-details>
+</p-overlayPanel>
+
+
+<!--货品信息详情-->
+
+<p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false">
+    <goods-details [goodsShow]="goodsShow" [goodsDetailsCount]="goodsDetailsCount"></goods-details>
+</p-overlayPanel>
+
+<!--预约明细-->
+
+<p-overlayPanel #op3 [showCloseIcon]="true" [dismissable]="false">
+    <appointment-time-details [appointmentDetails]='appointmentDetails'></appointment-time-details>
+</p-overlayPanel>

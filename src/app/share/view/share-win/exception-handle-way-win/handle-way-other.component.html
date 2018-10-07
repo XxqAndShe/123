@@ -1,0 +1,683 @@
+<script src="handle-way-other.component.ts"></script>
+<div class="others_tank" id="others_tank" [ngStyle]="drag.setPosition(1000,650)">
+    <div class="others_top" id="others_top">
+        <span class="top_left">其他</span>
+        <span class="top_right" (click)="close()">×</span>
+    </div>
+    <div style="margin-top: 15px;padding-left: 10px;">
+        <panel-nav [navs]="navs" [curIndex]="curIndex" (chanCurIndex)="chanCurIndex($event)"></panel-nav>
+    </div>
+    <form>
+        <div class="others_content">
+            <form action="">
+                <div class="content_feiyongxinxi clearfix"
+                     [hidden]="(curIndex !== 0 && selectRow.taskType === '调度任务')
+                 ||(curIndex === 0 && selectRow.taskType === '维修任务')
+                 ||(curIndex === 0 && selectRow.taskType === '返货任务')
+                 ||(curIndex !== 0 && selectRow.taskType === '自提')">
+                    <table border="1" style="margin: 30px auto;">
+                        <tr style="background-color: #E4E4E4">
+                            <th>品名</th>
+                            <th>改</th>
+                            <th>包装件数</th>
+                            <th>改</th>
+                            <th>安装件数</th>
+                            <th>改</th>
+                            <th>重量</th>
+                            <th>改</th>
+                            <th>体积</th>
+                            <th>改</th>
+                            <th>安装费</th>
+                            <th>改</th>
+                            <th>上楼费</th>
+                            <th>改</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr *ngFor="let good of otherResult.goodsDetail; let i=index">
+                            <td style="max-width: 100px" (click)="cloneTake()">{{good.oldName}}</td>
+                            <td><good-select width="70px" name="goodName{{i}}" defaultLabel="请选择…" [(ngModel)]="good.name"></good-select></td>
+                            <td>{{good.oldPackageNumber}}</td>
+                            <td><input type="number" name="gai_baozhuang{{i}}" [(ngModel)]="good.packageNumber" (blur)="onFeeTotalChange()"></td>
+                            <td>{{good.oldInstallNumber}}</td>
+                            <td><input type="number" name="gai_anzhuang{{i}}" [(ngModel)]="good.installNumber" (blur)="onFeeTotalChange()"></td>
+                            <td>{{good.oldweight}}</td>
+                            <td><input type="number" name="gai_zhongliang{{i}}" [(ngModel)]="good.weight" (blur)="onFeeTotalChange()"></td>
+                            <td>{{good.oldVolume}}</td>
+                            <td><input type="number" name="gai_tiji{{i}}" [(ngModel)]="good.volume" (blur)="onFeeTotalChange()"></td>
+                            <td>{{good.installChargeOld}}</td>
+                            <td><input type="number" name="installCharge{{i}}" [(ngModel)]="good.installCharge" (blur)="onFeeTotalChange()"></td>
+                            <td>{{good.upstairsChargeOld}}</td>
+                            <td><input type="number" name="upstairsCharge{{i}}" [(ngModel)]="good.upstairsCharge" (blur)="onFeeTotalChange()"></td>
+                            <td>
+                                <span class="item_jian" (click)="removeRespon('goods',i)">-</span>
+                                <span class="item_jia" (click)="addRespon('goods')" *ngIf="i==otherResult.goodsDetail.length-1">+</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">合计</td>
+                            <td>{{oldPackageNumTotal}}</td>
+                            <td>{{packageNumTotal || 0}}</td>
+                            <td>{{oldInstallNumTotal}}</td>
+                            <td>{{installNumTotal || 0}}</td>
+                            <td>{{oldWeightTotal}}</td>
+                            <td>{{weightTotal || 0}}</td>
+                            <td>{{oldVolumeTotal}}</td>
+                            <td>{{volumeTotal || 0}}</td>
+                            <td>{{installChargeOldTotal}}</td>
+                            <td>{{installChargeTotal || 0}}</td>
+                            <td>{{upstairsChargeOldTotal}}</td>
+                            <td colspan="2">{{upstairsChargeTotal || 0}}</td>
+                        </tr>
+                    </table>
+                    <!--<div class="feiyongxinxi_yuan">
+                        <div class="feiyongxinxi_yuan_top">原</div>
+                        <div class="feiyongxinxi_yuan_item">
+                            <ul class="clearfix">
+                                <li class="yuan_pinming">品名</li>
+                                <li class="yuan_baozhuang">包装件数</li>
+                                <li class="yuan_anzhuang">安装件数</li>
+                                <li class="yuan_zhongliang">重量</li>
+                                <li class="yuan_tiji">体积</li>
+                                <li class="yuan_tiji">安装费</li>
+                                <li class="yuan_tiji">上楼费</li>
+                            </ul>
+                        </div>
+                        <div class="feiyongxinxi_yuan_item" *ngFor="let good of otherResult.goodsDetail; let i=index" (click)="cloneTake()">
+                            <ul class="clearfix">
+                                <li class="yuan_pinming" title="{{good.oldName}}">{{good.oldName}}</li>
+                                <li class="yuan_baozhuang">{{good.oldPackageNumber}}</li>
+                                <li class="yuan_anzhuang">{{good.oldInstallNumber}}</li>
+                                <li class="yuan_zhongliang">{{good.oldweight}}</li>
+                                <li class="yuan_tiji">{{good.oldVolume}}</li>
+                                <li class="yuan_tiji">{{good.installChargeOld}}</li>
+                                <li class="yuan_tiji">{{good.upstairsChargeOld}}</li>
+                            </ul>
+                        </div>
+                        <div class="feiyongxinxi_yuan_item font_bold">
+                            <ul class="clearfix">
+                                <li class="yuan_pinming">合计</li>
+                                <li class="yuan_baozhuang">{{oldPackageNumTotal}}</li>
+                                <li class="yuan_anzhuang">{{oldInstallNumTotal}}</li>
+                                <li class="yuan_zhongliang">{{oldWeightTotal}}</li>
+                                <li class="yuan_tiji">{{oldVolumeTotal}}</li>
+                                <li class="yuan_tiji">{{installChargeOldTotal}}</li>
+                                <li class="yuan_tiji">{{upstairsChargeOldTotal}}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="feiyongxinxi_gai">
+                        <div class="feiyongxinxi_gai_top">改</div>
+
+                        <div class="feiyongxinxi_gai_item">
+                            <ul class="clearfix">
+                                <li class="gai_pinming">品名</li>
+                                <li class="gai_baozhuang">包装件数</li>
+                                <li class="gai_anzhuang">安装件数</li>
+                                <li class="gai_zhongliang">重量</li>
+                                <li class="gai_tiji">体积</li>
+                                <li class="gai_tiji">安装费</li>
+                                <li class="gai_tiji">上楼费</li>
+                            </ul>
+                        </div>
+
+                        <div class="feiyongxinxi_gai_item" *ngFor="let good of otherResult.goodsDetail; let i=index">
+                            <ul class="clearfix">
+                                <li class="gai_pinming" style="overflow: visible">
+                                    <good-select width="100px" name="goodName{{i}}" defaultLabel="请选择…" [(ngModel)]="good.name"></good-select>
+                                </li>
+                                <li class="gai_baozhuang gai_input">
+                                    <input type="number" name="gai_baozhuang{{i}}" [(ngModel)]="good.packageNumber" (blur)="onFeeTotalChange()">
+                                </li>
+                                <li class="gai_anzhuang gai_input">
+                                    <input type="number" name="gai_anzhuang{{i}}" [(ngModel)]="good.installNumber" (blur)="onFeeTotalChange()">
+                                </li>
+                                <li class="gai_zhongliang gai_input">
+                                    <input type="number" name="gai_zhongliang{{i}}" [(ngModel)]="good.weight" (blur)="onFeeTotalChange()">
+                                </li>
+                                <li class="gai_tiji gai_input">
+                                    <input type="number" name="gai_tiji{{i}}" [(ngModel)]="good.volume" (blur)="onFeeTotalChange()">
+                                </li>
+                                <li class="gai_tiji gai_input">
+                                    <input type="number" name="installCharge{{i}}" [(ngModel)]="good.installCharge" (blur)="onFeeTotalChange()">
+                                </li>
+                                <li class="gai_tiji gai_input">
+                                    <input type="number" name="upstairsCharge{{i}}" [(ngModel)]="good.upstairsCharge" (blur)="onFeeTotalChange()">
+                                </li>
+                                <span class="item_jian" (click)="removeRespon('goods',i)">-</span>
+                                <span class="item_jia" (click)="addRespon('goods')" *ngIf="i==otherResult.goodsDetail.length-1">+</span>
+                            </ul>
+                        </div>
+
+                        <div class="feiyongxinxi_gai_item font_bold">
+                            <ul class="clearfix">
+                                <li class="gai_pinming">
+                                    合计
+                                </li>
+                                <li class="gai_baozhuang gai_input">
+                                    <input type="number" readonly name="packageNumTotal" [(ngModel)]="packageNumTotal">
+                                </li>
+                                <li class="gai_anzhuang gai_input">
+                                    <input type="number" readonly name="installNumTotal" [(ngModel)]="installNumTotal">
+                                </li>
+                                <li class="gai_zhongliang gai_input">
+                                    <input type="number" readonly name="weightTotal" [(ngModel)]="weightTotal">
+                                </li>
+                                <li class="gai_tiji gai_input">
+                                    <input type="number" readonly name="volumeTotal" [(ngModel)]="volumeTotal">
+                                </li>
+                                <li class="gai_tiji gai_input">
+                                    <input type="number" readonly name="installChargeTotal" [(ngModel)]="installChargeTotal">
+                                </li>
+                                <li class="gai_tiji gai_input">
+                                    <input type="number" readonly name="upstairsChargeTotal" [(ngModel)]="upstairsChargeTotal">
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>-->
+                </div>
+                <!--<div class="content_title">
+                    <h3>基本信息</h3>
+                </div>-->
+                <div class="content_jiben" [hidden]="curIndex !== 1">
+                    <table border="1" style="margin: 30px auto;">
+                        <tr style="background-color: #E4E4E4">
+                            <th>收货人与地址信息</th>
+                            <th>原</th>
+                            <th>改</th>
+                        </tr>
+                        <tr>
+                            <td>服务类型</td>
+                            <td>{{oldInfo.serviceTypeOld}}</td>
+                            <td><meta-select name="waybillServiceType" width="199px" defaultLabel="请选择…" [(ngModel)]="otherResult.taskOtherWaybill.waybillServiceType"
+                                             type="billService" [filterOptions]="filterOptions"></meta-select></td>
+                        </tr>
+                        <tr>
+                            <td>收货人姓名</td>
+                            <td>{{oldInfo.consigneeOld}}</td>
+                            <td><input type="text" name="consignee" [(ngModel)]="otherResult.taskOtherWaybill.consignee" maxlength="30"></td>
+                        </tr>
+                        <tr>
+                            <td>收货人手机</td>
+                            <td>{{oldInfo.consigneeMobileOld}}</td>
+                            <td><input type="text" name="consigneeMobile" [(ngModel)]="otherResult.taskOtherWaybill.consigneeMobile" maxlength="40"></td>
+                        </tr>
+                        <tr>
+                            <td>收货人地址</td>
+                            <td>{{oldInfo.consigneeAddressOld}}</td>
+                            <td><input type="text" name="consigneeAddress" [(ngModel)]="otherResult.taskOtherWaybill.consigneeAddress" maxlength="120"></td>
+                        </tr>
+                        <tr>
+                            <td>到站</td>
+                            <td>{{oldInfo.siteArrivalOld}}</td>
+                            <td><department-select name="siteArrival" [(ngModel)]="otherResult.taskOtherWaybill.siteArrival"></department-select></td>
+                        </tr>
+                        <tr>
+                            <td>目的地</td>
+                            <td>{{oldInfo.distinationOld}}</td>
+                            <td><area-select width="200px" name="distination" [(ngModel)]="otherResult.taskOtherWaybill.distination"></area-select></td>
+                        </tr>
+                    </table>
+                    <!--<div class="jiben_item" style="margin-top: 0px;">
+                        <span class="item1"></span>
+                        <span class="spe" style="color: #419FFC;text-align: left;">原</span>
+                        <span class="item3" style="color: #25C26F;">改</span>
+                    </div>
+                    <div class="jiben_item" style="margin-top: 0px;">
+                        <span class="item1">服务类型</span>
+                        <input readonly class="readonly-input" name="waybillServiceTypeOld" [(ngModel)]="oldInfo.serviceTypeOld">
+                        <span class="item3">
+                        <meta-select name="waybillServiceType" width="198px" defaultLabel="请选择…" [(ngModel)]="otherResult.taskOtherWaybill.waybillServiceType"
+                                     type="billService" [filterOptions]="filterOptions"></meta-select>
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">收货人姓名</span>
+                        <input readonly class="readonly-input" name="consigneeOld" [(ngModel)]="oldInfo.consigneeOld">
+                        <span class="item3">
+                        <input type="text" required  placeholder="请输入" name="consignee" [(ngModel)]="otherResult.taskOtherWaybill.consignee">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">收货人手机</span>
+                        <input readonly class="readonly-input" name="consigneeMobileOld" [(ngModel)]="oldInfo.consigneeMobileOld">
+                        <span class="item3">
+                        <input type="text"  required placeholder="请输入" name="consigneeMobile" [(ngModel)]="otherResult.taskOtherWaybill.consigneeMobile">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">收货人地址</span>
+                        <input readonly class="readonly-input" name="consigneeAddressOld" [(ngModel)]="oldInfo.consigneeAddressOld">
+                        <span class="item3">
+                        <input type="text" required  placeholder="请输入" name="consigneeAddress" [(ngModel)]="otherResult.taskOtherWaybill.consigneeAddress">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">到站</span>
+                        <input readonly class="readonly-input" name="siteArrivalOld" [(ngModel)]="oldInfo.siteArrivalOld">
+                        <span class="item3">
+                        <department-select name="siteArrival"  required [(ngModel)]="otherResult.taskOtherWaybill.siteArrival">
+                        </department-select>
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">目的站</span>
+                        <input readonly class="readonly-input" name="distinationOld" [(ngModel)]="oldInfo.distinationOld">
+                        <span class="item3" style="position: relative;">
+                        <area-select width="200px" style="position: absolute; width: 200px" name="distination" [(ngModel)]="otherResult.taskOtherWaybill.distination"></area-select>
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">提货电话</span>
+                        <input readonly class="readonly-input" name="pickUpMobileOld" [(ngModel)]="oldInfo.pickUpMobileOld">
+                        <span class="item3">
+                        <input placeholder="请输入" name="pickUpMobile" [(ngModel)]="otherResult.taskOtherWaybill.pickUpMobile">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">提货地址</span>
+                        <input readonly class="readonly-input" name="pickUpAdrOld" [(ngModel)]="oldInfo.pickUpAdrOld">
+                        <span class="item3">
+                        <input placeholder="请输入" name="pickUpAdr" [(ngModel)]="otherResult.taskOtherWaybill.pickUpAdr">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">是否核销</span>
+                        <input readonly name="sfhx" class="readonly-input" [(ngModel)]="oldInfo.sfhxOld">
+                        <span class="item3">
+                        <select name="verification" [(ngModel)]="otherResult.taskOtherWaybill.check">
+                            <option value="empty">请选择</option>
+                            <option value="true">是</option>
+                            <option value="false">否</option>
+                        </select>
+                    </span>
+                    </div>
+                    <div class="jiben_item" *ngIf="otherResult.taskOtherWaybill.check === 'true'">
+                        <span class="item1"></span>
+                        <span class="item2 spe">核销单号</span>
+                        <span class="item3">
+                        <input type="text" required placeholder="请输入" name="verificationCode" [(ngModel)]="otherResult.taskOtherWaybill.verificationCode">
+                    </span>
+                    </div>
+                    <div class="jiben_item" *ngIf="otherResult.taskOtherWaybill.check === 'true'">
+                        <span class="item1"></span>
+                        <span class="item2 spe">订单来源</span>
+                        <span class="item3">
+                        <select name="surceType" required [(ngModel)]="otherResult.taskOtherWaybill.surceType" (ngModelChange)="onOrderOriginChange($event)">
+                            <option value="">请选择</option>
+                            <option value="tmallhome">天猫家装</option>
+                            <option value="tmallbuilding">天猫建材</option>
+                            <option value="tmalljiyoujia">极有家</option>
+                        </select>
+                    </span>
+                    </div>
+                    <div class="jiben_item" *ngIf="otherResult.taskOtherWaybill.check === 'true'">
+                        <span class="item1"></span>
+                        <span class="item2 spe">服务编码</span>
+                        <span class="item3">
+                        <select  #serviceTypeTmall_select id="serviceTypeTmall_select" name="serviceTypeTmall" required [(ngModel)]="otherResult.taskOtherWaybill.serviceTypeTmall">
+                            <option value="">请选择</option>
+                        </select>
+                    </span>
+                    </div>
+                    <div class="jiben_zerenfang clearfix">
+                        <div class="zerenfang_title">责任方</div>
+                        <div class="zerenfang_content">
+                            <div class="zerenfang_item" *ngFor="let duty of otherResult.dutySide;let i=index">
+                                <meta-select name="duty{{i}}" width="140px" defaultLabel="请选择…" (onChange)="dutyChange($event,i)" [(ngModel)]="duty.dutyName" type="abnormalDuty"></meta-select>
+                                <span class="item_jian" (click)="removeRespon('respon',i)">-</span>
+                                <span class="item_jia" (click)="addRespon('respon')" *ngIf="i==otherResult.dutySide.length-1">+</span>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="content_hx" [hidden]="curIndex !== 2">
+                    <table style="margin: 30px auto;">
+                        <tr style="background-color: #E4E4E4">
+                            <th>核销信息</th>
+                            <th>原</th>
+                            <th>改</th>
+                        </tr>
+                        <tr>
+                            <td>是否核销</td>
+                            <td>{{oldInfo.sfhxOld}}</td>
+                            <td>
+                                <select name="verification" [(ngModel)]="otherResult.taskOtherWaybill.check">
+                                    <option value="empty">请选择</option>
+                                    <option value="true">是</option>
+                                    <option value="false">否</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr *ngIf="otherResult.taskOtherWaybill.check === 'true'">
+                            <td>核销单号</td>
+                            <td></td>
+                            <td>
+                                <input type="text" name="verificationCode" [(ngModel)]="otherResult.taskOtherWaybill.verificationCode"/>
+                            </td>
+                        </tr>
+                        <tr *ngIf="otherResult.taskOtherWaybill.check === 'true'">
+                            <td>订单来源</td>
+                            <td></td>
+                            <td>
+                                <select name="surceType" [(ngModel)]="otherResult.taskOtherWaybill.surceType" (ngModelChange)="onOrderOriginChange($event)">
+                                    <option value="">请选择</option>
+                                    <option value="tmallhome">天猫家装</option>
+                                    <option value="tmallbuilding">天猫建材</option>
+                                    <option value="tmalljiyoujia">极有家</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr *ngIf="otherResult.taskOtherWaybill.check === 'true'">
+                            <td>服务编码</td>
+                            <td></td>
+                            <td>
+                                <select  #serviceTypeTmall_select id="serviceTypeTmall_select" name="serviceTypeTmall" [(ngModel)]="otherResult.taskOtherWaybill.serviceTypeTmall">
+                                    <option value="">请选择</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="content_jiben" [hidden]="curIndex !== 3">
+                    <table style="margin: 30px auto;">
+                        <tr style="background-color: #E4E4E4">
+                            <th>提货信息</th>
+                            <th>原</th>
+                            <th>改</th>
+                        </tr>
+                        <tr>
+                            <td>提货电话</td>
+                            <td>{{oldInfo.pickUpMobileOld}}</td>
+                            <td>
+                                <input name="pickUpMobile" [(ngModel)]="vPickUpReq.pickUpTel" maxlength="40"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>提货地址</td>
+                            <td>{{oldInfo.pickUpAdrOld}}</td>
+                            <td>
+                                <input name="pickUpAdr" [(ngModel)]="vPickUpReq.pickUpAddress" maxlength="50"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>提货区域</td>
+                            <td><area-select width="200px" name="addrCodeOld" [(ngModel)]="oldInfo.addrCodeOld"></area-select></td>
+                            <td>
+                                <area-select width="200px" name="addrCode" [(ngModel)]="vPickUpReq.addrCode" (onChange)="getLevel($event)"></area-select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>提货码</td>
+                            <td>{{oldInfo.pickUpCodeOld}}</td>
+                            <td>
+                                <input name="pickUpCode" [(ngModel)]="vPickUpReq.pickUpCode"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>物流单号</td>
+                            <td>{{oldInfo.logisticsBillOld}}</td>
+                            <td>
+                                <input name="logisticsBill" [(ngModel)]="vPickUpReq.logisticsBill" maxlength="50"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--<div class="jiben_item" style="margin-top: 0px;">
+                        <span class="item1"></span>
+                        <span class="spe" style="color: #419FFC;text-align: left;">原</span>
+                        <span class="item3" style="color: #25C26F;">改</span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">提货电话</span>
+                        <input readonly class="readonly-input" name="pickUpMobileOld" [(ngModel)]="oldInfo.pickUpMobileOld">
+                        <span class="item3">
+                        <input placeholder="请输入" name="pickUpMobile" [(ngModel)]="otherResult.taskOtherWaybill.pickUpMobile">
+                    </span>
+                    </div>
+                    <div class="jiben_item">
+                        <span class="item1">提货地址</span>
+                        <input readonly class="readonly-input" name="pickUpAdrOld" [(ngModel)]="oldInfo.pickUpAdrOld">
+                        <span class="item3">
+                        <input placeholder="请输入" name="pickUpAdr" [(ngModel)]="otherResult.taskOtherWaybill.pickUpAdr">
+                    </span>
+                    </div>
+                    <div class="jiben_tihuo clearfix"></div>-->
+                </div>
+                <!--<div class="content_title">
+                    <h3>商品明细</h3>
+                </div>-->
+                <!--<div class="content_title">
+                    <h3>费用处理</h3>
+                </div>-->
+                <div class="content_feiyongchuli clearfix"
+                     [hidden]="(curIndex !== 4 && selectRow.taskType === '调度任务')
+                ||(curIndex !== 0 && selectRow.taskType === '维修任务')
+                ||(curIndex !== 0 && selectRow.taskType === '返货任务')
+                ||(curIndex !== 4 && selectRow.taskType === '自提')">
+                    <table style="margin: 0 auto 30px auto;">
+                        <tr style="background-color: #E4E4E4">
+                            <th>费用名称</th>
+                            <th>原</th>
+                            <th>改</th>
+                            <th>差额</th>
+                            <th>责任方</th>
+                            <th>承担金额</th>
+                            <th>收款对象</th>
+                            <th>收款金额</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr *ngFor="let fee of otherResult.feeHandle; let i=index">
+                            <td>
+                                <select name="feeName{{i}}" [(ngModel)]="fee.name" (ngModelChange)="onFeeNameChange($event,fee,i,oldWaybillFee)">
+                                    <option value="">请选择</option>
+                                    <option value="DeliveryChareg">送货费</option>
+                                    <option value="InstallChareg">安装费</option>
+                                    <option value="UpstairsCharge">上楼费</option>
+                                    <option value="PayOutChareg">垫付费</option>
+                                    <option value="ExceedVolumeChareg">超方费</option>
+                                    <option value="ExceedAreaChareg">超区费</option>
+                                    <option value="StevedoreChareg">拆装费</option>
+                                    <option value="HoistingChareg">吊楼费</option>
+                                    <option value="TranslationChareg">平移费</option>
+                                    <option value="EmptyChareg">空跑费</option>
+                                    <option value="SpecialAreaCharge">特殊区域费</option>
+                                    <option value="StorageChareg">仓储费</option>
+                                    <option value="UrgentChareg">加急费</option>
+                                    <option value="OnsiteChareg">二次上门费</option>
+                                    <option value="MinUpstairsChareg">≤7楼搬楼费</option>
+                                    <option value="MaxUpstairsChareg">＞7楼搬楼费</option>
+                                    <option value="TakeChareg">提货费</option>
+                                    <option value="ServiceDebit">服务商扣费</option>
+                                    <option value="ProtectionChareg">保价费</option>
+                                </select>
+                            </td>
+                            <td style="min-width: 50px">{{fee.oldFee}}</td>
+                            <td>
+                                <input type="number" alt="fee_{{i}}" name="fee_{{i}}" [(ngModel)]="fee.fee">
+                            </td>
+                            <td style="min-width: 50px;max-width: 80px">{{fee.fee?(fee.fee-fee.oldFee):''}}</td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let bear of fee.bearFeeArr; let b=index" style="margin-bottom: 2px;">
+                                        <meta-select width="100px" name="dutysIdxxx_{{i}}{{b}}" type="abnormalOtherFeeDuty" [(ngModel)]="bear.dutysId" (onChange)="onMetaSelectedChange($event,bear,'duty')"></meta-select>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let bear of fee.bearFeeArr; let b=index" style="margin-bottom: 6px;">
+                                        <input type="text" min="0" name="assumeFee{{i}}{{b}}" [(ngModel)]="bear.assumeFee" #boxNum (ngModelChange)="swapPositive($event,i,b)" onkeyup="value=value.replace(/[\-a-zA-Z]/g,'')">
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <meta-select width="100px" name="repaysMetaName_{{i}}" type="abnormalRepay"
+                                             [(ngModel)]="fee.repaysMetaName" (onChange)="onMetaSelectedChange($event,fee, 'repaysName')"></meta-select>
+                            </td>
+                            <td>
+                                <input type="number" min="0" name="repayFee{{i}}" [(ngModel)]="fee.repaysFee">
+                            </td>
+                            <td>
+                                <span class="item_jian" (click)="removeRespon('fee',i); feeResultHandler()">-</span>
+                                <span class="item_jia" *ngIf="i==otherResult.feeHandle.length-1" (click)="addRespon('fee',i); feeResultHandler()">+</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--<div class="feiyongchuli_title">
+                        <ul class="clearfix">
+                            <li class="feiyongchuli_mingcheng">费用名称</li>
+                            <li class="feiyongchuli_yuan" style="color: #2997FC;">原</li>
+                            <li class="feiyongchuli_gai" style="color: #25C26F;">改</li>
+                            <li class="feiyongchuli_chae">差额</li>
+                            <li class="feiyongchuli_zerenren">责任方</li>
+                            <li class="feiyongchuli_jine">承担金额</li>
+                            <li class="feiyongchuli_zerenren">补偿对象</li>
+                            <li class="feiyongchuli_jine">补偿金额</li>
+                        </ul>
+                    </div>
+
+                    <div class="feiyongchuli_item" *ngFor="let fee of otherResult.feeHandle; let i=index">
+                        <ul class="clearfix" style="position: relative">
+                            <li class="feiyongchuli_mingcheng">
+                                <select name="feeName{{i}}" [(ngModel)]="fee.name" (ngModelChange)="onFeeNameChange($event,fee,i,oldWaybillFee)">
+                                    &lt;!&ndash;<option value="单价">单价</option>&ndash;&gt;
+                                    <option value="">请选择</option>
+                                    <option value="DeliveryChareg">送货费</option>
+                                    <option value="InstallChareg">安装费</option>
+                                    <option value="UpstairsCharge">上楼费</option>
+                                    <option value="PayOutChareg">垫付费</option>
+                                    <option value="ExceedVolumeChareg">超方费</option>
+                                    <option value="ExceedAreaChareg">超区费</option>
+                                    <option value="StevedoreChareg">拆装费</option>
+                                    <option value="HoistingChareg">吊楼费</option>
+                                    <option value="TranslationChareg">平移费</option>
+                                    <option value="EmptyChareg">空跑费</option>
+                                    <option value="SpecialAreaCharge">特殊区域费</option>
+                                    <option value="StorageChareg">仓储费</option>
+                                    <option value="UrgentChareg">加急费</option>
+                                    <option value="OnsiteChareg">二次上门费</option>
+                                    <option value="MinUpstairsChareg">≤7楼搬楼费</option>
+                                    <option value="MaxUpstairsChareg">＞7楼搬楼费</option>
+                                    <option value="TakeChareg">提货费</option>
+                                    <option value="ServiceDebit">服务商扣费</option>
+                                    <option value="ProtectionChareg">保价费</option>
+
+                                    &lt;!&ndash;<option value="运费">运费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="代收货款">代收货款</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="代收手续费">代收手续费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="声明价值费">声明价值费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="保价费">保价费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="回扣费">回扣费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="装卸费">装卸费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="报关费">报关费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="税费">税费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="中转费">中转费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="叉车费">叉车费</option>&ndash;&gt;
+                                    &lt;!&ndash;<option value="其他费">其他费</option>&ndash;&gt;
+                                </select>
+                            </li>
+                            <li class="feiyongchuli_yuan">
+                                <input type="text" readonly name="oldFee{{i}}" [(ngModel)]="fee.oldFee">
+                            </li>
+                            <li class="feiyongchuli_gai">
+                                <input type="number" placeholder="请输入" alt="fee_{{i}}" name="fee_{{i}}" [(ngModel)]="fee.fee">
+                            </li>
+                            <li class="feiyongchuli_chae">
+                                <input type="number" readonly style="background-color: #FBFAFA;" value="{{fee.fee?(fee.fee-fee.oldFee):''}}">
+                            </li>
+                            <li id="duty" class="feiyongchuli_zerenren">
+                                <ul>
+                                    <li *ngFor="let bear of fee.bearFeeArr; let b=index" style="margin-bottom: 2px;">
+                                        <meta-select width="90px" name="dutysIdxxx_{{i}}{{b}}" defaultLabel="请选择…" type="abnormalOtherFeeDuty" [(ngModel)]="bear.dutysId" (onChange)="onMetaSelectedChange($event,bear,'duty')"></meta-select>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="bear" class="feiyongchuli_jine">
+                                <ul>
+                                    <li *ngFor="let bear of fee.bearFeeArr; let b=index" style="margin-bottom: 6px;">
+                                        <input type="text" placeholder="请输入" min="0" name="assumeFee{{i}}{{b}}" [(ngModel)]="bear.assumeFee" #boxNum (ngModelChange)="swapPositive($event,i,b)" onkeyup="value=value.replace(/[\-a-zA-Z]/g,'')">
+                                        <span class="item_jian2" (click)="removeRespon('bearFee',b,i); feeResultHandler()">-</span>
+                                        <span class="item_jia2" (click)="addRespon('bearFee',i); feeResultHandler()" *ngIf="b==fee.bearFeeArr.length-1">+</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="feiyongchuli_buchang">
+                                <meta-select style="float: left" width="90px" name="repaysMetaName_{{i}}" defaultLabel="请选择…" type="abnormalRepay" [(ngModel)]="fee.repaysMetaName" (onChange)="onMetaSelectedChange($event,fee, 'repaysName')"></meta-select>
+                                <input style="display: inline-block;float: left;margin-left: 5px;" type="number" min="0" name="repayFee{{i}}" [(ngModel)]="fee.repaysFee">
+                                <span class="item_jian" (click)="removeRespon('fee',i); feeResultHandler()">-</span>
+                                <span class="item_jia" *ngIf="i==otherResult.feeHandle.length-1" (click)="addRespon('fee',i); feeResultHandler()">+</span>
+                            </li>
+                        </ul>
+                    </div>-->
+
+                    <div class="feiyongchuli_jieguo">
+                        <div class="row" *ngIf="showMasterSelectBox" style="margin-top: 10px;">
+                            <label><em>* </em>责任方或补偿对象的师傅姓名</label>
+                            <master-select valueField="mobile" name="masterName" [(ngModel)]="otherResult.userWorkerMobile"></master-select>
+                        </div>
+                        <div style="width: 820px;margin: auto">
+                            <div class="jieguo_item" style="margin-right: 30px">
+                                <div class="title-line">合计承担金额</div>
+                                <p-dataTable emptyMessage="没有记录" [value]="dutyData">
+                                    <p-column field="name" header="责任方" [style]="{'text-align': 'center'}"></p-column>
+                                    <p-column field="value" header="合计承担金额" [style]="{'text-align': 'center'}"></p-column>
+                                </p-dataTable>
+                            </div>
+                            <div class="jieguo_item">
+                                <div class="title-line">合计收款金额</div>
+                                <p-dataTable emptyMessage="没有记录" [value]="repayData">
+                                    <p-column field="name" header="收款对象" [style]="{'text-align': 'center'}"></p-column>
+                                    <p-column field="value" header="合计收款金额" [style]="{'text-align': 'center'}"></p-column>
+                                </p-dataTable>
+                            </div>
+                        </div>
+                        <!--<h4>上传聊天记录</h4>
+                        <p>（商家责任需上传）</p>
+                        <div class="pic-upload">
+                            <ui-upload style="float: left; width: 100%;" name="chatRecord" [(ngModel)]="otherResult.other.chatRecord"></ui-upload>
+                        </div>-->
+                    </div>
+                </div>
+
+                <div class="content_qita clearfix">
+                    <div class="row">
+                        <span>
+                            <label class="normal-lb">责任方</label>
+                            <span class="zerenfang_item" *ngFor="let duty of otherResult.dutySide;let i=index">
+                                <meta-select name="duty{{i}}" width="140px" defaultLabel="请选择…" (onChange)="dutyChange($event,i)" [(ngModel)]="duty.dutyName" type="abnormalDuty"></meta-select>
+                                <!--<span class="item_jian" (click)="removeRespon('respon',i)">-</span>
+                                <span class="item_jia" (click)="addRespon('respon')" *ngIf="i==otherResult.dutySide.length-1">+</span>-->
+                            </span>
+                        </span>
+                        <span>
+                            <span style="margin-right: 30px">
+                                <input type="checkbox" name="claims" [(ngModel)]="otherResult.other.moveClaim"
+                                       style="display: inline-block;vertical-align: middle">
+                                <span>转理赔</span>
+                            </span>
+                            <span *ngIf="otherResult.other.moveClaim">
+                                <label><em>* </em>出险原因</label>
+                                <meta-select name="riskReason" width="100px" defaultLabel="请选择…" [(ngModel)]="otherResult.other.riskReason" type="riskReason"></meta-select>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="row" *ngIf="isBusinessMen">
+                        <label class="normal-lb">描述图片</label>
+                        <ui-upload name="chatRecord" [(ngModel)]="otherResult.other.chatRecord" style="display: inline-block;width: 820px"></ui-upload>
+                    </div>
+                    <div class="row">
+                        <label class="normal-lb verTop"><em>* </em>备注</label>
+                        <textarea name="remark" [(ngModel)]="otherResult.other.handleRemark" required></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="others_btn clearfix">
+            <button type="button" class="btn primary-btn" (click)="save()">确定</button>
+            <button type="button" class="btn default-btn" (click)="close()">取消</button>
+        </div>
+    </form>
+</div>
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,48 @@
+.aside-frame{width:1020px; height:100%;background-color: #f7f7f7;box-shadow: 1px 2px 10px #717171;    position: relative; }
+.aside-frame>.aside-frame-title{width:100%; background-color: #fff;padding:15px;box-sizing:border-box; box-shadow: 2px 2px 5px #ddd;}
+.aside-frame label{margin-right:10px}
+.aside-frame .ul-list-wrap{position:relative;}
+.aside-frame .ul-list-wrap>input,.aside-frame>.aside-frame-title>select{width:125px;height: 30px;margin-right:20px;}
+.aside-frame .ul-list-wrap>input{height:28px}
+.aside-frame .ul-list-wrap>.ul-list{box-shadow: 3px 3px 3px #ccc,-3px 3px 3px #ccc;  position: absolute;  background-color: #fff;  z-index: 1;  width: 128px;left:1px;max-height:150px;overflow-y:auto; }
+.aside-frame .ul-list-wrap>.ul-list>li{    padding: 5px 10px; text-align: center;
+    overflow: hidden;text-overflow :ellipsis;white-space: nowrap; }
+.aside-frame>.area-choice{display: inline-block; padding:10px ;}
+.aside-frame>.aside-frame-title>.ul-list-wrap>.ul-list>li:hover{background-color: #0d85e4;color:#fff;}
+.aside-frame>.aside-frame-content{width:100%;box-shadow: 1px 1px 5px #717171;height: calc(100% - 225px);padding: 15px;overflow-y:scroll;box-sizing: border-box; }
+.aside-frame>.footer-button{padding:15px;background-color: #fff;}
+.aside-frame>.footer-button>.save{text-align: center; border-top:1px solid #ddd;padding:15px;}
+.aside-frame>.footer-button>.intro-master{margin:0 0 20px;position: relative}
+.aside-frame>.footer-button>.intro-master>.add-btn{padding:6px;background-color: #0D85E4;position: absolute;left: 130px;top: 17px;color:#fff;margin-left:10px;cursor:pointer;}
+.addr-control{  display: inline-block;}
+a.close-modal-btn{  position: absolute;  top: 50%;  width: 12px;  height: 78px;  background: url(/assets/close-modal.png);  margin-top: -39px;  }
+ul.service-list {
+    margin-top: 8px;
+}
+ul.service-list>li {
+    border: 1px solid #5499ef;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+ul.service-list span {
+    padding: 0 6px;
+    vertical-align: top;
+}
+ul.service-list a {
+    display: inline-block;
+    font-size: 20px;
+    height: 23px;
+    line-height: 23px;
+    width: 23px;
+    text-align: center;
+    color: #9f9f9f;
+    vertical-align: top;
+    cursor:pointer;
+}
+ .aside-frame-title .pickup-phone input{
+     width: 140px;
+ }

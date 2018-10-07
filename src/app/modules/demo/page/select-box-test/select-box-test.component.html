@@ -1,0 +1,8 @@
+<h1>This is a select box test mybatisPage.</h1>
+<hr/>
+<form>
+    {{labelHandler}}
+    <ui-select-box name="someName" [(ngModel)]="area" [label-handler]="labelHandler" [data-handler]="dataHandler"></ui-select-box>
+    <button pButton (click)="doTest()"  label="测试区域选择框"></button>
+    <hr/>
+</form>

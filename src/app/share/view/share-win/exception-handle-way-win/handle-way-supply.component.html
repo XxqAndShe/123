@@ -1,0 +1,88 @@
+<div class="handle_tank" id="supply_tank" [ngStyle]="drag.setPosition(450,452)">
+    <div class="top_tank" id="supply_top">
+        <span class="left">补件任务</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <form (ngSubmit)="save()">
+        <div class="zho_tank content_supply" style="max-height: 380px; overflow: auto">
+            <table style="margin: 0 auto 30px auto;">
+                <tr style="background-color: #E4E4E4">
+                    <th><em>*</em>补件品名</th>
+                    <th><em>*</em>补件数量</th>
+                    <th><em>*</em>货物体积</th>
+                    <th>操作</th>
+                </tr>
+                <tr *ngFor="let good of supplyResult.goodArr; let i=index">
+                    <td>
+                        <input name="partsName{{i}}" [(ngModel)]="good['partsName']" type="text" maxlength="50"/>
+                    </td>
+                    <td>
+                        <input name="pieces{{i}}" [(ngModel)]="good['pieces']" type="number" (blur)="validateHandle('num',$event,i)"/>
+                    </td>
+                    <td>
+                        <input name="volume{{i}}" [(ngModel)]="good['volume']" type="number" (blur)="validateHandle('vol',$event,i)"/>
+                    </td>
+                    <td>
+                        <span class="item_jian" (click)="removeGood(i)">-</span>
+                        <span class="item_jia" *ngIf="i==supplyResult.goodArr.length-1" (click)="addGood()">+</span>
+                    </td>
+                </tr>
+            </table>
+            <!--<div class="increase_on">
+                <ul>
+                    <li>
+                        <span class="bu1"><em>*</em>补件品名</span>
+                        <span class="bu2"><em>*</em>补件数量</span>
+                        <span class="bu3"><em>*</em>货物体积</span>
+                    </li>
+                    <li *ngFor="let good of supplyResult.goodArr; let i=index">
+							<span class="bu1">
+								<input name="partsName{{i}}" [(ngModel)]="good['partsName']" type="text" placeholder="请输入" maxlength="50" required/>
+							</span>
+                        <span class="bu2">
+								<input name="pieces{{i}}" [(ngModel)]="good['pieces']" type="number" placeholder="请输入" required (blur)="validateHandle('num',$event,i)"/>
+							</span>
+                        <span class="bu3">
+								<input name="volume{{i}}" [(ngModel)]="good['volume']" type="number" placeholder="请输入" (blur)="validateHandle('vol',$event,i)"/>
+							</span>
+                        <span class="bu4" (click)="removeGood(i)">-</span>
+                        <span class="bu5" *ngIf="i==supplyResult.goodArr.length-1" (click)="addGood()">+</span>
+                    </li>
+                </ul>
+            </div>-->
+            <div class="row">
+                <span>
+                    <label class="normal-lb"><em>*</em>补件类型</label>
+                    <select class="select-md" name="taskPartType" [(ngModel)]="supplyResult.taskPartType">
+                        <option value="GAN_ZHI_BU_JIAN">干支装补件</option>
+                        <option value="ZHI_ZHUANG_BU_JIAN">支装补件</option>
+                        <option value="AN_ZHUANG_BU_JIAN">安装补件</option>
+                    </select>
+                </span>
+                <span>
+                    <label>商家承担金额</label>
+                    <input name="assumeFee" [(ngModel)]="supplyResult.assumeFee" class="inline-input input-md" type="text"
+                           (keyup)="onlyPositive(supplyResult.assumeFee)"/>
+                </span>
+            </div>
+            <div class="row">
+                <label class="normal-lb"><em>*</em>责任方</label>
+                <!--<select [(ngModel)]="abnormalDuty">-->
+                <meta-select width="100px" defaultLabel="请选择…" name="abnormalDuty" [(ngModel)]="supplyResult.abnormalDuty"
+                             type="abnormalDuty" required (onChange)="onDutyChange($event)"
+                ></meta-select>
+                <!--</select>-->
+            </div>
+            <div class="row">
+                <label class="normal-lb verTop">备注</label>
+                <textarea style="width: 325px;height: 60px" name="remark" [(ngModel)]="supplyResult.remark" placeholder="请填写备注信息" required></textarea>
+            </div>
+        </div>
+        <div class="bottom_tank">
+            <button type="submit" class="btn primary-btn">确定</button>
+            <button type="button" class="btn default-btn" (click)="close()">取消</button>
+        </div>
+    </form>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="header">
+        <h1>地址库设置</h1>
+        <button class="btn primary-btn" (click)="showDialog('city')">添加市</button>
+        <button class="btn primary-btn" (click)="showDialog('area')">添加区县</button>
+        <button class="btn primary-btn" (click)="showDialog('wall')">添加街道</button>
+    </div>
+    <div class="content">
+        <div class="left-block">
+            <p *ngFor="let province of provinces,let i=index" (click)="loadCity(i,province.id,province.code)" [class.active]="hl[i]">{{province.name}}</p>
+        </div>
+        <div>
+            <div #city *ngFor="let shi of cities" [hidden]="city.hideCity">
+                <div class="sheng" (click)="loadArea(city,shi.id)">
+                <span class="img-box">
+                    <img src="/assets/arrow-b.png" *ngIf="city.isShow">
+                    <img src="/assets/arrow-r.png" *ngIf="!city.isShow">
+                </span>
+                    <span class="spec-box" (click)="selectCity($event,shi.id,shi.code)"
+                          ngClass="{{shi.id===selectedCityId?'selected':''}}">
+                    {{shi.name}}
+                    <i class="delIcon" (click)="deleteCity($event,city,shi.id)">×</i>
+                </span>
+                </div>
+                <div #area *ngFor="let qu of city.area" [hidden]="!city.isShow" (click)="loadWall(area,qu.id)">
+                    <span *ngIf="!area.isShow" [hidden]="area.hideArea" (click)="loadWall(area,qu.id,$event)">+</span>
+                    <span *ngIf="area.isShow" [hidden]="area.hideArea" (click)="hideWl(area,$event)">-</span>
+                    <span class="shi-box" [hidden]="area.hideArea" (click)="selectArea($event,qu.id,qu.code)"
+                          ngClass="{{qu.id===areaId?'selected':''}}">
+                        <span #areaName (blur)="editArea($event,areaName,qu.id)" (click)="makeEditable($event)">{{qu.name}}</span>
+                        <i class="delIcon" (click)="deleteArea($event,area,qu.id)">×</i>
+                    </span>
+                    <div *ngIf="area.isShow">
+                    <span #wall class="qu-box" *ngFor="let wl of area.wall" [hidden]="wall.hideWall" (click)="stopPro($event)">
+                        <span #wallName (blur)="editWall($event,wallName,wl.id)"
+                              (click)="makeEditable($event)">{{wl.name}}</span>
+                        <i class="delIcon" (click)="deleteWall($event,wall,wl.id)">×</i>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <add-area *ngIf="isShowDialog === 'area'" (closeWin)="closeWin($event)" [id]="cityId" [cityCode]="cityCode"></add-area>
+    <add-city *ngIf="isShowDialog === 'city'" (closeWin)="closeWin($event)" [provinceCode]="provinceCode" [id]="provinceId"></add-city>
+    <add-wall *ngIf="isShowDialog === 'wall'" (closeWin)="closeWin($event)" [id]="areaId" [areaCode]="areaCode"></add-wall>
+    <p-growl [value]="msgs"></p-growl>
+    <p-confirmDialog width="360" #cd>
+        <p-footer>
+            <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+            <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        </p-footer>
+    </p-confirmDialog>
+
+</div>

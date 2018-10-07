@@ -1,0 +1,5 @@
+<div class="content">
+    <panel-nav [navs]="navs" [curIndex]="curIndex" (chanCurIndex)="chanCurIndex($event)"></panel-nav>
+    <repair-scheduling class="scheduling" [ngClass]="{'show':curIndex===0}"></repair-scheduling>
+    <return-scheduling class="scheduling" [ngClass]="{'show':curIndex===1}"></return-scheduling>
+</div>

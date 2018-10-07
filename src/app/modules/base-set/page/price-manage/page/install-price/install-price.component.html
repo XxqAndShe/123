@@ -1,0 +1,57 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+  <!--  <form>
+        <div class="mounting-cost-top">
+            <ul class="mounting-cost">
+
+                <li>
+                    <span>类别</span>
+
+                    <div class="addr-control">
+                        <ui-select-box name="someName" [(ngModel)]="vGoodsCatalogRequestVo.id"
+                                       [data-handler]="dataHandler"></ui-select-box>
+                    </div>
+
+                </li>
+
+                <li>
+                    <span>货品名称</span>
+                    <span>
+                <p-autoComplete name="tt" [(ngModel)]="vGoodsCatalogRequestVo.goodsName"
+                                [suggestions]="suggestionResult"
+                                (completeMethod)="searchResult($event)"></p-autoComplete>
+            </span>
+                </li>
+
+                <li>
+                    <button class="primary-btn btn" (click)="search($event)">查询</button>
+                    <button class="default-btn btn" type="reset">清空</button>
+                </li>
+            </ul>
+        </div>
+    </form>-->
+    <div class="left-content">
+        <div class="intel-match-area" style="width: 350px;">
+<!--            <p-tree *ngFor="let category of categories"
+                    [value]="category"
+                    selectionMode="checkbox"
+                    (onNodeSelect)="nodeSelect($event)"
+                    (onNodeUnselect)="nodeUnselect($event)"
+                    [(selection)]="selectedCategories"></p-tree>-->
+<!--            <goods-tree
+                    (onNodeSelect)="nodeSelect($event)"
+                    (onNodeUnselect)="nodeUnselect($event)"
+                    [(selections)]="selectedCategories" width="350px">
+            </goods-tree>-->
+            <ui-tree (onNodeSelect)="nodeSelect($event)" selectionMode="single" (load)="load($event)"></ui-tree>
+            <!--<ui-tree (onNodeSelect)="nodeSelect($event)"  selectionMode="single" (load)="load($event)"></ui-tree>-->
+        </div>
+    </div>
+   <div class="right-content">
+       <div class="table-title"><span class="title-name">列表展示<i class="triangle-up"></i><i
+               class="triangle-down"></i></span><a href="javascript:;" class="import-div">导入</a></div>
+       <div class="table-container">
+           <ui-grid [columns]="columns" [data]="data"  (loadInstallPrice)="loadInstallPrice($event)" (exportCSV)="exportCSV($event)"></ui-grid>
+       </div>
+   </div>
+</div>

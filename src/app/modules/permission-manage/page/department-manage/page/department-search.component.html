@@ -1,0 +1,18 @@
+<div id="dialog_box04" #win04 class="dialog-box" [ngStyle]="drag.setPosition(313,183)">
+    <div id="dialog_title04" class="dialog-box-title top-title">
+        <span class="dialogdialog-left">查找</span>
+        <span class="dialog-right"  (click)="hideWin(win04)">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <ul>
+            <li>
+                <span>部门名称</span>
+                <input type="text" placeholder="输入部门名称">
+            </li>
+        </ul>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="primary-btn btn">搜索</span>
+        <span class="default-btn btn" (click)="hideWin(win04)">关闭</span>
+    </div>
+</div>

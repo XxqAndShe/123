@@ -1,0 +1,117 @@
+.outer-modal-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fbfafa;
+    overflow: hidden;
+    box-shadow: -3px 0px 10px #e4e4e4;
+}
+
+
+.modal-header {
+    padding: 22px;
+    box-shadow: -3px 0px 10px #e4e4e4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.first-line {
+    margin-bottom: 18px;
+    height: 18px;
+    line-height: 18px;
+}
+span.masterName {
+    font-size: 13.5px;
+    margin-right: 8px;
+    height: 18px;
+    line-height: 18px;
+    vertical-align: top;
+}
+.first-line>a {
+    display: inline-block;
+    width: 96px;
+    height: 18px;
+    background: url(/assets/examine-manage/star-level.png) no-repeat left center;
+    background-size: 96px 18px;
+}
+
+.second-line {
+    height: 16px;
+}
+.second-line>span, .second-line>a {
+    height: 16px;
+    line-height: 16px;
+}
+span.credit-level {
+    margin-right: 28px;
+}
+span.credit-score {
+    margin-right: 20px;
+}
+.second-line>a {
+    color: #66adf0;
+}
+
+
+.modal-content {
+	padding-top: 20px;
+}
+ul.table-list>li{
+	float: left;
+	margin: 0 50px 20px 22px;
+	width: 438px;
+}
+li.table-div>h5 {
+    height: 16px;
+    line-height: 16px;
+    border-left: 2px solid #0d85e4;
+    padding-left: 5px;
+    font-weight: normal;
+    margin-bottom: 17px;
+}
+li.table-div>table {
+	border-top: 1px solid #d8e3ef;
+	border-left: 1px solid #d8e3ef;
+	width: 100%;
+}
+
+li.table-div tr:nth-child(2n+1) {
+	background-color: #f7f8fa;
+}
+li.table-div tr:nth-child(2n) {
+	background-color: #ffffff;
+}
+li.table-div th, li.table-div td {
+	border-right: 1px solid #d8e3ef;
+	border-bottom: 1px solid #d8e3ef;
+	width: 25%;
+	text-align: center;
+}
+li.table-div th {
+	background-color: #f1f3f5;
+	height: 30px;
+}
+li.table-div td {
+	height: 25px;
+}
+
+
+a.close-modal-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: 78px;
+    background: url(/assets/close-modal.png);
+    margin-top: -39px;
+}
+
+p-rating{
+    display: inline-block;
+}
+credit-standard{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -350px;
+}

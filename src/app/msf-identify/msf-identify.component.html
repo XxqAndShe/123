@@ -1,0 +1,97 @@
+<div class="content1">
+    <div class="msf">
+        <div class="msf_in">
+					<span class="left" style="margin-top: 10px;width: 200px;">
+						<h1 style="color:#fff;width: 200px;">天猫核销查询</h1>
+					</span>
+            <span class="right">
+						<ul>
+							<li><a href="/">进入IPS系统</a></li>
+                            <!--<li>|</li>
+                            <li><a href="#">官网首页</a></li>-->
+						</ul>
+					</span>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="left-con">
+
+            <div class="ui-datatable ui-widget">
+                <div class="ui-datatable-tablewrapper">
+                    <table class="table-con">
+                        <thead class="ui-datatable-thead">
+                        <tr class="ui-state-default">
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell; width: 20%;">
+                                <span class="ui-column-title">天猫订单编号</span>
+
+                            </th>
+
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell; width: 20%;">
+                                <span class="ui-column-title">核销状态</span>
+
+                            </th>
+
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell; width: 20%;">
+                                <span class="ui-column-title">核销内容</span>
+                            </th>
+
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell; width: 20%;">
+                                <span class="ui-column-title">核销图片</span>
+                            </th>
+
+                            <th class="ui-state-default ui-unselectable-text" style="display: table-cell; width: 20%;">
+                                <span class="ui-column-title">核销日期</span>
+                            </th>
+
+                        </tr>
+                        </thead>
+                <!--    </table>
+                </div>
+                <div class="ui-datatable-tablewrapper">
+                    <table>-->
+                        <tbody class="ui-datatable-data ui-widget-content" style=" text-align: center; ">
+                        <tr class="ui-widget-content" *ngFor="let row of data;let i=index;">
+                            <td style="display: table-cell; width: 20%;">
+                                <span class="ui-cell-data" [style.color]="!row['statusDesc']?'red':''">{{row['orderSourceCode']}}</span>
+                            </td>
+                            <td style="display: table-cell;width: 20%;">
+                                <span class="ui-cell-data">{{row['statusDesc']}} &nbsp;</span>
+                            </td>
+                            <td style="display: table-cell;width: 20%;">
+                                <span class="ui-cell-data">{{row['errorMessage']}} &nbsp;</span>
+                            </td>
+                            <td style="display: table-cell;width: 20%;">
+                                          <span class="ui-cell-data">
+                                               <a *ngFor="let img of row['imgurls'];let a=index;" rel="fancybox_{{i}}"
+                                                  href="{{img}}" target="_blank">
+                                                      <span class="fa fa-picture-o"></span>
+                                               </a>
+                                          </span>
+
+                            </td>
+                            <td style="display: table-cell;width: 20%;">
+                                <span class="ui-cell-data">{{row['identifyDate']}}&nbsp;</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="right-con">
+            <textarea pInputTextarea placeholder="请输入天猫单号，多单号用“,”间隔，或者使用回车换行" [(ngModel)]="orderIds"></textarea>
+            <button pButton type="button" (click)="query()" icon="fa-search" [disabled]="!orderIds" label="查询"></button>
+            <button pButton type="button" (click)="orderIds=''" icon="fa-trash" [disabled]="!orderIds"  label="清空"></button>
+            <br>
+            <br>
+            <button pButton type="button" (click)="doExport()" icon="fa-file-excel-o" [disabled]="!data.length"  label="导出"></button>
+        </div>
+
+
+    </div>
+    <p-growl [value]="msgs"></p-growl>
+
+</div>
+

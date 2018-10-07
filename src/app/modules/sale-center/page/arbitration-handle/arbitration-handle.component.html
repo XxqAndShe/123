@@ -1,0 +1,33 @@
+<div class="content">
+    <panel-nav [navs]="navs" [navNumArr]="navNumArr" [curIndex]="curIndex" (chanCurIndex)="chanCurIndex($event)"></panel-nav>
+    <search-top [loading]="loading" [selected]="selectionRow" [selectedNum]="selectedNum" (doSearch)="cmSearch($event)" *ngFor="let nav of navs;let i=index" class="search-top" [ngClass]="{'show':curIndex==i}" [curIndex]="curIndex" (showWin)="showOrHideWin($event)" (showTraceWin)="showOrHideTraceWin($event)" (cancelSelect)="cancelSelect()"></search-top>
+    <div class="table-container" [class.expand]="isSelect">
+        <ui-grid
+            id="arbitration-handle-grid"
+            [columns]="columns"
+             (load)="load($event)"
+             [data]="data"
+             [(selections)]="selectionRow"
+            (exportCSV)="exportCSV($event)"
+             (rowSelect)="rowSelect($event)"
+            (cellClick)="cellClick($event)"
+            (cellMouseEnter)="cellMouseEnter($event,op1)"
+            (cellMouseLeave)="cellMouseLeave($event,op1)"
+        ></ui-grid>
+    </div>
+</div>
+<arbitration-win *ngIf="isshowWin" [selections]="selectionRow"  (hideWin)="showOrHideWin($event)" (confirm)="confirmCallback()"></arbitration-win>
+<trace-win *ngIf="isshowTraceWin" [selectLineInfo]="selectLineInfo" trackFlag="ARB"  (hideWin)="showOrHideTraceWin($event)" (save)="confirmCallback()"></trace-win>
+<detail-modal [selectLineInfo]="selectionRow[0]" class="modal" *ngIf="showWaybillDetail" [@modalState]="modalState" (closeModal)="closeModal()"></detail-modal>
+<readonly-exception-info [selectionRow]="rowData"  *ngIf="isshowExceptionWin" (close)="hideWin()"></readonly-exception-info>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+<!--弹出内容框-->
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+    <p-dataTable [value]="trackInfo" [style]="{'width':'600px'}" class="table" emptyMessage="没有记录">
+        <p-column field="trackedTime" header="上次跟踪时间" [sortable]="true"></p-column>
+        <p-column field="operator" header="跟踪人" [sortable]="true"></p-column>
+        <p-column field="remark" header="跟踪信息" [sortable]="true"></p-column>
+        <p-column field="altTime" header="下次跟踪时间" [sortable]="true"></p-column>
+    </p-dataTable>
+</p-overlayPanel>

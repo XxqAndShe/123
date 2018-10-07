@@ -1,0 +1,139 @@
+<div class="handle_tank" id="box" [ngStyle]="drag.setPosition(450,469)">
+    <div class="top_tank" id="move">
+        <span class="left">返货任务</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <div class="zho_tank">
+        <span class="feng_hu">返货运营商</span>
+        <ul class="Carrier">
+            <span *ngIf="taskReturnType == 'CARRIERS'">
+                <li ngClass="{{showCarrier === true? 'current':''}}">承运商</li>
+            </span>
+            <span *ngIf="taskReturnType == 'SERVICE'">
+                <li ngClass="{{showServicer === true? 'current':''}}">服务商</li>
+            </span>
+        </ul>
+    </div>
+    <div class="merchant" style="height: 320px">
+        <div class="merchant_in01 current" *ngIf="showCarrier">
+            <div class="merchant_zho fu content_supply">
+                <table style="margin: 0 auto 30px auto;">
+                    <tr style="background-color: #E4E4E4">
+                        <th>返货品名</th>
+                        <th>返货数量</th>
+                        <th>货物体积</th>
+                    </tr>
+                    <tr *ngFor="let rea1 of returnResult.carrier.returnArr1; let i=index">
+                        <td>{{rea1['productName']}}</td>
+                        <td>{{rea1['pieces']}}</td>
+                        <td>{{rea1['volume']}}</td>
+                    </tr>
+                </table>
+                <div class="row">
+                    <span>
+                        <label class="normal-lb">责任方</label>
+                        <input class="inline-input" [(ngModel)]="returnResult.carrier.abnormalDuty" type="text" style="width: 120px"/>
+                    </span>
+                    <span>
+                        <label>承担金额</label>
+                        <input name="carrierAssumeFee" [(ngModel)]="returnResult.carrier.assumeFee" class="inline-input" style="width: 121px"/>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="normal-lb">收货人</label>
+                    <input [(ngModel)]="returnResult.carrier.consignee" style="margin-right: 5px" class="inline-input" style="width: 120px"/>
+                    <input [(ngModel)]="returnResult.carrier.consigneeMobile" class="inline-input"
+                           type="text"  style="width: 201px"/>
+                </div>
+                <div class="row">
+                    <label class="normal-lb">收货地址</label>
+                    <input [(ngModel)]="returnResult.carrier.consigneeAdr" class="inline-input"
+                           type="text" style="width: 325px;height: 30px;box-sizing: border-box"/>
+                </div>
+                <div class="row">
+                    <label class="normal-lb verTop">备注</label>
+                    <textarea cols="50" rows="4" name="carrierRemark" [(ngModel)]="returnResult.carrier.remark"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="merchant_in02 current" *ngIf="showServicer">
+            <div class="merchant_zho cheng content_supply">
+                <table style="margin: 0 auto 30px auto;">
+                    <tr style="background-color: #E4E4E4">
+                        <th>返货品名</th>
+                        <th>返货数量</th>
+                        <th>货物体积</th>
+                    </tr>
+                    <tr *ngFor="let rea2 of returnResult.servicer.returnArr2; let i=index">
+                        <td>{{rea2['productName']}}</td>
+                        <td>{{rea2['pieces']}}</td>
+                        <td>{{rea2['volume']}}</td>
+                    </tr>
+                </table>
+                <div style="clear: both"></div>
+                <section>
+                    <div class="title-line">地址与物流信息</div>
+                    <div class="row">
+                        <label class="lg-lb">提货联系人</label>
+                        <input class="inline-input" *ngIf="btnState === 'customerhome'" value="客户家" style="width: 80px">
+                        <input class="inline-input" *ngIf="btnState === 'warehouse'" value="服务商仓库" style="width: 80px">
+                        <input class="input-lg inline-input" [(ngModel)]="returnResult.servicer.pickUpMan" *ngIf="btnState === 'customerhome'"/>
+                        <input class="input-lg inline-input" [(ngModel)]="returnResult.servicer.pickUpManMobile" *ngIf="btnState === 'customerhome'">
+                    </div>
+                    <div class="row" *ngIf="btnState === 'customerhome'">
+                        <label class="lg-lb">提货地址</label>
+                        <input class="inline-input" [(ngModel)]="returnResult.servicer.pickUpAdr" style="width: 337px;">
+                    </div>
+                    <div class="row">
+                        <label class="lg-lb">收货人</label>
+                        <input class="inline-input" *ngIf="receiveBtnState === 'merchants'" value="商家" style="width: 80px">
+                        <input class="inline-input" *ngIf="receiveBtnState === 'hub'" value="枢纽" style="width: 80px">
+                        <input class="input-lg inline-input" [(ngModel)]="returnResult.servicer.consignee">
+                        <input class="input-lg inline-input" [(ngModel)]="returnResult.servicer.consigneeMobile">
+                    </div>
+                    <div class="row">
+                        <label class="lg-lb">收货地址</label>
+                        <input class="inline-input" [(ngModel)]="returnResult.servicer.consigneeAdr" style="width: 337px;">
+                    </div>
+                    <div class="row">
+                        <label class="lg-lb">指定物流</label>
+                        <input class="inline-input" [(ngModel)]="returnResult.servicer.designLogistics" style="width: 166px"/>
+                        <input class="inline-input" [(ngModel)]="returnResult.servicer.transportCompanyMobile" style="width: 166px;">
+                    </div>
+                </section>
+                <section>
+                    <div class="title-line">安装费用信息</div>
+                    <div class="row">
+                        <span>
+                            <label class="normal-lb">安装师傅</label>
+                            <input class="inline-input input-lg" [(ngModel)]="returnResult.servicer.userWorker">
+                        </span>
+                        <span>
+                            <label class="normal-lb">提货费用</label>
+                            <input class="inline-input input-lg" [(ngModel)]="returnResult.servicer.picFee">
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span>
+                            <label class="normal-lb">责任方</label>
+                            <input class="inline-input input-lg" [(ngModel)]="returnResult.servicer.abnormalDuty">
+                        </span>
+                        <span>
+                            <label class="normal-lb">承担金额</label>
+                            <input class="inline-input input-lg" [(ngModel)]="returnResult.servicer.assumeFee">
+                        </span>
+                    </div>
+                </section>
+                <div class="row">
+                    <label class="normal-lb verTop">备注</label>
+                    <textarea [(ngModel)]="returnResult.servicer.remark" style="width: 322px;height: 60px"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom_tank">
+        <ul>
+            <li><a class="cancel1" href="javascript:;" (click)="close()">关闭</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <!--导航栏-->
+        <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+        <div class="content-header">
+            <form>
+                <span>时间段</span>
+                <div class="calendar-div">
+                    <p-calendar name="startDate" [(ngModel)]="MasterRevenueVo.startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="calendar-div">
+                    <p-calendar name="endDate" [(ngModel)]="MasterRevenueVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <span>师傅</span>
+                <div class="calendar-div">
+                    <master-select name="masterMobile" width="300px" defaultLabel="请选择…" [(ngModel)]="master"></master-select>
+                </div>
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset">清空</button>
+            </form>
+
+        </div>
+        <!--这里是显示订单区域统计图部分-->
+        <div class="content-body">
+            <div class="table-header table-header1">
+                <h4>师傅收入趋势</h4>
+            </div>
+            <div class="content-img">
+                <p *ngIf="totalCount>=0">该时间段总师傅收入为：<span>{{totalCount}}</span>，平均收入为:{{totalAverage}}<span></span></p>
+                <div class="export"><a href="javascript:;">导出EXCEL</a></div>
+            </div>
+            <div echarts [options]="abnormalLineChartOption" style="height: 400px"></div>
+        </div>
+
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

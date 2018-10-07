@@ -1,0 +1,55 @@
+<div class="dialog-box" id="deposit_apply" [ngStyle]="drag.setPosition(450,650)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialogdialog-left" *ngIf="!addOrChange">添加投诉</span>
+        <span class="dialogdialog-left" *ngIf="addOrChange">修改投诉</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="input-form">
+            <span><span class="start-symbol">*</span> 任务单号</span>
+            <input type="text" *ngIf="!addOrChange" name="taskTitle" [(ngModel)]="vComplaintSaveReqVo.taskTitle"/>
+            <input type="text" disabled *ngIf="addOrChange" name="taskTitle" [(ngModel)]="vComplaintSaveReqVo.taskTitle"/>
+        </div>
+        <div class="input-form">
+            <span><span class="start-symbol">*</span> 投诉人</span>
+            <input type="text" name="complainantName" [(ngModel)]="vComplaintSaveReqVo.complainantName" placeholder="投诉人姓名" />&nbsp;
+            <input type="text" name="complainantMobile" [(ngModel)]="vComplaintSaveReqVo.complainantMobile" placeholder="投诉人电话" />
+        </div>
+        <div class="input-form">
+            <span><span class="start-symbol">*</span> 投诉来源</span>
+            <select name="complaintSource" [(ngModel)]="vComplaintSaveReqVo.complaintSource">
+                <option value="silingling">400电话</option>
+                <option value="dingding">钉钉</option>
+                <option value="gongzhonghao">微信公众号</option>
+                <option value="jubaoxujia">举报虚假</option>
+                <option value="yuyuechoucha">虚假预约抽查</option>
+                <option value="huifang">回访收货人</option>
+                <option value="youxiang">邮箱</option>
+            </select>
+        </div>
+        <div class="input-describe">
+            <span><span class="start-symbol">*</span> 投诉内容</span>
+            <textarea name="complaintContent" [(ngModel)]="vComplaintSaveReqVo.complaintContent" cols="58" rows="5" placeholder="请输入(最多只能输入300字)" maxlength="300"></textarea>
+        </div>
+        <div class="add-pic">
+            <span class="add">添加图片</span>
+            <div class="ui-upload">
+                <ui-upload *ngIf="!addOrChange" [(ngModel)]="vComplaintSaveReqVo.fileInfos" [fileMaxNum]="6"></ui-upload>
+                <ui-upload *ngIf="addOrChange" [(ngModel)]="vComplaintSaveReqVo.fileInfos" [files]="picUrl" [fileMaxNum]="6"></ui-upload>
+            </div>
+            <span class="max_num">最多可上传6张图片</span>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

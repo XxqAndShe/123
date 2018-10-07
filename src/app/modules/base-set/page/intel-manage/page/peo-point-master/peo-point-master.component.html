@@ -1,0 +1,68 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <form>
+        <ul class="state-search">
+        <li>
+            <span class=" state-search-text state-search-text1">地区</span>
+            <div class="addr-control">
+                <ui-select-box name="someName" [(ngModel)]="area" [data-handler]="dataHandler"></ui-select-box>
+            </div>
+            <span class="state-search-text state-search-text1" >发货人</span>
+            <span class="ul-list-wrap">
+                <shipper-select defaultLabel="请选择…" name="shipperName" [(ngModel)]="shipperName"></shipper-select>
+            </span>
+        </li>
+        <li>
+            <span class="state-search-text">订单类型</span>
+            <span class="state-search-select">
+                <select  name="ordertype" [(ngModel)]="ordertype">
+                    <option value="">请选择</option>
+                    <option value="branch">支装</option>
+                    <option value="trunk">干支装</option>
+                    <option value="all">全部</option>
+                </select>
+            </span>
+            <span class="state-search-text" >物流公司</span>
+            <span class="state-search-input">
+                <!--<p-autoComplete name="transportCompany" [(ngModel)]="transportCompany" [suggestions]="suggestionTransportResult" (completeMethod)="searchTransport($event)" ></p-autoComplete>-->
+                <transporter-select name="transportCoop" [(ngModel)]="transportCompany"></transporter-select>
+            </span>
+        </li>
+        <li>
+            <span class="state-search-text">师傅姓名</span>
+            <span class="state-search-input">
+                <master-select name="workerName" multiSelect="true" defaultLabel="请选择…" [(ngModel)]="suggestionWorkerResult" type="name" (completeMethod)="searchWorker($event)"></master-select>
+            </span>
+        </li>
+
+        <li>
+            <button class="primary-btn btn" (click)="query($event)" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <button class="default-btn btn" type="reset" (click)="reset($event)">清空</button>
+        </li>
+    </ul>
+    </form>
+    <div *ngIf="!isClickModify" class="table-title">
+        <span class="title-name">发货人指定师傅</span>
+
+        <span class="right primary-btn btn" (click)="displayModal()"><i class="rmb-icon add"></i>新增</span>
+        <span class="right btn primary-btn" (click)="disableModify()"><i class="rmb-icon save" ></i>修改</span>
+        <span class="right btn primary-btn" (click)="disable()"><i class="rmb-icon delete"></i>删除</span>
+    </div>
+    <div class="table-container">
+        <ui-grid [columns]="columns" [data]="data" (load)="load($event)" (exportCSV)="exportCSV($event)" (rowSelect)="onselect($event)" [(selections)]="selectionRow"></ui-grid>
+    </div>
+</div>
+<add-aside *ngIf="isshowModal" (closeModal)="closeModal($event)"  [@modalState]="isshowModalAni ?'in':'out'" (onSave)="doSave()"></add-aside>
+<modify-master class="modify-master" *ngIf="masterIf" (closeAddMaster)="closeMaster()" [@modalState]="isshowMater ?'in':'out'" [currentRow]="currentRow" (save)="onSave()"></modify-master>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+<!--确认、取消提示框-->
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

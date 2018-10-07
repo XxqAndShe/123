@@ -1,0 +1,512 @@
+/*
+    添加新员工样式
+*/
+.content-a{
+    width: 100%;
+    height: 30px;
+    padding: 0 75px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+}
+.content-a li{
+    height: 30px;
+    margin: 0 10px 0 0 ;
+    line-height: 30px;
+    float: left;
+}
+.content-a li:last-child {
+    margin-right: 0;
+}
+.content-a li i{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #a8c9ff;
+    border-radius: 50%;
+}
+.content-a li i.x-j{
+    background-color: #dadada;
+    border-radius: 50%;
+}
+.content-a li b{
+    display: inline-block;
+    width: 67px;
+    height:1px;
+    line-height: 10px;
+    background: url("../../../../../../assets/permission-sys/user/dash.png");
+    margin: 5px 10px;
+}
+
+
+.content-b{
+    width: 600px;
+    max-height: 290px;
+    overflow: auto;
+}
+.content-l>.content-c>.content-b{
+    max-height: 323px;
+    overflow: auto;
+}
+.content-b-l{
+    width: 100px;
+    float: left;
+}
+.content-b-r{
+    width: 470px;
+    float: left;
+    border-left:1px solid #F5BE92;
+    position: relative;
+}
+.b-b{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: -4px;
+    left:-5px ;
+    background: white;
+}
+.che{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    margin-top:1px;
+    vertical-align:text-bottom;
+    margin-bottom:2px;
+}
+/*未选择时复选框样式*/
+.input-che{
+    background: url(../../../../../../assets/permission-sys/user/checkbox-null.png) no-repeat;
+}
+/*全选时复选框样式*/
+.tick-che{
+    background: url(../../../../../../assets/permission-sys/user/checkbox-tick.png) no-repeat;
+}
+/*半选复选框样式*/
+.select-che{
+    background: url(../../../../../../assets/permission-sys/user/checkbox-select.png) no-repeat;
+}
+
+.w-che{
+    display: inline-block;
+    height: 12px;
+    line-height: 12px;
+    margin-top:1px;
+    background: url(../../../../../../assets/permission-sys/user/checkbox-null.png) no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:-9px;
+    padding-left: 22px;
+    text-align: center;
+}
+/*已选择时复选框样式*/
+.x-che {
+    display: inline-block;
+    /*width: 12px;*/
+    height: 12px;
+    line-height: 12px;
+    margin-top: 1px;
+    background: url(../../../../../../assets/permission-sys/user/checkbox-tick.png) no-repeat;
+    vertical-align: text-bottom;
+    margin-bottom: -9px;
+    padding-left: 22px;
+    text-align: center;
+}
+/*半选样式*/
+.b-che{
+    display: inline-block;
+    /*width: 12px;*/
+    height: 12px;
+    line-height: 12px;
+    margin-top: 1px;
+    background: url(../../../../../../assets/permission-sys/user/checkbox-select.png) no-repeat;
+    vertical-align: text-bottom;
+    margin-bottom: -9px;
+    padding-left: 22px;
+    text-align: center;
+}
+
+/*
+    短横线样式
+*/
+.h{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-top:1px solid #F5BE92;
+    margin-left: -2px ;
+    margin-top: 8px;
+}
+.che-t{
+    display: inline-block;
+    vertical-align:text-bottom;
+    margin-bottom:9px;
+}
+.msg{
+    height: 25px;
+    line-height: 25px;
+}
+.z-j{
+    display: inline-block;
+    width: 10px;
+    height: 13px;
+    border-left: 1px solid #F5BE92;
+    border-bottom: 1px solid #F5BE92;
+    position: relative;
+    top: -12px;
+    left: 21px;
+}
+.z-jj{
+    left: 42px;
+}
+.le{
+    margin-left: 20px;
+}
+.content-b-r .grand-child i:nth-child(2){
+    margin-left: 38px;
+}
+
+.dialog-box{width:650px; box-shadow: 1px 2px 10px #717171, -1px 2px 10px #717171;background-color: #fff;}
+.dialog-box .dialog-box-title{width: 100%;height: 40px;background: #2d3244;display: block;padding: 4px 15px;box-sizing: border-box;}
+.dialog-box .dialog-box-title>span{font-size:14px;color:#fff;line-height:33px;  }
+.dialog-box .dialog-box-title>.dialog-left{float:left;}
+.dialog-box .dialog-box-title>.dialog-right{float:right;font-size:30px;cursor: pointer;opacity: 0.7;line-height: 29px;}
+
+.dialog-box .dialog-box-content{padding:15px; height: 338px;box-sizing: border-box;}
+.dialog-box .dialog-box-footer{height:30px; text-align: center; padding: 20px;}
+.dialog-box .dialog-box-footer>span{display: inline-block;width:58px; height: 30px;line-height:30px;border:1px solid #ddd;}
+
+/*顶部样式 start*/
+.dialog-box .top-title{
+    background:#4C8DF7 ;
+}
+/*顶部样式 end*/
+.dialog-box .dialog-box-content{
+    height: auto;
+}
+
+.dialog-box-content{
+    border-bottom: none;
+}
+.dialog-container {
+    display: none;
+}
+.dialog-container.show {
+    display: block;
+}
+
+/* 填写员工信息部分 */
+#dialog-container-1 .content-b{
+    height: 110px;
+    overflow: inherit;
+    width: auto;
+}
+#dialog-container-1 .li-float{
+    float: left;
+    margin-right: 30px;
+}
+#dialog-container-1.content-b-a{
+    width: 280px;
+    height: 30px;
+    line-height: 30px ;
+}
+#dialog-container-1 .content-b-a li{
+    margin: 0 0 7px 0;
+}
+#dialog-container-1 .text{
+    display: inline-block;
+    width: 50px;
+    text-align: right;
+    padding:0 10px 0 0 ;
+}
+#dialog-container-1 .text i{
+    color:red;
+}
+#dialog-container-1 .content-b-a input{
+    width: 200px;
+    height: 26px;
+    padding: 0 0 0 10px;
+}
+#dialog-container-1 .content-b-a select{
+    width: 214px;
+    height: 28px;
+    padding: 0 0 0 10px;
+}
+#dialog-container-1 .content-b-b li {
+    width: 280px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 7px 0;
+}
+#dialog-container-1 .content-b-b select{
+    width: 100px;
+    height: 28px;
+    padding: 0 0 0 10px;
+}
+#dialog-container-1 .content-b-b input{
+    width: 200px;
+    height: 26px;
+    padding: 0 0 0 10px;
+}
+#dialog-container-1 .content-c li{
+    margin-bottom: 7px;
+}
+#dialog-container-1 .content-c li.b-z {
+    margin-bottom: 6px;
+}
+#dialog-container-1 .content-c input{
+    width: 200px;
+    height: 26px;
+    padding: 0 0 0 10px;
+}
+#dialog-container-1 .content-c select{
+    width: 214px;
+    height: 28px;
+    padding: 0 0 0 10px;
+    margin-right: 5px;
+}
+#dialog-container-1 .content-c  .di-z{
+    width: 288px;
+}
+#dialog-container-1 .b-zhu{
+    vertical-align:text-bottom;
+    margin-bottom:80px;
+}
+#dialog-container-1 textarea{
+    width: 513px;
+    height: 80px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+
+/*
+ 设置数据权限
+*/
+#dialog-container-3 .content-l{
+    width:200px;
+    float: left;
+}
+#dialog-container-3 .content-r{
+    width:380px;
+    float: left;
+    margin-left: 20px ;
+    margin-top: 20px;
+    border: 1px solid #DDDDDD;
+}
+#dialog-container-3 .content-r .con-l{
+    width:185px;
+    float: left;
+    height: 280px;
+}
+#dialog-container-3 .content-r .con-r{
+    width:185px;
+    float: right;
+    height: 280px;
+
+}
+#dialog-container-3 .content-r-top{
+    width: 98%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 10px;
+    background: #ECF1FA;
+}
+#dialog-container-3 .content-r-top li{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    float: left;
+}
+#dialog-container-3 .content-aa{
+    width: 100%;
+    height:25px;
+    border-bottom: 1px solid #4C8DF7;
+}
+#dialog-container-3 .content-aa li{
+    width: 69px;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    margin-right:10px;
+    text-align: center;
+    border:1px solid #4C8DF7;
+    background:#F5F9FF;
+}
+#dialog-container-3 .content-aa .content-style {
+    border-bottom: 1px solid #ffffff;
+    background:#FFF;
+}
+#dialog-container-3 .box{
+    height:280px;
+}
+#dialog-container-3 .box-x{
+    height: 240px;
+}
+#dialog-container-3 .content-b .box .yun-y{
+    padding: 0 0 0 20px ;
+}
+#dialog-container-3 .content-c{
+    height: 300px;
+    position: relative;
+    /*padding: 0 0 20px 0;*/
+}
+#dialog-container-3 .content-b{
+    width: 100%;
+    border:1px solid #DDDDDD;
+    height: auto;
+    margin: 20px 0 0 0;
+    position: absolute;
+    overflow: inherit;
+    overflow-y: auto;
+    display: none;
+}
+#dialog-container-3 .content-show{
+    display: block;
+}
+#dialog-container-3 .con-b{
+    width: 186px;
+    margin: 2px 0 0 0;
+    border: none;
+}
+#dialog-container-3 .content-ba{
+    z-index: 5;
+}
+.content-bb{
+    z-index: 4;
+    display: none;
+}
+#dialog-container-3 .content-bc{
+    z-index: 3;
+    display: none;
+}
+#dialog-container-3 .content-bd{
+    z-index: 2;
+    display: none;
+}
+#dialog-container-3 .content-be{
+    z-index: 1;
+    display: none;
+}
+
+#dialog-container-3 .content-b dt{
+    height: 30px;
+    line-height: 30px;
+    padding:0 0 0 10px ;
+    background: #ECF1FA;
+}
+
+#dialog-container-3 .content-b dd label{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 40px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+#dialog-container-3 .content-b .content-b-a span{
+    /*display: block;*/
+    height: 29px;
+    line-height: 29px;
+}
+
+#dialog-container-3 .content-b-a-a li label{
+    line-height: 29px;
+    padding: 0px;
+}
+#dialog-container-3 .content-b-a-a li{
+    height: 29px;
+    line-height: 29px;
+    padding: 0 0 0 70px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+#dialog-container-3 body .content-b-a-a .yun-dan li {
+    padding:0 0 0 85px;
+
+}
+#dialog-container-3 .content-b-a-a  .yun-dan-xin{
+    height: auto;
+    padding-left: 0px;
+}
+#dialog-container-3 .content-b-a-a  .yun-dan-xin .g-li{
+    padding: 0 0 0 70px;
+}
+/*
+    背景图
+*/
+/*未选择时复选框样式*/
+#dialog-container-3 .input-che{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-top:1px;
+    background: url("../../../../../../assets/permission-sys/user/checkbox-null.png");
+    vertical-align:text-bottom;
+    margin-bottom:2px;
+}
+/*已选择时复选框样式*/
+#dialog-container-3 .xu-che{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-top:1px;
+    background: url("../../../../../../assets/permission-sys/user/checkbox-tick.png");
+    vertical-align:text-bottom;
+    margin-bottom:2px;
+}
+/*减号样式*/
+#dialog-container-3 .j-che{
+    display: inline-block;
+    width: 9px;
+    height: 1px;
+    background: url(../../../../../../assets/permission-sys/role/role-iocn.png) -20px 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:7px;
+    margin-right: 2px;
+}
+/*
+    加号样式
+*/
+#dialog-container-3 .add-che{
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: url(../../../../../../assets/permission-sys/role/role-iocn.png) 0 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:4px;
+    margin-right: 2px;
+}
+
+
+/*
+    滚动条样式
+*/
+::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,.3);
+    border-radius: 6px;
+}
+::-webkit-scrollbar-track{
+    background-color: #ddd;
+    border-radius: 6px;
+}
+::-webkit-scrollbar-corner{
+    background-color: #666;
+    border-radius: 50%;
+}
+
+
+#dialog-container-3 .content-d {
+    height: 312px;
+}
+#dialog-container-3 .box {
+    overflow-y: auto;
+    /*display: none;*/
+}
+
+

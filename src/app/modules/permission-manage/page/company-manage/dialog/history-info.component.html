@@ -1,0 +1,230 @@
+<div id="history_box" [@historyState]="historyInfoState" [@boxState]="boxState" class="dialog-box" [ngStyle]="drag.setPosition(800,540)">
+    <div id="history_move" class="dialog-box-title blue">
+        <span class="dialog-left">公司资料审核</span>
+        <span (click)="close()" class="dialog-right">×</span>
+    </div>
+    <div [style.height]="boxContentHeight>700?'auto':'540px'"  class="dialog-box-content">
+        <div class="content-left">
+            <div class="content-title">基本信息</div>
+            <div style="display: flex">
+                <div style="flex: 2; direction: rtl">
+                    <!--因为文字方向是rtl，所以冒号在开头-->
+                    <div class="content-text grey-text">：公司名称</div>
+                    <div class="content-text grey-text">：登录账号</div>
+                </div>
+                <div style="flex: 8">
+                    <div class="content-text">广州一智通管理有限公司（简称：一智通）</div>
+                    <div class="content-text">13265542103</div>
+                </div>
+            </div>
+            <div style="display: flex">
+                <div style="flex: 2; direction: rtl">
+                    <!--因为文字方向是rtl，所以冒号在开头-->
+                    <div class="content-text grey-text">：公司负责人</div>
+                </div>
+                <div style="flex: 3">
+                    <div class="content-text">李总</div>
+                </div>
+                <div style="flex: 2; direction: rtl">
+                    <div class="content-text grey-text">：联系手机</div>
+                </div>
+                <div style="flex: 3;">
+                    <div class="content-text">13265542103</div>
+                </div>
+            </div>
+            <div style="display: flex">
+                <div style="flex: 2; direction: rtl">
+                    <!--因为文字方向是rtl，所以冒号在开头-->
+                    <div class="content-text grey-text">：所在地区</div>
+                    <div class="content-text grey-text">：身份证号</div>
+                </div>
+                <div style="flex: 8">
+                    <div class="content-text">广东省广州市天河区</div>
+                    <div class="content-text">442513699865320123</div>
+                </div>
+            </div>
+            <div style="display: flex">
+                <div style="flex: 2; direction: rtl">
+                    <div class="content-text grey-text">：身份证图片</div>
+                </div>
+                <div style="flex: 3">
+                    <div class="content-image"><img src="IDcard.png"></div>
+                </div>
+                <div style="flex: 5">
+                    <div class="content-image"><img src="IDcard.png"></div>
+                </div>
+            </div>
+            <div style="display: flex" class="border-bottom">
+                <div style="flex: 2; direction: rtl">
+                    <div class="content-text grey-text">：公司登录照片</div>
+                </div>
+                <div style="flex: 3">
+                    <div class="content-image"><img src="login.png"></div>
+                </div>
+                <div style="flex: 5">
+                    <div class="content-image"><img src="login.png"></div>
+                </div>
+            </div>
+            <div class="content-title">认证信息</div>
+            <div style="display: flex">
+                <div style="flex: 2; direction: rtl">
+                    <div class="content-text grey-text">：银行账号</div>
+                    <div class="content-text grey-text">：审核状态</div>
+                    <div class="content-text grey-text">：机构代码</div>
+                </div>
+                <div style="flex: 3">
+                    <div class="content-text">20134578625222</div>
+                    <div class="content-text">已审核</div>
+                    <div class="content-text">645532215455</div>
+                </div>
+                <div style="flex: 2; direction: rtl">
+                    <div class="content-text grey-text">：开户行</div>
+                </div>
+                <div style="flex: 3">
+                    <div class="content-text">兴业银行广州支行</div>
+                </div>
+            </div>
+            <div style="display: flex" class="border-bottom">
+                <div style="flex: 2; direction: rtl">
+                    <div class="content-text grey-text">：营业执照</div>
+                </div>
+                <div style="flex: 3">
+                    <div class="content-image"><img src="IDcard.png"></div>
+                </div>
+                <div style="flex: 5">
+                    <div class="content-image"><img src="IDcard.png"></div>
+                </div>
+            </div>
+            <div class="content-title">系统信息</div>
+            <div style="display: flex">
+                <div style="flex: 2; direction: rtl">
+                    <!--因为文字方向是rtl，所以冒号在开头-->
+                    <div class="content-text grey-text">：使用系统</div>
+                    <div class="content-text grey-text">：使用截止时间</div>
+                </div>
+                <div style="flex: 8">
+                    <div class="content-text sys-yellow">TMS IPS</div>
+                    <div class="content-text">2017-03-31</div>
+                </div>
+            </div>
+            <div class="history-wrap">
+                <div (click)="showHistory()" class="history-btn">历史资料<</div>
+            </div>
+            <div class="dialog-box-footer">
+                <span class="btn primary-btn">审核通过</span>
+                <span class="btn primary-btn">审核不通过</span>
+            </div>
+        </div>
+        <div [class.show]="historyInfo" class="content-right">
+            <div class="history-title">历史资料</div>
+            <div class="border-bottom content-cell">
+                <div class="his-content-title grey-text">基本信息</div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <!--因为文字方向是rtl，所以冒号在开头-->
+                        <div class="content-text grey-text">：公司名称</div>
+                        <div class="content-text grey-text">：登录账号</div>
+                    </div>
+                    <div style="flex: 8">
+                        <div class="content-text grey-text">广州一智通管理有限公司（简称：一智通）</div>
+                        <div class="content-text grey-text">13265542103</div>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <!--因为文字方向是rtl，所以冒号在开头-->
+                        <div class="content-text grey-text">：公司负责人</div>
+                    </div>
+                    <div style="flex: 3">
+                        <div class="content-text grey-text">李总</div>
+                    </div>
+                    <div style="flex: 2; direction: rtl">
+                        <div class="content-text grey-text">：联系手机</div>
+                    </div>
+                    <div style="flex: 3;">
+                        <div class="content-text grey-text">13265542103</div>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <!--因为文字方向是rtl，所以冒号在开头-->
+                        <div class="content-text grey-text">：所在地区</div>
+                        <div class="content-text grey-text">：身份证号</div>
+                    </div>
+                    <div style="flex: 8">
+                        <div class="content-text grey-text">广东省广州市天河区</div>
+                        <div class="content-text grey-text">442513699865320123</div>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <div class="content-text grey-text">：身份证图片</div>
+                    </div>
+                    <div style="flex: 3">
+                        <div class="content-image"><img src="IDcard.png"></div>
+                    </div>
+                    <div style="flex: 5">
+                        <div class="content-image"><img src="IDcard.png"></div>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <div class="content-text grey-text">：公司登录照片</div>
+                    </div>
+                    <div style="flex: 3">
+                        <div class="content-image"><img src="login.png"></div>
+                    </div>
+                    <div style="flex: 5">
+
+                    </div>
+                </div>
+            </div>
+            <div class="border-bottom content-cell">
+                <div class="his-content-title grey-text">认证信息</div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <div class="content-text grey-text">：银行账号</div>
+                        <div class="content-text grey-text">：审核状态</div>
+                        <div class="content-text grey-text">：机构代码</div>
+                    </div>
+                    <div style="flex: 3">
+                        <div class="content-text grey-text">20134578625222</div>
+                        <div class="content-text grey-text">已审核</div>
+                        <div class="content-text grey-text">645532215455</div>
+                    </div>
+                    <div style="flex: 2; direction: rtl">
+                        <div class="content-text grey-text">：开户行</div>
+                    </div>
+                    <div style="flex: 3">
+                        <div class="content-text grey-text">兴业银行广州支行</div>
+                    </div>
+                </div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <div class="content-text grey-text">：营业执照</div>
+                    </div>
+                    <div style="flex: 3">
+                        <div class="content-image"><img src="IDcard.png"></div>
+                    </div>
+                    <div style="flex: 5">
+                        <!--<div class="content-image"><img src="IDcard.png"></div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="content-cell">
+                <div class="his-content-title grey-text">系统信息</div>
+                <div style="display: flex">
+                    <div style="flex: 2; direction: rtl">
+                        <!--因为文字方向是rtl，所以冒号在开头-->
+                        <div class="content-text grey-text">：使用系统</div>
+                        <div class="content-text grey-text">：使用截止时间</div>
+                    </div>
+                    <div style="flex: 8">
+                        <div class="content-text grey-text">TMS</div>
+                        <div class="content-text grey-text">2017-03-31</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <form id="form_dsl" #formBox_dsl>
+            <div class="content-header content-header1">
+                <span>服务区域</span>
+                <div class="addr-control">
+                    <ui-select-box name="someName" [(ngModel)]="certifyManageRequestVo.areaCode"
+                                   [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <span style="margin-left: 19px;">常规服务</span>
+                <select name="regular-service" [(ngModel)]="certifyManageRequestVo.typeOfService">
+                    <option value="All">全部</option>
+                    <option value="dispatch">配送</option>
+                    <option value="install">安装</option>
+                    <option value="dispatchNInstall">配送+安装</option>
+                </select>
+
+                <span>增值服务</span>
+                <select name="value-added-service" [(ngModel)]="certifyManageRequestVo.valueAddService">
+                    <option value="All">全部</option>
+                    <option value="repairService">维修</option>
+                    <option value="returnGoods">返货</option>
+                </select>
+
+                <span>审核状态</span>
+                <select name="audit-status" [(ngModel)]="certifyManageRequestVo.auditStatus">
+                    <option value="All">全部</option>
+                    <option value="pendingAudit">待审核</option>
+                    <option value="pass">通过</option>
+                    <option value="notPass">不通过</option>
+                </select>
+
+                <button class="btn primary-btn" (click)="doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" (click)="formBox_dsl.reset()">清空</button>
+
+
+                <a href="javascript:;" class="export-div">导出</a>
+            </div>
+            <div class="content-header content-header2">
+                <label for="masterName">师傅/手机</label>
+                <p-autoComplete id="masterName" class="input" name="tt" [(ngModel)]="certifyManageRequestVo.masterName"
+                                [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"
+                                field="realName"></p-autoComplete>
+                <!--<label class="master-id"  for="masterId">师傅账号</label>-->
+                <!--<master-select id="masterId" name="userName2" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="certifyManageRequestVo.masterAccount" valueField="mobile" nameField="mobile"></master-select>-->
+            </div>
+        </form>
+        <div *ngIf='selectNum !== 0' class="table-header">
+            <span class="select-text">已选中<span class="select-num">{{selectNum}}</span>项</span>
+            <span class="split-line">|</span>
+            <a href="javascript:;" class="operation-a certify-pass" (click)="CertificationThrough()"><i></i>认证通过</a>
+            <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a certify-nopass" (click)="CertificationNotThrough()"><i></i>认证不通过</a>
+            <span class="close-btn" (click)="DeleteSelectNum()">×</span>
+        </div>
+        <div *ngIf='selectNum === 0' class="table-header table-header1">
+            <h4>任务列表</h4>
+        </div>
+
+        <div class="table-container master_manage_table">
+            <ui-grid title="&nbsp;" [columns]="columns"
+                     [data]="data"  (load)="load($event)"
+                     (exportCSV)="exportCSV($event)"
+                     [selections]="selections" (rowSelect)="rowSelect($event)"
+                     (cellMouseEnter)="cellMouseEnter($event,op2)"
+                     (cellMouseLeave)="cellMouseLeave($event,op2)"
+                     (cellClick)="cellClick($event,op1)"
+                     ></ui-grid>
+        </div>
+
+    </div>
+</div>
+
+<!--认证不通弹窗-->
+<span *ngIf="NotThrough">
+<div class="dialog-box" id="dialog-not-through">
+	<div class="dialog-box-title">
+		<span class="dialogdialog-left">认证不通过编辑</span>
+		<span class="dialog-right" (click)="DeleteSymbol()">×</span>
+	</div>
+	<div class="dialog-box-content">
+		<div class="dialog-box-top dialog-box-com">
+            <span style="color: red;width: 0px;">*</span>
+			<span>不通过原因</span>
+			<textarea placeholder="{{itemsNotThrough}}" [(ngModel)]="NotPassTxT" #box (keyup.enter)="fnNot(box.value)"
+                      (focus)="fnfocus()" (blur)="fnblur(box.value)"></textarea>
+		</div>
+	</div>
+	<div class="dialog-box-footer" id="btn-not-through">
+		<span class="btn primary-btn" (click)="ConfirmNotThrough($event)">确定</span>
+		<span class="btn default-btn" (click)="CancelNotThrough()">取消</span>
+	</div>
+</div>
+</span>
+<!--认证通过弹出框-->
+<span *ngIf="isThrough">
+  <div class="dialog-box dialog-box-mm" style="display:block">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+		<span class="dialog-right" (click)="DeleteSymbol()">×</span>
+	</div>
+	<div class="dialog-box-content dialog-box-content-mm">
+          确定认证通过：{{selections[0].masterName}}
+	</div>
+	<div class="dialog-box-footer dialog-box-footer-mm">
+		<span class="btn primary-btn" (click)="ConfirmThrough($event)">确定</span>
+		<span class="btn default-btn" (click)="CancelThrough()">取消</span>
+	</div>
+  </div>
+</span>
+
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+    <p-dataTable [value]="serviceAreas" class="table" [style]="{'width':'510px','maxHeight':'300px','overflow-y':'auto'}">
+        <p-headerColumnGroup>
+            <p-row>
+                <p-column header="省" [style]="{'width':'100px'}"></p-column>
+                <p-column header="市" [style]="{'width':'100px'}"></p-column>
+                <p-column header="区/县" [style]="{'width':'300px'}"></p-column>
+            </p-row>
+        </p-headerColumnGroup>
+
+        <p-column field="sheng"></p-column>
+        <p-column field="shi"></p-column>
+        <p-column field="qu"></p-column>
+    </p-dataTable>
+</p-overlayPanel>
+<!--身份证弹出框-->
+<p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false">
+    <div style="width: 257px;">
+        <div style="width: 257px;height: 162px;">
+            <a rel="fancybox" href="{{idHeads}}"><img src="{{idHeads}}" alt="" style="width: 257px;height: 162px;"></a>
+        </div>
+        <div style="width: 257px;height: 162px;">
+            <a rel="fancybox" href="{{idTails}}"><img src="{{idTails}}" alt="" style="width: 257px;height: 162px;"></a>
+        </div>
+        <div style="width: 257px;height: 162px;">
+            <a rel="fancybox" href="{{idHand}}"><img src="{{idHand}}" alt="" style="width: 257px;height: 162px;"></a>
+        </div>
+    </div>
+</p-overlayPanel>
+<!--操作成功提示框-->
+<p-growl [value]="msgs"></p-growl>
+<!--加载中-->
+<span class="loading-serve" *ngIf="loadingIf">
+    <img src="./assets/cooperation-company/loading.gif">
+</span>

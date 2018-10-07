@@ -1,0 +1,37 @@
+<div class="content">
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <div class="left-content">
+        <div class="intel-area">
+            <div style="margin-bottom: 10px">
+                <master-select name="master" [(ngModel)]="nameOrMobile" valueField="name"></master-select>
+                <button class="btn primary-btn" (click)="searchMaster()">查询师傅</button>
+            </div>
+            <ui-grid [showEditColumn]=false [columns]="masterColumns" [data]="masterData" (rowSelect)="masterRowSelect($event)" (load)="masterLoad($event)"  (exportCSV)="exportCSV($event)" selectionMode="single"></ui-grid>
+        </div>
+    </div>
+    <div class="right-content">
+        <div class="table-title">
+            <span style="position: relative"><area-select name="branchArea" [(ngModel)]="branchArea"></area-select></span>
+            <button class="btn primary-btn" (click)="doSearch($event)" [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                查询
+            </button>
+            <span class="right btn primary-btn" (click)="delete()">删除</span>
+            <span class="right btn primary-btn" (click)="showPopForm('edit')">修改</span>
+            <span class="right btn primary-btn" (click)="showPopForm('add')">新增</span>
+        </div>
+        <div class="table-container">
+            <ui-grid [selections]="selection" [columns]="columns" [data]="data"  (rowSelect)="rowSelect($event)" (load)="load($event)" (exportCSV)="exportCSV2($event)" selectionMode="single"></ui-grid>
+        </div>
+    </div>
+</div>
+
+<p-confirmDialog  width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<add-or-edit *ngIf="showAddEditWin" (hideWin)="hidePopForm($event)" [selectedRow]="selection" [flag]="flag" [masterId]="masterId" (updateFather)="finishUpdate($event)"  (exportCSV)="exportCSV($event)"></add-or-edit>

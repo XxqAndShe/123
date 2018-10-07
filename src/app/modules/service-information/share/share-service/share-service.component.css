@@ -1,0 +1,65 @@
+.title{
+    height: 40px;
+}
+.btn{
+    width: 60px;
+}
+.title input{
+    width: 200px;
+    height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(221, 221, 221);
+}
+.title span{
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    padding-right: 10px;
+    text-align: right;
+}
+.dialog-box-content .start-symbol {
+    color: #ff5454;
+    position: relative;
+    width: 0px;
+    top: 2px;
+    right: 5px;
+}
+
+.dialog-box > .dialog-box-content > .dialog-box-com > .add-start-symbol {
+    height: 30px;
+    width: 0px;
+    margin-left: -5px;
+    display: inline-block;
+    line-height: 30px;
+    float: left;
+}
+.page-icon{
+    vertical-align: middle;
+    display: inline-block;
+    width: 22px;
+    height: 18px;
+    background: url(/assets/page-home.png) no-repeat;
+}
+.page-icon:hover{
+    background: url(/assets/page-home.png) no-repeat 115% 0;
+}
+.img-icon{
+    position: relative;
+    background-color: #fff;
+    top:18px;
+    left: 0%;
+    z-index: 10000;
+    height: 210px;
+    width: 210px;
+    text-align: center;
+    padding-top: 10px;
+    border: solid 1px #76a4e8;
+    display: none;
+}
+.page-icon:hover .img-icon{
+    display: block;
+}
+.only-ready{
+    background: #e2e2e2;
+}

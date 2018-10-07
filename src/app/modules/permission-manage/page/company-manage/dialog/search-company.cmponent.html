@@ -1,0 +1,41 @@
+<div id="search_box" class="dialog-box" [@boxState]="boxState" [ngStyle]="drag.setPosition(500,256)">
+    <div id="search_move" class="dialog-box-title blue">
+        <span class="dialog-left">查找</span>
+        <span (click)="close()" class="dialog-right">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div style="display: flex">
+            <div style="flex: 2; direction: rtl">
+                <div class="content-text">公司名称</div>
+                <div class="content-text">申请来源</div>
+                <div class="content-text">状态</div>
+            </div>
+            <div style="flex: 4">
+                <input type="text" placeholder="请输入" class="content-input">
+                <select class="content-input">
+                    <option>请选择</option>
+                </select>
+                <select class="content-input">
+                    <option>请选择</option>
+                </select>
+            </div>
+            <div style="flex: 2; direction: rtl">
+                <div class="content-text">负责人</div>
+                <div class="content-text">审核状态</div>
+            </div>
+            <div style="flex: 4">
+                <input type="text" placeholder="请输入" class="content-input">
+                <select class="content-input">
+                    <option>请选择</option>
+                    <option>全部</option>
+                    <option>已审核</option>
+                    <option>未审核</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn">搜索</span>
+        <span (click)="close()" class="btn default-btn">关闭</span>
+    </div>
+</div>

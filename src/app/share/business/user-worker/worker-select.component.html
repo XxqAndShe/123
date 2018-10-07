@@ -1,0 +1,6 @@
+<div class="worker-select" *ngIf="multiSelect">
+    <p-multiSelect [options]="metas" [defaultLabel]="defaultLabel" [style]="{'width':width}" [(ngModel)]="value"></p-multiSelect>
+</div>
+<div class="worker-select" *ngIf="!multiSelect">
+    <p-dropdown [options]="metas" [placeholder]="defaultLabel" [style]="{'width':width,'height':height}" [(ngModel)]="value"  filter="filter"></p-dropdown>
+</div>

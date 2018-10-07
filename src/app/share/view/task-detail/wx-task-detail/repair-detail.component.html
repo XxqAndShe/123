@@ -1,0 +1,46 @@
+<div class="outer-modal-container">
+    <div class="modal-header">
+        <div class="first-line">
+            <span class="new-tap">售后</span>
+            <span class="gray-text">运单号</span>
+            <span class="blue-text">{{detailsVo.waybillId}}</span>
+            <!--<span class="service-type">配送+安装</span>-->
+            <span class="gray-text">任务单号</span>
+            <span class="blue-text">{{detailsVo.title}}</span>
+            <span class="gray-text">异常编号</span>
+            <span class="blue-text">{{detailsVo.abnormalNum}}</span>
+            <span class="gray-text">分配人</span>
+            <span class="blue-text">{{detailsVo.operator}}</span>
+        </div>
+        <div class="second-line">
+            <span class="gray-text">任务状态</span>
+            <p-steps [(activeIndex)]="detailsVo.stepActive" [model]="items"></p-steps>
+            <div class="shadow-div" (mouseenter)="showPanel()" (mouseleave)="hidePanel()"></div>
+            <div class="overlay-div" *ngIf="isShowPanel">
+                <p-dataTable emptyMessage="没有记录" [value]="appointmentInfo">
+                    <p-column field="operateDate" header="预约时间"></p-column>
+                    <p-column field="appointmentDate" header="预约上门时间"></p-column>
+                    <p-column field="operator" header="操作"></p-column>
+                </p-dataTable>
+            </div>
+            <div class="handle-time">
+                <span *ngFor="let handleTime of detailsVo.stepTimes">{{handleTime}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="nav-bar">
+        <button ngClass="{{infoTypeActive==='rwxx'?'active':''}}" (click)="selectInfoPanel('rwxx')">任务信息</button>
+        <button ngClass="{{infoTypeActive==='gjxx'?'active':''}}" (click)="selectInfoPanel('gjxx')">轨迹信息</button>
+        <button ngClass="{{infoTypeActive==='gzxx'?'active':''}}" (click)="selectInfoPanel('gzxx')">跟踪信息</button>
+    </div>
+    <div class="modal-content">
+        <task-msg [selectedRowData]="selectedRowData" [detailsInfo]="detailsVo"
+                  *ngIf="infoTypeActive === 'rwxx'"></task-msg>
+
+        <task-path-msg [selectLineInfo]="RowAndLineData" *ngIf="infoTypeActive === 'gjxx'"></task-path-msg>
+
+        <task-track-msg [selectLineInfo]="RowAndLineData" *ngIf="infoTypeActive === 'gzxx'"></task-track-msg>
+    </div>
+
+    <a href="javascript:; " class="close-modal-btn" (click)="close()"></a>
+</div>

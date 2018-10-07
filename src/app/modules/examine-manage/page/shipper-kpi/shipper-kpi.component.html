@@ -1,0 +1,154 @@
+<div class="outer-container">
+	<div class="inner-container">
+		<div class="content-header">
+			<form>
+				<span>起止时间</span>
+				<div class="calendar-div">
+					<p-calendar name="startDate" [(ngModel)]="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true" [maxDate]="maxDateValue"></p-calendar>
+				</div>
+				<div class="calendar-div">
+					<p-calendar name="endDate" [(ngModel)]="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+				</div>
+				<span>运单来源</span>
+				<select name="source" [(ngModel)]="billSource">
+					<option value="">所有</option>
+					<option value="isTmall">天猫订单</option>
+					<option value="">其他</option>
+				</select>
+				<!--<span>客户号</span>
+				<p-autoComplete class="write-order-input" name="clientId" [(ngModel)]="clientId" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+				<button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+				<button class="btn default-btn" type="reset">清空</button>
+				<a href="javascript:;" class="export-div">导出</a>
+				<div class="second-line">
+					<span>发货人</span>
+					<!--<p-autoComplete class="write-order-input" name="shipperName" [(ngModel)]="shipperName" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>-->
+					<shipper-select class="write-order-input" name="shipperName" width="125px" [(ngModel)]="shipperName"></shipper-select>
+					<span>发货人手机</span>
+					<p-autoComplete maxlength="11" class="write-order-input" name="shipperTel" [(ngModel)]="shipperTel" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+				</div>
+			</form>
+		</div>
+		<div *ngIf='selectNum !== 0' class="table-header">
+			<!--<span class="select-text">已选中<span class="select-num">{{selectNum}}</span>项</span>-->
+			<!--<span class="split-line">|</span>-->
+			<a href="javascript:;" class="operation-a operation-check" (click)="displayModal()"><i></i>查看详情</a>
+			<span class="close-btn">×</span>
+		</div>
+		<div *ngIf='selectNum === 0' class="table-header table-header1">
+			<h4>发货人列表</h4>
+		</div>
+		<div class="table-container">
+			<p-dataTable [totalRecords]="data.totalElements" (onRowSelect)="onRowSelect($event)" selectionMode="single" #dt emptyMessage="没有记录" [value]="data.content" [rows]="10" [paginator]="true" [pageLinks]="3" [rowsPerPageOptions]="[10,20,50,100]" scrollable="true" scrollWidth="100%" [(selection)]="selectionRow" [lazy]="true" (onLazyLoad)="onLazyLoad($event)">
+				<p-header>
+					<div class="ui-helper-clearfix">
+						<button type="button" pButton icon="fa-file-o" iconPos="right" label="导出" (click)="dt.exportCSV()" style="float:right"></button>
+					</div>
+				</p-header>
+				<p-headerColumnGroup>
+					<p-row>
+						<p-column [style]="{'width':'28px'}" rowspan="2"></p-column>
+						<!--<p-column [style]="wid120" header="ID" rowspan="2"></p-column>-->
+						<p-column [style]="wid120" header="客户号" rowspan="2"></p-column>
+						<p-column [style]="wid120" header="发货人" rowspan="2"></p-column>
+						<p-column [style]="wid120" header="发货人手机" rowspan="2"></p-column>
+						<p-column [style]="wid400" header="预约及时率（权重20%）" colspan="4"></p-column>
+						<p-column [style]="wid400" header="安装及时率（权重20%）" colspan="4"></p-column>
+						<p-column [style]="wid400" header="48小时安装完成率（权重20%）" colspan="4"></p-column>
+						<p-column [style]="wid400" header="安装完成率（权重10%）" colspan="4"></p-column>
+						<p-column [style]="wid400" header="破损率（权重10%）" colspan="4"></p-column>
+						<p-column [style]="wid400" header="投诉率（权重0%）" colspan="4"></p-column>
+						<p-column [style]="wid400" header="核销达成率（权重0%）" colspan="4"></p-column>
+						<p-column [style]="wid120" header="KPI总分" rowspan="2"></p-column>
+						<p-column [style]="wid120" header="总分排名" rowspan="2"></p-column>
+					</p-row>
+					<p-row>
+						<p-column header="及时率"></p-column>
+						<p-column header="超时票数"></p-column>
+						<p-column header="KPI得分"></p-column>
+                        <p-column header="排名"></p-column>
+
+						<p-column header="及时率"></p-column>
+						<p-column header="超时票数"></p-column>
+						<p-column header="KPI得分"></p-column>
+                        <p-column header="排名"></p-column>
+
+						<p-column header="完成率"></p-column>
+						<p-column header="完成票数"></p-column>
+						<p-column header="KPI得分"></p-column>
+                        <p-column header="排名"></p-column>
+
+						<p-column header="完成率"></p-column>
+						<p-column header="完成票数"></p-column>
+						<p-column header="KPI得分"></p-column>
+                        <p-column header="排名"></p-column>
+
+						<p-column header="破损率"></p-column>
+						<p-column header="破损票数"></p-column>
+						<p-column header="KPI得分"></p-column>
+                        <p-column header="排名"></p-column>
+
+						<p-column header="投诉率"></p-column>
+						<p-column header="投诉票数"></p-column>
+						<p-column header="KPI得分"></p-column>
+                        <p-column header="排名"></p-column>
+
+						<p-column header="达成率"></p-column>
+						<p-column header="达成票数"></p-column>
+						<p-column header="KPI得分"></p-column>
+                        <p-column header="排名"></p-column>
+					</p-row>
+				</p-headerColumnGroup>
+
+				<p-column [style]="{'width':'28px'}" selectionMode="single"></p-column>
+				<!--<p-column [style]="wid120" field="id"></p-column>-->
+				<p-column [style]="wid120" field="idBak"></p-column>
+				<p-column [style]="wid120" field="realName"></p-column>
+				<p-column [style]="wid120" field="mobile"></p-column>
+				<p-column [style]="wid100" field="reservationRate"></p-column>
+				<p-column [style]="wid100" field="reservationOvertime"></p-column>
+				<p-column [style]="wid100" field="reservationkpi"></p-column>
+				<p-column [style]="wid100" field="reservationRank"></p-column>
+
+				<p-column [style]="wid100" field="installationRate"></p-column>
+				<p-column [style]="wid100" field="installOvertime"></p-column>
+				<p-column [style]="wid100" field="installkpi"></p-column>
+				<p-column [style]="wid100" field="installRank"></p-column>
+
+				<p-column [style]="wid100" field="installationCompletionRate48"></p-column>
+				<p-column [style]="wid100" field="installationCompletionIn48"></p-column>
+				<p-column [style]="wid100" field="install48kpi"></p-column>
+				<p-column [style]="wid100" field="installationCompletionRank48"></p-column>
+
+				<p-column [style]="wid100" field="installationCompletionRate"></p-column>
+				<p-column [style]="wid100" field="installationCompletion"></p-column>
+				<p-column [style]="wid100" field="installationCompletionKpi"></p-column>
+				<p-column [style]="wid100" field="installationCompletionRank"></p-column>
+
+				<p-column [style]="wid100" field="damageRate"></p-column>
+				<p-column [style]="wid100" field="damage"></p-column>
+				<p-column [style]="wid100" field="damagekpi"></p-column>
+				<p-column [style]="wid100" field="damageRank"></p-column>
+
+				<p-column [style]="wid100" field="four6"></p-column>
+				<p-column [style]="wid100" field="five6"></p-column>
+				<p-column [style]="wid100" field="six6"></p-column>
+				<p-column [style]="wid100" field="seven6"></p-column>
+
+				<p-column [style]="wid100" field="writeOffRate"></p-column>
+				<p-column [style]="wid100" field="writeOffintime"></p-column>
+				<p-column [style]="wid100" field="writeOffKpi"></p-column>
+				<p-column [style]="wid100" field="writeOffRank"></p-column>
+
+				<p-column [style]="wid120" field="kpi"></p-column>
+				<p-column [style]="wid120" field="grade"></p-column>
+			</p-dataTable>
+		</div>
+	</div>
+	<shipper-kpi-modal *ngIf="showModal" [selectionRow]="selectionRow" class="modal" (closeModal)="closeModal()" [@modalState]="modalState" [startDate]="startDate" [endDate]="endDate" ></shipper-kpi-modal>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

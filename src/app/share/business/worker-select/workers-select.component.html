@@ -1,0 +1,14 @@
+<div class="meta-select" *ngIf="!multiSelect">
+    <p-autoComplete  name="realName" [(ngModel)]="value"
+                     [suggestions]="suggestions"
+                     (completeMethod)="queryWorker($event)"
+                     field="realName"></p-autoComplete>
+</div>
+<div class="worker-select" *ngIf="multiSelect">
+    <p-autoComplete  name="realName"
+                     [(ngModel)]="value"
+                     [multiple]="true"
+                     [suggestions]="suggestions"
+                     (completeMethod)="queryWorker($event)"
+                     field="realName"></p-autoComplete>
+</div>

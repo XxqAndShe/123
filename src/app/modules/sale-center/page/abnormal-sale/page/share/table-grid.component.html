@@ -1,0 +1,36 @@
+<ui-grid id="abnormal-sale-grid" [columns]="columns" (load)="load($event)" (exportCSV)="exportCSV($event)" [data]="data" (rowSelect)="rowSelect($event)"
+         (cellMouseEnter)="cellMouseEnter($event,op1)" (cellMouseLeave)="cellMouseLeave($event,op1)"
+         (cellClick)="cellClick($event)" [selections]="selectLineInfo"></ui-grid>
+<repair-detail [selectedRowData]="rowData" class="modal" *ngIf="isModuleDisplayArr[0]"
+               (closeModal)="closeModal(0)"
+               [@modalState]="isModuleDisplayArr1[0] ?'in':'out'"></repair-detail>
+<supplier-detail [selectedRowData]="rowData" class="modal" *ngIf="isModuleDisplayArr[1]"
+                 (closeModal)="closeModal(1)"
+                 [@modalState]="isModuleDisplayArr1[1] ?'in':'out'"></supplier-detail>
+<carrier-detail [selectedRowData]="rowData" class="modal" *ngIf="isModuleDisplayArr[5]"
+                 (closeModal)="closeModal(5)"
+                 [@modalState]="isModuleDisplayArr1[5] ?'in':'out'"></carrier-detail>
+<detail-modal class="modal" [selectLineInfo]="rowData" *ngIf="isModuleDisplayArr[2]"
+              [@modalState]="isModuleDisplayArr1[2] ?'in':'out'"
+              (closeModal)="closeModal(2)"></detail-modal>
+<!--补件详情-->
+<bh-detail class="modal" [selectLineInfo]="rowData" *ngIf="isModuleDisplayArr[3]"
+           [@modalState]="isModuleDisplayArr1[3] ?'in':'out'"
+           (closeModal)="closeModal(3)" (saveModal)="saveModal()"></bh-detail>
+<!--其他详情-->
+<other-task-detail [selectedRowData]="rowData" class="modal" *ngIf="isModuleDisplayArr[4]" (closeModal)="closeModal(4)"
+                   [@modalState]="isModuleDisplayArr1[4] ?'in':'out'"></other-task-detail>
+<!--异常处理结果查看-->
+<readonly-exception-info [selectionRow]="rowData" [abnormalSaleFlag]="abnormalSale" *ngIf="isshowExceptionWin"
+                         (close)="hideWin()"></readonly-exception-info>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+<!--弹出内容框-->
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+    <p-dataTable [value]="trackInfo" [style]="{'width':'600px'}" class="table" emptyMessage="没有记录">
+        <p-column field="trackedTime" header="上次跟踪时间" [sortable]="true"></p-column>
+        <p-column field="operator" header="跟踪人" [sortable]="true"></p-column>
+        <p-column field="remark" header="跟踪信息" [sortable]="true"></p-column>
+        <p-column field="altTime" header="下次跟踪时间" [sortable]="true"></p-column>
+    </p-dataTable>
+</p-overlayPanel>

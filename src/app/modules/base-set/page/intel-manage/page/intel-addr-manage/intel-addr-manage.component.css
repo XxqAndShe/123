@@ -1,0 +1,21 @@
+.content{padding:20px;width:100%;height:100%;overflow: auto;padding: 20px;  box-sizing: border-box;  position: relative;}
+/*操作提示框公共样式*/
+.operate-tips{width:300px; height: 50px;padding: 15px 20px;box-sizing: border-box; border-radius: 3px;position:absolute;top:50%;left:50%;margin-left:-150px;margin-top:-25px;}
+.operate-tips>.operate-tips-text{float:left;display: inline-block;margin-top: 2px;color:#fff;}
+.operate-tips>.cancel-icon{float:right;font-size: 24px;opacity: 0.5;margin-top: -8px;cursor: pointer;color:#fff;}
+.operate-tips>i{display:inline-block;width:24px;height:21px;float:left;}
+/*保存成功样式*/
+.save-success{ background-color: #7cbc37;}
+.save-success>i{background:url('/assets/save-success.png') no-repeat 0 0; }
+
+/*头部*/
+.intel-match-title{height: 48px;  line-height: 48px;}
+.intel-match-title>span:nth-child(1){font-size:16px; color:#737f90;}
+.intel-match-title>span:nth-child(3){float:right;width:80px;margin-top: 10px;}
+.intel-match-title>span:nth-child(2){display: inline-block;width:93px; height: 28px;border:1px solid #ddd;line-height: 30px; text-align: center; background-color: #eee;color:#737f90;float: right;
+    margin-top: 10px;}
+.intel-match-button{padding:33px 5px 25px;font-size:13px;color:#737f90;margin-bottom:15px;line-height:30px;}
+.intel-match-button>li{float:left;margin-right:24px;color:#737f90;font-size:13px;height:20px;line-height: 20px;}
+.intel-match-button>li>i{display: inline-block;width:16px;height:16px;background: url('/assets/circle.png') no-repeat 0 0;float: left;
+    margin-top: 2px;margin-right:5px;}
+.intel-match-button>li>i.right{background: url('/assets/right.png') no-repeat 0 0;}

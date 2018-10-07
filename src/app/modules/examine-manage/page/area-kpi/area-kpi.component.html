@@ -1,0 +1,185 @@
+<div class="outer-container">
+	<div class="inner-container">
+		<div class="content-header">
+			<form>
+				<span>起止时间</span>
+				<div class="calendar-div">
+					<p-calendar name="startDate" [(ngModel)]="startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true" [maxDate]="endDate" (onSelect)="onSelect($event)" ></p-calendar>
+				</div>
+				<div class="calendar-div">
+					<p-calendar name="endDate" [(ngModel)]="endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true" [minDate]="startDate" (onSelect)="onSelect($event)" ></p-calendar>
+				</div>
+				<span>运单来源</span>
+				<select name="source" [(ngModel)]="billSource">
+					<option value="All">所有</option>
+					<option value="tmall">天猫订单</option>
+					<option value="otherSource">其他</option>
+				</select>
+				<button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+				<button class="btn default-btn" type="reset">清空</button>
+			</form>
+
+			<a href="javascript:;" class="export-div">导出</a>
+		</div>
+
+		<div class="result-div">
+			<ul class="result-list">
+				<li>
+					<div class="percent percent-blue">{{areaKpiVo.orderPromptness}}</div>
+					<div>及时 : {{areaKpiVo.orderIntime}} 总 : {{areaKpiVo.orderTotal}}</div>
+					<div>预约及时率</div>
+					<div>（指标 : {{areaKpiVo.orderPromptnessQuota}}）</div>
+				</li>
+				<li>
+					<div class="percent percent-blue">{{areaKpiVo.installPromptness}}</div>
+					<div>及时 : {{areaKpiVo.installIntime}} 总 : {{areaKpiVo.installTotal}}</div>
+					<div>安装及时率</div>
+					<div>（指标 : {{areaKpiVo.installPromptnessQuota}}）</div>
+				</li>
+				<li>
+					<div class="percent percent-blue">{{areaKpiVo.hourPromptness}}</div>
+					<div>及时 : {{areaKpiVo.hourInstallIntime}} 总 : {{areaKpiVo.hourInstallTotal}}</div>
+					<div>48小时安装及时率</div>
+					<div>（指标 : {{areaKpiVo.hourPromptnessQuota}}）</div>
+				</li>
+				<li>
+					<div class="percent percent-red">{{areaKpiVo.damageRate}}</div>
+					<div>破损 : {{areaKpiVo.damageNum}} 总 : {{areaKpiVo.damageTotal}}</div>
+					<div>破损率</div>
+					<div>（指标 : {{areaKpiVo.damageRateQuota}}）</div>
+				</li>
+				<li>
+					<div class="percent percent-blue">{{areaKpiVo.complainRate}}</div>
+					<div>投诉 : {{areaKpiVo.complainNum}} 总 : {{areaKpiVo.complainTotal}}</div>
+					<div>投诉率</div>
+					<div>（指标 : {{areaKpiVo.complainRateQuota}}）</div>
+				</li>
+				<li>
+					<div class="percent percent-red">{{areaKpiVo.saleTime}}</div>
+					<div></div>
+					<div>售后时效</div>
+					<div>（指标 : {{areaKpiVo.saleTimeQuota}}）</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="content-body">
+			<div class="table-header table-header1">
+				<h4>大区域列表</h4>
+			</div>
+
+			<div class="table-container">
+				<div class="table-content">
+					<ul class="list title-list">
+						<!--<li class="col-1">
+							<a href="javascript:;" [ngClass]="{null: allSelect1===0, selected: allSelect1===1, ticked: allSelect1===2}" (click)="toggleAllSelect(1)"></a>
+						</li>-->
+						<li class="col-2">区域</li>
+						<li class="col-3">负责人</li>
+						<li class="col-4 big-div">预约及时率</li>
+						<li class="col-4 small-div">及时</li>
+						<li class="col-5 small-div">总票数</li>
+						<li class="col-6 small-div">及时率</li>
+						<li class="col-7 big-div">安装及时率</li>
+						<li class="col-7 small-div">及时</li>
+						<li class="col-8 small-div">总票数</li>
+						<li class="col-9 small-div">及时率</li>
+                        <li class="col-10 big-div">48小时安装完成率</li>
+                        <li class="col-10 small-div">及时</li>
+                        <li class="col-11 small-div">总票数</li>
+                        <li class="col-12 small-div">完成率</li>
+						<li class="col-13 big-div">破损率</li>
+						<li class="col-13 small-div">破损票数</li>
+                        <li class="col-14 small-div">破损总数</li>
+						<li class="col-15 small-div">破损率</li>
+						<li class="col-16">KPI总分</li>
+						<li class="col-17">排名</li>
+					</ul>
+					<ul *ngFor="let bigArea of bigAreas; let i=index" class="list data-list" [ngClass]="{selected: isSelectedArr1[i]}">
+						<!--<li class="col-1">
+							<a href="javascript:;" [ngClass]="{ticked: isSelectedArr1[i]}" (click)="rowSelect(i, 1)"></a>
+						</li>-->
+                        <li class="col-2">{{bigArea.regionLarge}}</li>
+                        <li class="col-3">{{bigArea.realName}}</li>
+                        <li class="col-4">{{bigArea.reservationRateValid}}</li>
+                        <li class="col-5">{{bigArea.reservationRateSum}}</li>
+                        <li class="col-6">{{bigArea.orderPromptness}}</li>
+                        <li class="col-7">{{bigArea.installationRateValid}}</li>
+                        <li class="col-8">{{bigArea.installationRateSum}}</li>
+                        <li class="col-9">{{bigArea.installPromptness}}</li>
+                        <li class="col-10">{{bigArea.installationCompletionRate48Valid}}</li>
+                        <li class="col-11">{{bigArea.installationCompletionRate48Sum}}</li>
+                        <li class="col-12">{{bigArea.hourPromptness}}</li>
+                        <li class="col-13">{{bigArea.damageRateValid}}</li>
+                        <li class="col-14">{{bigArea.damageRateSum}}</li>
+                        <li class="col-15">{{bigArea.damageRate}}</li>
+                        <li class="col-16">{{bigArea.kPISumPer}}</li>
+                        <li class="col-17">{{bigArea.rank}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="content-body small-area-div">
+			<div class="table-header table-header1">
+				<h4>小区域列表</h4>
+			</div>
+
+			<div class="table-container">
+				<div class="table-content">
+					<ul class="list title-list">
+						<!--<li class="col-1">
+							<a href="javascript:;" [ngClass]="{null: allSelect2===0, selected: allSelect2===1, ticked: allSelect2===2}" (click)="toggleAllSelect(2)"></a>
+						</li>-->
+						<li class="col-2">区域</li>
+						<li class="col-3">负责人</li>
+						<li class="col-4 big-div">预约及时率</li>
+						<li class="col-4 small-div">及时</li>
+						<li class="col-5 small-div">总票数</li>
+						<li class="col-6 small-div">及时率</li>
+						<li class="col-7 big-div">安装及时率</li>
+						<li class="col-7 small-div">及时</li>
+						<li class="col-8 small-div">总票数</li>
+						<li class="col-9 small-div">及时率</li>
+                        <li class="col-10 big-div">48小时安装完成率</li>
+                        <li class="col-10 small-div">及时</li>
+                        <li class="col-11 small-div">总票数</li>
+                        <li class="col-12 small-div">完成率</li>
+                        <li class="col-13 big-div">破损率</li>
+                        <li class="col-13 small-div">破损票数</li>
+                        <li class="col-14 small-div">破损总数</li>
+                        <li class="col-15 small-div">破损率</li>
+						<li class="col-16">KPI总分</li>
+						<li class="col-17">排名</li>
+					</ul>
+					<ul *ngFor="let smallArea of smallAreas; let i=index" class="list data-list" [ngClass]="{selected: isSelectedArr2[i]}">
+						<!--<li class="col-1">
+							<a href="javascript:;" [ngClass]="{ticked: isSelectedArr2[i]}" (click)="rowSelect(i, 2)"></a>
+						</li>-->
+						<li class="col-2">{{smallArea.regionSmallge}}</li>
+						<li class="col-3">{{smallArea.realName}}</li>
+						<li class="col-4">{{smallArea.reservationRateValid}}</li>
+						<li class="col-5">{{smallArea.reservationRateSum}}</li>
+						<li class="col-6">{{smallArea.orderPromptness}}</li>
+						<li class="col-7">{{smallArea.installationRateValid}}</li>
+						<li class="col-8">{{smallArea.installationRateSum}}</li>
+						<li class="col-9">{{smallArea.installPromptness}}</li>
+						<li class="col-10">{{smallArea.installationCompletionRate48Valid}}</li>
+						<li class="col-11">{{smallArea.installationCompletionRate48Sum}}</li>
+						<li class="col-12">{{smallArea.hourPromptness}}</li>
+						<li class="col-13">{{smallArea.damageRateValid}}</li>
+						<li class="col-14">{{smallArea.damageRateSum}}</li>
+						<li class="col-15">{{smallArea.damageRate}}</li>
+						<li class="col-16">{{smallArea.kPISumPer}}</li>
+						<li class="col-17">{{smallArea.rank}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

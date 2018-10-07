@@ -1,0 +1,65 @@
+<div id="deposit_apply" class="deposit-apply" #depositapply [ngStyle]="drag.setPosition(690,655)">
+  <div id="deposit_apply_title" class="deposit-apply-title">
+    <span class="apply-left">提现申请</span>
+    <span class="apply-right" (click)="hideDepositApply(depositapply)">×</span>
+  </div>
+  <div class="deposit-apply-content">
+    <input type="text" placeholder="师傅姓名或账号" [(ngModel)]="userRequestVo.mobile">
+    <input class="primary-btn" type="submit" value="搜索" (click)="doQuery()">
+  </div>
+  <div class="table-wrap">
+    <div class="cut-off-line"></div>
+    <table class="deposit-apply-table">
+      <tr class="table-title">
+        <th class="special-th"><span></span></th>
+        <th>师傅姓名</th>
+        <th>师傅账号</th>
+        <th>可提现金额</th>
+        <th >提现中金额</th>
+        <th>不可提现金额</th>
+      </tr>
+      <tr>
+        <td class="special-th"><span></span></td>
+        <td class="master-name">李白</td>
+        <td>1562885858</td>
+        <td>5000</td>
+        <td>5000</td>
+        <td>5000</td>
+      </tr>
+      <tr>
+        <td class="special-th"><span></span></td>
+        <td class="master-name">李白</td>
+        <td>1562885858</td>
+        <td>5000</td>
+        <td>5000</td>
+        <td>5000</td>
+      </tr>
+      <tr>
+        <td class="special-th"><span></span></td>
+        <td class="master-name">李白</td>
+        <td>1562885858</td>
+        <td>5000</td>
+        <td>5000</td>
+        <td>5000</td>
+      </tr>
+    </table>
+  </div>
+  <div class="deposit-apply-footer">
+    <span class="num-count">共150条</span>
+    <span class="sum-text">已选1条&nbsp;总金额 ¥5000</span>
+    <button class="default-btn" (click)="hideDepositApply(depositapply)">取消</button>
+    <button class="primary-btn" (click)="showDepositWin(depositwin)">
+        提现
+    </button>
+  </div>
+  <!-- 提现弹框遮罩层 -->
+</div>
+
+<div class="deposit-win" #depositwin style="display: none">
+  <div class="deposit-win-title">提现</div>
+  <div class="deposit-win-content">选择师傅数量X,提现总金额9999元，确认申请提现？</div>
+  <div class="deposit-win-footer">
+    <button class="primary-btn" (click)="withdrawal()">确定</button>
+    <button class="default-btn"  (click)="hideDepositWin(depositwin)">取消</button>
+  </div>
+</div>

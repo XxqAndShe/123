@@ -1,0 +1,75 @@
+.deposit-apply{width:690px;box-shadow: 1px 2px 10px #717171, -1px 2px 10px #717171;z-index: 1500;background-color: #fff;}
+.deposit-apply>.deposit-apply-title{width: 100%;height: 40px;background: #fff;display: block;padding: 12px 15px;box-sizing: border-box;}
+.deposit-apply>.deposit-apply-title>span{font-size:14px;color:#000;line-height: 16px;}
+.deposit-apply>.deposit-apply-title>.apply-left{float:left;}
+.deposit-apply>.deposit-apply-title>.apply-right{float:right;font-size:18px;cursor: pointer;color:#cdcdcd;}
+.deposit-apply>.deposit-apply-content{width:100%;height:50px;background-color: #fbfbfc;border-top:1px solid #cfd6e6;padding: 10px 15px;box-sizing: border-box;}
+.deposit-apply>.deposit-apply-content>input[type='text']{width:155px; height: 26px;}
+.deposit-apply>.deposit-apply-content>input.primary-btn{display: inline-block;width:58px; height:30px; text-align: center;line-height: 30px; margin-left: -4px;}
+
+/*表格*/
+.table-wrap{height:500px;width:100%;border:1px solid #d8e3ef;border-top: 2px solid #0d85e4;box-sizing:border-box;position: relative;}
+.table-wrap>.cut-off-line{width:1px;height: 463px;position: absolute;top:35px; left:184px; background-color: #ebf1f7;}
+.deposit-apply-table{width:100%;border-spacing: 0;border-collapse: collapse;}
+.deposit-apply-table tr{height:37px;}
+/*隔行变色*/
+.deposit-apply-table tr+tr:nth-child(odd){background-color: #f7f8fa;}
+.deposit-apply-table tr>th+th,.deposit-apply-table tr>td+td{padding-left:8px; box-sizing:border-box;}
+.deposit-apply-table tr.table-title{border-bottom:1px solid #d8e3ef;background-color: #fafdff;}
+.deposit-apply-table tr>th{width:10%;text-align: left; font-weight:bold;}
+.deposit-apply-table tr>th+th{border-left:1px solid #e1efff;}
+.deposit-apply-table tr>.special-th{width:5%;text-align: center;}
+.deposit-apply-table tr>.special-th>span{display: inline-block;width:13px;height:12px; border: 1px solid #ddd;}
+.deposit-apply-table tr>.special-th>s{display:inline-block; width:15px; height:13px;background: url('/assets/financialicon.png') 0 0;}
+
+.deposit-apply-footer{padding:5px 10px;}
+.deposit-apply-footer>span{display: inline-block;position: relative;top: -9px;}
+.deposit-apply-footer>span.sum-text{margin-left:18px;color: #0d85e4;}
+.deposit-apply-footer>button{width:60px; height: 30px;position: relative;top: -9px;}
+.deposit-apply-footer>button.default-btn{margin:14px 2px 0 40px;}
+.deposit-apply-footer>button.primary-btn{margin-right:0;}
+/*<!-- 提现弹框 -->*/
+.deposit-win{width:237px; padding:15px 17px; box-shadow: 1px 2px 10px #717171, -1px 2px 10px #717171;position: absolute;top: 50%;left: 50%;z-index: 2000000;background-color: #fff;margin-top: -119px;margin-left: -119px; text-align: center;box-sizing:border-box;}
+.deposit-win>.deposit-win-title{font-size:14px;margin-bottom:15px;}
+.deposit-win>.deposit-win-content{margin-bottom:18px;}
+.deposit-win>.deposit-win-footer>button{width:60px; height:29px; border-radius:2px;}
+
+.page-select{
+  display: inline-block;
+  width: 300px;
+  height: 30px;
+  float:none;
+
+}
+.page-select>.page-item{
+  display: inline-block;
+  float: left;
+  width: 30px;
+  height: 30px;
+  background-color: #eee;
+  margin-left: 3px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+.page-select>.page-item:hover{
+  background-color: #ccc;
+  color: white;
+}
+.page-select>.select_cur.page-item{
+  background-color: #0d85e4;
+  color: white;
+}
+
+.page-select input{
+  display: inline-block;
+  float: left;
+  outline:none;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  line-height: 26px;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  background-color: white;
+}

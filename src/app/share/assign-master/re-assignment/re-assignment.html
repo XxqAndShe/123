@@ -1,0 +1,168 @@
+<div class="outer-assignMaster">
+    <!--Todo 维修任务接口-->
+    <span *ngIf="isRepair">
+            <div class="assignmaster-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>任务号</td>
+                            <td>维修类型</td>
+                             <td>维修费</td>
+                            <td>品名</td>
+                            <td>备注</td>
+                            <td>地址</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of transitionData let i of index">
+                            <td><span class="only-oht" title="{{obj.waybill}}">{{obj.waybill}}</span></td>
+                            <td><span class="only-color">维修</span></td>
+                            <td><input type="text" [(ngModel)]="obj.fee"
+                                       #box (input)="clear(box)" value="0"></td>
+                            <td><span (mouseover)="allGoods($event,i,op2)" (mouseleave)="cancalAll($event,op2)" class="only-oht">{{obj.taskRepairDetailsName || obj.goods}}</span></td>
+                            <td><span class="only-oht address-area" title="{{obj.taskRemark}}">{{obj.taskRemark}}</span></td>
+                            <td><span class="only-oht address-area" title="{{obj.vArea}}">{{obj.vArea}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </span>
+    <!--Todo 返货任务接口-->
+    <span *ngIf="!isRepair">
+            <div class="assignmaster-table">
+                 <table class="return-goods">
+                    <thead>
+                        <tr>
+                            <td>任务号</td>
+                            <td>返货类型</td>
+                             <td>返货费</td>
+                            <td>总体积</td>
+                            <td>品名</td>
+                            <td>备注</td>
+                            <td>收货地址</td>
+                            <td>提货地址</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of transitionData; let i of index">
+                            <td><span class="only-oht" title="{{obj.waybill}}">{{obj.waybill}}</span></td>
+                            <td><span class="only-color">返货</span></td>
+                            <td><input type="text" [(ngModel)]="obj.fee" maxlength="5"
+                                       onkeyup="value=value.replace(/[^\d{1,2}]/g,'')"></td>
+                            <td><span class="only-oht return-six" title="{{obj.returnGoodsVolumn || 0}}">{{obj.returnGoodsVolumn || 0}}</span></td>
+                            <td><span  (mouseover)="allGoods($event,i,op2)" (mouseleave)="cancalAll($event,op2)" class="only-oht return-six">{{obj.taskRepairDetailsName || obj.goods}}</span></td>
+                            <td><span class="only-oht return-own" title="{{obj.taskRemark}}">{{obj.taskRemark}}</span></td>
+                            <td><span class="only-oht return-area" title="{{obj.vArea}}">{{obj.vArea}}</span></td>
+                            <td><span class="only-oht return-area" title="{{obj.getGoodsArea}}">{{obj.getGoodsArea}}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </span>
+    <div class="assignmaster-map">
+        <!--高德地图-->
+        <form id="form_dyy" #formBox_dyy>
+            <div class="assign-address-cx">
+                <div class="addr-control add-address">
+                    <area-select name="someName" [(ngModel)]="area" [width]="width"></area-select>
+                </div>
+                <button type="button" (click)="formBox_dyy.reset()" (mouseup)="empty()"
+                        class="clear-btn btn btn-delete">清空
+                </button>
+            </div>
+        </form>
+        <div class="assign-box">
+            <div class="assign-cover"></div>
+            <div class="assign-address-text">
+                <input type="text" class="assign-address-input" placeholder="请输入要查询的师傅账号或姓名"
+                       [(ngModel)]="mobileOrRealName"
+                       #box (keyup)="return(box.value)">
+                <button class="btn primary-btn btn-adress" (click)="getUserWorker()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+            </div>
+
+            <div class="assign-master">
+                <ul *ngFor="let master of userWorkerList">
+                    <li>
+                        <ul class="add-ngif">
+                            <li><span class="fp-btn" (click)="distributionWorker(master)">分配</span></li>
+                            <li class="first-li">
+                                <div title="{{master.realName}}（{{master.mobile}}）" id="total-fee">
+                                    {{master.realName}}（{{master.mobile}}）
+                                </div>
+                            </li>
+                            <li *ngIf="isRepair">维修：{{master.increServiceRepair}}</li>
+                            <li *ngIf="!isRepair">{{master.increServiceBack}}</li>
+                            <li>
+                                <span>
+                                    接单：
+                                    <span>
+                                        <span class="add-red-assign">{{master.dynamicMaxOrder}}</span>/<span>{{master.maxOrder}}</span>
+                                    </span>
+                                </span>
+                                &nbsp;
+                                <span>
+                                    优先级：
+                                    <span class="add-red-assign">{{master.masterPriority}}</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="items-assign" *ngIf="itemsIf">此区/县没有合作师傅，请更换区域查找其他师傅</div>
+            </div>
+            <div class="master-page">
+                <table class="page-show">
+                    <tfoot>
+                    <tr>
+                        <td colspan="11">
+                            <span class="water-table-listbtn"></span>
+                            <span class="water-table-page">
+                             <span id="pagemsg" class="water-table-pagemsg">当前<span
+                                 style="color: red">{{page/5+1 || 0}}</span>/{{totalPages || 0}}页</span>
+                             <input type="button" id="rpbtn" (click)="rpbtn()" value="上页"/>
+                             <input type="button" id="npbtn" (click)="npbtn()" value="下页"/>
+                             <span id="pagemsg" class="water-table-pagemsg">跳转
+                             <input type="text" id="gpinput" [(ngModel)]="pageNumber" size="3" value="0"
+                                    (keyup)="showPages($event)" oninput="value=value.replace(/[^\d{1,}]/g,'')"/>页
+                             </span>
+                            </span>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <!--历史分配师傅-->
+        <div class="historical-record" *ngIf="hostory">
+            <header>历史分配师傅</header>
+            <div class="record-body">
+                <div class="record-master" *ngFor="let master of hostoryMaster">
+                    <div>{{master.realName}}({{master.mobile}})</div>
+                    <span (click)="distributionWorker(master)">分配</span>
+                </div>
+            </div>
+        </div>
+        <!--todo 如果需再用到高德地图，请将amap放开删掉amap下面的amap-->
+        <!--<amap [pointAdress]="pointAdress"></amap>-->
+        <div style="width: 100%;height: 800px;"></div>
+    </div>
+    <a href="javascript:;" class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>
+
+<!--返修商品提示-->
+<p-overlayPanel #repairGoods [showCloseIcon]="true" [dismissable]="false">
+    <div *ngFor="let obj of transitionData">
+        {{obj.taskRepairDetailsName}}
+    </div>
+</p-overlayPanel>
+
+<!--货品信息详情-->
+
+<p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false" (mouseover)="pOver(false)" (mouseleave)="pLeave(true,op2)">
+    <goods-details [goodsShow]="goodsOver" [goodsDetailsCount]="goodsDetailsCount"></goods-details>
+</p-overlayPanel>

@@ -1,0 +1,48 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <!--导航栏-->
+        <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+        <div class="content-header">
+            <form>
+                <span>时间段</span>
+                <div class="calendar-div">
+                    <p-calendar name="startDate" [(ngModel)]="MasterOrderInformationVo.startDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <div class="calendar-div">
+                    <p-calendar name="endDate" [(ngModel)]="MasterOrderInformationVo.endDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                <span>师傅</span>
+                <div class="seller">
+                    <master-select name="masterMobile" width="300px" [(ngModel)]="userWorker" defaultLabel="请选择…"></master-select>
+                </div>
+
+                <!--这是显示订单趋势统计的部分-->
+                <div>
+                    <span class="area">区域</span>
+                    <div class="addr-control">
+                        <ui-select-box name="someName" [(ngModel)]="areaId" [data-handler]="dataHandler"></ui-select-box>
+                    </div>
+                </div>
+
+                <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" type="reset">清空</button>
+            </form>
+
+        </div>
+        <!--这里是显示订单区域统计图部分-->
+        <div class="content-body">
+            <div class="table-header table-header1">
+                <h4>师傅订单信息列表</h4>
+            </div>
+            <div class="table-container" [class.expand]="isSelect">
+                <ui-grid [columns]="columns" [data]="data" [(selections)]="selectionRow"  (load)="load($event)"></ui-grid>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

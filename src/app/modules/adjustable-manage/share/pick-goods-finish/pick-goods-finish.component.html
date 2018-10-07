@@ -1,0 +1,24 @@
+<div class="dialog-box" style="display:block;width: 472px;margin-left: -160px;margin-top: -120px">
+    <div class="dialog-box-content">
+        <div class="dialog-box-top dialog-box-com">
+            <label for="logisticsComName"><span class="mustFill">*</span>物流公司名称:</label><input type="text" [(ngModel)]="logisticsComName" placeholder="{{PlogisticsComName}}" maxlength="20">
+            <label for="logisticsNumber"><span class="mustFill">*</span>物流单号:</label><input type="text" [(ngModel)]="logisticsNumber" placeholder="{{PlogisticsNumber}}" maxlength="30"><br>
+            <label for="logisticsCompTel"><span class="mustFill">*</span>物流公司电话:</label><input type="text" [(ngModel)]="logisticsCompTel" placeholder="{{PlogisticsCompTel}}" maxlength="
+24">
+            <label for="payableAmount "><span class="mustFill">*</span>到付金额:</label><input type="text" [(ngModel)]="payableAmount" placeholder="{{PpayableAmount}}" maxlength="5" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+        </div>
+    </div>
+    <label for="uploadImage" class="imageLable"><span class="mustFill">*</span>上传图片:</label>
+    <div id="uploadImg">
+        <ui-upload [(ngModel)]="files"></ui-upload>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="savePickGoodsFinish()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            保存
+        </button>
+        <span class="btn default-btn" (click)="pickGoodsFinishCancel()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

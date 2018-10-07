@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" style=" ">
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1, minimum-scale=1" charset="UTF-8">
+    <link href="images/base.css" rel="stylesheet">
+    <title>评价服务</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../config/global_config.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var deviceWidth = document.documentElement.clientWidth;
+    var urlParams = getUrlVars();
+    var sureEvent1 = false;
+    var sureEvent2 = false;
+    var sureEvent3 = false;
+    var sureEvent4 = false;
+    var sureEvent5 = false;
+    var gradService;
+    var text;
+    var serviceAttitude;
+    var deliveryIntime;
+    var dressUniform;
+    var contactBefore;
+    var outerPackGood;
+    var evaluateType;
+    var thisUrl = document.URL;
+    var showval = urlParams['id'];
+
+
+    /**
+     * 获取url参数
+     * @returns {{}}
+     */
+    function getUrlVars() {
+        var vars = {};
+        var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&#]*)/gi,
+            function (m, key, value) {
+                vars[key] = value;
+            }
+        );
+        return vars;
+    }
+
+    function init() {
+
+        var niming = document.getElementById('niming');
+
+
+        var shifu = document.getElementById('shifu');
+        var touxiang = document.getElementById('touxiang');
+
+
+        $.ajax({
+            url: window.baseUrl + '/MessageShipper/queryWayByTaskId',
+            type: 'post',
+            data: {
+                'id': showval
+//                'id':"1zt2017082101"
+            },
+            success: function (data) {
+
+
+                if (data.gradService == "1.00") {
+                    xing11.src = "images/xing_xx@2x.png";
+                } else if (data.gradService == "2.00") {
+                    xing21.src = "images/xing_xx@2x.png";
+                    xing11.src = "images/xing_xx@2x.png";
+                } else if (data.gradService == "3.00") {
+                    xing21.src = "images/xing_xx@2x.png";
+                    xing11.src = "images/xing_xx@2x.png";
+                    xing31.src = "images/xing_xx@2x.png";
+                } else if (data.gradService == "4.00") {
+                    xing21.src = "images/xing_xx@2x.png";
+                    xing11.src = "images/xing_xx@2x.png";
+                    xing31.src = "images/xing_xx@2x.png";
+
+                    xing41.src = "images/xing_xx@2x.png";
+                }
+                else if (data.gradService == "5.00") {
+                    xing21.src = "images/xing_xx@2x.png";
+                    xing11.src = "images/xing_xx@2x.png";
+                    xing31.src = "images/xing_xx@2x.png";
+                    xing51.src = "images/xing_xx@2x.png";
+
+                    xing41.src = "images/xing_xx@2x.png";
+                }
+                if (data.masterName) {
+                    shifu.innerText = data.masterName;
+                }
+                if (data.portraits[0]) {
+                    touxiang.src = data.portraits;
+                }
+                console.log(data);
+
+            }
+        });
+
+    }
+
+    window.onload = init;
+
+    if (deviceWidth > 750) deviceWidth = 750;
+
+    document.documentElement.style.fontSize = deviceWidth / 7.5 + 'px';
+    function observing() {
+        var textlength = document.getElementById('textlength');
+        var showlength = document.getElementById('showlength');
+
+        showlength.innerText = textlength.value.length;
+        text = textlength.value;
+    }
+
+    function scoreEvent(event) {
+        var xing1 = document.getElementById('xing1');
+        var xing2 = document.getElementById('xing2');
+        var xing3 = document.getElementById('xing3');
+        var xing4 = document.getElementById('xing4');
+        var xing5 = document.getElementById('xing5');
+
+        if (event == 1) {
+            gradService = 1;
+            xing1.src = "images/xing_x@2x.png";
+            xing2.src = "images/xing_m@2x.png";
+            xing3.src = "images/xing_m@2x.png";
+            xing4.src = "images/xing_m@2x.png";
+            xing5.src = "images/xing_m@2x.png";
+        } else if (event == 2) {
+            gradService = 2
+            xing1.src = "images/xing_x@2x.png";
+            xing2.src = "images/xing_x@2x.png";
+            xing3.src = "images/xing_m@2x.png";
+            xing4.src = "images/xing_m@2x.png";
+            xing5.src = "images/xing_m@2x.png";
+        } else if (event == 3) {
+            gradService = 3;
+            xing1.src = "images/xing_x@2x.png";
+            xing2.src = "images/xing_x@2x.png";
+            xing3.src = "images/xing_x@2x.png";
+            xing4.src = "images/xing_m@2x.png";
+            xing5.src = "images/xing_m@2x.png";
+        } else if (event == 4) {
+            xing1.src = "images/xing_x@2x.png";
+            xing2.src = "images/xing_x@2x.png";
+            xing3.src = "images/xing_x@2x.png";
+            xing4.src = "images/xing_x@2x.png";
+            xing5.src = "images/xing_m@2x.png";
+            gradService = 4;
+
+        } else if (event == 5) {
+            gradService = 5;
+            xing1.src = "images/xing_x@2x.png";
+            xing2.src = "images/xing_x@2x.png";
+            xing3.src = "images/xing_x@2x.png";
+            xing4.src = "images/xing_x@2x.png";
+            xing5.src = "images/xing_x@2x.png";
+
+        }
+
+
+    }
+    function submitEvaluation() {
+
+
+        evaluateType = "serviceAttitude" + ",deliveryIntime" + ",dressUniform" + ",contactBefore" + ",outerPackGood";
+
+        if (!serviceAttitude) {
+            evaluateType = evaluateType.replace("serviceAttitude,", "");
+        }
+        if (!deliveryIntime) {
+            evaluateType = evaluateType.replace("deliveryIntime,", "");
+        }
+        if (!dressUniform) {
+            evaluateType = evaluateType.replace("dressUniform,", "");
+        }
+        if (!contactBefore) {
+            evaluateType = evaluateType.replace("contactBefore,", "");
+        }
+        if (!outerPackGood) {
+            evaluateType = evaluateType.replace("outerPackGood", "");
+        }
+        $.ajax({
+            url: window.baseUrl + '/MessageShipper/masterEvaluate',
+            type: 'post',
+            data: {
+                'id': showval,
+//                'id':"1zt2017082101",
+                'gradService': gradService,
+                'evaluateTypes': evaluateType,
+                'text': text
+            },
+            success: function (data) {
+                alert('感谢您的评价！')
+                console.log(data);
+                // if(data && data.resultcode == '200'){
+                //     alert(data.result.today);
+                // }
+            }, error: function (data) {
+
+//                alert("此任务已经评价过，不支持再次评价！感谢您的理解！");
+            }
+        });
+
+        javascript :history.back(-1);
+
+
+    }
+    function appraiseBtn(tag) {
+        var fuwugood = document.getElementById('fuwugood');
+        var peisonggood = document.getElementById('peisonggood');
+        var zhaozhuang = document.getElementById('zhaozhuang');
+        var songqian = document.getElementById('songqian');
+        var waibaogood = document.getElementById('waibaogood');
+
+
+        if (tag == 1) {
+            sureEvent1 = !sureEvent1;
+            if (sureEvent1) {
+                serviceAttitude = "serviceAttitude";
+                fuwugood.style.background = "dodgerblue";
+                fuwugood.style.color = "white";
+            }
+            else {
+                serviceAttitude = serviceAttitude.replace("serviceAttitude", "");
+                fuwugood.style.background = "white";
+                fuwugood.style.color = "grey";
+            }
+        }
+        else if (tag == 2) {
+            sureEvent2 = !sureEvent2;
+            if (sureEvent2) {
+                //serviceAttitude = serviceAttitude + ",deliveryIntime";
+                deliveryIntime = "deliveryIntime";
+                peisonggood.style.background = "dodgerblue";
+                peisonggood.style.color = "white";
+            }
+            else {
+                deliveryIntime = deliveryIntime.replace("deliveryIntime", "");
+
+                peisonggood.style.background = "white";
+                peisonggood.style.color = "grey";
+            }
+
+        }
+        else if (tag == 3) {
+            sureEvent3 = !sureEvent3;
+            if (sureEvent3) {
+                dressUniform = "dressUniform";
+                zhaozhuang.style.background = "dodgerblue";
+                zhaozhuang.style.color = "white";
+            }
+            else {
+                dressUniform = dressUniform.replace("dressUniform", "");
+
+                zhaozhuang.style.background = "white";
+                zhaozhuang.style.color = "grey";
+            }
+
+        }
+        else if (tag == 4) {
+            sureEvent4 = !sureEvent4;
+            if (sureEvent4) {
+                contactBefore = "contactBefore";
+
+                songqian.style.background = "dodgerblue";
+                songqian.style.color = "white";
+            }
+            else {
+                contactBefore = contactBefore.replace("contactBefore", "");
+
+                songqian.style.background = "white";
+                songqian.style.color = "grey";
+            }
+
+        }
+        else if (tag == 5) {
+            sureEvent5 = !sureEvent5;
+            if (sureEvent5) {
+                outerPackGood = "outerPackGood";
+
+                waibaogood.style.background = "dodgerblue";
+                waibaogood.style.color = "white";
+            }
+            else {
+                outerPackGood = outerPackGood.replace("outerPackGood", "");
+
+                waibaogood.style.background = "white";
+                waibaogood.style.color = "grey";
+            }
+
+        }
+
+
+    }
+
+
+</script>
+<style>
+    #rating {
+        margin-top: 0.3rem;
+    }
+
+    #rating img {
+        width: 0.8rem;
+    }
+
+    .btn_box {
+        height: 2.5rem;
+        padding: 0 0.2rem 0 0.1rem;
+    }
+
+    .btn_a {
+        color: grey;
+        margin-top: 20px;
+        width: 2.0rem;
+        height: 30px;
+        border-radius: 5px;
+        border: 0.1px solid dodgerblue;
+        margin-left: 0.3rem;
+        display: inline-block;
+    }
+
+    #textlength {
+        margin-top: 0.5rem;
+        position: relative;
+        width: 90%;
+        text-align: left;
+        height: 2.5rem;
+        font-size: 0.18rem;
+        border: 1px solid darkgrey;
+    }
+
+    #dianhua1 {
+        height: 100%;
+        background: dodgerblue;
+    }
+</style>
+<div class="nav" style="position: relative; background: white;color: black;" id="nav">
+    <div class="fanhui" onClick="javascript :history.back(-1);"><img src="images/fan@2x.png">
+    </div>
+    评价服务
+</div>
+
+<div style="width: 100%;background: white;margin-top: 10px; height:13.5rem">
+    <div style="width: 100%;text-align: center;">
+        <img id="touxiang" style="width: 2rem;height: 2rem;border-radius: 100px;margin-top:15px" src="images/abc.jpg">
+        <p id="shifu" style="text-align: center;font-size: 0.28rem"></p>
+        <p style="text-align: center;font-size: 0.3rem;margin-top: 20px">请对我们的服务进行评价</p>
+        <div id="rating">
+            <!--<img id="xing1" src="images/xing_x@2x.png">-->
+            <img id="xing1" onclick="scoreEvent('1')" src="images/xing_m@2x.png">
+
+            <img id="xing2" onclick="scoreEvent('2')" src="images/xing_m@2x.png">
+            <img id="xing3" onclick="scoreEvent('3')" src="images/xing_m@2x.png">
+            <img id="xing4" onclick="scoreEvent('4')" src="images/xing_m@2x.png">
+            <img id="xing5" onclick="scoreEvent('5')" src="images/xing_m@2x.png">
+        </div>
+        <div class="btn_box">
+            <p class="btn_a" id="fuwugood" onclick="appraiseBtn('1')">
+                服务态度好
+            </p>
+            <p class="btn_a" id="peisonggood" onclick="appraiseBtn('2')">
+                配送及时
+            </p>
+            <p class="btn_a" id="zhaozhuang" onclick="appraiseBtn('3')">
+                着装统一
+            </p>
+            <p class="btn_a" id="songqian" onclick="appraiseBtn('4')">
+                送前联系
+            </p>
+            <p class="btn_a" id="waibaogood" onclick="appraiseBtn('5')">
+                外包装好
+            </p>
+
+        </div>
+        <textarea id="textlength" style=" " placeholder="其他想说的..." oninput="observing()" wrap="hard"
+                  maxlength="120"></textarea>
+        <div style="position: relative;">
+            <div
+                style="float: right; margin-top: -30px;height: 30px;width: 2rem;font-size: 0.18rem;text-align: center;vertical-align: middle">
+                <span id="showlength" style="color: gray">0</span><span style="color: gray">/</span><span
+                style="color: dodgerblue">120</span>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+
+
+<footer style="position: fixed; bottom: 0;left: 0;width: 100%;height: 1.2rem;">
+    <p id="niming" onclick="submitEvaluation()"
+       style=" text-align: center;color: white;background: dodgerblue;font-size: 0.40rem;width: 100%;height: 64px;line-height: 54px">
+        匿名评价</p>
+
+
+
+</footer>
+
+</html>

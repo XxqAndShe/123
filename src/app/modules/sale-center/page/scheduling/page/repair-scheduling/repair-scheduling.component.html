@@ -1,0 +1,239 @@
+<ul class="nav-list">
+    <li *ngFor="let navItem of navList; let i=index" [class.active]="navListArr[i]">
+        <a href="javascript:;" (click)="changeBlock(i)">{{navItem}}({{navNumber[i]}})</a>
+    </li>
+</ul>
+
+<form>
+    <div class="content-header">
+
+        <div class="form-div">
+            <label>发货人</label>
+            <shipper-select name="shipper" [(ngModel)]="requestVo.shipper" [width]="width"></shipper-select>
+        </div>
+
+        <div class="form-div">
+            <label>收货人</label>
+            <cnee-select name="consignee" [(ngModel)]="requestVo.consignee"></cnee-select>
+        </div>
+
+        <div class="form-div">
+            <label>运单号</label>
+            <p-autoComplete name="waybillId" [(ngModel)]="requestVo.waybillId"
+                            [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+
+        <div class="form-div">
+            <label>任务单号</label>
+            <p-autoComplete name="maintno" [(ngModel)]="requestVo.maintno" [suggestions]="suggestionResult"
+                            (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+        <div class="form-div">
+            <label>收货地址</label>
+            <p-autoComplete name="maintno" [(ngModel)]="requestVo.consigneeAdr" [suggestions]="suggestionResult"
+                            (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+        <div class="form-div">
+            <label>可处理</label>
+            <select name="client" [(ngModel)]="requestVo.client">
+                <option value="All">全部</option>
+                <option value="yes">是</option>
+                <option value="no">否</option>
+            </select>
+        </div>
+        <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            查询
+        </button>
+        <button class="btn default-btn" type="reset">清空</button>
+
+        <a href="javascript:;" id="select-btn" (click)="changeExplane()">筛选</a>
+    </div>
+
+    <div class="content-hide" *ngIf='isSelect'>
+        <div class="form-div">
+            <label>目的站</label>
+            <div class="addr-control">
+                <area-select name="area" [(ngModel)]="requestVo.area"></area-select>
+            </div>
+        </div>
+
+        <div class="form-div">
+            <label>师傅账号</label>
+            <p-autoComplete name="count" [(ngModel)]="requestVo.masterMobile"
+                            [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+        <div class="form-div">
+            <label>师傅姓名</label>
+            <p-autoComplete name="realName" [(ngModel)]="requestVo.masterRealName"
+                            [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+        <div class="form-div">
+            <label>发货人电话</label>
+            <p-autoComplete name="mobile" [(ngModel)]="requestVo.shipperMobile"
+                            [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+
+        <div class="form-div">
+            <label>收货人电话</label>
+            <p-autoComplete name="consignee-mobile" [(ngModel)]="requestVo.consigneeMobile"
+                            [suggestions]="suggestionResult" (completeMethod)="searchResult($event)"></p-autoComplete>
+        </div>
+        <div class="form-div form-spec">
+            <label class="taskTime">任务生成时间</label>
+            <div class="start-time time-control">
+                <!-- TODO(样式) -->
+                <p-calendar name="starData" [(ngModel)]="requestVo.taskTimeStart" [locale]="zh"
+                            dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true"
+                            [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+            <div class="end-time time-control">
+                <!-- TODO(样式) -->
+                <p-calendar name="endData" [(ngModel)]="requestVo.taskTimeEnd" [locale]="zh"
+                            dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true"
+                            [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+        </div>
+
+        <div class="form-div">
+            <label class="traceTime">跟踪时间</label>
+            <div class="start-time time-control">
+                <!-- TODO(样式) -->
+                <p-calendar name="startDate" [(ngModel)]="requestVo.trackTimeStart" [locale]="zh"
+                            dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true"
+                            [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+            <div class="end-time time-control">
+                <!-- TODO(样式) -->
+                <p-calendar name="endDate" [(ngModel)]="requestVo.trackTimeEnd" [locale]="zh"
+                            dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true"
+                            [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="table-header">
+    <span class="select-text">已选中<span class="select-num">{{selectLineInfo?.length || 0}}</span>项</span>
+
+    <!--待分配-->
+    <span *ngIf="tasksStatus == 'waitDistribution'">
+            <a href="javascript:;" class="operation-a operation-track" (click)="showTrace()"><i></i>跟踪</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a verify-distribute" (click)="showWin()"><i></i>确认分配</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a distribute-master" (click)="displayModal(1)"><i></i>分配师傅</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-end" (click)="showOperation()"><i></i>终止订单</a>
+            <a href="javascript:;" class="operation-a operation-check" (click)="displayModal(0)"><i></i>查看详情</a>
+        </span>
+    <!--待受理-->
+    <span *ngIf="tasksStatus == 'distributionWaitAccept'">
+            <a href="javascript:;" class="operation-a operation-track" (click)="showTrace()"><i></i>跟踪</a>
+            <!--<a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a accept" (click)="showAccept()"><i></i>受理</a>-->
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-cancel"
+               (click)="showDialog('cancel-allocation')"><i></i>取消分配</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-end" (click)="showOperation()"><i></i>终止订单</a>
+            <a href="javascript:;" class="operation-a operation-check" (click)="displayModal(0)"><i></i>查看详情</a>
+        </span>
+    <!--待预约-->
+    <span *ngIf="tasksStatus == 'accepted'">
+            <a href="javascript:;" class="operation-a operation-track" (click)="showTrace()"><i></i>跟踪</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a reservation" (click)="showReservation()"><i></i>预约</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-cancel"
+               (click)="showDialog('cancel-allocation')"><i></i>取消分配</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-end" (click)="showOperation()"><i></i>终止订单</a>
+            <a href="javascript:;" class="operation-a operation-check" (click)="displayModal(0)"><i></i>查看详情</a>
+        </span>
+    <!--维修中-->
+    <span *ngIf="tasksStatus == 'waitAppointment'">
+            <a href="javascript:;" class="operation-a operation-track" (click)="showTrace()"><i></i>跟踪</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-2-order" (click)="doOrder()"><i></i>二次预约</a>
+        <!--<a href="javascript:;" class="operation-a operation-2-order" (click)="showReservation()"><i></i>二次预约</a> -->
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-finish" (click)="showDialog('complete-dialog')"><i></i>签收</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-cancel"
+               (click)="showDialog('cancel-allocation')"><i></i>取消分配</a>
+            <a *ngIf="selectedRowData.client == '是'" href="javascript:;" class="operation-a operation-end" (click)="showOperation()"><i></i>终止订单</a>
+            <a href="javascript:;" class="operation-a operation-check" (click)="displayModal(0)"><i></i>查看详情</a>
+        </span>
+    <!--维修完成-->
+        <span *ngIf="tasksStatus == 'doSign'">
+            <a href="javascript:;" class="operation-a operation-track" (click)="showTrace()"><i></i>跟踪</a>
+            <a href="javascript:;" class="operation-a operation-check" (click)="displayModal(0)"><i></i>查看详情</a>
+        </span>
+    <!--已作废-->
+    <span *ngIf="tasksStatus == 'invalid'">
+            <a href="javascript:;" class="operation-a operation-track" (click)="showTrace()"><i></i>跟踪</a>
+            <a href="javascript:;" class="operation-a operation-check" (click)="displayModal(0)"><i></i>查看详情</a>
+        </span>
+    <span class="close-btn" (click)="closeBtnX()">×</span>
+</div>
+
+<!--表格展示-->
+<div class="table-container" [ngClass]="{expand: isSelect}">
+    <ui-grid
+        id="page-repair-scheduling-grid"
+            [columns]="columns"
+            [data]="data"
+            (load)="load($event)"
+            (exportCSV)="exportCSV($event)"
+            (cellMouseEnter)="cellMouseEnter($event,op1)"
+            (cellMouseLeave)="cellMouseLeave($event,op1)"
+            (cellClick)="cellClick($event)"
+            (rowSelect)="rowSelect($event)" [selections]="selectLineInfo">
+    </ui-grid>
+    <!--<data-table [tableHeight]="tableHeight" [datum]="datum" *ngIf="isTableShow"></data-table>-->
+</div>
+<!--添加跟踪-->
+<!--<trace-win trackflag="DDRW" [selections]="selectLineInfo" [boxState]="traceWinState"  (hideWin)="hideDialog($event)"></trace-win>-->
+
+<trace-win trackFlag="AFDD" *ngIf="istraceWin" [selectLineInfo]="selectLineInfo" (hideWin)="hideWin($event)"
+           (save)="oSave()"></trace-win>
+
+<!--终止订单-->
+<operation-end *ngIf="isoperationEnd" [content]="selectedRowData" (hideSave)="doHideSave()"
+               (hideWin)="hideOperation($event)"></operation-end>
+<!--受理-->
+<!--<accept *ngIf="isshowAccept" [content]="selectedRowData" (hideSave)="doAcceptSave()"
+        (hideWin)="hideWin($event)"></accept>-->
+<!--预约-->
+<trace-time *ngIf="isreservation" [content]="selectedRowData" (hideSave)="timeSave()"
+            (hideWin)="hideWin($event)"></trace-time>
+<!--确认分配-->
+<verify-distribute *ngIf="isshowVerify" (hideWin)="hideWin($event)" [content]="selectedRowData"
+                   (refreshTable)="doVerify()"></verify-distribute>
+<!--查看详情-->
+<repair-detail [selectedRowData]="selectedRowData" [selectLineInfo]="selectLineInfo" class="modal" *ngIf="isModuleDisplayArr[0]"
+               (closeModal)="closeModal($event)"
+               [@modalState]="isModuleDisplayArr1[0] ?'in':'out'"></repair-detail>
+
+<!--维修完成弹窗（不要直接Ctrl+click，会跳到调度管理去）-->
+<repair-complete [selectedRowData]="selectedRowData" (cancelDialog)="hideDialog('complete-dialog')"
+                 *ngIf="isShowCompleteWin" (confirm)="repairSave()"></repair-complete>
+<!--取消分配弹窗-->
+<sale-cancelAllocation [selectedRowData]="selectedRowData" fromWhere="REPAIR" [selectLineInfo]="selectLineInfo"
+                       (onCancelAllocation)="hideDialog('cancel-allocation')"
+                       *ngIf="isShowCancelWin" (cancelSave)="doCancelSave()"></sale-cancelAllocation>
+
+<!--维修、返货任务分配师傅-->
+<repair-assign [isRepair]="isRepair" [selectedRowData]="selectsRowData" class="modal" *ngIf="repairAssignIf"
+               [@modalState]="repairAssignMaster ?'in':'out'" (closeAssignMaster)="closeAssign($event)"
+               (onSaveMaster)="doSaveMaster()"></repair-assign>
+<!--确定对话框-->
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<!--点击运单号弹出的详情-->
+<detail-modal class="modal" [selectLineInfo]="selectLineInfo" *ngIf="isModuleDisplayArr[2]"
+              [@modalState]="isModuleDisplayArr1[2] ?'in':'out'"
+              (closeModal)="closeModal($event)"></detail-modal>
+<!--弹出内容框-->
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+  <p-dataTable [value]="trackInfo" [style]="{'width':'600px'}" class="table" emptyMessage="没有记录">
+    <p-column field="trackedTime" header="上次跟踪时间" [sortable]="true"></p-column>
+    <p-column field="operator" header="跟踪人" [sortable]="true"></p-column>
+    <p-column field="remark" header="跟踪信息" [sortable]="true"></p-column>
+    <p-column field="altTime" header="下次跟踪时间" [sortable]="true"></p-column>
+  </p-dataTable>
+</p-overlayPanel>

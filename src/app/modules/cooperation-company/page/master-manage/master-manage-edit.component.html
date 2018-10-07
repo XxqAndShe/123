@@ -1,0 +1,345 @@
+<div class="outer-modal-container">
+    <header>
+        <h4 class="edit-title" *ngIf="master == 'edit'">修改资料</h4>
+        <h4 class="edit-title" *ngIf="master == 'new'">建立合作</h4>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <section>
+                <div class="title">
+                    <span>基本信息</span>
+                    <div class="title-line"></div>
+                </div>
+                <p class="line">
+                    <span class="line-container line-left" *ngIf="master == 'edit'"><!--value="{{selections[0].masterAccount}}" readonly="readonly"-->
+						<span class="label require">师傅账号：</span>
+                    <input class='input disabled-input' name="masterAccount" [(ngModel)]="masterManageEditRequestVo.masterAccount" type="text" readonly="readonly" maxlength="11">
+                    </span>
+                    <span class="line-container line-left" *ngIf="master == 'new'">
+						<span class="label require">师傅账号：</span>
+                    <input class='input' name="masterAccount" [(ngModel)]="masterManageEditRequestVo.masterAccount" type="text" (input)="checkUserWorker(true)" maxlength="11" oninput="value=value.replace(/[^\d{1,}]/g,'')">
+                    </span>
+                    <span class="line-container line-right">
+						<span class="label require">师傅姓名：</span>
+                    <input class='input disabled-input' name="masterName" [(ngModel)]="masterManageEditRequestVo.masterName" type="text" readonly="readonly">
+                    </span>
+                </p>
+                <p class="line">
+                    <span class="line-container line-left">
+						<span class="label require">最大接单量：</span>
+                    <input class='input' maxlength="4" name="maxOrder" [(ngModel)]="masterManageEditRequestVo.maxOrder" oninput="value=value.replace(/[^\d{1,}]/g,'')" type="text" placeholder="请输入最大接单量">
+                    </span>
+                    <span class="line-container line-right">
+						<span class="label">结款方式：</span>
+                    <select class="select" name="paymentMethod" [(ngModel)]="masterManageEditRequestVo.paymentMethod">
+							<option value="paycash">现付</option>
+							<option value="paymonth">月结</option>
+						</select>
+                    </span>
+                </p>
+            </section>
+
+            <section class="service-section">
+                <div class="title">
+                    <span>服务信息</span>
+                    <div class="title-line"></div>
+                </div>
+                <p class="line">
+                    <span class="line-container">
+						<span class="label require">常规服务：</span>
+                    <select class="select" [(ngModel)]="RegularService" name="RegularService">
+							<option value="民用家具">民用家具</option>
+						    <option value="地板">地板</option>
+							<option value="集成吊顶">集成吊顶</option>
+							<option value="灯具">灯具</option>
+							<option value="门窗">门窗</option>
+							<option value="涂料">涂料</option>
+							<option value="卫浴">卫浴</option>
+
+						</select>
+                    <span class="add-float-right">
+								   <div class="checkboxServe">
+										<label>
+											配送
+											<input name="dispatch" type="checkbox" value="dispatch" [(ngModel)]="dispatch"/>
+										</label>
+										<label id="install">
+											安装
+											<input name="install" type="checkbox" value="install" [(ngModel)]="install"/>
+										</label>
+								</div>
+							<a href="javascript:;" class="btn primary-btn" (click)="addTypeOfService()">确定</a>
+						</span>
+                    </span>
+                </p>
+                <ul class="service-list">
+                    <li *ngFor="let obj of masterManageService, let i of masterManageService.length">
+                        <span>{{obj.googsName}},{{obj.dispatch?"配送":""}} {{obj.install?"安装":""}}</span>
+                        <a (click)="deleteTypeOfService(i)">×</a>
+                    </li>
+                </ul>
+
+                <p class="line">
+                    <span class="line-container">
+						<span class="label">增值服务：</span>
+                    </span>
+                </p>
+                <ul class="valued-service-list">
+                    <li>
+                        <label><input name="Fruit" type="checkbox" value="ReturnCargo" [(ngModel)]="ReturnCargo" (ngModelChange)="cargo()"/>返货 </label>
+                    </li>
+                    <li>
+                        <label><input name="Maintenance" type="checkbox" value="Maintenance" [(ngModel)]="Maintenance" (ngModelChange)="ten()"/>维修 </label>
+                    </li>
+                </ul>
+                <span *ngIf="valueAddServiceIf">
+					<div>
+						<p class="line line-1">
+							<span class="line-container">
+								<span class="label">请选择维修类型：</span>
+                </span>
+                </p>
+                <ul class="valued-service-list valued-service-list-1">
+                    <li>
+                        <label>
+							<p-checkbox name="group1" value="Plate" label="板式" [(ngModel)]="selectedCategoriesc" (click)="selectedCate()"></p-checkbox>
+							</label>
+                    </li>
+                    <li>
+                        <label>
+							<p-checkbox name="group4" value="Leather" label="皮具" [(ngModel)]="selectedCategoriesc"(click)="selectedCate()"></p-checkbox>
+							</label>
+                    </li>
+                    <li>
+                        <label>
+							<p-checkbox name="group5" value="FabricArt" label="布艺" [(ngModel)]="selectedCategoriesc"(click)="selectedCate()"></p-checkbox>
+							</label>
+                    </li>
+                    <li>
+                        <label>
+							<p-checkbox name="group6" value="Marble" label="大理石" [(ngModel)]="selectedCategoriesc"(click)="selectedCate()"></p-checkbox>
+							</label>
+                    </li>
+                </ul>
+        </div>
+        </span>
+        <p class="line">
+            <span class="line-container">
+						<span class="label require">服务区域：</span>
+            <span class="btn primary-btn" (click)="displayAdress()"> 设 置 </span>
+            </span>
+        </p>
+        </section>
+        <section class="pic">
+            <div class="title">
+                <span>认证信息</span>
+                <div class="title-line"></div>
+            </div>
+            <p class="idpic">
+                <!--<span>身份证照片：</span>-->
+            </p>
+            <ul class="idpic-list">
+                <li *ngFor="let oImg of imaArr">
+                    <div>
+                        <a rel="fancybox" href="{{oImg}}"><img src="{{oImg}}"></a>
+                        <span *ngIf="!oImg">未上传</span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        <section class="account">
+            <div class="title">
+                <span>提现账号信息</span>
+                <div class="title-line"></div>
+            </div>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label add-userAccount">账号类型：</span>
+                <input type="text" name="userAccount" class='input disabled-input' [(ngModel)]="masterManageEditRequestVo.userAccount" readonly="readonly">
+                </span>
+                <span *ngIf="masterManageEditRequestVo.userAccount == '支付宝'">
+						<span class="line-container line-left">
+							<span class="label ">姓名</span>
+                <input class='input disabled-input' name="alipayName" type="text" [(ngModel)]="masterManageEditRequestVo.alipayName" readonly="readonly">
+                </span>
+                <span class="line-container line-right">
+						     <span class="label">账号：</span>
+                <input class='input disabled-input' type="text" name="alipayAccount" [(ngModel)]="masterManageEditRequestVo.alipayAccount" readonly="readonly">
+                </span>
+                </span>
+                <span *ngIf="masterManageEditRequestVo.userAccount == '银行卡'">
+					<span class="line-container line-left add-bankName">
+						<span class="label">银行名称：</span>
+                <input class='input disabled-input' name="bankName" type="text" [(ngModel)]="masterManageEditRequestVo.bankName" readonly="readonly">
+                </span>
+                <span class="line-container line-right add-subBranchName">
+						<span class="label">支行名称：</span>
+                <input class='input disabled-input' name="subBranchName" type="text" [(ngModel)]="masterManageEditRequestVo.subBranchName" readonly="readonly">
+                </span>
+                <span class="line-container line-right add-bankAccount">
+							<span class="label">开户姓名：</span>
+                <input class='input disabled-input' name="accountName" [(ngModel)]="masterManageEditRequestVo.accountName" type="text" readonly="readonly">
+                </span>
+                <span class="line-container line-left add-accountName">
+							<span class="label">银行账号：</span>
+                <input class='input disabled-input' name="bankAccount" [(ngModel)]="masterManageEditRequestVo.bankAccount" maxlength="19" type="text" readonly="readonly">
+                </span>
+                </span>
+            </p>
+        </section>
+        <a href="javascript: ;" *ngIf="!isMore" class="more" (click)="isMore=true">更多信息 >></a>
+
+        <section class="data" *ngIf="isMore">
+            <div class="title">
+                <span>师傅资料</span>
+                <div class="title-line"></div>
+            </div>
+
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">保证金阈值：</span>
+                <input class='input' maxlength="6" name="marginThreshold" [(ngModel)]="masterManageEditRequestVo.marginThreshold" oninput="value=value.replace(/[^\d{1,}]/g,'')" type="text" placeholder="请输入保证金阈值" (focus)="leftSix()">
+                </span>
+                <span class="line-container line-right">
+						<span class="label">已缴纳保证金：</span>
+                <input class='input' maxlength="6" name="marginPaid" [(ngModel)]="masterManageEditRequestVo.marginPaid" type="text" oninput="value=value.replace(/[^\d{1,}]/g,'')" placeholder="请输入已缴纳保证金" (focus)="leftSix()">
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">团队人数：</span>
+                <input class='input' maxlength="4" name="teamsNum" [(ngModel)]="masterManageEditRequestVo.teamsNum" type="text" oninput="value=value.replace(/[^\d{1,}]/g,'')" placeholder="请输入团队人数" (focus)="leftFour()">
+                </span>
+                <span class="line-container line-right">
+						<span class="label">合作方式：</span>
+                <select class="select" name="cooperationMethod" [(ngModel)]="masterManageEditRequestVo.cooperationMethod">
+							<option value="proprietary">自营</option>
+							<option value="cooperation">合作</option>
+						</select>
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">车辆数量：</span>
+                <input class='input' maxlength="4" name="carsNum" [(ngModel)]="masterManageEditRequestVo.carsNum" type="text" oninput="value=value.replace(/[^\d{1,}]/g,'')" placeholder="请输入车辆数量" (focus)="leftFour()">
+                </span>
+                <span class="line-container line-right">
+						<span class="label">车辆容积(方)：</span>
+                <input class='input' maxlength="4" name="carVolume" [(ngModel)]="masterManageEditRequestVo.carVolume" oninput="value=value.replace(/[^\d{1,}]/g,'')" type="text" placeholder="请输入车辆容积" (focus)="leftFour()">
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">仓库容积(方)：</span>
+                <input class='input' maxlength="4" name="warehouseVolume" [(ngModel)]="masterManageEditRequestVo.warehouseVolume" oninput="value=value.replace(/[^\d{1,}]/g,'')" type="text" placeholder="请输入仓库容积(方)" (focus)="leftFour()">
+                </span>
+                <span class="line-container line-right">
+						<span class="label">仓库地址：</span>
+                <input class='input input-addr' name="warehouseAddress" maxlength="100" [(ngModel)]="masterManageEditRequestVo.warehouseAddress" type="text" placeholder="请输入仓库地址" (focus)="leftHundred()">
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">通行证：</span>
+                <select class="select" name="passport" [(ngModel)]="masterManageEditRequestVo.passport">
+							<option value="yes">有</option>
+							<option value="no">无</option>
+						</select>
+                </span>
+                <span class="line-container line-right">
+						<span class="label">入行时间：</span>
+                <div class="time-control">
+                    <p-calendar name="startDate" [(ngModel)]="masterManageEditRequestVo.cooperationDate" [locale]="zh" dateFormat="yy/mm/dd" [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" [readonlyInput]="true"></p-calendar>
+                </div>
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">商品范围：</span>
+                <select class="select" name="ProductRange" [(ngModel)]="masterManageEditRequestVo.ProductRange">
+							<option value="不限">不限</option>
+							<option value="≥1.8m">≥1.8m</option>
+							<option value="≥2.0m">≥2.0m</option>
+							<option value="≥2.5m">≥2.5m</option>
+							<option value="≥3.0m">≥3.0m</option>
+							<option value="≥5.0m">≥5.0m</option>
+						</select>
+                </span>
+                <span class="line-container line-right">
+						<span class="label">合作单位：</span>
+                <input class='input input-addr' name="cooperationUnit" maxlength="100" [(ngModel)]="masterManageEditRequestVo.cooperationUnit" type="text" placeholder="请输入合作单位" (focus)="leftHundred()">
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">开发票：</span>
+                <select class="select" name="invoice" [(ngModel)]="masterManageEditRequestVo.invoice">
+
+							<option value="yes">是</option>
+							<option value="no">无</option>
+						</select>
+                </span>
+                <span class="line-container line-right">
+						<span class="label">工资结算方式：</span>
+                <select class="select" name="wageSettlement" [(ngModel)]="masterManageEditRequestVo.wageSettlement">
+							<option value="按单量结算">按单量结算</option>
+							<option value="固定工资加提成">固定工资加提成</option>
+							<!--singleVolumeSettlement/FixedSalaryPlusCommission-->
+						</select>
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label">平均日订单量：</span>
+                <input class='input' name="averageOrder" maxlength="4" [(ngModel)]="masterManageEditRequestVo.averageOrder" type="text" oninput="value=value.replace(/[^\d{1,}]/g,'')" placeholder="请输入平均日量订单" (focus)="leftFour()">
+                </span>
+                <span class="line-container line-right">
+						<span class="label"><span>电商节最大处理订单数</span>：</span>
+                <input class='input' name="maxOrders" maxlength="4" [(ngModel)]="masterManageEditRequestVo.maxOrders" type="text" oninput="value=value.replace(/[^\d{1,}]/g,'')" placeholder="请输入电商节最大处理订单数" (focus)="leftFour()">
+                </span>
+            </p>
+            <p class="line">
+                <span class="line-container line-left">
+						<span class="label"><span>一智通订单占比(%)</span>：</span>
+                <input class='input' maxlength="5" name="orderProportion" [(ngModel)]="masterManageEditRequestVo.orderProportion" #int1zt (input)="clear(int1zt)" type="text" placeholder="请输入一智通订单占比" (focus)="order()">
+                </span>
+                <span class="line-container line-right">
+						<span class="label">合作时间：</span>
+                <input class='input disabled-input' name="cooperationTime" value="{{cooperationTime | date:'yyyy-MM-dd'}}" type="text" readonly="readonly">
+                <!--value="2016-12-12"-->
+                </span>
+            </p>
+
+        </section>
+
+        <div class="btn-group">
+            <button class="btn primary-btn" (click)="doSave()"  [disabled]="loading">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                保存
+            </button>
+            <button class="btn default-btn" (click)="close()">取消</button>
+        </div>
+    </div>
+</div>
+
+<a href="javascript:void(0); " class="close-modal-btn" (click)="close()"></a>
+</div>
+<!--服务区域组件-->
+<master-adress class="modal" [adressObj]="adressObj" [adressStorage]="adressStorage" *ngIf="adressIf" (closeAdress)="closeAdress($event)" [@modalState]="isAdress ?'in':'out'"></master-adress>
+<span *ngIf="addMarster">
+  <div class="dialog-box dialog-box-mm" style="display:block">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+<span class="dialog-right" (click)="ConfirmDeleteSure()">×</span>
+</div>
+<div class="dialog-box-content dialog-box-content-mm">
+    <!-- 修改师傅成功！-->
+</div>
+<div class="dialog-box-footer dialog-box-footer-mm">
+    <!--<span class="btn primary-btn" (click)="ConfirmDeleteSure()">确定</span>-->
+</div>
+</div>
+</span>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>

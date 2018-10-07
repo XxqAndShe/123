@@ -1,0 +1,158 @@
+/*
+    角色权限公共样式
+*/
+/*顶部样式 start*/
+.dialog-box>.dialog-box-title{
+    background:#4C8DF7 ;
+}
+/*顶部样式 end*/
+.dialog-box>.dialog-box-content{
+    height: auto;
+}
+.content-a{
+    height:25px;
+    border-bottom: 1px solid #4C8DF7;
+    margin: 0;
+    padding: 0;
+}
+.content-a li{
+    width: 69px;
+    height: 24px;
+    line-height: 24px;
+    float: left;
+    margin-right:10px;
+    text-align: center;
+    border:1px solid #4C8DF7;
+    background:#F5F9FF;
+}
+.content-a .content-style {
+    border-bottom: 1px solid #ffffff;
+    background:#FFF;
+}
+.box{
+    height:210px;
+    /*overflow: auto;*/
+    /*overflow-y:scroll;*/
+}
+.content-b .box .yun-y{
+    padding: 0 0 0 50px ;
+}
+.content-c{
+    height: 240px;
+    position: relative;
+    padding: 0 0 20px 0;
+}
+.content-b{
+    width: 100%;
+    border:1px solid #DDDDDD;
+    height: auto;
+    margin: 20px 0 0 0;
+    position: absolute;
+}
+.content-ba{
+    z-index: 5;
+}
+.content-bb{
+    z-index: 4;
+    display: none;
+}
+.content-bc{
+    z-index: 3;
+    display: none;
+}
+.content-bd{
+    z-index: 2;
+    display: none;
+}
+.content-be{
+    z-index: 1;
+    display: none;
+}
+
+.content-b dt{
+    height: 30px;
+    line-height: 30px;
+    padding:0 0 0 30px ;
+    background: #ECF1FA;
+}
+
+.content-b dd label{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 70px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+.content-b .content-b-a span{
+    /*display: block;*/
+    height: 29px;
+    line-height: 29px;
+}
+
+.content-b-a-a li label{
+    line-height: 29px;
+    padding: 0px;
+}
+.content-b-a-a li{
+    height: 29px;
+    line-height: 29px;
+    padding: 0 0 0 90px;
+    border-bottom: 1px solid #ECF1FA ;
+}
+body .content-b-a-a .yun-dan li {
+    padding:0 0 0 110px;
+
+}
+.content-b-a-a  .yun-dan-xin{
+    height: auto;
+    padding-left: 0px;
+}
+.content-b-a-a  .yun-dan-xin .g-li{
+    padding: 0 0 0 90px;
+}
+/*
+    背景图
+*/
+/*未选择时复选框样式*/
+.input-che{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-top:1px;
+    background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -20px 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:2px;
+}
+/*已选择时复选框样式*/
+.x-che{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-top:1px;
+    background:url('../../../../../../assets/permission-sys/role/role-iocn.png') -20px 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:2px;
+}
+/*减号样式*/
+.j-che{
+    display: inline-block;
+    width: 9px;
+    height: 1px;
+    background: url('../../../../../../assets/permission-sys/role/role-iocn.png') -20px 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:7px;
+    margin-right: 2px;
+}
+/*
+    加号样式
+*/
+.add-che{
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: url('../../../../../../assets/permission-sys/role/role-iocn.png') -20px 0 no-repeat;
+    vertical-align:text-bottom;
+    margin-bottom:4px;
+    margin-right: 2px;
+}
+

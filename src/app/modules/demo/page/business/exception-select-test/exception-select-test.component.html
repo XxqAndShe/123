@@ -1,0 +1,12 @@
+<div class="test-content">
+    <p><a href="/modules/demo/test" class="back" >返回demo首页</a>  </p>
+    <div class="component">
+        <h3>异常类型选择组件</h3>
+        <div style="width: 200px;">
+            <exception-select [(ngModel)]="typeCode" (onChange)="onChange($event)" [label]="testLabel"></exception-select>
+        </div>
+        <hr/>
+        <span>{{typeCode}}</span>
+        <button (click)="doTest()">测试取异常类型Code</button>
+    </div>
+</div>

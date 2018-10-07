@@ -1,0 +1,19 @@
+<div class="test-content">
+  <p><a href="/modules/demo/test" class="back" >返回demo首页</a>  </p>
+  <h3>必传参数运单ID [waybillId]="waybillId"</h3><br>
+  <div>
+    <h3>单选</h3><br>
+    <repairGoods-select width="150px" defaultLabel="请选择…" [(ngModel)]="goodCode"  [waybillId]="queryId"></repairGoods-select>
+    <span>{{goodCode}}</span>
+    <br>
+    <button (click)="doTest()">测试取Code</button>
+  </div>
+  <div class="component">
+    <h3>多选</h3>
+    <p>multiSelect="true" 属性控制多选</p><br>
+    <repairGoods-select width="150px" defaultLabel="请选择…" multiSelect="true" [(ngModel)]="goodCode1"  [waybillId]="queryId"></repairGoods-select>
+    <span>{{goodCode1}}</span>
+    <br>
+    <button (click)="doTest1()">测试取Code</button>
+  </div>
+</div>

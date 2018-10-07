@@ -1,0 +1,12 @@
+<div class="dialog-box">
+    <div class="dialog-box-title">
+        <span class="dialog-left">信用标准</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <ui-grid [columns]="columns" [data]="data" (load)="load($event)"></ui-grid>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn default-btn" (click)="close()">关闭</span>
+    </div>
+</div>

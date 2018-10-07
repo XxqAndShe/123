@@ -1,0 +1,19 @@
+.account-search{margin-top:17px;height:25px;width:1500px}
+.account-search>li{float:left; position:relative;}
+.account-search>li+li{margin-left:15px;}
+.account-search>li>span+span{margin-left:12px;}
+.account-search>li>span>input[type="text"]{width:127px; height:27px; border:1px solid #ccc;padding-left: 2px;}
+.account-search>li:last-child>span{width:60px; height: 27px;display: inline-block; text-align: center;line-height: 27px;cursor:pointer;}
+.account-search>li>span.search-button{background-color:#0d85e4;color:#fff;}
+.account-search>li>span.clear-button{background-color:#f7f7f7;color:#333;border:1px solid #ddd;}
+my-date-picker{z-index:10;position:absolute;left:64px;height:30px;}
+.with-draw-status select{width: 120px;height: 29px}
+
+/*搜索框媒体查询*/
+@media screen and (max-width: 1024px) {
+ .account-search{width:1024px;}
+}
+/*搜索框*/
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+ .account-search{width:1200px;}
+}

@@ -1,0 +1,8 @@
+.dialog-box{width:300px;}
+.dialog-box-content{
+    text-align: center;
+}
+.dialog-box>.dialog-box-footer{padding:10px 0;}
+.row{
+    margin: 20px 0;
+}

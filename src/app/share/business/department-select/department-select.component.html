@@ -1,0 +1,11 @@
+<div [ngStyle]="{'width':width}">
+    <p-autoComplete #pac name="text"
+                    [(ngModel)]="value"
+                    hasChildren="hasChildren"
+                    [suggestions]="options"
+                    (completeMethod)="queryData($event)"
+                    field="name"
+                    [inputStyle]="{'width':width}"
+                    [style]="{'width':width}"></p-autoComplete>
+</div>
+

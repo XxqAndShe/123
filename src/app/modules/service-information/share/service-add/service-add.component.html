@@ -1,0 +1,43 @@
+<div class="dialog-box" style=" position: fixed;display:block;width:100%;top: 0;left: 0; height: 100%;z-index: 500">
+    <div class="dialog-box-title">
+        <span class="dialogdialog-left">{{titleName}}</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content" id="content">
+        <div class="dialog-box-top dialog-box-com">
+            <div class="title">
+                <span><i class="start-symbol add-start-symbol">*</i>文件名称</span>
+                <input name="titleName" maxlength="50" [(ngModel)]="serviceInformationVo.name"/>
+            </div>
+            <div class="title">
+                <span><i class="start-symbol add-start-symbol">*</i>文件类型</span>
+                <select name="file" [(ngModel)]="serviceInformationVo.pdf" (ngModelChange)="onChange()">
+                    <option value="HTML">纯文本</option>
+                    <option value="PDF">附件</option>
+                </select>
+                <i class="hintText" *ngIf="hint">{{hintText}}</i>
+            </div>
+            <div class="describe">
+                <span><i class="start-symbol add-start-symbol">*</i>{{fileName}}</span>
+                <div class="editor">
+                    <p-editor (onTextChange)="onTextChange($event)"
+                              [(ngModel)]="serviceInformationVo.text" [style]="{'height':editorHeight}"></p-editor>
+                </div>
+
+            </div>
+            <div class="title" *ngIf="serviceInformationVo.pdf === 'PDF'" style="margin-top: 20px">
+                <span><i class="start-symbol add-start-symbol">*</i>文件链接</span>
+                <ui-upload type="file" [(ngModel)]="fileList" multiple="single"></ui-upload>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer" style="height: 55px;line-height: 55px">
+        <button class="btn primary-btn" (click)="save()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            确定
+        </button>
+        <button class="btn default-btn" (click)="close()">取消</button>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>

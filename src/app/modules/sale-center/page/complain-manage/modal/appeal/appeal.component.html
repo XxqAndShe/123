@@ -1,0 +1,49 @@
+<div class="dialog-box" id="deposit_apply" [ngStyle]="drag.setPosition(450,650)">
+    <div id="deposit_apply_title" class="dialog-box-title">
+        <span class="dialogdialog-left">申诉</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content">
+        <div class="input-form">
+            <span><span class="start-symbol">*</span> 任务单号</span>
+            <input type="text" disabled name="taskTitle" [(ngModel)]="taskTitle"/>
+        </div>
+        <div class="input-form">
+            <span><span class="start-symbol">*</span> 申诉人</span>
+            <input type="text" name="appealName" [(ngModel)]="vComplaintAppealReqVo.appealName" placeholder="申诉人姓名" />&nbsp;
+            <input type="text" name="appealMobile" [(ngModel)]="vComplaintAppealReqVo.appealMobile" placeholder="申诉人电话" />
+        </div>
+        <div class="input-describe special">
+            <span><span class="start-symbol">*</span> 申诉内容</span>
+            <textarea name="appealContent" [(ngModel)]="vComplaintAppealReqVo.appealContent" cols="56" rows="4" placeholder="请输入(最多只能输入300字)" maxlength="300"></textarea>
+        </div>
+        <div class="add-pic">
+            <span class="add">添加图片</span>
+            <div class="ui-upload">
+                <ui-upload [(ngModel)]="vComplaintAppealReqVo.fileInfos" [fileMaxNum]="6"></ui-upload>
+            </div>
+            <span class="max_num">最多可上传6张图片</span>
+        </div>
+        <div class="input-form radio">
+            <span><span class="start-symbol">*</span> 投诉结果</span>
+            <span><input type="radio" value="pass" name="pass" [(ngModel)]="vComplaintAppealReqVo.complaintResult"/> 成立</span>
+            <span><input type="radio" value="nopass" name="nopass" [(ngModel)]="vComplaintAppealReqVo.complaintResult"/> 不成立</span>
+        </div>
+        <div class="input-describe">
+            <span>备注</span>
+            <textarea name="remark" [(ngModel)]="vComplaintAppealReqVo.remark" cols="56" rows="4" placeholder="请输入(最多只能输入300字)" maxlength="300"></textarea>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <span class="btn primary-btn" (click)="save()">确定</span>
+        <span class="btn default-btn" (click)="close()">取消</span>
+    </div>
+</div>
+<!--提示弹窗-->
+<p-growl [value]="msgs"></p-growl>
+<p-confirmDialog  width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

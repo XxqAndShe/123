@@ -1,0 +1,31 @@
+<div class="test-content" style="width: 500px;">
+  <p><a href="/modules/demo/test" class="back">返回demo首页</a></p>
+  <h3>图片上传组件</h3>
+  <!--复制以下内容-->
+  <ui-upload [(ngModel)]="files" [files]="testfiles"></ui-upload>
+
+  <br> 结果：
+  <p> {{files}}</p>
+  <br>
+  <button (click)="btnClick()">测试ngModel</button>
+
+</div>
+
+<div class="test-content">
+  <h3>文件上传组件</h3>
+
+  <ui-upload type="file" [(ngModel)]="fileList" (fileChange)="fileChange($event)"></ui-upload>
+  <br>
+  <button (click)="btnClick2()">测试ngModel</button>
+  <br>
+  <p>{{fileChangeList}}</p>
+</div>
+<div class="test-content">
+  <h3>文件上传组件---单个文件</h3>
+
+  <ui-upload type="file" [(ngModel)]="fileList3" (fileChange)="fileChange($event)" multiple="single"></ui-upload>
+  <br>
+  <button (click)="btnClick3()">测试ngModel</button>
+  <br>
+  <p>{{fileChangeList3}}</p>
+</div>

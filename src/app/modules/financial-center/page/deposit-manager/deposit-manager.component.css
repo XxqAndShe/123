@@ -1,0 +1,167 @@
+.deposit-content {
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+deposit-assess {
+    position: absolute;
+    top: 0;
+    right: 1040px;
+    height: 100%;
+}
+
+master-deposit-model {
+    position: absolute;
+    top: 0;
+    right: 1040px;
+    height: 100%;
+}
+
+task-detail {
+    position: absolute;
+    top: 0;
+    right: 1040px;
+    height: 100%;
+}
+
+.show-flow-list>li:nth-child(2)>i {
+    background: url('/assets/financial-center/finan-icon.png') no-repeat 0 0;
+}
+
+.show-flow-list>li:nth-child(3)>i {
+    background: url('/assets/financial-center/finan-icon.png') no-repeat -14px 0;
+}
+
+.show-flow-list>li:nth-child(4)>i {
+    background: url('/assets/financial-center/finan-icon.png') no-repeat -30px 0;
+}
+
+.show-flow-list>li:nth-child(5)>i {
+    background: url('/assets/financial-center/finan-icon.png') no-repeat -30px 0;
+}
+
+.show-flow-list>li:nth-child(6)>i {
+    background: url('/assets/operation.png') no-repeat -93px -1px;
+    width: 16px;
+    height: 16px;
+}
+
+.table-container {
+    width: 100%;
+    margin: 0;
+    border: 1px solid #d8e3ef;
+    border-top: none;
+    position: relative;
+    box-sizing: border-box;
+}
+
+
+/*弹出框（公共样式，以下是长宽高修改）和其他样式有重复，需合并*/
+
+.dialog-box-mm {
+    /*修改项*/
+    width: 280px;
+    margin-top: -155px;
+    margin-left: -206px;
+    /*修改项*/
+    box-shadow: 1px 2px 10px #717171, -1px 2px 10px #717171;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1500;
+    background-color: #fff;
+}
+
+.dialog-box-mm>.dialog-box-title-mm {
+    width: 100%;
+    height: 40px;
+    background: #2d3244;
+    display: block;
+    padding: 4px 15px;
+    box-sizing: border-box;
+}
+
+.dialog-box-mm>.dialog-box-title-mm>span {
+    font-size: 14px;
+    color: #fff;
+    line-height: 33px;
+}
+
+.dialog-box-mm>.dialog-box-title-mm>.dialog-left {
+    float: left;
+}
+
+.dialog-box-mm>.dialog-box-title-mm>.dialog-right {
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0.7;
+    line-height: 29px;
+}
+
+.dialog-box-mm>.dialog-box-content-mm {
+    padding: 15px;
+    height: 66px;
+    border-bottom: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    text-align: center
+}
+
+.dialog-box-mm>.dialog-box-footer-mm {
+    height: 55px;
+    text-align: center;
+}
+
+.dialog-box-mm>.dialog-box-footer-mm>span {
+    display: inline-block;
+    width: 58px;
+    height: 30px;
+    background-color: #f8f8f8;
+    line-height: 30px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+.dialog-box-mm>.dialog-box-footer-mm>.primary-btn {
+    background-color: #0d85e4;
+}
+
+.dialog-box>.dialog-box-content>.dialog-box-com {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dialog-box>.dialog-box-content>.dialog-box-top {
+    margin-bottom: 15px;
+    padding-top: 9px;
+}
+
+.dialog-box>.dialog-box-content>.dialog-box-com>span {
+    height: 30px;
+    width: 77px;
+    text-align: center;
+    display: inline-block;
+    line-height: 30px;
+    float: left;
+}
+
+.dialog-box>.dialog-box-content>.dialog-box-com>input {
+    height: 30px;
+    width: 260px;
+    line-height: 30px;
+    padding-left: 10px;
+    border: 1px solid rgb(13, 133, 228);
+    outline: none;
+}
+
+.dialog-box>.dialog-box-content>.dialog-box-com>textarea {
+    display: inline-block;
+    height: 67px;
+    width: 272px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgb(221, 221, 221);
+    background: rgb(248, 248, 248);
+    outline: none;
+}

@@ -1,0 +1,87 @@
+<script src="../business/master-select-test/master-select-test.component.ts"></script>
+<div class="search-content">
+    <h1>地址库查询表格</h1>
+
+    <input name="name" [(ngModel)]="vArea.name">
+    <button (click)="doSearch()">查询</button>
+</div>
+
+<div class="table-container">
+    <p>下列表格添加了<strong>cellOver</strong>事件，其中<strong>ID，代号，名称</strong>三列<strong>鼠标浮动</strong>展示了不同的浮动窗口内容</p>
+    <p>其中<strong>全称</strong>字段添加了<strong>cellClick</strong>点击事件</p>
+    <br>
+    <ui-grid title="&nbsp;"
+             [columns]="columns"
+             [data]="data"
+
+             (load)="load($event)"
+             [selections]="selections"
+             (rowSelect)="rowSelect($event)"
+             (cellClick)="cellClick($event)"
+             (cellMouseEnter)="cellMouseEnter($event,op,op2,op3)"
+             (cellMouseLeave)="cellMouseLeave($event,op,op2,op3)"
+             (cellLockClick)="cellLockClick($event)"
+    ></ui-grid>
+    <br>
+    <button (click)="cancelSelect($event)">取消表格记录选择</button>
+
+    <div style="margin-top: 30px;">
+        <a href="https://www.primefaces.org/primeng/#/datatable" target="_blank">prime-ng官方文档datatable</a>
+    </div>
+</div>
+<!--自定义浮动窗口的时候必须像以下格式-->
+<div style="position: relative; z-index: 10">
+    <p-overlayPanel #op [showCloseIcon]="true" [dismissable]="false">
+        <div style="width: 300px;">
+            <h3>自定义弹出内容</h3>
+            <div style="word-wrap:break-word;">
+                {{cellOverEvent}}
+            </div>
+        </div>
+    </p-overlayPanel>
+</div>
+
+<!--使用p-dataTabel组件定义内容-->
+<div style="position: relative; z-index: 10">
+    <p-overlayPanel #op2 [showCloseIcon]="true" [dismissable]="false">
+        <h3>使用prime-ng组件p-dataTable自定义表格展示</h3>
+        <p-dataTable [value]="op2Data" [style]="{'width':'500px'}">
+            <p-column field="vin" header="Vin" [sortable]="true"></p-column>
+            <p-column field="year" header="Year" [sortable]="true"></p-column>
+            <p-column field="brand" header="Brand" [sortable]="true"></p-column>
+            <p-column field="color" header="Color" [sortable]="true"></p-column>
+        </p-dataTable>
+    </p-overlayPanel>
+</div>
+
+<!--使用ui-grid组件定义内容-->
+<div style="position: relative; z-index: 10">
+    <p-overlayPanel #op3 [showCloseIcon]="true" [dismissable]="false">
+        <div style="width: 500px;overflow: scroll">
+            <h3>使用ui-grid组件自定义表格展示</h3>
+            <ui-grid [columns]="overTableColumns"
+                     [data]="overTableData"
+                     [enableExport]="enableExport"
+                     [showEditColumn]="showEditColumn"
+                     (load)="overTableload($event)"
+            ></ui-grid>
+        </div>
+    </p-overlayPanel>
+</div>
+
+
+<div class="conponent">
+    <p-dataTable [value]="data.content" [(selection)]="selectedCars2" dataKey="id">
+        <p-header>Checkbox Selection</p-header>
+        <p-column [style]="{'width':'38px'}" selectionMode="multiple"></p-column>
+        <p-column field="id" header="id"></p-column>
+        <p-column field="name" header="name"></p-column>
+        <p-column field="brand" header="Brand"></p-column>
+        <p-column field="color" header="Color"></p-column>
+        <p-footer>
+            <ul>
+                <li *ngFor="let car of selectedCars2" style="text-align: left">{{car.id + ' - ' + car.brand + ' - ' + car.year + ' - ' + car.color}}</li>
+            </ul>
+        </p-footer>
+    </p-dataTable>
+</div>

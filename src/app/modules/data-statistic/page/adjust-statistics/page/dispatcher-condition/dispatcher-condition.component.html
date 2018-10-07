@@ -1,0 +1,93 @@
+<div class="outer-container">
+  <div class="inner-container">
+    <!--导航栏-->
+    <my-nav [navs]="navs" [curIndex]="curIndex" [navHrefs]="navHrefs"></my-nav>
+    <div class="content-header">
+      <form>
+        <span>时间段</span>
+        <div class="calendar-div">
+          <p-calendar name="startDate" [(ngModel)]="AdjustStatistics.startDate" [locale]="zh" dateFormat="yy/mm/dd"
+                      [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true"
+                      [yearRange]="yearRange" [maxDate]="AdjustStatistics.endDate" [readonlyInput]="true"></p-calendar>
+        </div>
+        <div class="calendar-div">
+          <p-calendar name="endDate" [(ngModel)]="AdjustStatistics.endDate" [locale]="zh" dateFormat="yy/mm/dd"
+                      [inputStyle]="inputStyle" [monthNavigator]="true" [yearNavigator]="true"
+                      [yearRange]="yearRange" [minDate]="AdjustStatistics.startDate" [readonlyInput]="true"></p-calendar>
+        </div>
+
+        <button class="btn primary-btn" (click)="doSearch()" [disabled]="loading">
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+            查询
+        </button>
+        <button class="btn default-btn" type="reset">清空</button>
+      </form>
+
+    </div>
+
+    <!--这里是显示订单趋势统计图部分-->
+    <div class="content-body">
+      <div class="table-header table-header1">
+        <h4>调度员分单情况</h4>
+      </div>
+      <div class="content-img">
+        <h2 class="order-chart-title">调度员分单情况</h2>
+        <!--这是表格部分-->
+        <div class="table-container">
+          <p-dataTable selectionMode="single" #dt emptyMessage="没有记录"
+                       [value]="tableData.content" [rows]="10" [paginator]="true" [pageLinks]="3" [totalRecords]="tableData.totalElements"
+                       [rowsPerPageOptions]="[10,20,30,50,100]" scrollWidth="100%"
+                       [(selection)]="selectionRow" [lazy]="true" (onLazyLoad)="load($event)">
+            <p-header>
+              <div class="ui-helper-clearfix">
+                <button type="button" pButton icon="fa-file-o" iconPos="left" label="导出"
+                        (click)="dt.exportCSV()" style="float:right"></button>
+              </div>
+            </p-header>
+            <p-headerColumnGroup>
+              <p-row>
+                <p-column [style]="{'width':'28px'}" rowspan="2"></p-column>
+                <p-column [style]="{'width': '120px'}" header="调度员" rowspan="2"></p-column>
+                <p-column [style]="{'width': '300px'}" header="今日" colspan="3"></p-column>
+                <p-column [style]="{'width': '300px'}" header="该时间段累计" colspan="3"></p-column>
+
+              </p-row>
+              <p-row>
+                <p-column header="分配单量"></p-column>
+                <p-column header="分配及时订单"></p-column>
+                <p-column header="分配及时率"></p-column>
+                <p-column header="分配单量"></p-column>
+                <p-column header="分配及时订单"></p-column>
+                <p-column header="分配及时率"></p-column>
+
+              </p-row>
+            </p-headerColumnGroup>
+
+            <p-column [style]="{'width':'28px'}" selectionMode="single"></p-column>
+            <p-column [style]="{'width': '120px'}" field="dispatcherName"></p-column>
+            <p-column [style]="{'width': '100px'}" field="distributionTodayCount"></p-column>
+            <p-column [style]="{'width': '100px'}" field="distributionPromptnessTodayCount"></p-column>
+            <p-column [style]="{'width': '100px'}" field="todayDistributionPromptness"></p-column>
+            <p-column [style]="{'width': '100px'}" field="distributionCount"></p-column>
+           <p-column [style]="{'width': '100px'}" field="distributionPromptnessCount"></p-column>
+            <p-column [style]="{'width': '100px'}" field="distributionPromptness"></p-column>
+              <p-footerColumnGroup>
+                  <p-row>
+                      <p-column [style]="{'width':'28px'}"></p-column>
+                      <p-column [style]="{'width': '120px'}" footer="平均值"></p-column>
+                      <p-column [style]="{'width': '100px'}" footer="{{averageTodayNum}}"></p-column>
+                      <p-column [style]="{'width': '100px'}" footer="{{averageDistribution}}"></p-column>
+                      <p-column [style]="{'width': '100px'}" footer="{{averageTodayPromptness}}"></p-column>
+                      <p-column [style]="{'width': '100px'}" footer="{{averageCount}}"></p-column>
+                      <p-column [style]="{'width': '100px'}" footer="{{averagePromptnessCount}}"></p-column>
+                      <p-column [style]="{'width': '100px'}" footer="{{averagePromptness}}"></p-column>
+                  </p-row>
+              </p-footerColumnGroup>
+          </p-dataTable>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

@@ -1,0 +1,51 @@
+<form action="">
+    <div class="line">
+        <label><i>*</i>区域</label>
+        <div style="width: 200px;">
+            <area-select id="area" name="area" [(ngModel)]="vLateralPriceResponseVo.areaCode"></area-select>
+        </div>
+ <!--       <p>{{this.vLateralPriceResponseVo.areaCode}}</p>
+        <p>{{this.vLateralPriceResponseVo.areaName}}</p>-->
+        <div class="spec" *ngIf="areaCodeFlag">不能为空</div>
+
+    </div>
+    <div class="line">
+        <div class="right-div">
+            <label><i>*</i>支线费用</label>
+            <input name="branchFee" type="text" [(ngModel)]="vLateralPriceResponseVo.branchFee" required  maxlength="7" #int1 (input)="clear(int1)" required/>&nbsp;元
+            <span class="spec" *ngIf="branchFeeFlag"></span>
+        </div>
+
+        <div class="left-div">
+            <label class="right"><i>*</i>超方费用</label>
+            <input name="exceedVolumeUnitPrice" type="text" [(ngModel)]="vLateralPriceResponseVo.exceedVolumeUnitPrice" maxlength="7" #int2 (input)="clear(int2)" required/>&nbsp;元
+            <span class="spec" *ngIf="exceedVolumeUnitPriceFlag"></span>
+        </div>
+
+    </div>
+    <div class="line">
+        <div class="left-div">
+            <label><i>*</i>超方定义：大于</label>
+            <input name="exceedVolume" type="text" [(ngModel)]="vLateralPriceResponseVo.exceedVolume"  maxlength="7" #int3 (input)="clear(int3)" required/>&nbsp;立方米
+            <span class="spec" *ngIf="exceedVolumeFlag"></span>
+        </div>
+        <div class="right-div">
+            <label class="right"><i>*</i>超远费用</label>
+            <input name="exceedDistanceUnitPrice" type="text" [(ngModel)]="vLateralPriceResponseVo.exceedDistanceUnitPrice" maxlength="7" #int4 (input)="clear(int4)" required/>&nbsp;元
+            <span class="spec" *ngIf="exceedDistanceUnitPriceFlag"></span>
+        </div>
+
+    </div>
+    <div class="line">
+        <div class="right-div">
+            <label><i>*</i>超远定义：大于</label>
+            <input name="exceedDistance" type="text" [(ngModel)]="vLateralPriceResponseVo.exceedDistance" maxlength="7" #int5 (input)="clear(int5)" required/>&nbsp;公里
+            <span class="spec" *ngIf="exceedDistanceFlag"></span>
+        </div>
+    </div>
+    <!--<input type="text" name="tt" [(ngModel)]="obj" (input)="clearNoNum()">-->
+    <div class="footer">
+        <button type="submit" class="primary-btn btn" (click)="saveHandler();">保存</button>
+        <button class="primary-btn btn" type="reset" (click)="cancel();">取消</button>
+    </div>
+</form>

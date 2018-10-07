@@ -1,0 +1,189 @@
+.outer-modal-container {
+    width: 100%;
+    height: 100%;
+    background-color: #fbfafa;
+    overflow: hidden;
+    box-shadow: -3px 0px 10px #e4e4e4;
+}
+
+.modal-header {
+    padding: 15px 22px;
+    box-shadow: -3px 0px 10px #e4e4e4;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.modal-header .first-line {
+    margin-bottom: 10px;
+}
+
+.modal-header > .second-line > span {
+    float: left;
+    margin-top: 10px;
+}
+
+.modal-content {
+    padding: 22px;
+    height: 67%;
+}
+
+.nav-bar {
+    margin: 15px 0 0 22px;
+}
+
+div > button {
+    color: #82888e;
+    background-color: #eee;
+    width: 71px;
+    height: 26px;
+    border: none;
+    outline: none;
+}
+
+div > button:hover, div > button.active {
+    color: #fff;
+    background-color: #0D85E4;
+}
+
+a.close-modal-btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 12px;
+    height: 78px;
+    background: url(/assets/close-modal.png);
+    margin-top: -39px;
+}
+
+.modal-header .first-line .new-tap {
+    border-radius: 3px;
+    background-color: #0DA0FD;
+    color: #fff;
+    font-size: 15px;
+    padding: 3px 5px;
+    margin-right: 8px;
+}
+
+.modal-header .first-line .service-type {
+    background-color: #1FC695;
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-size: 15px;
+    color: #fff;
+    margin-left: 20px;
+    margin-right: 35px;
+}
+
+.gray-text {
+    color: #666;
+    margin-right: 5px;
+}
+
+.blue-text {
+    color: #0b7dd8;
+    margin-right: 40px;
+}
+
+.modal-header p-steps {
+    margin-left: 20px;
+}
+
+.modal-content p-steps {
+    margin-left: 10px;
+}
+
+.modal-content span.steps-tap {
+    margin-top: 6px;
+    margin-left: 24px;
+}
+
+.handle-time {
+    margin-left: 73px;
+}
+
+.handle-time > span {
+    display: inline-block;
+    width: 93px;
+    text-align: center;
+    padding: 0 5px;
+}
+
+/*--------------*/
+.modal-content {
+    padding: 22px;
+    height: 67%;
+}
+
+.rw-container {
+}
+
+.task-detail {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.task-detail > p {
+    float: left;
+    font-size: 16px;
+}
+
+.task-detail > p > span {
+    display: inline-block;
+    margin: 5px 90px 0 0;
+    font-size: 16px;
+
+}
+
+.task-detail > p > a {
+    font-size: 16px;
+    display: inline-block;
+
+}
+
+.left-border{
+    margin-bottom: 15px;
+    border-left: 2px solid #0D85E4;
+    padding-left: 5px;
+    line-height: 14px;
+}
+
+.img-wrap{
+    display: inline-block;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.img-wrap>.img-item>a>img{
+    width: 110px;
+    height: 110px;
+}
+.mask{
+    height: 100%;
+    width: 700px;
+    background-color: rgba(0,0,0,0);
+    position: absolute;
+    left: -700px;
+}
+.task-detail > p:nth-of-type(4) > span {
+    color: blue;
+    margin: 5px 0 0 0;
+    cursor: pointer;
+}
+.shadow-div {
+    position: absolute;
+    top: 43px;
+    left: 306px;
+    background: #1FC695;
+    width: 60px;
+    height: 33px;
+    text-align: center;
+    line-height: 33px;
+    cursor: pointer;
+    margin-top: 4px !important;
+    margin-left: 15px;
+    color: #fff;
+}
+.beizhu {
+    margin:10px 0;
+    font-size: 14px;
+}

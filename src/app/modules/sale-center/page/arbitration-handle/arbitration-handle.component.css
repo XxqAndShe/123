@@ -1,0 +1,29 @@
+.content{padding:20px;    height: 100%;  box-sizing: border-box;}
+.search-top,table-grid{display: none;}
+.show{  display: block;}
+.table-container {
+    width: 100%;
+    margin: 0;
+    border: 1px solid #d8e3ef;
+    border-top: none;
+    position: relative;
+    box-sizing:border-box;
+}
+div.explane{
+    height:calc(100% - 258px)
+}
+.modal {
+    width: 1020px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: -1040px;
+}
+readonly-exception-info{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -330px;
+    margin-left: -400px;
+    z-index: 9999;
+}

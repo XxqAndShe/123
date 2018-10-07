@@ -1,0 +1,396 @@
+/*登记异常*/
+#abnormal_box {
+    width: 596px;
+    height: auto;
+    top: 20px;
+    left: 40px;
+    z-index: 10000;
+    background-color: white;
+    box-shadow: 0px 5px 10px #6F6F6F;
+}
+
+#abnormal_box > .header {
+    height: 40px;
+    cursor: pointer;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#abnormal_box > .header > .close-btn {
+    float: right;
+    color: #cdcdcd;
+    margin-top: 8px;
+    font-size: 32px;
+    line-height: 20px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 12px;
+}
+
+#abnormal_box .header > .abnormal-text {
+    color: #0d85e4;
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 12px 0 0 20px;
+}
+
+/*单号查询*/
+.transport {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+}
+
+#abnormal_box .start-symbol {
+    color: #ff5454;
+    position: relative;
+    top: 2px;
+}
+
+#abnormal_box span {
+    color: #333;
+}
+.transport > input {
+    width: 172px;
+    height: 26px;
+    font-size: 16px;
+    line-height: 30px;
+    outline: none;
+}
+
+.transport > .transport-btn {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    margin-bottom: 2px;
+}
+
+/*异常*/
+#abnormal_box > .abnormal-type,
+#abnormal_box > .abnormal-des,
+#abnormal_box > .abnormal-pic,
+#abnormal_box > .feedback-person,
+#abnormal_box > .transport-detail {
+    padding: 20px 0 0 22px;
+}
+
+/*异常描述*/
+.abnormal-type > input {
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    outline: none;
+    font-size: 14px;
+    padding: 0 20px 8px 8px;
+    width: 90px;
+    border-bottom: 1px solid #ccc;
+    background: url("/assets/tip-box-img/down-arrow.png") no-repeat 100% 2px;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #ccc;
+}
+
+::-moz-scrollbar {
+    width: 4px;
+}
+
+::-moz-scrollbar-track {
+    background-color: white;
+}
+
+::-moz-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+::-moz-scrollbar-thumb:active {
+    background-color: #ccc;
+}
+
+::-ms-scrollbar {
+    width: 4px;
+}
+
+::-ms-scrollbar-track {
+    background-color: white;
+}
+
+::-ms-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+::-ms-scrollbar-thumb:active {
+    background-color: #ccc;
+}
+
+::-o-scrollbar {
+    width: 4px;
+}
+
+::-o-scrollbar-track {
+    background-color: white;
+}
+
+::-o-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+::-o-scrollbar-thumb:active {
+    background-color: #ccc;
+}
+
+.abnormal-type .select-div {
+    display: inline-block;
+    width: 200px;
+}
+.abnormal-type > .abnor-type-wrap {
+    position: absolute;
+    background-color: white;
+    z-index: 10000;
+    left: 386px;
+    width: 70px;
+    max-height: 170px;
+    overflow-y: auto;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #adadad;
+    box-shadow: 0 0 6px black;
+    scrollbar-face-color: blue;
+}
+
+.abnormal-type > .abnor-type-wrap.big-wrap {
+    left: 98px;
+    width: 70px;
+    max-height: 170px;
+    overflow-y: auto;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #adadad;
+    box-shadow: 0 0 6px black;
+    scrollbar-face-color: blue;
+}
+
+.abnormal-type > .abnor-type-wrap > .abnor-small-type {
+    padding: 3px 0 3px 6px;
+}
+
+.abnormal-type > .abnor-type-wrap > .abnor-small-type:hover {
+    background-color: #0d85e4;
+    cursor: pointer;
+    color: white;
+}
+
+.abnormal-type > .abnormal-small {
+    margin-left: 110px;
+}
+.abnormal-type > .abnormal-small2 {
+    margin-left: 20px;
+}
+
+.abnormal-des > textarea {
+    resize: none;
+}
+
+.abnormal-des > textarea {
+    resize: none;
+    outline: none;
+    padding: 10px;
+}
+
+.abnormal-des > .abnormal-des-con {
+    position: relative;
+    top: -74px;
+}
+
+/*异常图片*/
+.abnormal-pic input {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    display: inline-block;
+}
+
+#max_num {
+    color: #b6b6b6;
+}
+
+.abnormal-pic > .upload-pic {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+#abnormal_box .abnormal-pic > .upload-pic span {
+    position: absolute;
+    z-index: 10000;
+    cursor: pointer;
+    font-size: 16px;
+    right: 1px;
+    width: 14px;
+    height: 14px;
+    background-color: #f52a2a;
+    color: white;
+    text-align: center;
+    line-height: 14px;
+}
+
+
+.abnormal-pic > .add-abnormal-pic {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    background: url("/assets/tip-box-img/addAbnormalPic.png") no-repeat center center;
+}
+
+/*异常反馈人*/
+#abnormal_box > .feedback-person {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.feedback-person > input {
+    width: 166px;
+    padding: 0 0 8px 6px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+}
+
+#abnormal_box > .btn-group {
+    text-align: center;
+    padding-bottom: 14px;
+}
+
+#abnormal_box > .btn-group > .btn {
+    display: inline-block;
+    box-sizing: border-box;
+    margin-top: 12px;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    float: none;
+}
+
+#abnormal_box > .btn-group > .confirm-btn {
+    background-color: #0d85e4;
+    font-size: 14px;
+    color: white;
+}
+
+#abnormal_box > .btn-group > .cancel-btn {
+    background-color: #f8f8f8;
+    border: 2px solid #ddd;
+    margin-right: 0;
+    color: #919191;
+    line-height: 26px;
+    font-size: 14px;
+}
+
+/*运单详情*/
+#abnormal_box > .transport-detail {
+    padding: 20px 22px 0 22px;
+    overflow: hidden;
+
+}
+
+#abnormal_box .transport-detail .item {
+    color: #636363;
+    font-size: 12px;
+    width: 80px;
+    margin-right: 10px;
+}
+#abnormal_box .transport-detail .item div{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+#abnormal_box .transport-detail .item span {
+    color: #0d85e4;
+}
+
+.transport-detail > .menu-list {
+    height: 34px;
+    line-height: 34px;
+    background-color: #e5e5e5;
+}
+
+.transport-detail > .menu-list > .item:first-child,
+.transport-detail > .menu-item > .item:first-child {
+    margin-left: 12px;
+}
+
+.transport-detail > .menu-list > .item {
+    float: left;
+}
+
+.transport-detail > .menu-item {
+    height: 48px;
+    background-color: #efefef;
+}
+
+.transport-detail > .menu-item > .item {
+    float: left;
+    margin-top: 14px;
+}
+
+.abnormal-display {
+    display: none;
+}
+.ab-addleft{
+    margin-left: 12px;
+}
+.ui-upload{
+    display: inline-block;
+    width: 436px;
+}
+
+/*登记异常*/
+table{
+    margin-bottom: 20px;
+    width: 100%;
+}
+th,td{
+    padding: 10px 12px;
+    color: #636363;
+    box-sizing: border-box;
+    width: 92px;
+    text-align: center;
+}
+.content{
+    padding: 15px;
+    max-height: 450px;
+    overflow: auto;
+}
+.content>div:not(:last-child){
+    margin-bottom: 20px;
+}

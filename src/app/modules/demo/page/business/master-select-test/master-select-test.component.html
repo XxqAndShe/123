@@ -1,0 +1,35 @@
+<div class="test-content">
+  <p><a href="/modules/demo/test" class="back" >返回demo首页</a>  </p>
+  <div>
+    <h3>师傅名称</h3><br>
+    <p> type="name"为师傅名称查询</p><br>
+    <master-select name="masterName" width="150px" defaultLabel="请选择…" [(ngModel)]="masterName"  type="name"></master-select>
+    <span>{{masterName}}</span>
+    <br>
+    <button (click)="doTest()">测试取Code</button>
+  </div>
+  <div class="component">
+    <h3>师傅账号</h3>
+    <p> type="mobile"为账号查询</p><br>
+    <master-select name="masterMobile" width="150px" defaultLabel="请选择…" [(ngModel)]="masterMobile" type="mobile"></master-select>
+    <span>{{masterMobile}}</span>
+    <br>
+    <button (click)="doMobileTest()">测试取Code</button>
+  </div>
+  <div class="component">
+    <h3>师傅账号/名称查询</h3>
+    <p> 不写type类别，默认可按mobile或name两种方式做查询</p><br>
+    <p>  valueField="mobile"，取mobile值， valueField="realName"取name值。不控制则绑定为对象</p><br>
+    <p>  nameField="mobile"，显示mobile值，否则显示name</p><br>
+    <master-select name="masterMobile" width="150px" defaultLabel="请选择…" [(ngModel)]="master"></master-select>
+    <br>
+    <button (click)="domasterTest()">测试取值</button>
+  </div>
+    <div class="component">
+        <h3>师傅账号/名称查询</h3>
+        <p> valueField="mobile"举例</p><br>
+        <master-select name="masterMobile" width="150px" defaultLabel="请选择…" valueField="mobile"  [(ngModel)]="masterName1"></master-select>
+        <br>
+        <button (click)="domasterTest1()">测试取值</button>
+    </div>
+</div>

@@ -1,0 +1,224 @@
+<div class="outer-container ">
+    <div class="inner-container">
+        <panel-nav [navs]="navs" [(curIndex)]="curIndex" (chanCurIndex)="changeNav($event)"></panel-nav>
+
+        <form id="form_dsl" #formBox_dsl>
+            <div class="content-header content-header1">
+                <span>服务区域</span>
+                <div class="addr-control">
+                    <ui-select-box name="someName" [(ngModel)]="masterManageRequestVo.areaCode" [data-handler]="dataHandler"></ui-select-box>
+                </div>
+
+                <span style="margin-left: 25px;margin-right: 12px">常规服务</span>
+                <select name="regular-service" [(ngModel)]="masterManageRequestVo.typeOfService">
+				<option value="All">全部</option>
+				<option value="dispatch">配送</option>
+				<option value="install">安装</option>
+				<option value="dispatchNInstall">配送+安装</option>
+			</select>
+
+                <span>增值服务</span>
+                <select name="value-added-service" [(ngModel)]="masterManageRequestVo.valueAddService">
+				<option value="All">全部</option>
+				<option value="repairService">维修</option>
+				<option value="returnGoods">返货</option>
+			</select>
+
+                <span>认证状态</span>
+                <select name="audit-status" [(ngModel)]="masterManageRequestVo.auditStatus">
+				<option value="All">全部</option>
+				<option value="notPass">未认证</option>
+				<option value="pass">已认证</option>
+
+
+			</select>
+                <!--Todo 前期不做，请勿删除-->
+                <!--<span class="whether-cooperation">是否合作</span>-->
+                <!--<select name="audit-status" [(ngModel)] ="masterManageRequestVo.companiesType">-->
+                <!--<option value="All">全部</option>-->
+                <!--<option value="Yes">是</option>-->
+                <!--<option value="No">否</option>-->
+                <!--</select>-->
+
+                <!--($event)-->
+                <button class="btn primary-btn" (click)="doSearch($event)" [disabled]="loading">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom" *ngIf="loading"></i>
+                    查询
+                </button>
+                <button class="btn default-btn" (click)="formBox_dsl.reset()">清空</button>
+            </div>
+
+            <div class="content-header content-header2">
+                <label class="master-id">师傅/手机</label>
+                <master-select name="userName2" width="150px" defaultLabel="请选择…" class="masterAccount" [(ngModel)]="masterManageRequestVo.masterAccount" valueField="mobile"></master-select>
+                <!--<label for="masterName">师傅名称</label>-->
+                <!--<input type="text" [(ngModel)] ="masterManageRequestVo.masterName" name="masterName" id="masterName" placeholder="请输入师傅姓名">-->
+                <!--<p-autoComplete id="masterName" class="input" name="tt" [(ngModel)]="masterManageRequestVo.masterName" [suggestions]="suggestionResult" (completeMethod)="searchResult($event)" field="realName"></p-autoComplete>-->
+
+
+                <!--<input type="text" [(ngModel)] ="masterManageRequestVo.masterAccount" name="masterId" id="masterId" placeholder="请输入师傅账号">-->
+                <!--<master-select id="masterId" class="input" name="tt" [(ngModel)]="masterManageRequestVo.masterAccount" [suggestions]="suggestionResult" (completeMethod)="searchResult2($event)" field="consignerMobile"></master-select>-->
+
+
+            </div>
+        </form>
+        <div *ngIf='selections.length !== 0' class="table-header">
+            <span class="select-text">已选中<span class="select-num">{{selections?.length || 0}}</span>项</span>
+            <span class="split-line" *ngIf='cooperationState'>|</span>
+            <a *ngIf='!isJoinBlacklist' href="javascript:void(0);" class="operation-a operation-whitelist" (click)="restoreTWl()"><i></i>恢复白名单</a>
+            <a *ngIf='isJoinBlacklist&&cooperationState' href="javascript:void(0);" class="operation-a operation-blacklist" (click)="jionTheBlacklist()"><i></i>加入黑名单</a>
+            <!--添加一个弹出按钮-->
+            <span *ngIf="isJoinBlacklist&&cooperationState">
+			    <span class="split-line">|</span>
+            <a *ngIf='isStart' href="javascript:void(0);" class="operation-a operation-start" (click)="startLinkMan()"><i></i>启用</a>
+            <a *ngIf='notStart&&cooperationState' href="javascript:void(0);" class="operation-a operation-stop" (click)="stopLinkMan()"><i></i>停用</a>
+            </span>
+            <span class="split-line" *ngIf="cooperationState">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-modify" (click)="displayModalEdit(0)" *ngIf='cooperationState'><i></i>修改</a>
+            <!--Todo 以下都是后期要用，请勿删除-->
+            <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-delete" (click)="deleteLinkMan()"><i></i>解约</a>
+            <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-check" (click)="displayModalCheck(1)"><i></i>查看</a>
+             <span class="split-line">|</span>
+             <a href="javascript:void(0);" class="operation-a operation-add" (click)="displayModalNew(2)"><i></i>建立合作</a>
+            <!--<a href="javascript:void(0);" (click)="displayModalNew(2)">添加师傅</a>-->
+            <span class="close-btn" (click)="DeleteSelectNum()">×</span>
+        </div>
+        <div *ngIf='selections.length == 0' class="table-header table-header1">
+            <h4>任务列表</h4>
+            <!--<a href="javascript:void(0);" (click)="displayModalNew(2)">添加师傅</a>-->
+            <span class="split-line">|</span>
+            <a href="javascript:void(0);" class="operation-a operation-add" (click)="displayModalNew(2)"><i></i>建立合作</a>
+        </div>
+        <div class="table-container master_manage_table">
+            <ui-grid title="&nbsp;" [columns]="columns" [data]="data" (load)="load($event)" (exportCSV)="exportCSV($event)" [selections]="selections" (rowSelect)="rowSelect($event)" (cellClick)="cellClick($event,op1)"></ui-grid>
+        </div>
+    </div>
+
+    <master-manage-edit class="modal" *ngIf="isModuleDisplayArrEdit" (closeModalEdit)="closeModalEdit($event)" (preservation)="preservationEdit()" [@modalState]="isModuleDisplayArr1Edit ?'in':'out'" [selections]="selectedRow" [master]="master"></master-manage-edit>
+    <master-manage-check class="modal" *ngIf="isModuleDisplayArrCheck" (closeModalCheck)="closeModalCheck($event)" [@modalState]="isModuleDisplayArr1Check ?'in':'out'" [masterMangerCheckResponse]="masterMangerCheckResponse" [typeOfservice]="typeOfservice"
+        [valueAddService]="valueAddService" [userWorkerServiceArea]="userWorkerServiceArea" [imaArr]="imgArr"></master-manage-check>
+</div>
+<!--弹出框开始-->
+<!--删除联系人弹出框-->
+<span *ngIf="deleteSucceed">
+  <div class="dialog-box dialog-box-mm" style="display:block">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+<span class="dialog-right" (click)="deleteSymbol()">×</span>
+</div>
+<div class="dialog-box-content dialog-box-content-mm">
+    师傅：{{selections[0].masterName}}，师傅确认解除合作？
+</div>
+<div class="dialog-box-footer dialog-box-footer-mm">
+    <span class="btn primary-btn" (click)="confirmDeletel()">确定</span>
+    <span class="btn default-btn" (click)="cancelDeletel()">取消</span>
+</div>
+</div>
+</span>
+<!--恢复白名单弹出框-->
+<span *ngIf="rtw">
+	<div class="mask-layer" style="display:block"></div>
+  <div class="dialog-box dialog-box-mm" style="display:block">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+<span class="dialog-right" (click)="deleteSymbol()">×</span>
+</div>
+<div class="dialog-box-content dialog-box-content-mm">
+    是否确认将{{selections[0].masterName}}恢复白名单？
+</div>
+<div class="dialog-box-footer dialog-box-footer-mm">
+    <span class="btn primary-btn" (click)="confirmDestorew()">确定</span>
+    <span class="btn default-btn" (click)="cancelDestorew()">取消</span>
+</div>
+</div>
+</span>
+<!--加入黑名单弹出框-->
+<span *ngIf="jtb">
+  <div class="dialog-box dialog-box-mm" style="display:block">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+<span class="dialog-right" (click)="deleteSymbol()">×</span>
+</div>
+<div class="dialog-box-content dialog-box-content-mm">
+    是否确认{{selections[0].masterName}}拉入黑名单？
+</div>
+<div class="dialog-box-footer dialog-box-footer-mm">
+    <span class="btn primary-btn" (click)="confirmJoinb()">确定</span>
+    <span class="btn default-btn" (click)="cancelJoinb()">取消</span>
+</div>
+</div>
+</span>
+<!--启用弹出框-->
+<span *ngIf="startUsing">
+  <div class="dialog-box dialog-box-mm" style="display:block">
+	<div class="dialog-box-title dialog-box-title-mm">
+		<span class="dialogdialog-left">提示</span>
+<span class="dialog-right" (click)="deleteSymbol()">×</span>
+</div>
+<div class="dialog-box-content dialog-box-content-mm">
+    是否确认启用{{selections[0].masterName}}？
+</div>
+<div class="dialog-box-footer dialog-box-footer-mm">
+    <span class="btn primary-btn" (click)="confirmStart()">确定</span>
+</div>
+</div>
+</span>
+<!--停用弹窗-->
+<span *ngIf="stopUsing">
+		<div class="dialog-box" id="stop-dialog-box">
+			<div class="dialog-box-title">
+				<span class="dialog-left">停用设置</span>
+<span class="dialog-right" (click)="deleteSymbol()">×</span>
+</div>
+<div class="dialog-box-content">
+    <div class="dialog-box-top dialog-box-com">
+        <span class="start-symbol">*</span>
+        <span>停用天数</span>
+        <input type="text" onkeyup="value=value.replace(/[^\d{1,}]/g,'')" placeholder="{{itemHowDay}}" [(ngModel)]="HowDay" #box1 (blur)="fnHowDay(box1.value)" maxlength="2" />
+    </div>
+    <div class="dialog-box-bott dialog-box-com">
+        <span class="start-symbol">*</span>
+        <span>停用原因</span>
+        <textarea maxlength="200" placeholder="{{itemStopReasons}}" [(ngModel)]="ReasonsForStop"></textarea>
+    </div>
+</div>
+<div class="dialog-box-footer" id="stop-dialog-box-footer">
+    <span class="btn primary-btn" (click)="confirmStopUsing()">确定</span>
+    <span class="btn default-btn" (click)="cancelStopUsing()">取消</span>
+</div>
+</div>
+</span>
+<!--提示框组件-->
+<p-growl [value]="msgs"></p-growl>
+<!--弹出框结束-->
+<!--表格服务区域表格弹窗-->
+<p-overlayPanel #op1 [showCloseIcon]="true" [dismissable]="false">
+    <!--<div style="width: 601px;height: 300px;overflow-y: auto">-->
+    <p-dataTable [value]="serviceAreas" class="table" [style]="{'width':'510px','maxHeight':'300px','overflow-y':'auto'}">
+        <p-headerColumnGroup>
+            <p-row>
+                <p-column header="省" [style]="{'width':'100px'}"></p-column>
+                <p-column header="市" [style]="{'width':'100px'}"></p-column>
+                <p-column header="区/县" [style]="{'width':'300px'}"></p-column>
+            </p-row>
+        </p-headerColumnGroup>
+
+        <p-column field="sheng"></p-column>
+        <p-column field="shi"></p-column>
+        <p-column field="qu"></p-column>
+    </p-dataTable>
+    <!--</div>-->
+</p-overlayPanel>
+<!--确定、取消弹窗-->
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-close" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>
+<!--加载中-->
+<span class="loading-serve" *ngIf="loadingIf">
+    <img src="./assets/cooperation-company/loading.gif">
+</span>

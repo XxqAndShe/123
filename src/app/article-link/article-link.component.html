@@ -1,0 +1,65 @@
+<div class="cont-top">
+    <div class="top-left">
+        <i class="logo"></i>
+    </div>
+    <div class="top-right">
+        <p (click)="save()">
+            <!--<i class="share-btn collect-btn"></i>-->
+            收藏链接
+        </p>
+        <span class="share-btn share" (click)="onShare()"></span>
+    </div>
+</div>
+
+<p class="hint" *ngIf="hint">
+    <i class="share-btn"></i>
+    已复制分享链接
+</p>
+
+<div class="content-bottom" *ngIf="article">
+    <div style="padding:0 20px 20px; background: white;min-height: 85%" *ngIf="data?.pdf==='HTML'">
+        <div class="title" *ngIf="article">
+            <h1>{{name}}</h1>
+            <p>更新于：<span>{{timeDate}}</span></p>
+        </div>
+        <div class="ql-editor" style="margin-top: -40px">
+            <div id="text" class="text"></div>
+        </div>
+    </div>
+
+    <div style="min-height: 85%" *ngIf="data?.pdf==='PDF'">
+        <div class="pdf-title" style="padding:10px 20px 20px; background: white;">
+            <h1>{{name}}</h1>
+            <p>更新于：<span>{{timeDate}}</span></p>
+            <div class="ql-editor" style="margin-top: -40px">
+                <div id="text" class="pdf-text"></div>
+            </div>
+            <div class="share-link" *ngIf="data?.pdf==='PDF'">
+                <h3>附件</h3>
+                <p *ngFor="let item of attachments">
+                    <span>{{item.attachmetName}}</span>
+                    <span>
+                       <a [href]="item.path" target="_blank">{{item.path}}</a>
+                    </span>
+
+                </p>
+            </div>
+        </div>
+        <div class="pdf" style="margin-top: 20px;height: 800px;background: #F0F0F0"
+             *ngIf="data?.pdf==='PDF' && data.pdfUrl">
+            <iframe src="/pdf-js/web/viewer.html" style="width:100%; height:90%;" frameborder="0"></iframe>
+            <!--<canvas id="pdf-canvas"></canvas>-->
+        </div>
+    </div>
+</div>
+
+<div style="position: fixed; width: 100%; height: 100%" *ngIf="!article">
+    <div class="pwd">
+        <input name="titleName" placeholder="请输入文件密码" maxlength="25" [(ngModel)]="pwd" (input)="onModelChange($event)"
+               *ngIf="!notFound"/>
+        <button class="btn primary-btn" (click)="checkClick()" *ngIf="!notFound">确定</button>
+        <div>
+            <span *ngIf="errorMsg" class="red">{{errorMsg}}</span>
+        </div>
+    </div>
+</div>

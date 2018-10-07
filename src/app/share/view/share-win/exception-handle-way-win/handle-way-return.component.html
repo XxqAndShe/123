@@ -1,0 +1,298 @@
+<div class="handle_tank" id="repair_tank" [ngStyle]="drag.setPosition(450,452)">
+    <div class="top_tank" id="repair_top">
+        <span class="left">返货任务</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <div class="zho_tank">
+        <ul class="Carrier">
+            <li ngClass="{{showCarrier === true? 'current':''}}" (click)="toggle('CARRIERS')">承运商返货</li>
+            <li ngClass="{{showServicer === true? 'current':''}}" (click)="toggle('SERVICE')">服务商返货</li>
+        </ul>
+    </div>
+    <form (ngSubmit)="save()">
+        <div class="merchant">
+            <div class="merchant_in01 current" *ngIf="showCarrier">
+                <div class="merchant_zho fu content_supply">
+                    <table style="margin: 0 auto 30px auto;">
+                        <tr style="background-color: #E4E4E4">
+                            <th><em>*</em>返货品名</th>
+                            <th><em>*</em>返货数量</th>
+                            <th><em>*</em>货物体积</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr *ngFor="let rea1 of returnResult.carrier.returnArr1; let i=index">
+                            <td>
+                                <input name="carrierProductName{{i}}" [(ngModel)]="rea1['productName']" type="text" maxlength="50"/>
+                            </td>
+                            <td>
+                                <input name="carrierPieces{{i}}" [(ngModel)]="rea1['pieces']" type="number"/>
+                            </td>
+                            <td>
+                                <input name="carrierVolume{{i}}" [(ngModel)]="rea1['volume']" type="number"/>
+                            </td>
+                            <td>
+                                <span class="item_jian" (click)="removeReturn('carrier',i)">-</span>
+                                <span class="item_jia" (click)="addReturn('carrier')" *ngIf="i==returnResult.carrier.returnArr1.length-1">+</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--<div class="zho01">
+                        <ul>
+                            <li>
+                                <span class="fan1"><em>*</em>返货品名</span>
+                                <span class="fan2"><em>*</em>返货数量</span>
+                                <span class="fan3"><em>*</em>货物体积</span>
+                            </li>
+                            <li *ngFor="let rea1 of returnResult.carrier.returnArr1; let i=index">
+                                <input name="carrierProductName{{i}}" [(ngModel)]="rea1['productName']" type="text" placeholder="请输入" maxlength="50" required/>
+                                <input name="carrierPieces{{i}}" [(ngModel)]="rea1['pieces']" type="number" placeholder="请输入" required/>
+                                <input name="carrierVolume{{i}}" [(ngModel)]="rea1['volume']" type="number" placeholder="请输入" required/>
+                                <em class="jian" (click)="removeReturn('carrier',i)">-</em>
+                                <em class="jia" (click)="addReturn('carrier')" *ngIf="i==returnResult.carrier.returnArr1.length-1">+</em>
+                            </li>
+                        </ul>
+                    </div>-->
+                    <!--<div class="zho01">
+                        <span class="zho_span" style="width: 95px"><em>*</em>收货联系人</span>
+                        <span class="zho_span" style="width: 95px"><em>*</em>联系方式</span>
+                        <span class="zho_span" style="width: 95px"><em>*</em>收货地址</span>
+                    </div>
+                    <div class="zho01">
+                        <cnee-select name="carrierConsignee" [(ngModel)]="returnResult.carrier.consignee" style="float: left;margin-right: 5px"></cnee-select>
+                        <input name="carrierConsigneeMobile" [(ngModel)]="returnResult.carrier.consigneeMobile" class="sho2" type="text" placeholder="收货人联系方式" style="width: 93px;height: 28px;padding: 0" maxlength="11" required/>
+                        <input name="carrierConsigneeAdr" [(ngModel)]="returnResult.carrier.consigneeAdr" class="sho3" type="text" placeholder="收货地址" style="width: 93px;height: 28px;padding: 0" required/>
+                        <em class="sho">收</em>
+                    </div>-->
+                    <div class="row">
+                        <span>
+                            <label class="normal-lb"><em>*</em>责任方</label>
+                            <meta-select width="115px" defaultLabel="请选择…" name="carrierAbnormalDuty" [(ngModel)]="returnResult.carrier.abnormalDuty"
+                                         type="abnormalDuty" (onChange)="onDutyChange($event,'carrier')"></meta-select>
+                        </span>
+                        <span>
+                            <label>承担金额</label>
+                            <input name="carrierAssumeFee" [(ngModel)]="returnResult.carrier.assumeFee" class="inline-input" type="text" style="width: 115px;"
+                                   (keyup)="onlyPositive(returnResult.carrier.assumeFee,'carAsu')"/>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label class="normal-lb"><em>*</em>收货人</label>
+                        <cnee-select name="carrierConsignee" [(ngModel)]="returnResult.carrier.consignee" style="margin-right: 5px" maxlength="25"></cnee-select>
+                        <input name="carrierConsigneeMobile" [(ngModel)]="returnResult.carrier.consigneeMobile" class="inline-input"
+                               type="text" placeholder="电话号码" maxlength="40" style="width: 191px" required/>
+                    </div>
+                    <div class="row">
+                        <label class="normal-lb"><em>*</em>收货地址</label>
+                        <input name="carrierConsigneeAdr" [(ngModel)]="returnResult.carrier.consigneeAdr" class="inline-input"
+                               type="text" style="width: 325px;height: 30px;box-sizing: border-box" maxlength="120" required/>
+                    </div>
+                    <div class="row">
+                        <label class="normal-lb verTop">备注</label>
+                        <textarea cols="50" rows="4" name="carrierRemark" [(ngModel)]="returnResult.carrier.remark" placeholder="请填写备注信息" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="merchant_in02 current" *ngIf="showServicer">
+                <div class="merchant_zho cheng content_supply">
+                    <table style="margin: 0 auto 30px auto;">
+                        <tr style="background-color: #E4E4E4">
+                            <th><em>*</em>返货品名</th>
+                            <th><em>*</em>返货数量</th>
+                            <th><em>*</em>货物体积</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr *ngFor="let rea1 of returnResult.servicer.returnArr2; let i=index">
+                            <td>
+                                <input name="servicerProductName{{i}}" [(ngModel)]="rea1['productName']" type="text" maxlength="50">
+                            </td>
+                            <td>
+                                <input name="servicerpPieces{{i}}" [(ngModel)]="rea1['pieces']" type="number">
+                            </td>
+                            <td>
+                                <input name="servicerVolume{{i}}" [(ngModel)]="rea1['volume']" type="number">
+                            </td>
+                            <td>
+                                <span class="item_jian" (click)="removeReturn('servicer',i)">-</span>
+                                <span class="item_jia" (click)="addReturn('servicer')" *ngIf="i==returnResult.servicer.returnArr2.length-1">+</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <!--<div class="zho01">
+                        <ul>
+                            <li>
+                                <span class="fan1"><em>*</em>返货品名</span>
+                                <span class="fan2"><em>*</em>返货数量</span>
+                                <span class="fan3"><em>*</em>货物体积</span>
+                            </li>
+                            <li *ngFor="let rea1 of returnResult.servicer.returnArr2; let i=index">
+                                <input name="servicerProductName{{i}}" [(ngModel)]="rea1['productName']" type="text" placeholder="请输入" maxlength="50" required>
+                                <input name="servicerpPieces{{i}}" [(ngModel)]="rea1['pieces']" type="number" placeholder="请输入" required>
+                                <input name="servicerVolume{{i}}" [(ngModel)]="rea1['volume']" type="number" placeholder="请输入" required>
+                                <em class="jian" (click)="removeReturn('servicer',i)">-</em>
+                                <em class="jia" (click)="addReturn('servicer')" *ngIf="i==returnResult.servicer.returnArr2.length-1">+</em>
+                            </li>
+                        </ul>
+                    </div>-->
+                    <div style="clear: both"></div>
+                    <section>
+                        <div class="title-line">地址与物流信息</div>
+                        <div class="row">
+                            <label class="lg-lb">提货联系人</label>
+                            <select class="select-sm" (change)="toggleBtn($event)">
+                                <option value="customerhome">客户家</option>
+                                <option value="warehouse">服务商仓库</option>
+                            </select>
+                            <cnee-select name="servicerPickUpMan" [(ngModel)]="returnResult.servicer.pickUpMan" *ngIf="btnState === 'customerhome'"></cnee-select>
+                            <input class="input-lg inline-input" type="text" name="servicerPickUpManMobile"
+                                   [(ngModel)]="returnResult.servicer.pickUpManMobile" placeholder="电话号码" *ngIf="btnState === 'customerhome'">
+                        </div>
+                        <div class="row" *ngIf="btnState === 'customerhome'">
+                            <label class="lg-lb">提货地址</label>
+                            <input class="inline-input" type="text" name="servicerPickUpAdr" [(ngModel)]="returnResult.servicer.pickUpAdr"
+                                   placeholder="详细地址" style="width: 337px;">
+                        </div>
+                        <div class="row">
+                            <label class="lg-lb"><em>*</em>收货人</label>
+                            <select class="select-sm" (change)="toggleBtnR($event)">
+                                <option value="merchants">商家</option>
+                                <option value="hub">枢纽</option>
+                            </select>
+                            <cnee-select name="servicerConsignee" [(ngModel)]="returnResult.servicer.consignee"></cnee-select>
+                            <input class="input-lg inline-input" name="servicerConsigneeMobile" [(ngModel)]="returnResult.servicer.consigneeMobile" placeholder="电话号码" maxlength="40">
+                        </div>
+                        <div class="row">
+                            <label class="lg-lb"><em>*</em>收货地址</label>
+                            <input class="inline-input" name="servicerConsigneeAdr" [(ngModel)]="returnResult.servicer.consigneeAdr"
+                                   placeholder="详细地址" style="width: 337px;" maxlength="120">
+                        </div>
+                        <div class="row">
+                            <label class="lg-lb">指定物流</label>
+                            <meta-select name="servicerTransportCompany" [(ngModel)]="returnResult.servicer.transportCompany"
+                                         type="specifyLogistics" defaultLabel="请选择…" width="165px"></meta-select>
+                            <input class="inline-input" name="servicerTransportCompanyMobile" [(ngModel)]="returnResult.servicer.transportCompanyMobile"
+                                   placeholder="物流电话" style="width: 166px;">
+                        </div>
+                    </section>
+                    <section>
+                        <div class="title-line">安装费用信息</div>
+                        <div class="row">
+                            <span>
+                                <label class="normal-lb">安装师傅</label>
+                                <master-select name="servicerUserWorker" [(ngModel)]="returnResult.servicer.userWorker"  defaultLabel="请选择…" width="150px"></master-select>
+                            </span>
+                            <span>
+                                <label class="normal-lb">提货费用</label>
+                                <input class="inline-input input-lg" name="servicerPicFee" [(ngModel)]="returnResult.servicer.picFee"
+                                       type="text" (keyup)="onlyPositive(returnResult.servicer.picFee,'serPic')">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span>
+                                <label class="normal-lb"><em>*</em>责任方</label>
+                                <meta-select width="124px" defaultLabel="请选择…" name="servicerAbnormalDuty" [(ngModel)]="returnResult.servicer.abnormalDuty"
+                                             type="abnormalDuty" (onChange)="onDutyChange($event,'service')"></meta-select>
+                            </span>
+                            <span>
+                                <label class="normal-lb">承担金额</label>
+                                <input class="inline-input input-lg" type="text" name="serviceAssumeFee" [(ngModel)]="returnResult.servicer.assumeFee"
+                                       (keyup)="onlyPositive(returnResult.servicer.assumeFee,'serAsu')">
+                            </span>
+                        </div>
+                    </section>
+                    <div class="row">
+                        <label class="normal-lb verTop">备注</label>
+                        <textarea name="servicerRemark" [(ngModel)]="returnResult.servicer.remark"  placeholder="请填写备注信息" style="width: 322px;height: 60px"></textarea>
+                    </div>
+                    <!--<div class="zho_m">
+                        <span class="left_p">提货点</span>
+                        <form class="right_p">
+                            <label (click)="toggleBtn('customerhome')"><input checked type="radio" name="radiobtn" value="customerhome">客户家</label>
+                            <label (click)="toggleBtn('warehouse')"><input type="radio" name="radiobtn" value="warehouse">服务商仓库</label>
+                        </form>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="zho01" *ngIf="btnState === 'customerhome'">
+                        <span class="ser-span1"><em>*</em>提货联系人</span>
+                        <span class="ser-span2"><em>*</em>联系方式</span>
+                        <span class="ser-span2"><em>*</em>提货地址</span>
+                    </div>
+                    <div class="zho01" *ngIf="btnState === 'customerhome'">
+                        <cnee-select name="servicerPickUpMan" [(ngModel)]="returnResult.servicer.pickUpMan" style="float: left;margin-right: 5px"></cnee-select>
+                        <input name="servicerPickUpManMobile" [(ngModel)]="returnResult.servicer.pickUpManMobile" class="sho2" type="text" maxlength="11" required>
+                        <input name="servicerPickUpAdr" [(ngModel)]="returnResult.servicer.pickUpAdr" class="sho3" type="text" required>
+                        <em class="qu">提</em>
+                    </div>
+                    <div class="zho_m">
+                        <span class="left_p">收货点</span>
+                        <form class="right_p">
+                            <label (click)="toggleBtnR('merchants')"><input checked type="radio" name="radiobtn" value="merchants">商家</label>
+                            <label (click)="toggleBtnR('hub')"><input type="radio" name="radiobtn" value="hub">枢纽</label>
+                        </form>
+                    </div>
+                    <div style="clear: both"></div>
+                    <div class="zho01">
+                        <span class="ser-span1"><em>*</em>收货联系人</span>
+                        <span class="ser-span2"><em>*</em>联系方式</span>
+                        <span class="ser-span2"><em>*</em>收货地址</span>
+                    </div>
+                    <div class="zho01">
+                        <cnee-select name="servicerConsignee" [(ngModel)]="returnResult.servicer.consignee" style="float: left;margin-right: 5px"></cnee-select>
+                        <input name="servicerConsigneeMobile" [(ngModel)]="returnResult.servicer.consigneeMobile" class="sho2" type="text" maxlength="11" required>
+                        <input name="servicerConsigneeAdr" [(ngModel)]="returnResult.servicer.consigneeAdr" class="sho3" type="text" required>
+                        <em class="sho">收</em>
+                    </div>
+                    <div class="zho01">
+                        <ul class="formulate">
+                            <li>
+                                <span class="">指定物流</span>
+                                <span class="">物流电话</span>
+                            </li>
+                            <li>
+                                <span class="">
+                                <meta-select name="servicerTransportCompany" [(ngModel)]="returnResult.servicer.transportCompany" type="specifyLogistics" defaultLabel="请选择…" width="150px"></meta-select>
+                                </span>
+                                <input name="servicerTransportCompanyMobile" [(ngModel)]="returnResult.servicer.transportCompanyMobile" type="text" maxlength="11"/>
+                            </li>
+                            <li>
+                                <span class="">安装师傅</span>
+                                <span class="">提货费用</span>
+                            </li>
+                            <li>
+                                &lt;!&ndash;<span *ngIf="selectedAbnormal.abnormal.worker">&ndash;&gt;
+                                    &lt;!&ndash;<input name="insMaster" [(ngModel)]="selectedAbnormal.abnormal.worker" readonly="readonly" />&ndash;&gt;
+                                &lt;!&ndash;</span>&ndash;&gt;
+                                <span class="">
+                                    <master-select name="servicerUserWorker" [(ngModel)]="returnResult.servicer.userWorker"  defaultLabel="请选择…" width="150px"></master-select>
+                                </span>
+                                <input name="servicerPicFee" [(ngModel)]="returnResult.servicer.picFee" type="number"/>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="zho01">
+                        <div class="shan_jing">
+                            <span class="shan_titl">商家承担金额</span>
+                            <input name="servicerAssumeFee" [(ngModel)]="returnResult.servicer.assumeFee" class="shen_sr" type="number" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="repair01">
+							<span class="left_m">
+							<h3><em>*</em>责任方</h3>
+                                <meta-select width="150px" defaultLabel="请选择…" name="servicerAbnormalDuty" [(ngModel)]="returnResult.servicer.abnormalDuty"
+                                             type="abnormalDuty" (onChange)="onDutyChange($event)"></meta-select>
+							</span>
+                    </div>-->
+                </div>
+                <!--<div class="fen_remarks">
+                    <span class="remarks_top"><em>*</em>备注</span>
+                    <textarea name="servicerRemark" [(ngModel)]="returnResult.servicer.remark"  placeholder="请输入" required></textarea>
+                </div>-->
+            </div>
+        </div>
+        <div class="bottom_tank">
+            <button type="submit" class="btn primary-btn">确定</button>
+            <button type="button" class="btn default-btn" (click)="close()">取消</button>
+        </div>
+    </form>
+</div>
+<!--提示框-->
+<p-growl [value]="msgs"></p-growl>

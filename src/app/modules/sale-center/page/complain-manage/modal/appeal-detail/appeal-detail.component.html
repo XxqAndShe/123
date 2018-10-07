@@ -1,0 +1,142 @@
+<div class="dialog-box" id="appeal_deatil" style="position: fixed; z-index: 10000; top: 0px; left: 685px;">
+    <div id="appeal_deatil_title" class="dialog-box-title">
+        <span class="dialogdialog-left">处理投诉</span>
+        <span class="dialog-right" (click)="close()">×</span>
+    </div>
+    <div class="dialog-box-content" id="content">
+        <div class="up-block">
+            <div class="row">
+                <div>
+                    <span>任务单号 :</span>
+                    <span>{{rowData.taskTitle}}</span>
+                </div>
+                <div class="shipper">
+                    <span>发货人 :</span>
+                    <span>{{rowData.shipperName}}</span>
+                </div>
+                <div class="destination">
+                    <span>目的地 :</span>
+                    <span>{{rowData.shippingAddress}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <span>投诉人 :</span>
+                    <span>{{rowData.complainantName}}</span>
+                </div>
+                <div>
+                    <span>投诉电话 :</span>
+                    <span>{{rowData.complainantMobile}}</span>
+                </div>
+            </div>
+            <div class="row row-content">
+                <span class="complain-content">投诉内容 :</span>
+                <span class="info">{{rowData.complaintContent}}</span>
+            </div>
+            <div class="row last">
+                <span class="img">投诉图片 :</span>
+                <ul class="img-wrap" *ngFor="let picInfo of rowData.picInfos">
+                    <li class="img-item">
+                        <a rel="fancybox" href="{{picInfo.url}}"><img src="{{picInfo.url}}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="handle-complain">
+            <div class="deal">处理</div>
+            <div class="row first">
+                <div class="input-form">
+                    <span>投诉类型 :</span>
+                    <span>{{complaintDeal.complaintType}}</span>
+                </div>
+                <div class="input-form">
+                    <span>责任方 :</span>
+                    <span>{{complaintDeal.duty}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-form">
+                    <span>责任人 :</span>
+                    <span>{{complaintDeal.dutyName}}</span>
+                </div>
+                <div class="input-form">
+                    <span>责任人电话 :</span>
+                    <span>{{complaintDeal.dutyMobile}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-form">
+                    <span>处罚金额 :</span>
+                    <span>{{complaintDeal.penaltyFee}}</span>
+                </div>
+                <div class="input-form">
+                    <span>处理状态 :</span>
+                    <span>{{complaintDeal.dealStatus}}</span>
+                </div>
+            </div>
+            <div class="input-describe">
+                <span>备注 :</span>
+                <span class="remark">{{complaintDeal.remark}}</span>
+            </div>
+            <div class="row">
+                <div class="input-form">
+                    <span>是否服务补救 :</span>
+                    <span>{{rowData.hasCompensate}}</span>
+                </div>
+                <div class="input-form" *ngIf="complaintDeal?.hasCompensate">
+                    <span>补偿金额 :</span>
+                    <span>{{complaintDeal.compensateFee}}</span>
+                </div>
+            </div>
+            <div class="input-describe" *ngIf="complaintDeal?.hasCompensate">
+                <span>补偿备注 :</span>
+                <span class="remark">{{complaintDeal.compensateRemark}}</span>
+            </div>
+        </div>
+        <div class="appeal-complain" *ngFor="let complaintAppeal of vComplaintAppeals">
+            <div class="appeal">申诉</div>
+            <div class="row first">
+                <div class="input-form">
+                    <span>申诉人姓名 :</span>
+                    <span>{{complaintAppeal.appealName}}</span>
+                </div>
+                <div class="input-form">
+                    <span>申诉人电话 :</span>
+                    <span>{{complaintAppeal.appealMobile}}</span>
+                </div>
+            </div>
+            <div class="input-describe">
+                <span>申诉内容 :</span>
+                <span class="remark">{{complaintAppeal.appealContent}}</span>
+            </div>
+            <div class="input-describe">
+                <span class="img">申诉图片: </span>
+                <ul class="img-wrap" *ngFor="let fileInfo of complaintAppeal.fileInfos">
+                    <li class="img-item">
+                        <a rel="fancybox" href="{{fileInfo}}"><img src="{{fileInfo}}"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="input-describe">
+                <span>申诉结果 :</span>
+                <span class="remark">{{complaintAppeal.result}}</span>
+            </div>
+            <div class="input-describe">
+                <span>备注 :</span>
+                <span class="remark">{{complaintAppeal.remark}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="dialog-box-footer">
+        <!-- <span class="btn primary-btn" (click)="save()">确定</span> -->
+        <span class="btn default-btn" (click)="close()">关闭</span>
+    </div>
+</div>
+<!-- 提示弹窗 -->
+<p-growl [value]="msgs"></p-growl>
+<p-confirmDialog width="360" #cd>
+    <p-footer>
+        <button type="button" pButton icon="fa-check" label="取消" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="fa-check" label="确定" (click)="cd.accept()"></button>
+    </p-footer>
+</p-confirmDialog>

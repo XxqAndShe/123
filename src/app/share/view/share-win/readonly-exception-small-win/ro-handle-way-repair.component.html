@@ -1,0 +1,56 @@
+<div class="handle_tank" id="box" [ngStyle]="drag.setPosition(450,452)">
+    <div class="top_tank" id="move">
+        <span class="left">维修任务</span>
+        <span class="right buhuo" (click)="close()">×</span>
+    </div>
+    <div class="zho_tank repair-content" style="max-height: 380px;overflow: auto">
+        <div class="row">
+            <table style="margin: 0 auto 30px auto;">
+                <tr style="background-color: #E4E4E4">
+                    <th>维修品名</th>
+                </tr>
+                <tr *ngFor="let taskRepairGood of repairResult.taskRepairGoods">
+                    <td>{{taskRepairGood}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+                <span>
+                    <label class="normal-lb"><em>*</em>维修类型</label>
+                    <input [(ngModel)]="repairResult.taskRepairType" class="input-lg inline-input"/>
+                </span>
+            <span style="padding-left: 19px;box-sizing: border-box">
+                <label class="normal-lb">安装师傅</label>
+                <input [(ngModel)]="repairResult.insMaster" class="input-lg inline-input"/>
+            </span>
+        </div>
+        <div class="row">
+                <span>
+                    <label class="normal-lb"><em>*</em>维修费用</label>
+                    <input class="inline-input input-lg" type="number" [(ngModel)]="repairResult.repairFee"/>
+                </span>
+            <span style="padding-left: 19px;box-sizing: border-box">
+                    <label class="normal-lb">承担金额</label>
+                    <input type="number" class="inline-input input-lg" [(ngModel)]="repairResult.shipperFee"/>
+                </span>
+        </div>
+        <div class="row">
+            <label class="normal-lb"><em>*</em>责任方</label>
+            <input class="inline-input input-lg" [(ngModel)]="repairResult.responsibers"/>
+        </div>
+        <div class="row">
+            <label class="normal-lb verTop">描述图片</label>
+            <ui-upload name="pic" [(ngModel)]="repairResult.fileInfos" [files]="repairResult.repairPicPath"
+                       style="display: inline-block;width: 355px"></ui-upload>
+        </div>
+        <div class="row">
+            <label class="normal-lb verTop">备注</label>
+            <textarea name="remark" [(ngModel)]="repairResult.remark" style="width: 347px;height: 60px"></textarea>
+        </div>
+    </div>
+    <div class="bottom_tank">
+        <ul>
+            <li><a class="cancel1" href="javascript:;" (click)="close()">关闭</a></li>
+        </ul>
+    </div>
+</div>

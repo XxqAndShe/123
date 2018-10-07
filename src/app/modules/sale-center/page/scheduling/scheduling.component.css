@@ -1,0 +1,3 @@
+.content{padding:20px;    height: 100%;  box-sizing: border-box;overflow-y: auto;}
+.scheduling{display: none;}
+.scheduling.show{display:block;}
